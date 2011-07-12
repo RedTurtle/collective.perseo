@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="collective.perseo">
+ <configlet title="Plone SEO" action_id="collective.perseo"
+    appId="collective.perseo" category="Products" condition_expr=""
+    icon_expr="string:${portal_url}/++resource++collective.perseo/seo.png"
+    url_expr="string:${portal_url}/@@seo-controlpanel"
+    visible="True" i18n:attributes="title">
+  <permission>ManagePortal</permission>
+ </configlet>
+</object>
