@@ -11,11 +11,6 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 
 from collective.perseo import perseoMessageFactory as _
 
-class ISEOConfigBaseSchema(Interface):
-    """"""
-class ISEOConfigAdvancedSchema(Interface):
-    """"""
-
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
     
@@ -36,10 +31,13 @@ class ISEOConfigWMToolsSchema(Interface):
                 default=u"Bing Webmaster Tools"),
         description=u"http://www.bing.com/webmaster/",
         required=False)
+    
+class ISEOConfigTitleSchema(Interface):
+    """Schema for Title"""
+    
 
-class ISEOConfigSchema(ISEOConfigBaseSchema,
-                       ISEOConfigAdvancedSchema,
-                       ISEOConfigWMToolsSchema):
+class ISEOConfigSchema(ISEOConfigWMToolsSchema,
+                       ISEOConfigTitleSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -56,21 +54,18 @@ class SEOConfigAdapter(SchemaAdapterBase):
     bingWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['bingWebmasterTools'])
 
 # Fieldset configurations
-baseset = FormFieldsets(ISEOConfigBaseSchema)
-baseset.id = 'seobase'
-baseset.label = _(u'label_seobase', default=u'Base')
-
-advancedset = FormFieldsets(ISEOConfigAdvancedSchema)
-advancedset.id = 'seoadvanced'
-advancedset.label = _(u'label_seoadvanced', default=u'Advanced')
 
 wmtoolsset = FormFieldsets(ISEOConfigWMToolsSchema)
-wmtoolsset.id = 'seowmtool'
-wmtoolsset.label = _(u'label_seowmtool', default=u'WM Tools')
+wmtoolsset.id = 'seowmtools'
+wmtoolsset.label = _(u'label_seowmtools', default=u'WM Tools')
+
+titleset = FormFieldsets(ISEOConfigTitleSchema)
+titleset.id = 'seotitle'
+titleset.label = _(u'label_seotitle', default=u'Title')
 
 class PerSEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(baseset, advancedset, wmtoolsset)
+    form_fields = FormFieldsets(wmtoolsset, titleset)
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "

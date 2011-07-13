@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-13 10:04+0000\n"
+"POT-Creation-Date: 2011-07-13 15:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:80
+#: ./browser/seo_config.py:75
 msgid ""
 msgstr ""
 
@@ -25,42 +25,37 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:75
+#: ./browser/seo_config.py:70
 msgid "Plone SEO Configuration"
 msgstr ""
 
 #. Default: "Bing Webmaster Tools"
-#: ./browser/seo_config.py:35
+#: ./browser/seo_config.py:30
 msgid "label_bingWebmasterTools"
 msgstr ""
 
 #. Default: "Google Webmaster Tools"
-#: ./browser/seo_config.py:23
+#: ./browser/seo_config.py:18
 msgid "label_googleWebmasterTools"
 msgstr ""
 
-#. Default: "Advanced"
-#: ./browser/seo_config.py:65
-msgid "label_seoadvanced"
-msgstr ""
-
-#. Default: "Base"
-#: ./browser/seo_config.py:61
-msgid "label_seobase"
+#. Default: "Title"
+#: ./browser/seo_config.py:64
+msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:69
-msgid "label_seowmtool"
+#: ./browser/seo_config.py:60
+msgid "label_seowmtools"
 msgstr ""
 
 #. Default: "Yahoo Site Explorer"
-#: ./browser/seo_config.py:29
+#: ./browser/seo_config.py:24
 msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:76
+#: ./browser/seo_config.py:71
 msgid "seo_configlet_description"
 msgstr ""
 
