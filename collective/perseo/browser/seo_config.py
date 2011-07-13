@@ -1,11 +1,12 @@
 from zope.interface import Interface
 from zope.interface import implements
 from zope.component import adapts
+from zope.schema import TextLine
 
 from plone.fieldsets.fieldsets import FormFieldsets
 from plone.app.controlpanel.form import ControlPanelForm
 
-from Products.CMFDefault.formlib.schema import SchemaAdapterBase
+from Products.CMFDefault.formlib.schema import SchemaAdapterBase, ProxyFieldProperty
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 
 from collective.perseo import perseoMessageFactory as _
@@ -17,6 +18,12 @@ class ISEOConfigAdvancedSchema(Interface):
 
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
+    
+    googleWebmasterTools = TextLine(
+        title=_("label_googleWebmasterTools",
+                default=u"Google Webmaster Tools"),
+        description=u"https://www.google.com/webmasters/tools/",
+        required=False)
 
 class ISEOConfigSchema(ISEOConfigBaseSchema,
                        ISEOConfigAdvancedSchema,
@@ -31,6 +38,8 @@ class SEOConfigAdapter(SchemaAdapterBase):
 
     def __init__(self, context):
         super(SEOConfigAdapter, self).__init__(context)
+        
+    googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
 
 # Fieldset configurations
 baseset = FormFieldsets(ISEOConfigBaseSchema)

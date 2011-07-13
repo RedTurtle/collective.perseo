@@ -15,5 +15,7 @@
 		layer=".interfaces.IPerSEOLayer"
 		permission="cmf.ManagePortal"
 		/>
+		
+	<adapter factory=".seo_config.SEOConfigAdapter" />
 
 </configure>
