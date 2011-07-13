@@ -68,7 +68,7 @@ wmtoolsset = FormFieldsets(ISEOConfigWMToolsSchema)
 wmtoolsset.id = 'seowmtool'
 wmtoolsset.label = _(u'label_seowmtool', default=u'WM Tools')
 
-class SEOConfig(ControlPanelForm):
+class PerSEOConfig(ControlPanelForm):
 
     form_fields = FormFieldsets(baseset, advancedset, wmtoolsset)
 

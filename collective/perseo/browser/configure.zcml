@@ -9,13 +9,29 @@
     	/>
     	
 	<browser:page
-		name="seo-config"
+		name="perseo-config"
 		for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-		class=".seo_config.SEOConfig"
+		class=".seo_config.PerSEOConfig"
 		layer=".interfaces.IPerSEOLayer"
 		permission="cmf.ManagePortal"
 		/>
 		
+	<browser:page
+		name="perseo-context"
+		for="*"
+		class=".views.PerSEOContext"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+
 	<adapter factory=".seo_config.SEOConfigAdapter" />
+	
+	<browser:viewlet
+		name="collective.perseo.metatags"
+		manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+		class=".viewlets.PerSEOMetaTagsViewlet"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
 
 </configure>

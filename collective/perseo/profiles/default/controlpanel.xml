@@ -4,7 +4,7 @@
  <configlet title="Plone SEO" action_id="collective.perseo"
     appId="collective.perseo" category="Products" condition_expr=""
     icon_expr="string:${portal_url}/++resource++collective.perseo/seo.png"
-    url_expr="string:${portal_url}/@@seo-config"
+    url_expr="string:${portal_url}/@@perseo-config"
     visible="True" i18n:attributes="title">
   <permission>ManagePortal</permission>
  </configlet>
