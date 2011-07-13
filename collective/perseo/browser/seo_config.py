@@ -15,8 +15,12 @@ class ISEOConfigBaseSchema(Interface):
 class ISEOConfigAdvancedSchema(Interface):
     """"""
 
+class ISEOConfigWMToolsSchema(Interface):
+    """Schema for WebMaster Tools"""
+
 class ISEOConfigSchema(ISEOConfigBaseSchema,
-                       ISEOConfigAdvancedSchema):
+                       ISEOConfigAdvancedSchema,
+                       ISEOConfigWMToolsSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -37,9 +41,13 @@ advancedset = FormFieldsets(ISEOConfigAdvancedSchema)
 advancedset.id = 'seoadvanced'
 advancedset.label = _(u'label_seoadvanced', default=u'Advanced')
 
+wmtoolsset = FormFieldsets(ISEOConfigWMToolsSchema)
+wmtoolsset.id = 'seowmtool'
+wmtoolsset.label = _(u'label_seowmtool', default=u'WM Tools')
+
 class SEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(baseset, advancedset)
+    form_fields = FormFieldsets(baseset, advancedset, wmtoolsset)
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "

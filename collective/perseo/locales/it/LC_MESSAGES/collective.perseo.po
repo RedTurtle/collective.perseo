@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: it\n"
-"Language-Name: Italian\n"
+"Language-Name: Italiano\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
@@ -18,22 +18,27 @@ msgstr ""
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:54
+#: ./browser/seo_config.py:52
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
 #. Default: "Advanced"
-#: ./browser/seo_config.py:48
+#: ./browser/seo_config.py:42
 msgid "label_seoadvanced"
 msgstr "Avanzato"
 
 #. Default: "Base"
-#: ./browser/seo_config.py:44
+#: ./browser/seo_config.py:38
 msgid "label_seobase"
 msgstr "Base"
 
+#. Default: "WM Tools"
+#: ./browser/seo_config.py:46
+msgid "label_seowmtool"
+msgstr "Strumenti WM"
+
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:55
+#: ./browser/seo_config.py:53
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-13 08:13+0000\n"
+"POT-Creation-Date: 2011-07-13 08:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:59
+#: ./browser/seo_config.py:57
 msgid ""
 msgstr ""
 
@@ -25,22 +25,27 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:54
+#: ./browser/seo_config.py:52
 msgid "Plone SEO Configuration"
 msgstr ""
 
 #. Default: "Advanced"
-#: ./browser/seo_config.py:48
+#: ./browser/seo_config.py:42
 msgid "label_seoadvanced"
 msgstr ""
 
 #. Default: "Base"
-#: ./browser/seo_config.py:44
+#: ./browser/seo_config.py:38
 msgid "label_seobase"
 msgstr ""
 
+#. Default: "WM Tools"
+#: ./browser/seo_config.py:46
+msgid "label_seowmtool"
+msgstr ""
+
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:55
+#: ./browser/seo_config.py:53
 msgid "seo_configlet_description"
 msgstr ""
 
