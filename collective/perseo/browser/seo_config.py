@@ -24,6 +24,18 @@ class ISEOConfigWMToolsSchema(Interface):
                 default=u"Google Webmaster Tools"),
         description=u"https://www.google.com/webmasters/tools/",
         required=False)
+    
+    yahooSiteExplorer = TextLine(
+        title=_("label_yahooSiteExplorer",
+                default=u"Yahoo Site Explorer"),
+        description=u"https://siteexplorer.search.yahoo.com/mysites",
+        required=False)
+    
+    bingWebmasterTools = TextLine(
+        title=_("label_bingWebmasterTools",
+                default=u"Bing Webmaster Tools"),
+        description=u"http://www.bing.com/webmaster/",
+        required=False)
 
 class ISEOConfigSchema(ISEOConfigBaseSchema,
                        ISEOConfigAdvancedSchema,
@@ -40,6 +52,8 @@ class SEOConfigAdapter(SchemaAdapterBase):
         super(SEOConfigAdapter, self).__init__(context)
         
     googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
+    yahooSiteExplorer = ProxyFieldProperty(ISEOConfigSchema['yahooSiteExplorer'])
+    bingWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['bingWebmasterTools'])
 
 # Fieldset configurations
 baseset = FormFieldsets(ISEOConfigBaseSchema)

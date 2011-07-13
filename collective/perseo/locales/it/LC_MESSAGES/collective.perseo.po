@@ -18,9 +18,14 @@ msgstr ""
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:61
+#: ./browser/seo_config.py:75
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
+
+#. Default: "Bing Webmaster Tools"
+#: ./browser/seo_config.py:35
+msgid "label_bingWebmasterTools"
+msgstr "Strumenti Bing Webmaster"
 
 #. Default: "Google Webmaster Tools"
 #: ./browser/seo_config.py:23
@@ -28,22 +33,27 @@ msgid "label_googleWebmasterTools"
 msgstr "Strumenti Google Webmaster"
 
 #. Default: "Advanced"
-#: ./browser/seo_config.py:51
+#: ./browser/seo_config.py:65
 msgid "label_seoadvanced"
 msgstr "Avanzato"
 
 #. Default: "Base"
-#: ./browser/seo_config.py:47
+#: ./browser/seo_config.py:61
 msgid "label_seobase"
 msgstr "Base"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:55
+#: ./browser/seo_config.py:69
 msgid "label_seowmtool"
 msgstr "Strumenti WM"
 
+#. Default: "Yahoo Site Explorer"
+#: ./browser/seo_config.py:29
+msgid "label_yahooSiteExplorer"
+msgstr "Yahoo Site Explorer"
+
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:62
+#: ./browser/seo_config.py:76
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
