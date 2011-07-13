@@ -1,0 +1,116 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-07-13 07:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.perseo\n"
+
+#: ./browser/seo_config.py:187
+msgid ""
+msgstr ""
+
+#: ./profiles/default/controlpanel.xml
+msgid "Plone SEO"
+msgstr ""
+
+#: ./browser/seo_config.py:182
+msgid "Plone SEO Configuration"
+msgstr ""
+
+#. Default: "Select content types that will have SEO properties enabled."
+#: ./browser/seo_config.py:48
+msgid "description_seo_content_types"
+msgstr ""
+
+#. Default: "Controls if <abbr title=\"Dublin Core\">DC</abbr> metatags are exposed to page header. They include DC.description, DC.type, DC.format, DC.creator and others."
+#: ./browser/seo_config.py:29
+msgid "description_seo_dc_metatags"
+msgstr ""
+
+#. Default: "This JavaScript code will be included in the rendered HTML as entered in the page header."
+#: ./browser/seo_config.py:69
+msgid "help_custom_script"
+msgstr ""
+
+#. Default: "Fill in custom metatag names (one per line) which will appear on qseo_properties edit tab. Example: \"metaname|metacontent\" or \"metaname\"."
+#: ./browser/seo_config.py:58
+msgid "help_default_custom_metatags"
+msgstr ""
+
+#. Default: "Fill in filds (one per line) which statistics of keywords usage should be calculated for."
+#: ./browser/seo_config.py:77
+msgid "help_fields"
+msgstr ""
+
+#. Default: "Fill in meta tags (one per line) in the order in which they will appear on site source pages. Example: \"metaname accessor\"."
+#: ./browser/seo_config.py:40
+msgid "help_metatags_order"
+msgstr ""
+
+#. Default: "Fill in stop words (one per line) which will be excluded from kewords statistics calculation."
+#: ./browser/seo_config.py:84
+msgid "help_stop_words"
+msgstr ""
+
+#. Default: "Content Types"
+#: ./browser/seo_config.py:47
+msgid "label_content_type_title"
+msgstr ""
+
+#. Default: "Header JavaScript"
+#: ./browser/seo_config.py:68
+msgid "label_custom_script"
+msgstr ""
+
+#. Default: "Default custom metatags."
+#: ./browser/seo_config.py:57
+msgid "label_default_custom_metatags"
+msgstr ""
+
+#. Default: "Expose <abbr title=\"Dublin Core\">DC</abbr> meta tags"
+#: ./browser/seo_config.py:27
+msgid "label_exposeDCMetaTags"
+msgstr ""
+
+#. Default: "Fields for keywords statistic calculation."
+#: ./browser/seo_config.py:76
+msgid "label_fields"
+msgstr ""
+
+#. Default: "Meta tags order in the page."
+#: ./browser/seo_config.py:38
+msgid "label_metatags_order"
+msgstr ""
+
+#. Default: "Advanced"
+#: ./browser/seo_config.py:169
+msgid "label_seoadvanced"
+msgstr ""
+
+#. Default: "Base"
+#: ./browser/seo_config.py:165
+msgid "label_seobase"
+msgstr ""
+
+#. Default: "Stop words."
+#: ./browser/seo_config.py:83
+msgid "label_stop_words"
+msgstr ""
+
+#. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
+#: ./browser/seo_config.py:183
+msgid "seo_configlet_description"
+msgstr ""
+
