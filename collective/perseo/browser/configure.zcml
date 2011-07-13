@@ -7,5 +7,13 @@
     	name="collective.perseo"
     	directory="./resources"
     	/>
+    	
+	<browser:page
+		name="seo-config"
+		for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+		class=".seo_config.SEOConfig"
+		layer=".interfaces.IPerSEOLayer"
+		permission="cmf.ManagePortal"
+		/>
 
 </configure>
