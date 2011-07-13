@@ -14,6 +14,10 @@ METATAGS = {"google-site-verification":"googleWebmasterTools",
             "y_key":"yahooSiteExplorer",
             "msvalidate.01":"bingWebmasterTools"}
 
+METATAGS_ORDER = ["google-site-verification",
+                  "y_key",
+                  "msvalidate.01"]
+
 class PerSEOMetaTagsViewlet( ViewletBase ):
     """Inserts meta tags in html head of pages"""
 
@@ -32,9 +36,8 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
         #seo_global = queryAdapter(pps.portal(), ISEOConfigSchema)
         seo_context = queryMultiAdapter((self.context, self.request), name='perseo-context')
 
-        metadata_names = SortedDict(METATAGS)
-        
-        for key, accessor in metadata_names.items():
+        for key in METATAGS_ORDER:
+            accessor = METATAGS[key]
             if seo_context._perseo_metatags.has_key(accessor):
                 value = seo_context._perseo_metatags.get(accessor, None)
             else:
