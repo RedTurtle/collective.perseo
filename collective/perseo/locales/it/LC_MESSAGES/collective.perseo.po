@@ -60,17 +60,17 @@ msgstr "Strumenti WM"
 #. Default: "Single Page Description"
 #: ./browser/seo_config.py:61
 msgid "label_singlepage_description"
-msgstr "Titolo Single Page"
+msgstr "Titolo pagine singole"
 
 #. Default: "Single Page Keywords"
 #: ./browser/seo_config.py:66
 msgid "label_singlepage_keywords"
-msgstr "Keywords Single Page"
+msgstr "Keywords pagine singole"
 
 #. Default: "Single Page Title"
 #: ./browser/seo_config.py:56
 msgid "label_singlepage_title"
-msgstr "Descrizione Single Page"
+msgstr "Descrizione pagine singole"
 
 #. Default: "Yahoo Site Explorer"
 #: ./browser/seo_config.py:26
