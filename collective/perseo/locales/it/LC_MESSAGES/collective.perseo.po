@@ -18,37 +18,67 @@ msgstr ""
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:70
+#: ./browser/seo_config.py:120
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
 #. Default: "Bing Webmaster Tools"
-#: ./browser/seo_config.py:30
+#: ./browser/seo_config.py:32
 msgid "label_bingWebmasterTools"
 msgstr "Strumenti Bing Webmaster"
 
 #. Default: "Google Webmaster Tools"
-#: ./browser/seo_config.py:18
+#: ./browser/seo_config.py:20
 msgid "label_googleWebmasterTools"
 msgstr "Strumenti Google Webmaster"
 
+#. Default: "Home Page Description"
+#: ./browser/seo_config.py:46
+msgid "label_homepage_description"
+msgstr "Descrizione Home Page"
+
+#. Default: "Home Page Keywords"
+#: ./browser/seo_config.py:51
+msgid "label_homepage_keywords"
+msgstr "Keywords Home Page"
+
+#. Default: "Home Page Title"
+#: ./browser/seo_config.py:41
+msgid "label_homepage_title"
+msgstr "Titolo Home Page"
+
 #. Default: "Title"
-#: ./browser/seo_config.py:64
+#: ./browser/seo_config.py:102
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:60
+#: ./browser/seo_config.py:98
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
+#. Default: "Single Page Description"
+#: ./browser/seo_config.py:61
+msgid "label_singlepage_description"
+msgstr "Titolo Single Page"
+
+#. Default: "Single Page Keywords"
+#: ./browser/seo_config.py:66
+msgid "label_singlepage_keywords"
+msgstr "Keywords Single Page"
+
+#. Default: "Single Page Title"
+#: ./browser/seo_config.py:56
+msgid "label_singlepage_title"
+msgstr "Descrizione Single Page"
+
 #. Default: "Yahoo Site Explorer"
-#: ./browser/seo_config.py:24
+#: ./browser/seo_config.py:26
 msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:71
+#: ./browser/seo_config.py:121
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
