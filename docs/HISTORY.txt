@@ -4,4 +4,8 @@ Changelog
 0.1.0dev (unreleased)
 ---------------------
 
-- Initial release
+- Added Plone SEO control panel tool [fdelia]
+- Added viewlet for insert meta tags in html head of pages [fdelia]
+- Added view that allows to calculate html header meta tags on context [fdelia]
+ 
+

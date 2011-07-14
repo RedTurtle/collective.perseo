@@ -5,7 +5,7 @@ version = '0.1.0'
 
 setup(name='collective.perseo',
       version=version,
-      description="",
+      description="Search Engine Optimization Package",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
