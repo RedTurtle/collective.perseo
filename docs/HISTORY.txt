@@ -7,5 +7,6 @@ Changelog
 - Added Plone SEO control panel tool [fdelia]
 - Added viewlet for insert meta tags in html head of pages [fdelia]
 - Added view that allows to calculate html header meta tags on context [fdelia]
+- Added viewlet for custom title tag rendering [fdelia]
  
 

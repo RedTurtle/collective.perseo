@@ -1,7 +1,8 @@
 from Acquisition import aq_inner
+from cgi import escape
 
 #from zope.component import queryAdapter
-from zope.component import queryMultiAdapter
+from zope.component import getMultiAdapter, queryMultiAdapter
 from plone.app.layout.viewlets.common import ViewletBase
 
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
@@ -65,3 +66,35 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
             result[key] = value
 
         return result
+            
+class PerSEOTitleTagViewlet(ViewletBase):
+    """ Viewlet for custom title tag rendering.
+    """
+
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.context_state = getMultiAdapter((self.context, self.request),
+                                             name=u'plone_context_state')
+        self.perseo_context = getMultiAdapter((self.context, self.request),
+                                             name=u'perseo-context')
+        
+        self.override_title = self.perseo_context['has_perseo_title']
+
+    def std_title(self):
+        page_title = safe_unicode(self.context_state.object_title())
+        portal_title = safe_unicode(self.portal_state.portal_title())
+        if page_title == portal_title:
+            return u"<title>%s</title>" % (escape(portal_title))
+        else:
+            return u"<title>%s &mdash; %s</title>" % (
+                escape(safe_unicode(page_title)),
+                escape(safe_unicode(portal_title)))
+
+    def render(self):
+        if not self.override_title:
+            return self.std_title()
+        else:
+            perseo_title = u"<title>%s</title>" % safe_unicode(
+                self.perseo_context["perseo_title"])
+            return perseo_title
