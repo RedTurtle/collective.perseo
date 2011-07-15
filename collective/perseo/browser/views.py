@@ -4,6 +4,7 @@ from zope.component import queryMultiAdapter
 
 from plone.memoize import view, ram
 
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 
 from collective.perseo.browser.seo_config import ISEOConfigSchema
@@ -81,6 +82,18 @@ class PerSEOContext(BrowserView):
     
     def perseo_keywords( self ):
         return None
+    
+    def perseo_variables(self, value):
+        if value:
+            if isinstance(value, (list, tuple)):
+                new_value = []
+                for x in value:
+                    new_value.append(safe_unicode(x.replace('%%title%%',self.pcs.context.Title()).\
+                                                    replace('%%tag%%',' '.join(self.pcs.context.Subject()))))
+                return new_value
+            return safe_unicode(value.replace('%%title%%',self.pcs.context.Title()).\
+                                    replace('%%tag%%',' '.join(self.pcs.context.Subject())))
+        return value
 
 class PerSEOContextPloneSiteRoot(PerSEOContext):
     """ Calculate html header meta tags on context. Context == PloneSiteRoot
@@ -116,15 +129,15 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
 
     def perseo_title( self ):
         page = self.perseo_what_page()
-        return self.get_gseo_field('%s_title' % page)
+        return self.perseo_variables(self.get_gseo_field('%s_title' % page))
     
     def perseo_description( self ):
         page = self.perseo_what_page()
-        return self.get_gseo_field('%s_description' % page)
+        return self.perseo_variables(self.get_gseo_field('%s_description' % page))
     
     def perseo_keywords( self ):
         page = self.perseo_what_page()
-        return self.get_gseo_field('%s_keywords' % page)
+        return self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
             
 class PerSEOContextATDocument(PerSEOContext):
     """ Calculate html header meta tags on context. Context == ATDocument
@@ -141,15 +154,15 @@ class PerSEOContextATDocument(PerSEOContext):
         
     def perseo_title( self ):
         page = self.perseo_what_page()
-        return self.get_gseo_field('%s_title' % page)
+        return self.perseo_variables(self.get_gseo_field('%s_title' % page))
     
     def perseo_description( self ):
         page = self.perseo_what_page()
-        return self.get_gseo_field('%s_description' % page)
+        return self.perseo_variables(self.get_gseo_field('%s_description' % page))
     
     def perseo_keywords( self ):
         page = self.perseo_what_page()
-        return self.get_gseo_field('%s_keywords' % page)
+        return self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
     
 class PerSEOContextPortalTypes(PerSEOContext):
     """ Calculate html header meta tags on context. Context == a portal type
@@ -157,13 +170,13 @@ class PerSEOContextPortalTypes(PerSEOContext):
     portal_type = ''
         
     def perseo_title( self ):
-        return self.get_gseo_field('%s_title' % self.portal_type)
+        return self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
     
     def perseo_description( self ):
-        return self.get_gseo_field('%s_description' % self.portal_type)
+        return self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
     
     def perseo_keywords( self ):
-        return self.get_gseo_field('%s_keywords' % self.portal_type)
+        return self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))
     
 class PerSEOContextATEvent(PerSEOContextPortalTypes):
     """ Calculate html header meta tags on context. Context == ATEvent

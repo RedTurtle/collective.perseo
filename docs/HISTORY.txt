@@ -10,4 +10,4 @@ Changelog
 - Added viewlet for custom title tag rendering [fdelia]
 - Added some views that allows to calculate title tag base on the type of context [fdelia]
 - Added some methods that allows to calculate title tag base on the page in PloneSiteRoot context [fdelia]
-
+- Added handling of variables %%title%% and %%tag%% in meta tags from Plone SEO control panel tool [fdelia]
