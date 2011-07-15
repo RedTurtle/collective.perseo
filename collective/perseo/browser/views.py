@@ -33,6 +33,7 @@ class PerSEOContext(BrowserView):
             "yahooSiteExplorer": self.seo_globalYahooSiteExplorer(),
             "bingWebmasterTools":self.seo_globalBingWebmasterTools(),
             "perseo_title":self.perseo_title(),
+            "perseo_description":self.perseo_description(),
             }
         return perseo_metatags
     
@@ -73,6 +74,9 @@ class PerSEOContext(BrowserView):
     
     def perseo_title( self ):
         return None
+    
+    def perseo_description( self ):
+        return None
 
 class PerSEOContextPloneSiteRoot(PerSEOContext):
     """ Calculate html header meta tags on context. Context == PloneSiteRoot
@@ -109,6 +113,10 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
     def perseo_title( self ):
         page = self.perseo_what_page()
         return self.get_gseo_field('%s_title' % page)
+    
+    def perseo_description( self ):
+        page = self.perseo_what_page()
+        return self.get_gseo_field('%s_description' % page)
             
 class PerSEOContextATDocument(PerSEOContext):
     """ Calculate html header meta tags on context. Context == ATDocument
@@ -127,6 +135,10 @@ class PerSEOContextATDocument(PerSEOContext):
         page = self.perseo_what_page()
         return self.get_gseo_field('%s_title' % page)
     
+    def perseo_description( self ):
+        page = self.perseo_what_page()
+        return self.get_gseo_field('%s_description' % page)
+    
 class PerSEOContextPortalTypes(PerSEOContext):
     """ Calculate html header meta tags on context. Context == a portal type
     """
@@ -134,6 +146,9 @@ class PerSEOContextPortalTypes(PerSEOContext):
         
     def perseo_title( self ):
         return self.get_gseo_field('%s_title' % self.portal_type)
+    
+    def perseo_description( self ):
+        return self.get_gseo_field('%s_description' % self.portal_type)
     
 class PerSEOContextATEvent(PerSEOContextPortalTypes):
     """ Calculate html header meta tags on context. Context == ATEvent

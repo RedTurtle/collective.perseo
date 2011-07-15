@@ -13,11 +13,13 @@ from collective.perseo.util import SortedDict
 # mapping {meta_name:accessor} of all meta tags
 METATAGS = {"google-site-verification":"googleWebmasterTools",
             "y_key":"yahooSiteExplorer",
-            "msvalidate.01":"bingWebmasterTools"}
+            "msvalidate.01":"bingWebmasterTools",
+            "description":"perseo_description"}
 
 METATAGS_ORDER = ["google-site-verification",
                   "y_key",
-                  "msvalidate.01"]
+                  "msvalidate.01",
+                  "description"]
 
 class PerSEOMetaTagsViewlet( ViewletBase ):
     """Inserts meta tags in html head of pages"""
