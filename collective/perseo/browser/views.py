@@ -113,12 +113,16 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
 class PerSEOContextATDocument(PerSEOContext):
     """ Calculate html header meta tags on context. Context == ATDocument
     """
-    def perseo_title( self ):
+    def perseo_what_page( self ):
         context = self.pcs.context
         parent = self.pcs.parent()
         
         if parent == self.pps.portal() and parent.getDefaultPage() == context.id:
             # this document is the home page
-            return self.get_gseo_field('homepage_title')
+            return 'homepage'
         else:
-            return self.get_gseo_field('singlepage_title')
+            return 'singlepage'
+        
+    def perseo_title( self ):
+        page = self.perseo_what_page()
+        return self.get_gseo_field('%s_title' % page)
