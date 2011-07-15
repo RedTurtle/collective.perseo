@@ -163,7 +163,7 @@ class PerSEOContextATLink(PerSEOContextPortalTypes):
 class PerSEOContextATNewsItem(PerSEOContextPortalTypes):
     """ Calculate html header meta tags on context. Context == ATNewsItem
     """
-    portal_type = 'newsitem'
+    portal_type = 'newsItem'
     
 class PerSEOContextATTopic(PerSEOContextPortalTypes):
     """ Calculate html header meta tags on context. Context == ATTopic
