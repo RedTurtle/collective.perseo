@@ -1,7 +1,8 @@
+import re
 from zope.interface import Interface
 from zope.interface import implements
 from zope.component import adapts
-from zope.schema import TextLine, Text
+from zope.schema import TextLine, Text, List
 
 from zope.app.form.browser import TextAreaWidget, TextWidget
 
@@ -47,7 +48,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Home Page Description"),
         required=False)
     
-    homepage_keywords = TextLine(
+    homepage_keywords = List(
         title=_("label_homepage_keywords",
                 default=u"Home Page Keywords"),
         required=False)
@@ -62,7 +63,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Single Page Description"),
         required=False)
     
-    singlepage_keywords = TextLine(
+    singlepage_keywords = List(
         title=_("label_singlepage_keywords",
                 default=u"Single Page Keywords"),
         required=False)
@@ -77,7 +78,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Search Page Description"),
         required=False)
     
-    searchpage_keywords = TextLine(
+    searchpage_keywords = List(
         title=_("label_searchpage_keywords",
                 default=u"Search Page Keywords"),
         required=False)
@@ -92,7 +93,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Not Found Page Description"),
         required=False)
     
-    notfoundpage_keywords = TextLine(
+    notfoundpage_keywords = List(
         title=_("label_notfoundpage_keywords",
                 default=u"Not Found Page Keywords"),
         required=False)
@@ -107,7 +108,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Author Page Description"),
         required=False)
     
-    authorpage_keywords = TextLine(
+    authorpage_keywords = List(
         title=_("label_authorpage_keywords",
                 default=u"Author Page Keywords"),
         required=False)
@@ -122,7 +123,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Site map Description"),
         required=False)
     
-    sitemappage_keywords = TextLine(
+    sitemappage_keywords = List(
         title=_("label_sitemappage_keywords",
                 default=u"Site map Keywords"),
         required=False)
@@ -137,7 +138,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Accessibility Description"),
         required=False)
     
-    accessibilitypage_keywords = TextLine(
+    accessibilitypage_keywords = List(
         title=_("label_accessibilitypage_keywords",
                 default=u"Accessibility Keywords"),
         required=False)
@@ -152,7 +153,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Contact Description"),
         required=False)
     
-    contactpage_keywords = TextLine(
+    contactpage_keywords = List(
         title=_("label_contactpage_keywords",
                 default=u"Contact Keywords"),
         required=False)
@@ -167,7 +168,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Event Description"),
         required=False)
     
-    event_keywords = TextLine(
+    event_keywords = List(
         title=_("label_event_keywords",
                 default=u"Event Keywords"),
         required=False)
@@ -182,7 +183,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"File Description"),
         required=False)
     
-    file_keywords = TextLine(
+    file_keywords = List(
         title=_("label_file_keywords",
                 default=u"File Keywords"),
         required=False)
@@ -197,7 +198,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Folder Description"),
         required=False)
     
-    folder_keywords = TextLine(
+    folder_keywords = List(
         title=_("label_folder_keywords",
                 default=u"Folder Keywords"),
         required=False)
@@ -212,7 +213,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Image Description"),
         required=False)
     
-    image_keywords = TextLine(
+    image_keywords = List(
         title=_("label_image_keywords",
                 default=u"Image Keywords"),
         required=False)
@@ -227,7 +228,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Link Description"),
         required=False)
     
-    link_keywords = TextLine(
+    link_keywords = List(
         title=_("label_link_keywords",
                 default=u"Link Keywords"),
         required=False)
@@ -242,7 +243,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"NewsItem Description"),
         required=False)
     
-    newsItem_keywords = TextLine(
+    newsItem_keywords = List(
         title=_("label_newsItem_keywords",
                 default=u"NewsItem Keywords"),
         required=False)
@@ -257,7 +258,7 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Topic Description"),
         required=False)
     
-    topic_keywords = TextLine(
+    topic_keywords = List(
         title=_("label_topic_keywords",
                 default=u"Topic Keywords"),
         required=False)
@@ -334,6 +335,22 @@ titleset = FormFieldsets(ISEOConfigTitleSchema)
 titleset.id = 'seotitle'
 titleset.label = _(u'label_seotitle', default=u'Title')
 
+class Text2ListWidget(TextAreaWidget):
+    height = 2
+    splitter = re.compile(u'\\r?\\n', re.S|re.U)
+
+    def _toFieldValue(self, input):
+        if input == self._missing:
+            return self.context._type()
+        else:
+            return self.context._type(filter(None, self.splitter.split(input)))
+
+    def _toFormValue(self, value):
+        if value == self.context.missing_value or value == self.context._type():
+            return self._missing
+        else:
+            return u'\r\n'.join(list(value))
+
 class PerSEOConfig(ControlPanelForm):
 
     form_fields = FormFieldsets(wmtoolsset, titleset)
@@ -344,63 +361,63 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['homepage_title'].custom_widget = TextWidget
     form_fields['homepage_description'].custom_widget = TextAreaWidget
     form_fields['homepage_description'].custom_widget.height = 3
-    form_fields['homepage_keywords'].custom_widget = TextWidget
+    form_fields['homepage_keywords'].custom_widget = Text2ListWidget
     form_fields['singlepage_title'].custom_widget = TextWidget
     form_fields['singlepage_description'].custom_widget = TextAreaWidget
     form_fields['singlepage_description'].custom_widget.height = 3
-    form_fields['singlepage_keywords'].custom_widget = TextWidget
+    form_fields['singlepage_keywords'].custom_widget = Text2ListWidget
     form_fields['searchpage_title'].custom_widget = TextWidget
     form_fields['searchpage_description'].custom_widget = TextAreaWidget
     form_fields['searchpage_description'].custom_widget.height = 3
-    form_fields['searchpage_keywords'].custom_widget = TextWidget
+    form_fields['searchpage_keywords'].custom_widget = Text2ListWidget
     form_fields['notfoundpage_title'].custom_widget = TextWidget
     form_fields['notfoundpage_description'].custom_widget = TextAreaWidget
     form_fields['notfoundpage_description'].custom_widget.height = 3
-    form_fields['notfoundpage_keywords'].custom_widget = TextWidget
+    form_fields['notfoundpage_keywords'].custom_widget = Text2ListWidget
     form_fields['authorpage_title'].custom_widget = TextWidget
     form_fields['authorpage_description'].custom_widget = TextAreaWidget
     form_fields['authorpage_description'].custom_widget.height = 3
-    form_fields['authorpage_keywords'].custom_widget = TextWidget
+    form_fields['authorpage_keywords'].custom_widget = Text2ListWidget
     form_fields['sitemappage_title'].custom_widget = TextWidget
     form_fields['sitemappage_description'].custom_widget = TextAreaWidget
     form_fields['sitemappage_description'].custom_widget.height = 3
-    form_fields['sitemappage_keywords'].custom_widget = TextWidget
+    form_fields['sitemappage_keywords'].custom_widget = Text2ListWidget
     form_fields['accessibilitypage_title'].custom_widget = TextWidget
     form_fields['accessibilitypage_description'].custom_widget = TextAreaWidget
     form_fields['accessibilitypage_description'].custom_widget.height = 3
-    form_fields['accessibilitypage_keywords'].custom_widget = TextWidget
+    form_fields['accessibilitypage_keywords'].custom_widget = Text2ListWidget
     form_fields['contactpage_title'].custom_widget = TextWidget
     form_fields['contactpage_description'].custom_widget = TextAreaWidget
     form_fields['contactpage_description'].custom_widget.height = 3
-    form_fields['contactpage_keywords'].custom_widget = TextWidget
+    form_fields['contactpage_keywords'].custom_widget = Text2ListWidget
     form_fields['event_title'].custom_widget = TextWidget
     form_fields['event_description'].custom_widget = TextAreaWidget
     form_fields['event_description'].custom_widget.height = 3
-    form_fields['event_keywords'].custom_widget = TextWidget
+    form_fields['event_keywords'].custom_widget = Text2ListWidget
     form_fields['file_title'].custom_widget = TextWidget
     form_fields['file_description'].custom_widget = TextAreaWidget
     form_fields['file_description'].custom_widget.height = 3
-    form_fields['file_keywords'].custom_widget = TextWidget
+    form_fields['file_keywords'].custom_widget = Text2ListWidget
     form_fields['folder_title'].custom_widget = TextWidget
     form_fields['folder_description'].custom_widget = TextAreaWidget
     form_fields['folder_description'].custom_widget.height = 3
-    form_fields['folder_keywords'].custom_widget = TextWidget
+    form_fields['folder_keywords'].custom_widget = Text2ListWidget
     form_fields['image_title'].custom_widget = TextWidget
     form_fields['image_description'].custom_widget = TextAreaWidget
     form_fields['image_description'].custom_widget.height = 3
-    form_fields['image_keywords'].custom_widget = TextWidget
+    form_fields['image_keywords'].custom_widget = Text2ListWidget
     form_fields['link_title'].custom_widget = TextWidget
     form_fields['link_description'].custom_widget = TextAreaWidget
     form_fields['link_description'].custom_widget.height = 3
-    form_fields['link_keywords'].custom_widget = TextWidget
+    form_fields['link_keywords'].custom_widget = Text2ListWidget
     form_fields['newsItem_title'].custom_widget = TextWidget
     form_fields['newsItem_description'].custom_widget = TextAreaWidget
     form_fields['newsItem_description'].custom_widget.height = 3
-    form_fields['newsItem_keywords'].custom_widget = TextWidget
+    form_fields['newsItem_keywords'].custom_widget = Text2ListWidget
     form_fields['topic_title'].custom_widget = TextWidget
     form_fields['topic_description'].custom_widget = TextAreaWidget
     form_fields['topic_description'].custom_widget.height = 3
-    form_fields['topic_keywords'].custom_widget = TextWidget
+    form_fields['topic_keywords'].custom_widget = Text2ListWidget
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
