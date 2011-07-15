@@ -8,5 +8,6 @@ Changelog
 - Added viewlet for insert meta tags in html head of pages [fdelia]
 - Added view that allows to calculate html header meta tags on context [fdelia]
 - Added viewlet for custom title tag rendering [fdelia]
- 
+- Added some views that allows to calculate title tag base on the type of context [fdelia]
+- Added some methods that allows to calculate title tag base on the page in PloneSiteRoot context [fdelia]
 

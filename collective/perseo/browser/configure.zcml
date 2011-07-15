@@ -18,6 +18,22 @@
 		
 	<browser:page
 		name="perseo-context"
+		for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+		class=".views.PerSEOContextPloneSiteRoot"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATDocument"
+		class=".views.PerSEOContextATDocument"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
 		for="*"
 		class=".views.PerSEOContext"
 		layer=".interfaces.IPerSEOLayer"
