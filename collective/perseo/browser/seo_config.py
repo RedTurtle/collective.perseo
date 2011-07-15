@@ -157,6 +157,110 @@ class ISEOConfigTitleSchema(Interface):
                 default=u"Contact Keywords"),
         required=False)
     
+    event_title = TextLine(
+        title=_("label_event_title",
+                default=u"Event Title"),
+        required=False)
+    
+    event_description = Text(
+        title=_("label_event_description",
+                default=u"Event Description"),
+        required=False)
+    
+    event_keywords = TextLine(
+        title=_("label_event_keywords",
+                default=u"Event Keywords"),
+        required=False)
+    
+    file_title = TextLine(
+        title=_("label_file_title",
+                default=u"File Title"),
+        required=False)
+    
+    file_description = Text(
+        title=_("label_file_description",
+                default=u"File Description"),
+        required=False)
+    
+    file_keywords = TextLine(
+        title=_("label_file_keywords",
+                default=u"File Keywords"),
+        required=False)
+    
+    folder_title = TextLine(
+        title=_("label_folder_title",
+                default=u"Folder Title"),
+        required=False)
+    
+    folder_description = Text(
+        title=_("label_folder_description",
+                default=u"Folder Description"),
+        required=False)
+    
+    folder_keywords = TextLine(
+        title=_("label_folder_keywords",
+                default=u"Folder Keywords"),
+        required=False)
+    
+    image_title = TextLine(
+        title=_("label_image_title",
+                default=u"Image Title"),
+        required=False)
+    
+    image_description = Text(
+        title=_("label_image_description",
+                default=u"Image Description"),
+        required=False)
+    
+    image_keywords = TextLine(
+        title=_("label_image_keywords",
+                default=u"Image Keywords"),
+        required=False)
+    
+    link_title = TextLine(
+        title=_("label_link_title",
+                default=u"Link Title"),
+        required=False)
+    
+    link_description = Text(
+        title=_("label_link_description",
+                default=u"Link Description"),
+        required=False)
+    
+    link_keywords = TextLine(
+        title=_("label_link_keywords",
+                default=u"Link Keywords"),
+        required=False)
+    
+    newsItem_title = TextLine(
+        title=_("label_newsItem_title",
+                default=u"NewsItem Title"),
+        required=False)
+    
+    newsItem_description = Text(
+        title=_("label_newsItem_description",
+                default=u"NewsItem Description"),
+        required=False)
+    
+    newsItem_keywords = TextLine(
+        title=_("label_newsItem_keywords",
+                default=u"NewsItem Keywords"),
+        required=False)
+    
+    topic_title = TextLine(
+        title=_("label_topic_title",
+                default=u"Topic Title"),
+        required=False)
+    
+    topic_description = Text(
+        title=_("label_topic_description",
+                default=u"Topic Description"),
+        required=False)
+    
+    topic_keywords = TextLine(
+        title=_("label_topic_keywords",
+                default=u"Topic Keywords"),
+        required=False)
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema):
@@ -198,6 +302,27 @@ class SEOConfigAdapter(SchemaAdapterBase):
     contactpage_title = ProxyFieldProperty(ISEOConfigSchema['contactpage_title'])
     contactpage_description = ProxyFieldProperty(ISEOConfigSchema['contactpage_description'])
     contactpage_keywords = ProxyFieldProperty(ISEOConfigSchema['contactpage_keywords'])
+    event_title = ProxyFieldProperty(ISEOConfigSchema['event_title'])
+    event_description = ProxyFieldProperty(ISEOConfigSchema['event_description'])
+    event_keywords = ProxyFieldProperty(ISEOConfigSchema['event_keywords'])
+    file_title = ProxyFieldProperty(ISEOConfigSchema['file_title'])
+    file_description = ProxyFieldProperty(ISEOConfigSchema['file_description'])
+    file_keywords = ProxyFieldProperty(ISEOConfigSchema['file_keywords']) 
+    folder_title = ProxyFieldProperty(ISEOConfigSchema['folder_title'])
+    folder_description = ProxyFieldProperty(ISEOConfigSchema['folder_description'])
+    folder_keywords = ProxyFieldProperty(ISEOConfigSchema['folder_keywords'])
+    image_title = ProxyFieldProperty(ISEOConfigSchema['image_title'])
+    image_description = ProxyFieldProperty(ISEOConfigSchema['image_description'])
+    image_keywords = ProxyFieldProperty(ISEOConfigSchema['image_keywords'])
+    link_title = ProxyFieldProperty(ISEOConfigSchema['link_title'])
+    link_description = ProxyFieldProperty(ISEOConfigSchema['link_description'])
+    link_keywords = ProxyFieldProperty(ISEOConfigSchema['link_keywords'])
+    newsItem_title = ProxyFieldProperty(ISEOConfigSchema['newsItem_title'])
+    newsItem_description = ProxyFieldProperty(ISEOConfigSchema['newsItem_description'])
+    newsItem_keywords = ProxyFieldProperty(ISEOConfigSchema['newsItem_keywords'])
+    topic_title = ProxyFieldProperty(ISEOConfigSchema['topic_title'])
+    topic_description = ProxyFieldProperty(ISEOConfigSchema['topic_description'])
+    topic_keywords = ProxyFieldProperty(ISEOConfigSchema['topic_keywords'])
 
 # Fieldset configurations
 
@@ -248,6 +373,34 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['contactpage_description'].custom_widget = TextAreaWidget
     form_fields['contactpage_description'].custom_widget.height = 3
     form_fields['contactpage_keywords'].custom_widget = TextWidget
+    form_fields['event_title'].custom_widget = TextWidget
+    form_fields['event_description'].custom_widget = TextAreaWidget
+    form_fields['event_description'].custom_widget.height = 3
+    form_fields['event_keywords'].custom_widget = TextWidget
+    form_fields['file_title'].custom_widget = TextWidget
+    form_fields['file_description'].custom_widget = TextAreaWidget
+    form_fields['file_description'].custom_widget.height = 3
+    form_fields['file_keywords'].custom_widget = TextWidget
+    form_fields['folder_title'].custom_widget = TextWidget
+    form_fields['folder_description'].custom_widget = TextAreaWidget
+    form_fields['folder_description'].custom_widget.height = 3
+    form_fields['folder_keywords'].custom_widget = TextWidget
+    form_fields['image_title'].custom_widget = TextWidget
+    form_fields['image_description'].custom_widget = TextAreaWidget
+    form_fields['image_description'].custom_widget.height = 3
+    form_fields['image_keywords'].custom_widget = TextWidget
+    form_fields['link_title'].custom_widget = TextWidget
+    form_fields['link_description'].custom_widget = TextAreaWidget
+    form_fields['link_description'].custom_widget.height = 3
+    form_fields['link_keywords'].custom_widget = TextWidget
+    form_fields['newsItem_title'].custom_widget = TextWidget
+    form_fields['newsItem_description'].custom_widget = TextAreaWidget
+    form_fields['newsItem_description'].custom_widget.height = 3
+    form_fields['newsItem_keywords'].custom_widget = TextWidget
+    form_fields['topic_title'].custom_widget = TextWidget
+    form_fields['topic_description'].custom_widget = TextAreaWidget
+    form_fields['topic_description'].custom_widget.height = 3
+    form_fields['topic_keywords'].custom_widget = TextWidget
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
