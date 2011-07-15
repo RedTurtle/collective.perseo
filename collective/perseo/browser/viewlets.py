@@ -78,8 +78,6 @@ class PerSEOTitleTagViewlet(ViewletBase):
                                              name=u'plone_context_state')
         self.perseo_context = getMultiAdapter((self.context, self.request),
                                              name=u'perseo-context')
-        
-        self.override_title = self.perseo_context['has_perseo_title']
 
     def std_title(self):
         page_title = safe_unicode(self.context_state.object_title())
@@ -92,9 +90,9 @@ class PerSEOTitleTagViewlet(ViewletBase):
                 escape(safe_unicode(portal_title)))
 
     def render(self):
-        if not self.override_title:
+        if not self.perseo_context["perseo_title"]:
             return self.std_title()
         else:
-            perseo_title = u"<title>%s</title>" % safe_unicode(
-                self.perseo_context["perseo_title"])
+            perseo_title = u"<title>%s</title>" % escape(safe_unicode(
+                self.perseo_context["perseo_title"]))
             return perseo_title

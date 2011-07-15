@@ -32,7 +32,6 @@ class PerSEOContext(BrowserView):
             "googleWebmasterTools": self.seo_globalGoogleWebmasterTools(),
             "yahooSiteExplorer": self.seo_globalYahooSiteExplorer(),
             "bingWebmasterTools":self.seo_globalBingWebmasterTools(),
-            "has_perseo_title":True,
             "perseo_title":self.perseo_title(),
             }
         return perseo_metatags
@@ -67,9 +66,9 @@ class PerSEOContext(BrowserView):
     def get_gseo_field( self, field ):
         """ Returned field from Plone SEO Configuration Control Panel Tool
         """
-        result = ''
+        result = None
         if self.gseo:
-            result = getattr(self.gseo, field, u'')
+            result = getattr(self.gseo, field, None)
         return result
     
     def perseo_title( self ):
