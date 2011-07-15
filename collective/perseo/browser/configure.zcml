@@ -34,6 +34,62 @@
 		
 	<browser:page
 		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATEvent"
+		class=".views.PerSEOContextATEvent"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATFile"
+		class=".views.PerSEOContextATFile"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATFolder"
+		class=".views.PerSEOContextATFolder"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATImage"
+		class=".views.PerSEOContextATImage"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATLink"
+		class=".views.PerSEOContextATLink"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATNewsItem"
+		class=".views.PerSEOContextATNewsItem"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
+		for="Products.ATContentTypes.interfaces.IATTopic"
+		class=".views.PerSEOContextATTopic"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.View"
+		/>
+		
+	<browser:page
+		name="perseo-context"
 		for="*"
 		class=".views.PerSEOContext"
 		layer=".interfaces.IPerSEOLayer"

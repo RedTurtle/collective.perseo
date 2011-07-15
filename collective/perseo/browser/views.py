@@ -126,3 +126,46 @@ class PerSEOContextATDocument(PerSEOContext):
     def perseo_title( self ):
         page = self.perseo_what_page()
         return self.get_gseo_field('%s_title' % page)
+    
+class PerSEOContextPortalTypes(PerSEOContext):
+    """ Calculate html header meta tags on context. Context == a portal type
+    """
+    portal_type = ''
+        
+    def perseo_title( self ):
+        return self.get_gseo_field('%s_title' % self.portal_type)
+    
+class PerSEOContextATEvent(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATEvent
+    """
+    portal_type = 'event'
+    
+class PerSEOContextATFile(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATFile
+    """
+    portal_type = 'file'
+    
+class PerSEOContextATFolder(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATFolder
+    """
+    portal_type = 'folder'
+    
+class PerSEOContextATImage(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATImage
+    """
+    portal_type = 'image'
+    
+class PerSEOContextATLink(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATLink
+    """
+    portal_type = 'link'
+    
+class PerSEOContextATNewsItem(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATNewsItem
+    """
+    portal_type = 'newsitem'
+    
+class PerSEOContextATTopic(PerSEOContextPortalTypes):
+    """ Calculate html header meta tags on context. Context == ATTopic
+    """
+    portal_type = 'topic'
