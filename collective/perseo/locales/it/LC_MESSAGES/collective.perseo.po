@@ -18,7 +18,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:257
+#: ./browser/seo_config.py:405
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -72,6 +72,51 @@ msgstr "Keywords Contatti"
 msgid "label_contactpage_title"
 msgstr "Titolo Contatti"
 
+#. Default: "Event Description"
+#: ./browser/seo_config.py:166
+msgid "label_event_description"
+msgstr "Descrizione Evento"
+
+#. Default: "Event Keywords"
+#: ./browser/seo_config.py:171
+msgid "label_event_keywords"
+msgstr "Keywords Evento"
+
+#. Default: "Event Title"
+#: ./browser/seo_config.py:161
+msgid "label_event_title"
+msgstr "Titolo Evento"
+
+#. Default: "File Description"
+#: ./browser/seo_config.py:181
+msgid "label_file_description"
+msgstr "Descrizione File"
+
+#. Default: "File Keywords"
+#: ./browser/seo_config.py:186
+msgid "label_file_keywords"
+msgstr "Keywords File"
+
+#. Default: "File Title"
+#: ./browser/seo_config.py:176
+msgid "label_file_title"
+msgstr "Titolo File"
+
+#. Default: "Folder Description"
+#: ./browser/seo_config.py:196
+msgid "label_folder_description"
+msgstr "Descrizione Cartella"
+
+#. Default: "Folder Keywords"
+#: ./browser/seo_config.py:201
+msgid "label_folder_keywords"
+msgstr "Keywords Cartella"
+
+#. Default: "Folder Title"
+#: ./browser/seo_config.py:191
+msgid "label_folder_title"
+msgstr "Titolo Cartella"
+
 #. Default: "Google Webmaster Tools"
 #: ./browser/seo_config.py:20
 msgid "label_googleWebmasterTools"
@@ -91,6 +136,51 @@ msgstr "Keywords Home Page"
 #: ./browser/seo_config.py:41
 msgid "label_homepage_title"
 msgstr "Titolo Home Page"
+
+#. Default: "Image Description"
+#: ./browser/seo_config.py:211
+msgid "label_image_description"
+msgstr "Descrizione Immagine"
+
+#. Default: "Image Keywords"
+#: ./browser/seo_config.py:216
+msgid "label_image_keywords"
+msgstr "Keywords Immagine"
+
+#. Default: "Image Title"
+#: ./browser/seo_config.py:206
+msgid "label_image_title"
+msgstr "Titolo Immagine"
+
+#. Default: "Link Description"
+#: ./browser/seo_config.py:226
+msgid "label_link_description"
+msgstr "Descrizione Collegamento"
+
+#. Default: "Link Keywords"
+#: ./browser/seo_config.py:231
+msgid "label_link_keywords"
+msgstr "Keywords Collegamento"
+
+#. Default: "Link Title"
+#: ./browser/seo_config.py:221
+msgid "label_link_title"
+msgstr "Titolo Collegamento"
+
+#. Default: "NewsItem Description"
+#: ./browser/seo_config.py:241
+msgid "label_newsItem_description"
+msgstr "Descrizione Notizia"
+
+#. Default: "NewsItem Keywords"
+#: ./browser/seo_config.py:246
+msgid "label_newsItem_keywords"
+msgstr "Keywords Notizia"
+
+#. Default: "NewsItem Title"
+#: ./browser/seo_config.py:236
+msgid "label_newsItem_title"
+msgstr "Titolo Notizia"
 
 #. Default: "Not Found Page Description"
 #: ./browser/seo_config.py:91
@@ -123,12 +213,12 @@ msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
 #. Default: "Title"
-#: ./browser/seo_config.py:210
+#: ./browser/seo_config.py:335
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:206
+#: ./browser/seo_config.py:331
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
@@ -162,13 +252,28 @@ msgstr "Keywords Mappa del sito"
 msgid "label_sitemappage_title"
 msgstr "Titolo Mappa del sito"
 
+#. Default: "Topic Description"
+#: ./browser/seo_config.py:256
+msgid "label_topic_description"
+msgstr "Descrizione Collezione"
+
+#. Default: "Topic Keywords"
+#: ./browser/seo_config.py:261
+msgid "label_topic_keywords"
+msgstr "Keywords Collezione"
+
+#. Default: "Topic Title"
+#: ./browser/seo_config.py:251
+msgid "label_topic_title"
+msgstr "Titolo Collezione"
+
 #. Default: "Yahoo Site Explorer"
 #: ./browser/seo_config.py:26
 msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:258
+#: ./browser/seo_config.py:406
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 

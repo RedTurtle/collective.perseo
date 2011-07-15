@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-15 08:35+0000\n"
+"POT-Creation-Date: 2011-07-15 10:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:262
+#: ./browser/seo_config.py:410
 msgid ""
 msgstr ""
 
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:257
+#: ./browser/seo_config.py:405
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -79,6 +79,51 @@ msgstr ""
 msgid "label_contactpage_title"
 msgstr ""
 
+#. Default: "Event Description"
+#: ./browser/seo_config.py:166
+msgid "label_event_description"
+msgstr ""
+
+#. Default: "Event Keywords"
+#: ./browser/seo_config.py:171
+msgid "label_event_keywords"
+msgstr ""
+
+#. Default: "Event Title"
+#: ./browser/seo_config.py:161
+msgid "label_event_title"
+msgstr ""
+
+#. Default: "File Description"
+#: ./browser/seo_config.py:181
+msgid "label_file_description"
+msgstr ""
+
+#. Default: "File Keywords"
+#: ./browser/seo_config.py:186
+msgid "label_file_keywords"
+msgstr ""
+
+#. Default: "File Title"
+#: ./browser/seo_config.py:176
+msgid "label_file_title"
+msgstr ""
+
+#. Default: "Folder Description"
+#: ./browser/seo_config.py:196
+msgid "label_folder_description"
+msgstr ""
+
+#. Default: "Folder Keywords"
+#: ./browser/seo_config.py:201
+msgid "label_folder_keywords"
+msgstr ""
+
+#. Default: "Folder Title"
+#: ./browser/seo_config.py:191
+msgid "label_folder_title"
+msgstr ""
+
 #. Default: "Google Webmaster Tools"
 #: ./browser/seo_config.py:20
 msgid "label_googleWebmasterTools"
@@ -97,6 +142,51 @@ msgstr ""
 #. Default: "Home Page Title"
 #: ./browser/seo_config.py:41
 msgid "label_homepage_title"
+msgstr ""
+
+#. Default: "Image Description"
+#: ./browser/seo_config.py:211
+msgid "label_image_description"
+msgstr ""
+
+#. Default: "Image Keywords"
+#: ./browser/seo_config.py:216
+msgid "label_image_keywords"
+msgstr ""
+
+#. Default: "Image Title"
+#: ./browser/seo_config.py:206
+msgid "label_image_title"
+msgstr ""
+
+#. Default: "Link Description"
+#: ./browser/seo_config.py:226
+msgid "label_link_description"
+msgstr ""
+
+#. Default: "Link Keywords"
+#: ./browser/seo_config.py:231
+msgid "label_link_keywords"
+msgstr ""
+
+#. Default: "Link Title"
+#: ./browser/seo_config.py:221
+msgid "label_link_title"
+msgstr ""
+
+#. Default: "NewsItem Description"
+#: ./browser/seo_config.py:241
+msgid "label_newsItem_description"
+msgstr ""
+
+#. Default: "NewsItem Keywords"
+#: ./browser/seo_config.py:246
+msgid "label_newsItem_keywords"
+msgstr ""
+
+#. Default: "NewsItem Title"
+#: ./browser/seo_config.py:236
+msgid "label_newsItem_title"
 msgstr ""
 
 #. Default: "Not Found Page Description"
@@ -130,12 +220,12 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:210
+#: ./browser/seo_config.py:335
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:206
+#: ./browser/seo_config.py:331
 msgid "label_seowmtools"
 msgstr ""
 
@@ -169,13 +259,28 @@ msgstr ""
 msgid "label_sitemappage_title"
 msgstr ""
 
+#. Default: "Topic Description"
+#: ./browser/seo_config.py:256
+msgid "label_topic_description"
+msgstr ""
+
+#. Default: "Topic Keywords"
+#: ./browser/seo_config.py:261
+msgid "label_topic_keywords"
+msgstr ""
+
+#. Default: "Topic Title"
+#: ./browser/seo_config.py:251
+msgid "label_topic_title"
+msgstr ""
+
 #. Default: "Yahoo Site Explorer"
 #: ./browser/seo_config.py:26
 msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:258
+#: ./browser/seo_config.py:406
 msgid "seo_configlet_description"
 msgstr ""
 
