@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-14 08:02+0000\n"
+"POT-Creation-Date: 2011-07-15 08:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:125
+#: ./browser/seo_config.py:262
 msgid ""
 msgstr ""
 
@@ -25,13 +25,58 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:120
+#: ./browser/seo_config.py:257
 msgid "Plone SEO Configuration"
+msgstr ""
+
+#. Default: "Accessibility Description"
+#: ./browser/seo_config.py:136
+msgid "label_accessibilitypage_description"
+msgstr ""
+
+#. Default: "Accessibility Keywords"
+#: ./browser/seo_config.py:141
+msgid "label_accessibilitypage_keywords"
+msgstr ""
+
+#. Default: "Accessibility Title"
+#: ./browser/seo_config.py:131
+msgid "label_accessibilitypage_title"
+msgstr ""
+
+#. Default: "Author Page Description"
+#: ./browser/seo_config.py:106
+msgid "label_authorpage_description"
+msgstr ""
+
+#. Default: "Author Page Keywords"
+#: ./browser/seo_config.py:111
+msgid "label_authorpage_keywords"
+msgstr ""
+
+#. Default: "Author Page Title"
+#: ./browser/seo_config.py:101
+msgid "label_authorpage_title"
 msgstr ""
 
 #. Default: "Bing Webmaster Tools"
 #: ./browser/seo_config.py:32
 msgid "label_bingWebmasterTools"
+msgstr ""
+
+#. Default: "Contact Description"
+#: ./browser/seo_config.py:151
+msgid "label_contactpage_description"
+msgstr ""
+
+#. Default: "Contact Keywords"
+#: ./browser/seo_config.py:156
+msgid "label_contactpage_keywords"
+msgstr ""
+
+#. Default: "Contact Title"
+#: ./browser/seo_config.py:146
+msgid "label_contactpage_title"
 msgstr ""
 
 #. Default: "Google Webmaster Tools"
@@ -54,13 +99,43 @@ msgstr ""
 msgid "label_homepage_title"
 msgstr ""
 
+#. Default: "Not Found Page Description"
+#: ./browser/seo_config.py:91
+msgid "label_notfoundpage_description"
+msgstr ""
+
+#. Default: "Not Found Page Keywords"
+#: ./browser/seo_config.py:96
+msgid "label_notfoundpage_keywords"
+msgstr ""
+
+#. Default: "Not Found Page Title"
+#: ./browser/seo_config.py:86
+msgid "label_notfoundpage_title"
+msgstr ""
+
+#. Default: "Search Page Description"
+#: ./browser/seo_config.py:76
+msgid "label_searchpage_description"
+msgstr ""
+
+#. Default: "Search Page Keywords"
+#: ./browser/seo_config.py:81
+msgid "label_searchpage_keywords"
+msgstr ""
+
+#. Default: "Search Page Title"
+#: ./browser/seo_config.py:71
+msgid "label_searchpage_title"
+msgstr ""
+
 #. Default: "Title"
-#: ./browser/seo_config.py:102
+#: ./browser/seo_config.py:210
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:98
+#: ./browser/seo_config.py:206
 msgid "label_seowmtools"
 msgstr ""
 
@@ -79,13 +154,28 @@ msgstr ""
 msgid "label_singlepage_title"
 msgstr ""
 
+#. Default: "Site map Description"
+#: ./browser/seo_config.py:121
+msgid "label_sitemappage_description"
+msgstr ""
+
+#. Default: "Site map Keywords"
+#: ./browser/seo_config.py:126
+msgid "label_sitemappage_keywords"
+msgstr ""
+
+#. Default: "Site map Title"
+#: ./browser/seo_config.py:116
+msgid "label_sitemappage_title"
+msgstr ""
+
 #. Default: "Yahoo Site Explorer"
 #: ./browser/seo_config.py:26
 msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:121
+#: ./browser/seo_config.py:258
 msgid "seo_configlet_description"
 msgstr ""
 

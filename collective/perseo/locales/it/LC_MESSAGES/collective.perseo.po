@@ -18,14 +18,59 @@ msgstr ""
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:120
+#: ./browser/seo_config.py:257
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
+
+#. Default: "Accessibility Description"
+#: ./browser/seo_config.py:136
+msgid "label_accessibilitypage_description"
+msgstr "Descrizione Accessibilità"
+
+#. Default: "Accessibility Keywords"
+#: ./browser/seo_config.py:141
+msgid "label_accessibilitypage_keywords"
+msgstr "Keywords Accessibilità"
+
+#. Default: "Accessibility Title"
+#: ./browser/seo_config.py:131
+msgid "label_accessibilitypage_title"
+msgstr "Titolo Accessibilità"
+
+#. Default: "Author Page Description"
+#: ./browser/seo_config.py:106
+msgid "label_authorpage_description"
+msgstr "Descrizione pagina autore"
+
+#. Default: "Author Page Keywords"
+#: ./browser/seo_config.py:111
+msgid "label_authorpage_keywords"
+msgstr "Keywords pagina autore"
+
+#. Default: "Author Page Title"
+#: ./browser/seo_config.py:101
+msgid "label_authorpage_title"
+msgstr "Titolo pagina autore"
 
 #. Default: "Bing Webmaster Tools"
 #: ./browser/seo_config.py:32
 msgid "label_bingWebmasterTools"
 msgstr "Strumenti Bing Webmaster"
+
+#. Default: "Contact Description"
+#: ./browser/seo_config.py:151
+msgid "label_contactpage_description"
+msgstr "Descrizione Contatti"
+
+#. Default: "Contact Keywords"
+#: ./browser/seo_config.py:156
+msgid "label_contactpage_keywords"
+msgstr "Keywords Contatti"
+
+#. Default: "Contact Title"
+#: ./browser/seo_config.py:146
+msgid "label_contactpage_title"
+msgstr "Titolo Contatti"
 
 #. Default: "Google Webmaster Tools"
 #: ./browser/seo_config.py:20
@@ -47,20 +92,50 @@ msgstr "Keywords Home Page"
 msgid "label_homepage_title"
 msgstr "Titolo Home Page"
 
+#. Default: "Not Found Page Description"
+#: ./browser/seo_config.py:91
+msgid "label_notfoundpage_description"
+msgstr "Descrizione pagina Not Found"
+
+#. Default: "Not Found Page Keywords"
+#: ./browser/seo_config.py:96
+msgid "label_notfoundpage_keywords"
+msgstr "Keywords pagina Not Found"
+
+#. Default: "Not Found Page Title"
+#: ./browser/seo_config.py:86
+msgid "label_notfoundpage_title"
+msgstr "Titolo pagina Not Found"
+
+#. Default: "Search Page Description"
+#: ./browser/seo_config.py:76
+msgid "label_searchpage_description"
+msgstr "Descrizione pagina di ricerca"
+
+#. Default: "Search Page Keywords"
+#: ./browser/seo_config.py:81
+msgid "label_searchpage_keywords"
+msgstr "Keywords pagina di ricerca"
+
+#. Default: "Search Page Title"
+#: ./browser/seo_config.py:71
+msgid "label_searchpage_title"
+msgstr "Titolo pagina di ricerca"
+
 #. Default: "Title"
-#: ./browser/seo_config.py:102
+#: ./browser/seo_config.py:210
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:98
+#: ./browser/seo_config.py:206
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
 #. Default: "Single Page Description"
 #: ./browser/seo_config.py:61
 msgid "label_singlepage_description"
-msgstr "Titolo pagine singole"
+msgstr "Descrizione pagine singole"
 
 #. Default: "Single Page Keywords"
 #: ./browser/seo_config.py:66
@@ -70,7 +145,22 @@ msgstr "Keywords pagine singole"
 #. Default: "Single Page Title"
 #: ./browser/seo_config.py:56
 msgid "label_singlepage_title"
-msgstr "Descrizione pagine singole"
+msgstr "Titolo pagine singole"
+
+#. Default: "Site map Description"
+#: ./browser/seo_config.py:121
+msgid "label_sitemappage_description"
+msgstr "Descrizione Mappa del sito"
+
+#. Default: "Site map Keywords"
+#: ./browser/seo_config.py:126
+msgid "label_sitemappage_keywords"
+msgstr "Keywords Mappa del sito"
+
+#. Default: "Site map Title"
+#: ./browser/seo_config.py:116
+msgid "label_sitemappage_title"
+msgstr "Titolo Mappa del sito"
 
 #. Default: "Yahoo Site Explorer"
 #: ./browser/seo_config.py:26
@@ -78,7 +168,7 @@ msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:121
+#: ./browser/seo_config.py:258
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
