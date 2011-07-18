@@ -14,7 +14,24 @@
 
   <body>
 	<div metal:fill-slot="main">
-        
+		<form name="perseo_edit_form" action="#" method="post"
+			tal:attributes="action string:${context/absolute_url}/@@perseo-tab-context" >
+			<fieldset>
+				<div class="formControls"
+					i18n:domain="plone">
+				    <input class="context"
+				           type="submit"
+				           name="form.button.Save"
+				           value="Save"
+				           i18n:attributes="value" />
+				    <input class="standalone"
+				           type="submit"
+				           name="form.button.Cancel"
+				           value="Cancel"
+				           i18n:attributes="value" />
+				</div>
+			</fieldset>
+		</form>
 	</div>
   </body>
 </html>
