@@ -6,6 +6,7 @@ from plone.memoize import view, ram
 
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo.browser.seo_config import ISEOConfigSchema
 
@@ -212,3 +213,21 @@ class PerSEOContextATTopic(PerSEOContextPortalTypes):
     """ Calculate html header meta tags on context. Context == ATTopic
     """
     portal_type = 'topic'
+
+class PerseoTabAvailable(BrowserView):
+    """"""
+
+    def checkPerseoTabAvailable(self):
+        """ Checks visibility of SEO tab for context
+        """
+        return True
+    
+class PerSEOTabContext( BrowserView ):
+    """ This class contains methods that allows to manage seo properties.
+    """
+    template = ViewPageTemplateFile('templates/perseo_tab_context.pt')
+
+    def __init__(self, *args, **kwargs):
+        super(PerSEOTabContext, self).__init__(*args, **kwargs)
+        self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
+        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)

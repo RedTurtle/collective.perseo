@@ -95,6 +95,23 @@
 		layer=".interfaces.IPerSEOLayer"
 		permission="zope2.View"
 		/>
+		
+	<browser:page
+		name="perseo-tab-available"
+		for="*"
+		class=".views.PerseoTabAvailable"
+		attribute="checkPerseoTabAvailable"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.Public"
+		/>
+
+	<browser:page
+		name="perseo-tab-context"
+		for="*"
+		class=".views.PerSEOTabContext"
+		layer=".interfaces.IPerSEOLayer"
+		permission="cmf.ModifyPortalContent"
+		/>
 
 	<adapter factory=".seo_config.SEOConfigAdapter" />
 	
