@@ -68,6 +68,35 @@
 						tal:content="request/perseo_description | perseo_context/perseo_description"
 						/>
 				</div>
+				<div class="field">
+					<label i18n:translate="label_keywords_meta_tag" for="perseo_keywords">
+						Meta Keywords Tag
+					</label>
+					<div class="formHelp" i18n:translate="help_perseo_keywords">
+						Keywords, the page will be indexed with.
+						<strong>Enter each keyword in separate line, please.</strong>
+						Though the relevance of listing meta keywords is of
+						questionable value now, it is useful to set meta keywords for
+						pages - for future reference.
+					</div>
+					<input type="checkbox"
+						id="perseo_keywords_override"
+						name="perseo_keywords_override"
+						tal:attributes="checked python: perseo_context['has_perseo_keywords'] and 'on' or None;"
+						/>
+					<label i18n:translate="label_override" for="perseo_keywords_override">
+						Override
+					</label>
+					<br />
+					<textarea id="perseo_keywords"
+						name="perseo_keywords:lines"
+						rows="11"
+						cols="15"
+						wrap="off"
+						tal:define="keywords request/perseo_keywords | perseo_context/perseo_keywords"
+						tal:content="python:'\n'.join(keywords)"
+						/>
+				</div>
 				<div class="formControls"
 					i18n:domain="plone">
 				    <input class="context"

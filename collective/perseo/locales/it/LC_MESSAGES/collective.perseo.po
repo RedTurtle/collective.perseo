@@ -31,6 +31,11 @@ msgstr "SEO"
 msgid "help_perseo_description"
 msgstr "Descrizione del documento indicizzata dai motori di ricerca. Questo testo sarà presente nel meta tag description nella pagina HTML."
 
+#. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
+#: ./browser/templates/perseo_tab_context.pt:75
+msgid "help_perseo_keywords"
+msgstr "La pagina sarà indicizzata con Keywords. <strong>Inserisci ogni parola chiave in una riga separata, per favore.</ strong> Sebbene la rilevanza delle meta keywords è ora di discutibile, è utile per impostare meta keywords per le pagine - per riferimento futuro."
+
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
 #: ./browser/templates/perseo_tab_context.pt:25
 msgid "help_perseo_title"
@@ -171,6 +176,11 @@ msgstr "Keywords Immagine"
 msgid "label_image_title"
 msgstr "Titolo Immagine"
 
+#. Default: "Meta Keywords Tag"
+#: ./browser/templates/perseo_tab_context.pt:72
+msgid "label_keywords_meta_tag"
+msgstr "Meta Tag Keywords"
+
 #. Default: "Link Description"
 #: ./browser/seo_config.py:227
 msgid "label_link_description"
@@ -302,7 +312,7 @@ msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:354
+#: ./browser/views.py:408
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-18 13:49+0000\n"
+"POT-Creation-Date: 2011-07-18 14:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,11 @@ msgstr ""
 #. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
 #: ./browser/templates/perseo_tab_context.pt:51
 msgid "help_perseo_description"
+msgstr ""
+
+#. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
+#: ./browser/templates/perseo_tab_context.pt:75
+msgid "help_perseo_keywords"
 msgstr ""
 
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
@@ -178,6 +183,11 @@ msgstr ""
 msgid "label_image_title"
 msgstr ""
 
+#. Default: "Meta Keywords Tag"
+#: ./browser/templates/perseo_tab_context.pt:72
+msgid "label_keywords_meta_tag"
+msgstr ""
+
 #. Default: "Link Description"
 #: ./browser/seo_config.py:227
 msgid "label_link_description"
@@ -309,7 +319,7 @@ msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:354
+#: ./browser/views.py:408
 msgid "perseo_settings_saved"
 msgstr ""
 

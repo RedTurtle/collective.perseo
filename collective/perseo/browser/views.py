@@ -46,7 +46,8 @@ class PerSEOContext(BrowserView):
             "has_perseo_title_config":self.has_perseo_title_config(),
             "perseo_description":self.perseo_description(),
             "has_perseo_description":self.context.hasProperty('pSEO_description'),
-            "perseo_keywords":self.perseo_keywords()
+            "perseo_keywords":self.perseo_keywords(),
+            "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
             }
         return perseo_metatags
     
@@ -118,7 +119,7 @@ class PerSEOContext(BrowserView):
         return self.getPerSEOProperty( 'pSEO_description', accessor='Description' )
     
     def perseo_keywords( self ):
-        return None
+        return self.getPerSEOProperty( 'pSEO_keywords', 'Subject', () )
     
     def perseo_variables(self, value):
         if value:
@@ -202,8 +203,21 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         return value
     
     def perseo_keywords( self ):
+        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+        if perseo_property:
+            return perseo_property
+        
         page = self.perseo_what_page()
-        return self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
+        if gseo_field:
+            return gseo_field
+        
+        context = aq_inner(self.context)
+        try:
+            value = context.Subject()
+        except AttributeError:
+            value = ()
+        return value
             
 class PerSEOContextATDocument(PerSEOContext):
     """ Calculate html header meta tags on context. Context == ATDocument
@@ -256,8 +270,21 @@ class PerSEOContextATDocument(PerSEOContext):
         return value
     
     def perseo_keywords( self ):
+        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+        if perseo_property:
+            return perseo_property
+        
         page = self.perseo_what_page()
-        return self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
+        if gseo_field:
+            return gseo_field
+        
+        context = aq_inner(self.context)
+        try:
+            value = context.Subject()
+        except AttributeError:
+            value = ()
+        return value
     
 class PerSEOContextPortalTypes(PerSEOContext):
     """ Calculate html header meta tags on context. Context == a portal type
@@ -299,7 +326,20 @@ class PerSEOContextPortalTypes(PerSEOContext):
         return value
     
     def perseo_keywords( self ):
-        return self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))
+        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))
+        if gseo_field:
+            return gseo_field
+        
+        context = aq_inner(self.context)
+        try:
+            value = context.Subject()
+        except AttributeError:
+            value = ()
+        return value
     
 class PerSEOContextATEvent(PerSEOContextPortalTypes):
     """ Calculate html header meta tags on context. Context == ATEvent
