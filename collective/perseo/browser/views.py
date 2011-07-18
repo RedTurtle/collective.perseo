@@ -45,17 +45,32 @@ class PerSEOContext(BrowserView):
             "has_perseo_title":self.context.hasProperty('pSEO_title'),
             "has_perseo_title_config":self.has_perseo_title_config(),
             "perseo_description":self.perseo_description(),
+            "has_perseo_description":self.context.hasProperty('pSEO_description'),
             "perseo_keywords":self.perseo_keywords()
             }
         return perseo_metatags
     
-    def getPerSEOProperty( self, property_name, default=None ):
+    def getPerSEOProperty( self, property_name, accessor='', default=None ):
         """ Get value from seo property by property name.
         """
         context = aq_inner(self.context)
 
         if context.hasProperty(property_name):
             return context.getProperty(property_name, default)
+        
+        if accessor:
+            method = getattr(context, accessor, default)
+            if not callable(method):
+                return default
+
+            # Catch AttributeErrors raised by some AT applications
+            try:
+                value = method()
+            except AttributeError:
+                value = default
+
+            return value
+        
         return default
     
     @ram.cache(plone_instance_time)
@@ -100,7 +115,7 @@ class PerSEOContext(BrowserView):
         return False
     
     def perseo_description( self ):
-        return None
+        return self.getPerSEOProperty( 'pSEO_description', accessor='Description' )
     
     def perseo_keywords( self ):
         return None
@@ -170,8 +185,21 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             return False
     
     def perseo_description( self ):
+        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+        if perseo_property:
+            return perseo_property
+        
         page = self.perseo_what_page()
-        return self.perseo_variables(self.get_gseo_field('%s_description' % page))
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % page))
+        if gseo_field:
+            return gseo_field
+        
+        context = aq_inner(self.context)
+        try:
+            value = context.Description()
+        except AttributeError:
+            value = None
+        return value
     
     def perseo_keywords( self ):
         page = self.perseo_what_page()
@@ -211,8 +239,21 @@ class PerSEOContextATDocument(PerSEOContext):
             return False
     
     def perseo_description( self ):
+        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+        if perseo_property:
+            return perseo_property
+        
         page = self.perseo_what_page()
-        return self.perseo_variables(self.get_gseo_field('%s_description' % page))
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % page))
+        if gseo_field:
+            return gseo_field
+        
+        context = aq_inner(self.context)
+        try:
+            value = context.Description()
+        except AttributeError:
+            value = None
+        return value
     
     def perseo_keywords( self ):
         page = self.perseo_what_page()
@@ -240,9 +281,22 @@ class PerSEOContextPortalTypes(PerSEOContext):
             return True
         else:
             return False
-    
+        
     def perseo_description( self ):
-        return self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
+        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
+        if gseo_field:
+            return gseo_field
+        
+        context = aq_inner(self.context)
+        try:
+            value = context.Description()
+        except AttributeError:
+            value = None
+        return value
     
     def perseo_keywords( self ):
         return self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))

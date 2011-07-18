@@ -26,6 +26,11 @@ msgstr "Plone SEO Configurazione"
 msgid "SEO"
 msgstr "SEO"
 
+#. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
+#: ./browser/templates/perseo_tab_context.pt:51
+msgid "help_perseo_description"
+msgstr "Descrizione del documento indicizzata dai motori di ricerca. Questo testo sarà presente nel meta tag description nella pagina HTML."
+
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
 #: ./browser/templates/perseo_tab_context.pt:25
 msgid "help_perseo_title"
@@ -80,6 +85,11 @@ msgstr "Keywords Contatti"
 #: ./browser/seo_config.py:147
 msgid "label_contactpage_title"
 msgstr "Titolo Contatti"
+
+#. Default: "Meta Description Tag"
+#: ./browser/templates/perseo_tab_context.pt:48
+msgid "label_description_meta_tag"
+msgstr "Meta Tag Description"
 
 #. Default: "Event Description"
 #: ./browser/seo_config.py:167
@@ -292,7 +302,7 @@ msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:289
+#: ./browser/views.py:354
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 

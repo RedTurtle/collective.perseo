@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-18 10:42+0000\n"
+"POT-Creation-Date: 2011-07-18 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,11 @@ msgstr ""
 
 #: ./profiles/default/actions.xml
 msgid "SEO"
+msgstr ""
+
+#. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
+#: ./browser/templates/perseo_tab_context.pt:51
+msgid "help_perseo_description"
 msgstr ""
 
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
@@ -86,6 +91,11 @@ msgstr ""
 #. Default: "Contact Title"
 #: ./browser/seo_config.py:147
 msgid "label_contactpage_title"
+msgstr ""
+
+#. Default: "Meta Description Tag"
+#: ./browser/templates/perseo_tab_context.pt:48
+msgid "label_description_meta_tag"
 msgstr ""
 
 #. Default: "Event Description"
@@ -299,7 +309,7 @@ msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:289
+#: ./browser/views.py:354
 msgid "perseo_settings_saved"
 msgstr ""
 

@@ -44,6 +44,30 @@
 					       tal:attributes="value request/perseo_title | perseo_context/perseo_title;"
 					       />
 				</div>
+				<div class="field">
+					<label i18n:translate="label_description_meta_tag" for="perseo_description">
+						Meta Description Tag
+					</label>
+			        <div class="formHelp" i18n:translate="help_perseo_description">
+						Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source. 
+			        </div>
+			        <input type="checkbox"
+						id="perseo_description_override"
+						name="perseo_description_override"
+						tal:attributes="checked python: perseo_context['has_perseo_description'] and 'on' or None;"
+						/>
+					<label i18n:translate="label_override" for="perseo_description_override">
+						Override
+					</label>
+			        <br />
+			        <textarea type="text"
+						id="perseo_description"
+						name="perseo_description"
+						rows="5"
+						cols="40"
+						tal:content="request/perseo_description | perseo_context/perseo_description"
+						/>
+				</div>
 				<div class="formControls"
 					i18n:domain="plone">
 				    <input class="context"
