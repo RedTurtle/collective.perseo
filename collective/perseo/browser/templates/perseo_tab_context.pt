@@ -41,7 +41,7 @@
 					       name="perseo_title"
 					       size="30"
 					       value=""
-					       tal:attributes="value request/per_seo_title | perseo_context/seo_title;"
+					       tal:attributes="value request/perseo_title | perseo_context/perseo_title;"
 					       />
 				</div>
 				<div class="formControls"

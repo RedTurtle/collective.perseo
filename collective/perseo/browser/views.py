@@ -15,6 +15,7 @@ from collective.perseo.browser.seo_config import ISEOConfigSchema
 
 PERSEO_PREFIX = 'perseo_'
 SUFFIX = '_override'
+PROP_PREFIX = 'pSEO_'
 
 # Ram cache function, which depends on plone instance and time
 def plone_instance_time(method, self, *args, **kwargs):
@@ -41,10 +42,21 @@ class PerSEOContext(BrowserView):
             "yahooSiteExplorer": self.seo_globalYahooSiteExplorer(),
             "bingWebmasterTools":self.seo_globalBingWebmasterTools(),
             "perseo_title":self.perseo_title(),
+            "has_perseo_title":self.context.hasProperty('pSEO_title'),
+            "has_perseo_title_config":self.has_perseo_title_config(),
             "perseo_description":self.perseo_description(),
             "perseo_keywords":self.perseo_keywords()
             }
         return perseo_metatags
+    
+    def getPerSEOProperty( self, property_name, default=None ):
+        """ Get value from seo property by property name.
+        """
+        context = aq_inner(self.context)
+
+        if context.hasProperty(property_name):
+            return context.getProperty(property_name, default)
+        return default
     
     @ram.cache(plone_instance_time)
     def seo_globalGoogleWebmasterTools( self ):
@@ -82,7 +94,10 @@ class PerSEOContext(BrowserView):
         return result
     
     def perseo_title( self ):
-        return None
+        return self.getPerSEOProperty( 'pSEO_title', default=self.pcs.object_title() )
+    
+    def has_perseo_title_config( self ):
+        return False
     
     def perseo_description( self ):
         return None
@@ -135,8 +150,24 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             return 'homepage'
 
     def perseo_title( self ):
+        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+        if perseo_property:
+            return perseo_property
+
         page = self.perseo_what_page()
-        return self.perseo_variables(self.get_gseo_field('%s_title' % page))
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
+        if gseo_field:
+            return gseo_field
+        
+        return self.pcs.object_title()
+    
+    def has_perseo_title_config( self ):
+        page = self.perseo_what_page()
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
+        if gseo_field:
+            return True
+        else:
+            return False
     
     def perseo_description( self ):
         page = self.perseo_what_page()
@@ -160,8 +191,24 @@ class PerSEOContextATDocument(PerSEOContext):
             return 'singlepage'
         
     def perseo_title( self ):
+        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+        if perseo_property:
+            return perseo_property
+        
         page = self.perseo_what_page()
-        return self.perseo_variables(self.get_gseo_field('%s_title' % page))
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
+        if gseo_field:
+            return gseo_field
+        
+        return self.pcs.object_title()
+    
+    def has_perseo_title_config( self ):
+        page = self.perseo_what_page()
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
+        if gseo_field:
+            return True
+        else:
+            return False
     
     def perseo_description( self ):
         page = self.perseo_what_page()
@@ -177,7 +224,22 @@ class PerSEOContextPortalTypes(PerSEOContext):
     portal_type = ''
         
     def perseo_title( self ):
-        return self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+        if gseo_field:
+            return gseo_field
+        
+        return self.pcs.object_title()
+    
+    def has_perseo_title_config( self ):
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+        if gseo_field:
+            return True
+        else:
+            return False
     
     def perseo_description( self ):
         return self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
@@ -266,10 +328,10 @@ class PerSEOTabContext( BrowserView ):
                 perseo_value = seo_items[perseo_key]
                 t_value = 'string'
                 if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
-                self.setProperty(PERSEO_PREFIX+perseo_key, perseo_value, type=t_value)
+                self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
                 state = True
-            elif context.hasProperty(PERSEO_PREFIX+perseo_key):
-                delete_list.append(PERSEO_PREFIX+perseo_key)
+            elif context.hasProperty(PROP_PREFIX+perseo_key):
+                delete_list.append(PROP_PREFIX+perseo_key)
         if delete_list:
             context.manage_delProperties(delete_list)
             state = True
