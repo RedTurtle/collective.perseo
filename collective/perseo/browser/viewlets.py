@@ -94,7 +94,7 @@ class PerSEOTitleTagViewlet(ViewletBase):
                 escape(safe_unicode(portal_title)))
 
     def render(self):
-        if not self.seo_context['has_perseo_title'] and not self.seo_context['has_perseo_title_config']:
+        if not self.perseo_context['has_perseo_title'] and not self.perseo_context['has_perseo_title_config']:
             return self.std_title()
         else:
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
