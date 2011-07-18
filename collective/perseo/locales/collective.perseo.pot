@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-15 10:46+0000\n"
+"POT-Creation-Date: 2011-07-18 08:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:410
+#: ./browser/seo_config.py:427
 msgid ""
 msgstr ""
 
@@ -25,262 +25,281 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:405
+#: ./browser/seo_config.py:422
 msgid "Plone SEO Configuration"
 msgstr ""
 
+#: ./profiles/default/actions.xml
+msgid "SEO"
+msgstr ""
+
+#. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
+#: ./browser/templates/perseo_tab_context.pt:25
+msgid "help_perseo_title"
+msgstr ""
+
 #. Default: "Accessibility Description"
-#: ./browser/seo_config.py:136
+#: ./browser/seo_config.py:137
 msgid "label_accessibilitypage_description"
 msgstr ""
 
 #. Default: "Accessibility Keywords"
-#: ./browser/seo_config.py:141
+#: ./browser/seo_config.py:142
 msgid "label_accessibilitypage_keywords"
 msgstr ""
 
 #. Default: "Accessibility Title"
-#: ./browser/seo_config.py:131
+#: ./browser/seo_config.py:132
 msgid "label_accessibilitypage_title"
 msgstr ""
 
 #. Default: "Author Page Description"
-#: ./browser/seo_config.py:106
+#: ./browser/seo_config.py:107
 msgid "label_authorpage_description"
 msgstr ""
 
 #. Default: "Author Page Keywords"
-#: ./browser/seo_config.py:111
+#: ./browser/seo_config.py:112
 msgid "label_authorpage_keywords"
 msgstr ""
 
 #. Default: "Author Page Title"
-#: ./browser/seo_config.py:101
+#: ./browser/seo_config.py:102
 msgid "label_authorpage_title"
 msgstr ""
 
 #. Default: "Bing Webmaster Tools"
-#: ./browser/seo_config.py:32
+#: ./browser/seo_config.py:33
 msgid "label_bingWebmasterTools"
 msgstr ""
 
 #. Default: "Contact Description"
-#: ./browser/seo_config.py:151
+#: ./browser/seo_config.py:152
 msgid "label_contactpage_description"
 msgstr ""
 
 #. Default: "Contact Keywords"
-#: ./browser/seo_config.py:156
+#: ./browser/seo_config.py:157
 msgid "label_contactpage_keywords"
 msgstr ""
 
 #. Default: "Contact Title"
-#: ./browser/seo_config.py:146
+#: ./browser/seo_config.py:147
 msgid "label_contactpage_title"
 msgstr ""
 
 #. Default: "Event Description"
-#: ./browser/seo_config.py:166
+#: ./browser/seo_config.py:167
 msgid "label_event_description"
 msgstr ""
 
 #. Default: "Event Keywords"
-#: ./browser/seo_config.py:171
+#: ./browser/seo_config.py:172
 msgid "label_event_keywords"
 msgstr ""
 
 #. Default: "Event Title"
-#: ./browser/seo_config.py:161
+#: ./browser/seo_config.py:162
 msgid "label_event_title"
 msgstr ""
 
 #. Default: "File Description"
-#: ./browser/seo_config.py:181
+#: ./browser/seo_config.py:182
 msgid "label_file_description"
 msgstr ""
 
 #. Default: "File Keywords"
-#: ./browser/seo_config.py:186
+#: ./browser/seo_config.py:187
 msgid "label_file_keywords"
 msgstr ""
 
 #. Default: "File Title"
-#: ./browser/seo_config.py:176
+#: ./browser/seo_config.py:177
 msgid "label_file_title"
 msgstr ""
 
 #. Default: "Folder Description"
-#: ./browser/seo_config.py:196
+#: ./browser/seo_config.py:197
 msgid "label_folder_description"
 msgstr ""
 
 #. Default: "Folder Keywords"
-#: ./browser/seo_config.py:201
+#: ./browser/seo_config.py:202
 msgid "label_folder_keywords"
 msgstr ""
 
 #. Default: "Folder Title"
-#: ./browser/seo_config.py:191
+#: ./browser/seo_config.py:192
 msgid "label_folder_title"
 msgstr ""
 
 #. Default: "Google Webmaster Tools"
-#: ./browser/seo_config.py:20
+#: ./browser/seo_config.py:21
 msgid "label_googleWebmasterTools"
 msgstr ""
 
 #. Default: "Home Page Description"
-#: ./browser/seo_config.py:46
+#: ./browser/seo_config.py:47
 msgid "label_homepage_description"
 msgstr ""
 
 #. Default: "Home Page Keywords"
-#: ./browser/seo_config.py:51
+#: ./browser/seo_config.py:52
 msgid "label_homepage_keywords"
 msgstr ""
 
 #. Default: "Home Page Title"
-#: ./browser/seo_config.py:41
+#: ./browser/seo_config.py:42
 msgid "label_homepage_title"
 msgstr ""
 
 #. Default: "Image Description"
-#: ./browser/seo_config.py:211
+#: ./browser/seo_config.py:212
 msgid "label_image_description"
 msgstr ""
 
 #. Default: "Image Keywords"
-#: ./browser/seo_config.py:216
+#: ./browser/seo_config.py:217
 msgid "label_image_keywords"
 msgstr ""
 
 #. Default: "Image Title"
-#: ./browser/seo_config.py:206
+#: ./browser/seo_config.py:207
 msgid "label_image_title"
 msgstr ""
 
 #. Default: "Link Description"
-#: ./browser/seo_config.py:226
+#: ./browser/seo_config.py:227
 msgid "label_link_description"
 msgstr ""
 
 #. Default: "Link Keywords"
-#: ./browser/seo_config.py:231
+#: ./browser/seo_config.py:232
 msgid "label_link_keywords"
 msgstr ""
 
 #. Default: "Link Title"
-#: ./browser/seo_config.py:221
+#: ./browser/seo_config.py:222
 msgid "label_link_title"
 msgstr ""
 
 #. Default: "NewsItem Description"
-#: ./browser/seo_config.py:241
+#: ./browser/seo_config.py:242
 msgid "label_newsItem_description"
 msgstr ""
 
 #. Default: "NewsItem Keywords"
-#: ./browser/seo_config.py:246
+#: ./browser/seo_config.py:247
 msgid "label_newsItem_keywords"
 msgstr ""
 
 #. Default: "NewsItem Title"
-#: ./browser/seo_config.py:236
+#: ./browser/seo_config.py:237
 msgid "label_newsItem_title"
 msgstr ""
 
 #. Default: "Not Found Page Description"
-#: ./browser/seo_config.py:91
+#: ./browser/seo_config.py:92
 msgid "label_notfoundpage_description"
 msgstr ""
 
 #. Default: "Not Found Page Keywords"
-#: ./browser/seo_config.py:96
+#: ./browser/seo_config.py:97
 msgid "label_notfoundpage_keywords"
 msgstr ""
 
 #. Default: "Not Found Page Title"
-#: ./browser/seo_config.py:86
+#: ./browser/seo_config.py:87
 msgid "label_notfoundpage_title"
 msgstr ""
 
+#. Default: "Override"
+#: ./browser/templates/perseo_tab_context.pt:35
+msgid "label_override"
+msgstr ""
+
 #. Default: "Search Page Description"
-#: ./browser/seo_config.py:76
+#: ./browser/seo_config.py:77
 msgid "label_searchpage_description"
 msgstr ""
 
 #. Default: "Search Page Keywords"
-#: ./browser/seo_config.py:81
+#: ./browser/seo_config.py:82
 msgid "label_searchpage_keywords"
 msgstr ""
 
 #. Default: "Search Page Title"
-#: ./browser/seo_config.py:71
+#: ./browser/seo_config.py:72
 msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:335
+#: ./browser/seo_config.py:336
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:331
+#: ./browser/seo_config.py:332
 msgid "label_seowmtools"
 msgstr ""
 
 #. Default: "Single Page Description"
-#: ./browser/seo_config.py:61
+#: ./browser/seo_config.py:62
 msgid "label_singlepage_description"
 msgstr ""
 
 #. Default: "Single Page Keywords"
-#: ./browser/seo_config.py:66
+#: ./browser/seo_config.py:67
 msgid "label_singlepage_keywords"
 msgstr ""
 
 #. Default: "Single Page Title"
-#: ./browser/seo_config.py:56
+#: ./browser/seo_config.py:57
 msgid "label_singlepage_title"
 msgstr ""
 
 #. Default: "Site map Description"
-#: ./browser/seo_config.py:121
+#: ./browser/seo_config.py:122
 msgid "label_sitemappage_description"
 msgstr ""
 
 #. Default: "Site map Keywords"
-#: ./browser/seo_config.py:126
+#: ./browser/seo_config.py:127
 msgid "label_sitemappage_keywords"
 msgstr ""
 
 #. Default: "Site map Title"
-#: ./browser/seo_config.py:116
+#: ./browser/seo_config.py:117
 msgid "label_sitemappage_title"
 msgstr ""
 
+#. Default: "Title Tag"
+#: ./browser/templates/perseo_tab_context.pt:22
+msgid "label_title_tag"
+msgstr ""
+
 #. Default: "Topic Description"
-#: ./browser/seo_config.py:256
+#: ./browser/seo_config.py:257
 msgid "label_topic_description"
 msgstr ""
 
 #. Default: "Topic Keywords"
-#: ./browser/seo_config.py:261
+#: ./browser/seo_config.py:262
 msgid "label_topic_keywords"
 msgstr ""
 
 #. Default: "Topic Title"
-#: ./browser/seo_config.py:251
+#: ./browser/seo_config.py:252
 msgid "label_topic_title"
 msgstr ""
 
 #. Default: "Yahoo Site Explorer"
-#: ./browser/seo_config.py:26
+#: ./browser/seo_config.py:27
 msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:406
+#: ./browser/seo_config.py:423
 msgid "seo_configlet_description"
 msgstr ""
 

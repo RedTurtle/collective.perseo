@@ -1,3 +1,4 @@
+#from Acquisition import aq_inner
 from time import time
 from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
@@ -223,7 +224,7 @@ class PerseoTabAvailable(BrowserView):
         return True
     
 class PerSEOTabContext( BrowserView ):
-    """ This class contains methods that allows to manage seo properties.
+    """ This class contains methods that allows to manage SEO tab.
     """
     template = ViewPageTemplateFile('templates/perseo_tab_context.pt')
 
@@ -231,3 +232,23 @@ class PerSEOTabContext( BrowserView ):
         super(PerSEOTabContext, self).__init__(*args, **kwargs)
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+
+    def __call__( self ):
+        """ Perform the update SEO properties and redirect if necessary,
+            or render the template.
+        """
+        #context = aq_inner(self.context)
+        request = self.request
+        form = request.form
+        submitted = form.get('form.submitted', False)
+        if submitted:
+            pass
+#            state = self.manageSEOProps(**form)
+#            if not state:
+#                state = _('seoproperties_saved', default=u'Content SEO properties have been saved.')
+#                context.plone_utils.addPortalMessage(state)
+#                kwargs = {'modification_date' : DateTime()} 
+#                context.plone_utils.contentEdit(context, **kwargs)
+#                return request.response.redirect(self.context.absolute_url())
+#            context.plone_utils.addPortalMessage(state, 'error')
+        return self.template()

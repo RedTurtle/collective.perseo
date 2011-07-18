@@ -13,10 +13,37 @@
   </head>
 
   <body>
-	<div metal:fill-slot="main">
+	<div metal:fill-slot="main"
+		tal:define="perseo_context here/@@perseo-context">
 		<form name="perseo_edit_form" action="#" method="post"
 			tal:attributes="action string:${context/absolute_url}/@@perseo-tab-context" >
 			<fieldset>
+				<div class="field">
+					<label i18n:translate="label_title_tag" for="perseo_title">
+						Title Tag
+					</label>
+					<div class="formHelp" i18n:translate="help_perseo_title">
+						Text to be present in &lt;TITLE&gt; tag. It is displayed in 
+						browser title bar. Search engines display it as a title of the 
+						document.
+					</div>
+					<input type="checkbox"
+						id="perseo_title_override"
+						name="perseo_title_override"
+						tal:attributes="checked python: perseo_context['has_perseo_title'] and 'on' or None;"
+						/>
+					<label i18n:translate="label_override" for="perseo_title_override">
+						Override
+					</label>
+					<br />
+					<input type="text"
+					       id="perseo_title"
+					       name="perseo_title"
+					       size="30"
+					       value=""
+					       tal:attributes="value request/per_seo_title | perseo_context/seo_title;"
+					       />
+				</div>
 				<div class="formControls"
 					i18n:domain="plone">
 				    <input class="context"
