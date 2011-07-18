@@ -291,6 +291,11 @@ msgstr "Titolo Collezione"
 msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
+#. Default: "The SEO settings have been saved."
+#: ./browser/views.py:289
+msgid "perseo_settings_saved"
+msgstr "Le impostazioni SEO sono state salvate."
+
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
 #: ./browser/seo_config.py:423
 msgid "seo_configlet_description"

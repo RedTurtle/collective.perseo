@@ -1,4 +1,5 @@
-#from Acquisition import aq_inner
+from Acquisition import aq_inner
+from DateTime import DateTime
 from time import time
 from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
@@ -9,7 +10,11 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.seo_config import ISEOConfigSchema
+
+PERSEO_PREFIX = 'perseo_'
+SUFFIX = '_override'
 
 # Ram cache function, which depends on plone instance and time
 def plone_instance_time(method, self, *args, **kwargs):
@@ -232,23 +237,62 @@ class PerSEOTabContext( BrowserView ):
         super(PerSEOTabContext, self).__init__(*args, **kwargs)
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        
+    def setProperty(self, property, value, type='string'):
+        """ Add a new property.
+
+            Sets a new property with the given id, value and type or changes it.
+        """
+        context = aq_inner(self.context)
+        if context.hasProperty(property):
+            context.manage_changeProperties({property: value})
+        else:
+            context.manage_addProperty(property, value, type)
+        
+    def manageSEOProps(self, **kw):
+        """ Manage seo properties.
+        """
+        state = False
+        context = aq_inner(self.context)
+        delete_list, perseo_overrides_keys, perseo_keys = [], [], []
+        seo_items = dict([(k[len(PERSEO_PREFIX):],v) for k,v in kw.items() if k.startswith(PERSEO_PREFIX)])
+        for key in seo_items.keys():
+            if key.endswith(SUFFIX):
+                perseo_overrides_keys.append(key[:-len(SUFFIX)])
+            else:
+                perseo_keys.append(key)
+        for perseo_key in perseo_keys:
+            if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
+                perseo_value = seo_items[perseo_key]
+                t_value = 'string'
+                if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
+                self.setProperty(PERSEO_PREFIX+perseo_key, perseo_value, type=t_value)
+                state = True
+            elif context.hasProperty(PERSEO_PREFIX+perseo_key):
+                delete_list.append(PERSEO_PREFIX+perseo_key)
+        if delete_list:
+            context.manage_delProperties(delete_list)
+            state = True
+        return state
 
     def __call__( self ):
         """ Perform the update SEO properties and redirect if necessary,
             or render the template.
         """
-        #context = aq_inner(self.context)
         request = self.request
         form = request.form
-        submitted = form.get('form.submitted', False)
-        if submitted:
-            pass
-#            state = self.manageSEOProps(**form)
-#            if not state:
-#                state = _('seoproperties_saved', default=u'Content SEO properties have been saved.')
-#                context.plone_utils.addPortalMessage(state)
-#                kwargs = {'modification_date' : DateTime()} 
-#                context.plone_utils.contentEdit(context, **kwargs)
-#                return request.response.redirect(self.context.absolute_url())
-#            context.plone_utils.addPortalMessage(state, 'error')
+        
+        if form.get('form.button.Cancel', False):
+            return request.response.redirect(self.context.absolute_url())
+        
+        if form.get('form.button.Save', False):
+            state = self.manageSEOProps(**form)
+            if state:
+                context = aq_inner(self.context)
+                state = _('perseo_settings_saved', default=u'The SEO settings have been saved.')
+                context.plone_utils.addPortalMessage(state)
+                kwargs = {'modification_date' : DateTime()}
+                context.plone_utils.contentEdit(context, **kwargs)
+            return request.response.redirect(self.context.absolute_url())
+        
         return self.template()
