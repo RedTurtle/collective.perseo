@@ -48,9 +48,19 @@ class PerSEOContext(BrowserView):
             "has_perseo_description":self.context.hasProperty('pSEO_description'),
             "perseo_keywords":self.perseo_keywords(),
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
-            "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default=''),
+            "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default='')
             }
         return perseo_metatags
+    
+    def perseo_robots(self):
+        
+        perseo_robots = []
+        
+        for key in self._perseo_metatags.keys():
+            if key.startswith("perseo_robots_") and self._perseo_metatags[key]:
+                perseo_robots.append(self._perseo_metatags[key])
+
+        return tuple(perseo_robots)
     
     def getPerSEOProperty( self, property_name, accessor='', default=None ):
         """ Get value from seo property by property name.
