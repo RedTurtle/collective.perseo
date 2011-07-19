@@ -150,7 +150,7 @@
 						<select name="perseo_robots_advanced:list"
 								id="perseo_robots_advanced"
 								multiple="multiple"
-								tal:define="options view/getRobotsAdvanced;">
+								tal:define="options perseo_context/getRobotsAdvanced;">
 							<option value="#"
 									selected="selected"
 									tal:repeat="op python:options.keys()"

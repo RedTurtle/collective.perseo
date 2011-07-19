@@ -51,9 +51,25 @@ class PerSEOContext(BrowserView):
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
             "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default='follow'),
             "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='index'),
-            "perseo_robots_advanced":self.getPerSEOProperty('pSEO_robots_advanced',default=())
+            "perseo_robots_advanced":self.perseo_robots_advanced()
             }
         return perseo_metatags
+    
+    def getRobotsAdvanced(self):
+        """Get a sample vocabulary for Robots Advanced options
+        """
+        return DisplayList((("noodp", _(u"NO ODP"),),
+                            ("noydir", _(u"NO YDIR"),),
+                            ("noarchive", _(u"No Archive"),),
+                            ("nosnippet", _(u"No Snippet"),),
+                            ))
+    
+    def perseo_robots_advanced(self):
+        default = []
+        for key in self.getRobotsAdvanced().keys():
+            if self.get_gseo_field('robots_%s' % key):
+                default.append(key) 
+        return self.getPerSEOProperty('pSEO_robots_advanced',default=tuple(default))
     
     def perseo_robots(self):
         perseo_robots = []
@@ -413,15 +429,6 @@ class PerSEOTabContext( BrowserView ):
         super(PerSEOTabContext, self).__init__(*args, **kwargs)
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
-        
-    def getRobotsAdvanced(self):
-        """Get a sample vocabulary for Robots Advanced options
-        """
-        return DisplayList((("noodp", _(u"NO ODP"),),
-                            ("noydir", _(u"NO YDIR"),),
-                            ("noarchive", _(u"No Archive"),),
-                            ("nosnippet", _(u"No Snippet"),),
-                            ))
         
     def setProperty(self, property, value, type='string'):
         """ Add a new property.
