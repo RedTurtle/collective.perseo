@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-19 12:25+0000\n"
+"POT-Creation-Date: 2011-07-19 15:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,31 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:427
+#: ./browser/seo_config.py:435
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:418
+#: ./browser/views.py:420
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:419
+#: ./browser/views.py:421
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:420
+#: ./browser/views.py:422
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:421
+#: ./browser/views.py:423
 msgid "No Snippet"
-msgstr ""
-
-#: ./browser/views.py:417
-msgid "None"
 msgstr ""
 
 #: ./profiles/default/controlpanel.xml
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:422
+#: ./browser/seo_config.py:430
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -288,13 +284,18 @@ msgstr ""
 msgid "label_searchpage_title"
 msgstr ""
 
+#. Default: "Indexing"
+#: ./browser/seo_config.py:344
+msgid "label_seoindexing"
+msgstr ""
+
 #. Default: "Title"
-#: ./browser/seo_config.py:336
+#: ./browser/seo_config.py:340
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:332
+#: ./browser/seo_config.py:336
 msgid "label_seowmtools"
 msgstr ""
 
@@ -359,12 +360,12 @@ msgid "legend_advanced"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:497
+#: ./browser/views.py:509
 msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:423
+#: ./browser/seo_config.py:431
 msgid "seo_configlet_description"
 msgstr ""
 

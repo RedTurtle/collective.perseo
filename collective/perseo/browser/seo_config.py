@@ -262,9 +262,13 @@ class ISEOConfigTitleSchema(Interface):
         title=_("label_topic_keywords",
                 default=u"Topic Keywords"),
         required=False)
+    
+class ISEOConfigIndexingSchema(Interface):
+    """Schema for Indexing"""
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
-                       ISEOConfigTitleSchema):
+                       ISEOConfigTitleSchema,
+                       ISEOConfigIndexingSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -335,6 +339,10 @@ titleset = FormFieldsets(ISEOConfigTitleSchema)
 titleset.id = 'seotitle'
 titleset.label = _(u'label_seotitle', default=u'Title')
 
+indexingset = FormFieldsets(ISEOConfigIndexingSchema)
+indexingset.id = 'seoindexing'
+indexingset.label = _(u'label_seoindexing', default=u'Indexing')
+
 class Text2ListWidget(TextAreaWidget):
     height = 2
     splitter = re.compile(u'\\r?\\n', re.S|re.U)
@@ -353,7 +361,7 @@ class Text2ListWidget(TextAreaWidget):
 
 class PerSEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(wmtoolsset, titleset)
+    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset)
     
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
