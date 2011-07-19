@@ -6,6 +6,7 @@ from zope.component import queryMultiAdapter
 
 from plone.memoize import view, ram
 
+from Products.Archetypes.atapi import DisplayList
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -49,12 +50,13 @@ class PerSEOContext(BrowserView):
             "perseo_keywords":self.perseo_keywords(),
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
             "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default='follow'),
-            "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='index')
+            "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='index'),
+            "perseo_robots_advanced":self.getPerSEOProperty('pSEO_robots_advanced',default=())
             }
         return perseo_metatags
     
     def perseo_robots(self):
-        perseo_robots = [] 
+        perseo_robots = []
         if self._perseo_metatags["perseo_robots_index"]:
             perseo_robots.append(self._perseo_metatags["perseo_robots_index"])
         if self._perseo_metatags["perseo_robots_follow"]:
@@ -64,8 +66,10 @@ class PerSEOContext(BrowserView):
             and not self._perseo_metatags["perseo_robots_follow"]:
             perseo_robots.append('nofollow')
         
-        return perseo_robots
-    
+        if perseo_robots:
+            return (', '.join(perseo_robots),) + self._perseo_metatags["perseo_robots_advanced"]
+        else:
+            return self._perseo_metatags["perseo_robots_advanced"]
     
     def getPerSEOProperty( self, property_name, accessor='', default=None ):
         """ Get value from seo property by property name.
@@ -410,6 +414,15 @@ class PerSEOTabContext( BrowserView ):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
         
+    def getRobotsAdvanced(self):
+        """Get a sample vocabulary for Robots Advanced options
+        """
+        return DisplayList((("noodp", _(u"NO ODP"),),
+                            ("noydir", _(u"NO YDIR"),),
+                            ("noarchive", _(u"No Archive"),),
+                            ("nosnippet", _(u"No Snippet"),),
+                            ))
+        
     def setProperty(self, property, value, type='string'):
         """ Add a new property.
 
@@ -455,17 +468,19 @@ class PerSEOTabContext( BrowserView ):
         """
         
         state = False
+        t_value = 'string'
         
         if kw.get(PERSEO_PREFIX+perseo_key):
-            robots_follow = kw.get(PERSEO_PREFIX+perseo_key, '')
+            robots_follow = kw.get(PERSEO_PREFIX+perseo_key, None)
+            if type(robots_follow)==type([]) or type(robots_follow)==type(()): t_value = 'lines'
             context = aq_inner(self.context)
             if context.hasProperty(PROP_PREFIX+perseo_key):
-                robots_follow_property = context.getProperty(PROP_PREFIX+perseo_key, '')
+                robots_follow_property = context.getProperty(PROP_PREFIX+perseo_key, None)
                 if robots_follow != robots_follow_property:
-                    self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type='string')
+                    self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
                     state = True
             else:
-                self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type='string')
+                self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
                 state = True
         return state
 

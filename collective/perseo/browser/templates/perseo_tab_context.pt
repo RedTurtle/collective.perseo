@@ -142,6 +142,26 @@
 								/>
 					</div>
 				</div>
+				<div class="field">
+					<label i18n:translate="label_robots_advanced_meta_tag" for="perseo_robots_advanced">
+						Meta Robots Advanced Tag
+					</label>
+					<div>
+						<select name="perseo_robots_advanced:list"
+								id="perseo_robots_advanced"
+								multiple="multiple"
+								tal:define="options view/getRobotsAdvanced;">
+							<option value="#"
+									selected="selected"
+									tal:repeat="op python:options.keys()"
+									tal:content="python:options.getValue(op)"
+									tal:attributes="value op;
+													selected python:(op in request.get('perseo_robots_advanced', []) or op in perseo_context['perseo_robots_advanced']) and 'selected' or ''"
+									i18n:translate=""
+									>dummy</option>
+						</select>
+					</div>
+				</div>
 			</fieldset>
 			<div class="formControls"
 				i18n:domain="plone">

@@ -14,6 +14,26 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
+#: ./browser/views.py:418
+msgid "NO ODP"
+msgstr "NO ODP"
+
+#: ./browser/views.py:419
+msgid "NO YDIR"
+msgstr "NO YDIR"
+
+#: ./browser/views.py:420
+msgid "No Archive"
+msgstr "No Archive"
+
+#: ./browser/views.py:421
+msgid "No Snippet"
+msgstr "No Snippet"
+
+#: ./browser/views.py:417
+msgid "None"
+msgstr "None"
+
 #: ./profiles/default/controlpanel.xml
 msgid "Plone SEO"
 msgstr "Plone SEO"
@@ -231,6 +251,11 @@ msgstr "Titolo pagina Not Found"
 msgid "label_override"
 msgstr "Sovrascrivi"
 
+#. Default: "Meta Robots Advanced Tag"
+#: ./browser/templates/perseo_tab_context.pt:146
+msgid "label_robots_advanced_meta_tag"
+msgstr "Robots Avanzati Meta Tag"
+
 #. Default: "Meta Robots Follow Tag"
 #: ./browser/templates/perseo_tab_context.pt:106
 msgid "label_robots_follow_meta_tag"
@@ -327,7 +352,7 @@ msgid "legend_advanced"
 msgstr "Avanzato"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:481
+#: ./browser/views.py:497
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
