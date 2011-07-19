@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-19 15:06+0000\n"
+"POT-Creation-Date: 2011-07-19 15:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:435
+#: ./browser/seo_config.py:459
 msgid ""
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:430
+#: ./browser/seo_config.py:454
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -269,6 +269,26 @@ msgstr ""
 msgid "label_robots_index_meta_tag"
 msgstr ""
 
+#. Default: "Add noarchive in whole site"
+#: ./browser/seo_config.py:282
+msgid "label_robots_noarchive"
+msgstr ""
+
+#. Default: "Add noodp in whole site"
+#: ./browser/seo_config.py:270
+msgid "label_robots_noodp"
+msgstr ""
+
+#. Default: "Add nosnippet in whole site"
+#: ./browser/seo_config.py:288
+msgid "label_robots_nosnippet"
+msgstr ""
+
+#. Default: "Add noydir in whole site"
+#: ./browser/seo_config.py:276
+msgid "label_robots_noydir"
+msgstr ""
+
 #. Default: "Search Page Description"
 #: ./browser/seo_config.py:77
 msgid "label_searchpage_description"
@@ -285,17 +305,17 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:344
+#: ./browser/seo_config.py:368
 msgid "label_seoindexing"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:340
+#: ./browser/seo_config.py:364
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:336
+#: ./browser/seo_config.py:360
 msgid "label_seowmtools"
 msgstr ""
 
@@ -365,7 +385,7 @@ msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:431
+#: ./browser/seo_config.py:455
 msgid "seo_configlet_description"
 msgstr ""
 

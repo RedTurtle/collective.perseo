@@ -2,9 +2,9 @@ import re
 from zope.interface import Interface
 from zope.interface import implements
 from zope.component import adapts
-from zope.schema import TextLine, Text, List
+from zope.schema import TextLine, Text, List, Bool
 
-from zope.app.form.browser import TextAreaWidget, TextWidget
+from zope.app.form.browser import TextAreaWidget, TextWidget#, CheckBoxWidget
 
 from plone.fieldsets.fieldsets import FormFieldsets
 from plone.app.controlpanel.form import ControlPanelForm
@@ -265,6 +265,30 @@ class ISEOConfigTitleSchema(Interface):
     
 class ISEOConfigIndexingSchema(Interface):
     """Schema for Indexing"""
+    
+    robots_noodp = Bool(
+        title=_("label_robots_noodp",
+                default=u"Add noodp in whole site"),
+        default=False,
+        required=False)
+    
+    robots_noydir = Bool(
+        title=_("label_robots_noydir",
+                default=u"Add noydir in whole site"),
+        default=False,
+        required=False)
+    
+    robots_noarchive = Bool(
+        title=_("label_robots_noarchive",
+                default=u"Add noarchive in whole site"),
+        default=False,
+        required=False)
+    
+    robots_nosnippet = Bool(
+        title=_("label_robots_nosnippet",
+                default=u"Add nosnippet in whole site"),
+        default=False,
+        required=False)
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
@@ -328,6 +352,10 @@ class SEOConfigAdapter(SchemaAdapterBase):
     topic_title = ProxyFieldProperty(ISEOConfigSchema['topic_title'])
     topic_description = ProxyFieldProperty(ISEOConfigSchema['topic_description'])
     topic_keywords = ProxyFieldProperty(ISEOConfigSchema['topic_keywords'])
+    robots_noodp = ProxyFieldProperty(ISEOConfigSchema['robots_noodp'])
+    robots_noydir = ProxyFieldProperty(ISEOConfigSchema['robots_noydir'])
+    robots_noarchive = ProxyFieldProperty(ISEOConfigSchema['robots_noarchive'])
+    robots_nosnippet = ProxyFieldProperty(ISEOConfigSchema['robots_nosnippet'])
 
 # Fieldset configurations
 
@@ -426,6 +454,11 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['topic_description'].custom_widget = TextAreaWidget
     form_fields['topic_description'].custom_widget.height = 3
     form_fields['topic_keywords'].custom_widget = Text2ListWidget
+#    form_fields['robots_noodp'].custom_widget = CheckBoxWidget
+#    form_fields['robots_noydir'].custom_widget = CheckBoxWidget
+#    form_fields['robots_noarchive'].custom_widget = CheckBoxWidget
+#    form_fields['robots_nosnippet'].custom_widget = CheckBoxWidget
+
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "

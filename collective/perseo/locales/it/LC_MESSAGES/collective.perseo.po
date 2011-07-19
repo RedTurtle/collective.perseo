@@ -34,7 +34,7 @@ msgstr "No Snippet"
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:430
+#: ./browser/seo_config.py:454
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -262,6 +262,26 @@ msgstr "Robots Follow Meta Tag"
 msgid "label_robots_index_meta_tag"
 msgstr "Robots Index Meta Tag"
 
+#. Default: "Add noarchive in whole site"
+#: ./browser/seo_config.py:282
+msgid "label_robots_noarchive"
+msgstr "Aggiungi noarchive in tutto il sito"
+
+#. Default: "Add noodp in whole site"
+#: ./browser/seo_config.py:270
+msgid "label_robots_noodp"
+msgstr "Aggiungi noodp in tutto il sito"
+
+#. Default: "Add nosnippet in whole site"
+#: ./browser/seo_config.py:288
+msgid "label_robots_nosnippet"
+msgstr "Aggiungi nosnippet in tutto il sito"
+
+#. Default: "Add noydir in whole site"
+#: ./browser/seo_config.py:276
+msgid "label_robots_noydir"
+msgstr "Aggiungi noydir in tutto il sito"
+
 #. Default: "Search Page Description"
 #: ./browser/seo_config.py:77
 msgid "label_searchpage_description"
@@ -278,17 +298,17 @@ msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:344
+#: ./browser/seo_config.py:368
 msgid "label_seoindexing"
 msgstr "Indexing"
 
 #. Default: "Title"
-#: ./browser/seo_config.py:340
+#: ./browser/seo_config.py:364
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:336
+#: ./browser/seo_config.py:360
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
@@ -358,7 +378,7 @@ msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:431
+#: ./browser/seo_config.py:455
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
