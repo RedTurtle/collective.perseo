@@ -231,6 +231,11 @@ msgstr "Titolo pagina Not Found"
 msgid "label_override"
 msgstr "Sovrascrivi"
 
+#. Default: "Meta Robots Follow Tag"
+#: ./browser/templates/perseo_tab_context.pt:106
+msgid "label_robots_follow_meta_tag"
+msgstr "Robots Follow Meta Tag"
+
 #. Default: "Search Page Description"
 #: ./browser/seo_config.py:77
 msgid "label_searchpage_description"
@@ -311,8 +316,13 @@ msgstr "Titolo Collezione"
 msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
+#. Default: "Advanced"
+#: ./browser/templates/perseo_tab_context.pt:102
+msgid "legend_advanced"
+msgstr "Avanzato"
+
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:408
+#: ./browser/views.py:448
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 

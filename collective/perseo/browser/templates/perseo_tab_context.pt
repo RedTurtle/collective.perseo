@@ -97,20 +97,45 @@
 						tal:content="python:'\n'.join(keywords)"
 						/>
 				</div>
-				<div class="formControls"
-					i18n:domain="plone">
-				    <input class="context"
-				           type="submit"
-				           name="form.button.Save"
-				           value="Save"
-				           i18n:attributes="value" />
-				    <input class="standalone"
-				           type="submit"
-				           name="form.button.Cancel"
-				           value="Cancel"
-				           i18n:attributes="value" />
+			</fieldset>
+			<fieldset>
+				<legend i18n:translate="legend_advanced">
+					Advanced
+				</legend>
+				<div class="field">
+					<label i18n:translate="label_robots_follow_meta_tag" for="perseo_robots_follow">
+						Meta Robots Follow Tag
+					</label>
+					<div tal:define="options python:['follow','nofollow'];"
+						 tal:repeat="op options">
+						<input  type="radio"
+								name="perseo_robots_follow"
+								value="#"
+								checked="checked"
+								tal:attributes="value op;
+												id string:perseo_robots_follow_${repeat/op/number};
+												checked python:(op == request.get('perseo_robots_follow', '') or op == perseo_context['perseo_robots_follow']) and 'checked' or ''"/>
+						<label  for=""
+								i18n:translate=""
+								tal:attributes="for string:perseo_robots_follow_${repeat/op/number}"
+								tal:content="op"
+								/>
+					</div>	
 				</div>
 			</fieldset>
+			<div class="formControls"
+				i18n:domain="plone">
+			    <input class="context"
+			           type="submit"
+			           name="form.button.Save"
+			           value="Save"
+			           i18n:attributes="value" />
+			    <input class="standalone"
+			           type="submit"
+			           name="form.button.Cancel"
+			           value="Cancel"
+			           i18n:attributes="value" />
+			</div>
 		</form>
 	</div>
   </body>

@@ -48,6 +48,7 @@ class PerSEOContext(BrowserView):
             "has_perseo_description":self.context.hasProperty('pSEO_description'),
             "perseo_keywords":self.perseo_keywords(),
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
+            "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default=''),
             }
         return perseo_metatags
     
@@ -418,17 +419,39 @@ class PerSEOTabContext( BrowserView ):
             else:
                 perseo_keys.append(key)
         for perseo_key in perseo_keys:
-            if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
-                perseo_value = seo_items[perseo_key]
-                t_value = 'string'
-                if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
-                self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
-                state = True
-            elif context.hasProperty(PROP_PREFIX+perseo_key):
-                delete_list.append(PROP_PREFIX+perseo_key)
+            if perseo_key == 'robots_follow':
+                state = self.manageSEORobotsFollowProps(**kw)
+            else:
+                if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
+                    perseo_value = seo_items[perseo_key]
+                    t_value = 'string'
+                    if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
+                    self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
+                    state = True
+                elif context.hasProperty(PROP_PREFIX+perseo_key):
+                    delete_list.append(PROP_PREFIX+perseo_key)
         if delete_list:
             context.manage_delProperties(delete_list)
             state = True
+        return state
+    
+    def manageSEORobotsFollowProps(self, **kw):
+        """ Update SEO Robots Follow property
+        """
+        
+        state = False
+        
+        if kw.get(PERSEO_PREFIX+'robots_follow'):
+            robots_follow = kw.get(PERSEO_PREFIX+'robots_follow', '')
+            context = aq_inner(self.context)
+            if context.hasProperty(PROP_PREFIX+'robots_follow'):
+                robots_follow_property = context.getProperty(PROP_PREFIX+'robots_follow', '')
+                if robots_follow != robots_follow_property:
+                    self.setProperty(PROP_PREFIX+'robots_follow', robots_follow, type='string')
+                    state = True
+            else:
+                self.setProperty(PROP_PREFIX+'robots_follow', robots_follow, type='string')
+                state = True
         return state
 
     def __call__( self ):
