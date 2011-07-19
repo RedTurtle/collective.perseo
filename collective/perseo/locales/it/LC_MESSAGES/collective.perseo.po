@@ -14,19 +14,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/views.py:420
+#: ./browser/views.py:61
 msgid "NO ODP"
 msgstr "NO ODP"
 
-#: ./browser/views.py:421
+#: ./browser/views.py:62
 msgid "NO YDIR"
 msgstr "NO YDIR"
 
-#: ./browser/views.py:422
+#: ./browser/views.py:63
 msgid "No Archive"
 msgstr "No Archive"
 
-#: ./browser/views.py:423
+#: ./browser/views.py:64
 msgid "No Snippet"
 msgstr "No Snippet"
 
@@ -34,7 +34,7 @@ msgstr "No Snippet"
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:454
+#: ./browser/seo_config.py:463
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -242,10 +242,10 @@ msgstr "Keywords pagina Not Found"
 msgid "label_notfoundpage_title"
 msgstr "Titolo pagina Not Found"
 
-#. Default: "Override"
+#. Default: "Override the default"
 #: ./browser/templates/perseo_tab_context.pt:35
 msgid "label_override"
-msgstr "Sovrascrivi"
+msgstr "Sovrascrivi il valore predefinito"
 
 #. Default: "Meta Robots Advanced Tag"
 #: ./browser/templates/perseo_tab_context.pt:146
@@ -298,17 +298,17 @@ msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:368
+#: ./browser/seo_config.py:372
 msgid "label_seoindexing"
 msgstr "Indexing"
 
 #. Default: "Title"
-#: ./browser/seo_config.py:364
+#: ./browser/seo_config.py:368
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:360
+#: ./browser/seo_config.py:364
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
@@ -373,12 +373,12 @@ msgid "legend_advanced"
 msgstr "Avanzato"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:509
+#: ./browser/views.py:516
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:455
+#: ./browser/seo_config.py:464
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 

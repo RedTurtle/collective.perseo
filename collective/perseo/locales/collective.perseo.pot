@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-19 15:21+0000\n"
+"POT-Creation-Date: 2011-07-19 16:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,23 +17,23 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:459
+#: ./browser/seo_config.py:468
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:420
+#: ./browser/views.py:61
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:421
+#: ./browser/views.py:62
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:422
+#: ./browser/views.py:63
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:423
+#: ./browser/views.py:64
 msgid "No Snippet"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:454
+#: ./browser/seo_config.py:463
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgstr ""
 msgid "label_notfoundpage_title"
 msgstr ""
 
-#. Default: "Override"
+#. Default: "Override the default"
 #: ./browser/templates/perseo_tab_context.pt:35
 msgid "label_override"
 msgstr ""
@@ -305,17 +305,17 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:368
+#: ./browser/seo_config.py:372
 msgid "label_seoindexing"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:364
+#: ./browser/seo_config.py:368
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:360
+#: ./browser/seo_config.py:364
 msgid "label_seowmtools"
 msgstr ""
 
@@ -380,12 +380,12 @@ msgid "legend_advanced"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:509
+#: ./browser/views.py:516
 msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:455
+#: ./browser/seo_config.py:464
 msgid "seo_configlet_description"
 msgstr ""
 

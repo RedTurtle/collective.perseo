@@ -33,7 +33,7 @@
 						tal:attributes="checked python: perseo_context['has_perseo_title'] and 'on' or None;"
 						/>
 					<label i18n:translate="label_override" for="perseo_title_override">
-						Override
+						Override the default
 					</label>
 					<br />
 					<input type="text"
@@ -57,7 +57,7 @@
 						tal:attributes="checked python: perseo_context['has_perseo_description'] and 'on' or None;"
 						/>
 					<label i18n:translate="label_override" for="perseo_description_override">
-						Override
+						Override the default
 					</label>
 			        <br />
 			        <textarea type="text"
@@ -85,7 +85,7 @@
 						tal:attributes="checked python: perseo_context['has_perseo_keywords'] and 'on' or None;"
 						/>
 					<label i18n:translate="label_override" for="perseo_keywords_override">
-						Override
+						Override the default
 					</label>
 					<br />
 					<textarea id="perseo_keywords"
@@ -146,6 +146,16 @@
 					<label i18n:translate="label_robots_advanced_meta_tag" for="perseo_robots_advanced">
 						Meta Robots Advanced Tag
 					</label>
+					<div>
+						<input type="checkbox"
+							id="perseo_robots_advanced_override"
+							name="perseo_robots_advanced_override"
+							tal:attributes="checked python: perseo_context['has_perseo_robots_advanced'] and 'on' or None;"
+						/>
+						<label i18n:translate="label_override" for="perseo_robots_advanced">
+							Override the default
+						</label>
+					</div>
 					<div>
 						<select name="perseo_robots_advanced:list"
 								id="perseo_robots_advanced"
