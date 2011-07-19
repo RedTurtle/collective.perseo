@@ -470,18 +470,23 @@ class PerSEOTabContext( BrowserView ):
         state = False
         t_value = 'string'
         
-        if kw.get(PERSEO_PREFIX+perseo_key):
-            robots_follow = kw.get(PERSEO_PREFIX+perseo_key, None)
-            if type(robots_follow)==type([]) or type(robots_follow)==type(()): t_value = 'lines'
-            context = aq_inner(self.context)
-            if context.hasProperty(PROP_PREFIX+perseo_key):
-                robots_follow_property = context.getProperty(PROP_PREFIX+perseo_key, None)
-                if robots_follow != robots_follow_property:
-                    self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
-                    state = True
+        robots_follow = kw.get(PERSEO_PREFIX+perseo_key, None)
+        if not robots_follow:
+            if perseo_key == "robots_advanced":
+                robots_follow = ()
             else:
+                robots_follow = ''
+        
+        if type(robots_follow)==type([]) or type(robots_follow)==type(()): t_value = 'lines'
+        context = aq_inner(self.context)
+        if context.hasProperty(PROP_PREFIX+perseo_key):
+            robots_follow_property = context.getProperty(PROP_PREFIX+perseo_key, None)
+            if robots_follow != robots_follow_property:
                 self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
                 state = True
+        else:
+            self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
+            state = True
         return state
 
     def __call__( self ):
