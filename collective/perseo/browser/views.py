@@ -471,6 +471,9 @@ class PerSEOTabContext( BrowserView ):
         t_value = 'string'
         
         robots_follow = kw.get(PERSEO_PREFIX+perseo_key, None)
+        if robots_follow and perseo_key == "robots_advanced":
+            robots_follow.remove('')
+        
         if not robots_follow:
             if perseo_key == "robots_advanced":
                 robots_follow = ()
@@ -481,7 +484,7 @@ class PerSEOTabContext( BrowserView ):
         context = aq_inner(self.context)
         if context.hasProperty(PROP_PREFIX+perseo_key):
             robots_follow_property = context.getProperty(PROP_PREFIX+perseo_key, None)
-            if robots_follow != robots_follow_property:
+            if tuple(robots_follow) != robots_follow_property:
                 self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
                 state = True
         else:

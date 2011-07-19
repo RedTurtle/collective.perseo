@@ -160,6 +160,7 @@
 									i18n:translate=""
 									>dummy</option>
 						</select>
+						<input type="hidden" name="perseo_robots_advanced:list" value="" />
 					</div>
 				</div>
 			</fieldset>
