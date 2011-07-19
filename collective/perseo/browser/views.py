@@ -48,8 +48,8 @@ class PerSEOContext(BrowserView):
             "has_perseo_description":self.context.hasProperty('pSEO_description'),
             "perseo_keywords":self.perseo_keywords(),
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
-            "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default=''),
-            "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='')
+            "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default='follow'),
+            "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='index')
             }
         return perseo_metatags
     
@@ -59,7 +59,13 @@ class PerSEOContext(BrowserView):
             perseo_robots.append(self._perseo_metatags["perseo_robots_index"])
         if self._perseo_metatags["perseo_robots_follow"]:
             perseo_robots.append(self._perseo_metatags["perseo_robots_follow"])
+        
+        if self._perseo_metatags["perseo_robots_index"] == 'noindex' \
+            and not self._perseo_metatags["perseo_robots_follow"]:
+            perseo_robots.append('nofollow')
+        
         return perseo_robots
+    
     
     def getPerSEOProperty( self, property_name, accessor='', default=None ):
         """ Get value from seo property by property name.
