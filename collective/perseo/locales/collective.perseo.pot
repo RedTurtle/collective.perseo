@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-19 07:39+0000\n"
+"POT-Creation-Date: 2011-07-19 10:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -243,6 +243,11 @@ msgstr ""
 msgid "label_robots_follow_meta_tag"
 msgstr ""
 
+#. Default: "Meta Robots Index Tag"
+#: ./browser/templates/perseo_tab_context.pt:126
+msgid "label_robots_index_meta_tag"
+msgstr ""
+
 #. Default: "Search Page Description"
 #: ./browser/seo_config.py:77
 msgid "label_searchpage_description"
@@ -329,7 +334,7 @@ msgid "legend_advanced"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:448
+#: ./browser/views.py:481
 msgid "perseo_settings_saved"
 msgstr ""
 

@@ -236,6 +236,11 @@ msgstr "Sovrascrivi"
 msgid "label_robots_follow_meta_tag"
 msgstr "Robots Follow Meta Tag"
 
+#. Default: "Meta Robots Index Tag"
+#: ./browser/templates/perseo_tab_context.pt:126
+msgid "label_robots_index_meta_tag"
+msgstr "Robots Index Meta Tag"
+
 #. Default: "Search Page Description"
 #: ./browser/seo_config.py:77
 msgid "label_searchpage_description"
@@ -322,7 +327,7 @@ msgid "legend_advanced"
 msgstr "Avanzato"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:448
+#: ./browser/views.py:481
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 

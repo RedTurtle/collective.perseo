@@ -32,18 +32,8 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
         TEMPLATE = '<meta name="%s" content="%s"/>'
         enc = getSiteEncoding(self.context)
         sfuncd = lambda x, enc=enc:safe_unicode(x, enc)
-        
-        meta_tags = []
-        
-        for k,v in self.listMetaTags().items():
-            if isinstance(v, (list, tuple)):
-                for x in v:
-                    meta_tags.append((k,x))
-            else:
-                meta_tags.append((k,v))
-    
         return u'\n'.join([TEMPLATE % tuple(map(sfuncd, (k,v))) \
-                           for k,v in meta_tags])
+                           for k,v in self.listMetaTags().items()])
 
     def listMetaTags(self):
         """Calculate list metatags"""
@@ -75,7 +65,7 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
                 # No data
                 continue
             
-            if isinstance(value, (list, tuple)) and not key == 'robots':
+            if isinstance(value, (list, tuple)):
                 # convert a list to a string
                 value = ', '.join(value)
 

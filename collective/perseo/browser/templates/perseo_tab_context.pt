@@ -120,7 +120,27 @@
 								tal:attributes="for string:perseo_robots_follow_${repeat/op/number}"
 								tal:content="op"
 								/>
-					</div>	
+					</div>
+				</div>
+				<div class="field">
+					<label i18n:translate="label_robots_index_meta_tag" for="perseo_robots_index">
+						Meta Robots Index Tag
+					</label>
+					<div tal:define="options python:['index','noindex'];"
+						 tal:repeat="op options">
+						<input  type="radio"
+								name="perseo_robots_index"
+								value="#"
+								checked="checked"
+								tal:attributes="value op;
+												id string:perseo_robots_index_${repeat/op/number};
+												checked python:(op == request.get('perseo_robots_index', '') or op == perseo_context['perseo_robots_index']) and 'checked' or ''"/>
+						<label  for=""
+								i18n:translate=""
+								tal:attributes="for string:perseo_robots_index_${repeat/op/number}"
+								tal:content="op"
+								/>
+					</div>
 				</div>
 			</fieldset>
 			<div class="formControls"
