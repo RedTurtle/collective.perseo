@@ -214,6 +214,10 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             gseo_field = self.get_gseo_field('indexing_%s' % page)
             if gseo_field:
                 return 'nofollow'
+        else:
+            perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
+            if perseo_property:
+                return perseo_property
         
         return 'follow'
     
@@ -223,6 +227,10 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             gseo_field = self.get_gseo_field('indexing_%s' % page)
             if gseo_field:
                 return 'noindex'
+        else:
+            perseo_property = self.getPerSEOProperty('pSEO_robots_index')
+            if perseo_property:
+                return perseo_property
         
         return 'index'
     
