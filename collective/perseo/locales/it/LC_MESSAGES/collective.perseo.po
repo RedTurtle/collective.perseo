@@ -14,23 +14,23 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/views.py:63
+#: ./browser/views.py:64
 msgid "NO ODP"
 msgstr "NO ODP"
 
-#: ./browser/views.py:64
+#: ./browser/views.py:65
 msgid "NO YDIR"
 msgstr "NO YDIR"
 
-#: ./browser/views.py:65
+#: ./browser/views.py:66
 msgid "No Archive"
 msgstr "No Archive"
 
-#: ./browser/views.py:66
+#: ./browser/views.py:67
 msgid "No Snippet"
 msgstr "No Snippet"
 
-#: ./browser/views.py:62
+#: ./browser/views.py:63
 msgid "None"
 msgstr "None"
 
@@ -55,6 +55,11 @@ msgstr "Selezionando le opzioni sotto decidi di disabilitare l'indicizzazione de
 #: ./browser/templates/perseo_tab_context.pt:20
 msgid "edit_seo"
 msgstr "Modifica le impostazioni SEO"
+
+#. Default: "Specify your canonical URL. If your site has identical or vastly similar content that's accessible through multiple URLs, this format provides you with more control over the URL returned in search results."
+#: ./browser/templates/perseo_tab_context.pt:200
+msgid "help_perseo_canonical"
+msgstr "Specificare l'URL canonico. Se il vostro sito ha contenuti identici o molto simili, che sono accessibili attraverso più URL, questo formato offre un maggiore controllo sull'URL restituito nei risultati di ricerca."
 
 #. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
 #: ./browser/templates/perseo_tab_context.pt:56
@@ -110,6 +115,11 @@ msgstr "Titolo pagina autore"
 #: ./browser/seo_config.py:33
 msgid "label_bingWebmasterTools"
 msgstr "Strumenti Bing Webmaster"
+
+#. Default: "Canonical URL"
+#: ./browser/templates/perseo_tab_context.pt:197
+msgid "label_canonical_tag"
+msgstr "Canonical URL"
 
 #. Default: "Contact Description"
 #: ./browser/seo_config.py:152
@@ -447,7 +457,7 @@ msgid "legend_general_settings"
 msgstr "Impostazioni generali"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:601
+#: ./browser/views.py:613
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 

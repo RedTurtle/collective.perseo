@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-20 12:08+0000\n"
+"POT-Creation-Date: 2011-07-20 15:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,23 +21,23 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:63
+#: ./browser/views.py:64
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:64
+#: ./browser/views.py:65
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:65
+#: ./browser/views.py:66
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:66
+#: ./browser/views.py:67
 msgid "No Snippet"
 msgstr ""
 
-#: ./browser/views.py:62
+#: ./browser/views.py:63
 msgid "None"
 msgstr ""
 
@@ -61,6 +61,11 @@ msgstr ""
 #. Default: "Edit SEO Settings"
 #: ./browser/templates/perseo_tab_context.pt:20
 msgid "edit_seo"
+msgstr ""
+
+#. Default: "Specify your canonical URL. If your site has identical or vastly similar content that's accessible through multiple URLs, this format provides you with more control over the URL returned in search results."
+#: ./browser/templates/perseo_tab_context.pt:200
+msgid "help_perseo_canonical"
 msgstr ""
 
 #. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
@@ -116,6 +121,11 @@ msgstr ""
 #. Default: "Bing Webmaster Tools"
 #: ./browser/seo_config.py:33
 msgid "label_bingWebmasterTools"
+msgstr ""
+
+#. Default: "Canonical URL"
+#: ./browser/templates/perseo_tab_context.pt:197
+msgid "label_canonical_tag"
 msgstr ""
 
 #. Default: "Contact Description"
@@ -454,7 +464,7 @@ msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:601
+#: ./browser/views.py:613
 msgid "perseo_settings_saved"
 msgstr ""
 

@@ -53,9 +53,14 @@ class PerSEOContext(BrowserView):
             "perseo_robots_follow":self.perseo_robots_follow(),
             "perseo_robots_index":self.perseo_robots_index(),
             "perseo_robots_advanced":self.perseo_robots_advanced(),
-            "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced')
+            "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced'),
+            "perseo_canonical": self.perseo_canonical(),
+            "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
             }
         return perseo_metatags
+    
+    def perseo_canonical(self):
+        return self.getPerSEOProperty('pSEO_canonical', default=self.context.absolute_url())
     
     def getRobotsAdvanced(self):
         """Get a sample vocabulary for Robots Advanced options

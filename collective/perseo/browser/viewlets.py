@@ -112,3 +112,14 @@ class PerSEOTitleTagViewlet(ViewletBase):
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
                 self.perseo_context["perseo_title"]))
             return perseo_title
+        
+class PerSEOCanonicalUrlViewlet(ViewletBase):
+    """ Simple viewlet for canonical url link rendering.
+    """
+    def update(self):
+        self.perseo_context = getMultiAdapter((self.context, self.request),
+                                             name=u'perseo-context')
+    def render( self ):
+        if self.perseo_context['perseo_canonical']:
+            return """<link rel="canonical" href="%s" />""" % self.perseo_context['perseo_canonical']
+        return ""
