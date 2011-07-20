@@ -46,7 +46,7 @@ msgstr "Plone SEO Configurazione"
 msgid "SEO"
 msgstr "SEO"
 
-#. Default: "By selecting the options belowyou decide to disable the indexing of resources using noindex and nofollow."
+#. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
 #: ./browser/seo_config.py:450
 msgid "description_seoindexing"
 msgstr "Selezionando le opzioni sotto decidi di disabilitare l'indicizzazione delle risorse utilizzando noindex e nofollow."

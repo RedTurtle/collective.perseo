@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-20 11:40+0000\n"
+"POT-Creation-Date: 2011-07-20 11:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "SEO"
 msgstr ""
 
-#. Default: "By selecting the options belowyou decide to disable the indexing of resources using noindex and nofollow."
+#. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
 #: ./browser/seo_config.py:450
 msgid "description_seoindexing"
 msgstr ""

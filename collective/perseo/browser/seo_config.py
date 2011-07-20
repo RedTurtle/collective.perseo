@@ -448,7 +448,7 @@ indexingset = FormFieldsets(ISEOConfigIndexingSchema)
 indexingset.id = 'seoindexing'
 indexingset.label = _(u'label_seoindexing', default=u'Indexing')
 indexingset.description = _(u'description_seoindexing', default=u"By selecting the options below" \
-                                "you decide to disable the indexing of resources using noindex and nofollow.")
+                                " you decide to disable the indexing of resources using noindex and nofollow.")
 
 
 class Text2ListWidget(TextAreaWidget):
