@@ -217,7 +217,7 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         if page:
             gseo_field = self.get_gseo_field('indexing_%s' % page)
             if gseo_field:
-                return gseo_field
+                return 'nofollow'
         
         return 'follow'
     
@@ -230,7 +230,7 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         if page:
             gseo_field = self.get_gseo_field('indexing_%s' % page)
             if gseo_field:
-                return gseo_field
+                return 'noindex'
         
         return 'index'
     
@@ -327,7 +327,7 @@ class PerSEOContextATDocument(PerSEOContext):
         
         gseo_field = self.get_gseo_field('indexing_page')
         if gseo_field:
-            return gseo_field
+            return 'nofollow'
         
         return 'follow'
     
@@ -338,7 +338,7 @@ class PerSEOContextATDocument(PerSEOContext):
         
         gseo_field = self.get_gseo_field('indexing_page')
         if gseo_field:
-            return gseo_field
+            return 'noindex'
         
         return 'index'
     
@@ -418,7 +418,7 @@ class PerSEOContextPortalTypes(PerSEOContext):
         
         gseo_field = self.get_gseo_field('indexing_%s' % self.portal_type)
         if gseo_field:
-            return gseo_field
+            return 'nofollow'
         
         return 'follow'
     
@@ -429,7 +429,7 @@ class PerSEOContextPortalTypes(PerSEOContext):
         
         gseo_field = self.get_gseo_field('indexing_%s' % self.portal_type)
         if gseo_field:
-            return gseo_field
+            return 'noindex'
         
         return 'index'
         
