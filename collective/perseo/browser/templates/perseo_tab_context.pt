@@ -106,6 +106,11 @@
 					<label i18n:translate="label_robots_follow_meta_tag" for="perseo_robots_follow">
 						Meta Robots Follow Tag
 					</label>
+					<input type="hidden"
+						id="perseo_robots_follow_override"
+						name="perseo_robots_follow_override"
+						tal:attributes="value string:on"
+						/>
 					<div tal:define="options python:['follow','nofollow'];"
 						 tal:repeat="op options">
 						<input  type="radio"
@@ -126,6 +131,11 @@
 					<label i18n:translate="label_robots_index_meta_tag" for="perseo_robots_index">
 						Meta Robots Index Tag
 					</label>
+					<input type="hidden"
+						id="perseo_robots_index_override"
+						name="perseo_robots_index_override"
+						tal:attributes="value string:on"
+						/>
 					<div tal:define="options python:['index','noindex'];"
 						 tal:repeat="op options">
 						<input  type="radio"
@@ -170,7 +180,6 @@
 									i18n:translate=""
 									>dummy</option>
 						</select>
-						<input type="hidden" name="perseo_robots_advanced:list" value="" />
 					</div>
 				</div>
 			</fieldset>

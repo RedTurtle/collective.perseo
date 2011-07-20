@@ -51,14 +51,16 @@ class PerSEOContext(BrowserView):
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
             "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default='follow'),
             "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='index'),
-            "perseo_robots_advanced":self.perseo_robots_advanced()
+            "perseo_robots_advanced":self.perseo_robots_advanced(),
+            "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced')
             }
         return perseo_metatags
     
     def getRobotsAdvanced(self):
         """Get a sample vocabulary for Robots Advanced options
         """
-        return DisplayList((("noodp", _(u"NO ODP"),),
+        return DisplayList((("", _(u"None"),),
+                            ("noodp", _(u"NO ODP"),),
                             ("noydir", _(u"NO YDIR"),),
                             ("noarchive", _(u"No Archive"),),
                             ("nosnippet", _(u"No Snippet"),),
@@ -68,7 +70,7 @@ class PerSEOContext(BrowserView):
         default = []
         for key in self.getRobotsAdvanced().keys():
             if self.get_gseo_field('robots_%s' % key):
-                default.append(key) 
+                default.append(key)
         return self.getPerSEOProperty('pSEO_robots_advanced',default=tuple(default))
     
     def perseo_robots(self):
@@ -435,11 +437,20 @@ class PerSEOTabContext( BrowserView ):
 
             Sets a new property with the given id, value and type or changes it.
         """
+        state = False
         context = aq_inner(self.context)
         if context.hasProperty(property):
+            current_value = context.getProperty(property, None)
+            if type=='string' and value != current_value:
+                state = True
+            if type=='lines' and tuple(value) != current_value:
+                state = True
             context.manage_changeProperties({property: value})
         else:
+            state = True
             context.manage_addProperty(property, value, type)
+        
+        return state
         
     def manageSEOProps(self, **kw):
         """ Manage seo properties.
@@ -453,50 +464,20 @@ class PerSEOTabContext( BrowserView ):
                 perseo_overrides_keys.append(key[:-len(SUFFIX)])
             else:
                 perseo_keys.append(key)
+                
         for perseo_key in perseo_keys:
-            if perseo_key.startswith('robots_'):
-                state = self.manageSEORobotsProps(perseo_key, **kw)
-            else:
-                if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
-                    perseo_value = seo_items[perseo_key]
-                    t_value = 'string'
-                    if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
-                    self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
-                    state = True
-                elif context.hasProperty(PROP_PREFIX+perseo_key):
-                    delete_list.append(PROP_PREFIX+perseo_key)
+            if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
+                perseo_value = seo_items[perseo_key]
+                t_value = 'string'
+                if perseo_value and perseo_key == "robots_advanced":
+                    perseo_value.remove('')
+                if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
+                state = self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
+            elif context.hasProperty(PROP_PREFIX+perseo_key):
+                delete_list.append(PROP_PREFIX+perseo_key)
         if delete_list:
+            state = True
             context.manage_delProperties(delete_list)
-            state = True
-        return state
-    
-    def manageSEORobotsProps(self, perseo_key, **kw):
-        """ Update SEO Robots Follow property
-        """
-        
-        state = False
-        t_value = 'string'
-        
-        robots_follow = kw.get(PERSEO_PREFIX+perseo_key, None)
-        if robots_follow and perseo_key == "robots_advanced":
-            robots_follow.remove('')
-        
-        if not robots_follow:
-            if perseo_key == "robots_advanced":
-                robots_follow = ()
-            else:
-                robots_follow = ''
-        
-        if type(robots_follow)==type([]) or type(robots_follow)==type(()): t_value = 'lines'
-        context = aq_inner(self.context)
-        if context.hasProperty(PROP_PREFIX+perseo_key):
-            robots_follow_property = context.getProperty(PROP_PREFIX+perseo_key, None)
-            if tuple(robots_follow) != robots_follow_property:
-                self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
-                state = True
-        else:
-            self.setProperty(PROP_PREFIX+perseo_key, robots_follow, type=t_value)
-            state = True
         return state
 
     def __call__( self ):

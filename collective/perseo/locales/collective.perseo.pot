@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-19 16:05+0000\n"
+"POT-Creation-Date: 2011-07-20 07:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,20 +21,24 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:61
+#: ./browser/views.py:63
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:62
+#: ./browser/views.py:64
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:63
+#: ./browser/views.py:65
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:64
+#: ./browser/views.py:66
 msgid "No Snippet"
+msgstr ""
+
+#: ./browser/views.py:62
+msgid "None"
 msgstr ""
 
 #: ./profiles/default/controlpanel.xml
@@ -255,7 +259,7 @@ msgid "label_override"
 msgstr ""
 
 #. Default: "Meta Robots Advanced Tag"
-#: ./browser/templates/perseo_tab_context.pt:146
+#: ./browser/templates/perseo_tab_context.pt:156
 msgid "label_robots_advanced_meta_tag"
 msgstr ""
 
@@ -265,7 +269,7 @@ msgid "label_robots_follow_meta_tag"
 msgstr ""
 
 #. Default: "Meta Robots Index Tag"
-#: ./browser/templates/perseo_tab_context.pt:126
+#: ./browser/templates/perseo_tab_context.pt:131
 msgid "label_robots_index_meta_tag"
 msgstr ""
 
@@ -380,7 +384,7 @@ msgid "legend_advanced"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:516
+#: ./browser/views.py:497
 msgid "perseo_settings_saved"
 msgstr ""
 

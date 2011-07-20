@@ -14,21 +14,25 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/views.py:61
+#: ./browser/views.py:63
 msgid "NO ODP"
 msgstr "NO ODP"
 
-#: ./browser/views.py:62
+#: ./browser/views.py:64
 msgid "NO YDIR"
 msgstr "NO YDIR"
 
-#: ./browser/views.py:63
+#: ./browser/views.py:65
 msgid "No Archive"
 msgstr "No Archive"
 
-#: ./browser/views.py:64
+#: ./browser/views.py:66
 msgid "No Snippet"
 msgstr "No Snippet"
+
+#: ./browser/views.py:62
+msgid "None"
+msgstr "None"
 
 #: ./profiles/default/controlpanel.xml
 msgid "Plone SEO"
@@ -248,7 +252,7 @@ msgid "label_override"
 msgstr "Sovrascrivi il valore predefinito"
 
 #. Default: "Meta Robots Advanced Tag"
-#: ./browser/templates/perseo_tab_context.pt:146
+#: ./browser/templates/perseo_tab_context.pt:156
 msgid "label_robots_advanced_meta_tag"
 msgstr "Robots Avanzati Meta Tag"
 
@@ -258,7 +262,7 @@ msgid "label_robots_follow_meta_tag"
 msgstr "Robots Follow Meta Tag"
 
 #. Default: "Meta Robots Index Tag"
-#: ./browser/templates/perseo_tab_context.pt:126
+#: ./browser/templates/perseo_tab_context.pt:131
 msgid "label_robots_index_meta_tag"
 msgstr "Robots Index Meta Tag"
 
@@ -373,7 +377,7 @@ msgid "legend_advanced"
 msgstr "Avanzato"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:516
+#: ./browser/views.py:497
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
