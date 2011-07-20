@@ -49,8 +49,8 @@ class PerSEOContext(BrowserView):
             "has_perseo_description":self.context.hasProperty('pSEO_description'),
             "perseo_keywords":self.perseo_keywords(),
             "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
-            "perseo_robots_follow":self.getPerSEOProperty('pSEO_robots_follow',default='follow'),
-            "perseo_robots_index":self.getPerSEOProperty('pSEO_robots_index',default='index'),
+            "perseo_robots_follow":self.perseo_robots_follow(),
+            "perseo_robots_index":self.perseo_robots_index(),
             "perseo_robots_advanced":self.perseo_robots_advanced(),
             "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced')
             }
@@ -65,6 +65,12 @@ class PerSEOContext(BrowserView):
                             ("noarchive", _(u"No Archive"),),
                             ("nosnippet", _(u"No Snippet"),),
                             ))
+    
+    def perseo_robots_follow(self):
+        return self.getPerSEOProperty('pSEO_robots_follow',default='follow')
+    
+    def perseo_robots_index(self):
+        return self.getPerSEOProperty('pSEO_robots_index',default='index')
     
     def perseo_robots_advanced(self):
         default = []
@@ -175,6 +181,59 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
     """ Calculate html header meta tags on context. Context == PloneSiteRoot
     """
     
+    def perseo_robots_what_page(self):
+        # I take template_id as is done in ploneview
+        # if all goes well for ploneview is fine in my general view
+        template_id = None
+        if 'PUBLISHED' in self.request:
+            if getattr(self.request['PUBLISHED'], 'getId', None):
+                # template inside skins   
+                template_id = self.request['PUBLISHED'].getId()
+            if getattr(self.request['PUBLISHED'], __name__, None):
+                # template inside browser view
+                template_id = self.request['PUBLISHED'].__name__
+        
+        if template_id:
+            if template_id == 'search' or template_id == 'search_form':
+                return 'searchpage'
+            elif 'login' in template_id \
+                or 'logout' in template_id \
+                or 'logged' in template_id \
+                or 'registered' in template_id:
+                return 'loginregistrationpage'
+            elif template_id == 'plone_control_panel':
+                return 'administrationpage'
+            else:
+                return None
+        else:
+            return None
+        
+    def perseo_robots_follow(self):
+        perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
+        if perseo_property:
+            return perseo_property
+        
+        page = self.perseo_robots_what_page()
+        if page:
+            gseo_field = self.get_gseo_field('indexing_%s' % page)
+            if gseo_field:
+                return gseo_field
+        
+        return 'follow'
+    
+    def perseo_robots_index(self):
+        perseo_property = self.getPerSEOProperty('pSEO_robots_index')
+        if perseo_property:
+            return perseo_property
+        
+        page = self.perseo_robots_what_page()
+        if page:
+            gseo_field = self.get_gseo_field('indexing_%s' % page)
+            if gseo_field:
+                return gseo_field
+        
+        return 'index'
+    
     def perseo_what_page(self):
         # I take template_id as is done in ploneview
         # if all goes well for ploneview is fine in my general view
@@ -260,6 +319,29 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
 class PerSEOContextATDocument(PerSEOContext):
     """ Calculate html header meta tags on context. Context == ATDocument
     """
+
+    def perseo_robots_follow(self):
+        perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.get_gseo_field('indexing_page')
+        if gseo_field:
+            return gseo_field
+        
+        return 'follow'
+    
+    def perseo_robots_index(self):
+        perseo_property = self.getPerSEOProperty('pSEO_robots_index')
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.get_gseo_field('indexing_page')
+        if gseo_field:
+            return gseo_field
+        
+        return 'index'
+    
     def perseo_what_page( self ):
         context = self.pcs.context
         parent = self.pcs.parent()
@@ -328,6 +410,28 @@ class PerSEOContextPortalTypes(PerSEOContext):
     """ Calculate html header meta tags on context. Context == a portal type
     """
     portal_type = ''
+    
+    def perseo_robots_follow(self):
+        perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.get_gseo_field('indexing_%s' % self.portal_type)
+        if gseo_field:
+            return gseo_field
+        
+        return 'follow'
+    
+    def perseo_robots_index(self):
+        perseo_property = self.getPerSEOProperty('pSEO_robots_index')
+        if perseo_property:
+            return perseo_property
+        
+        gseo_field = self.get_gseo_field('indexing_%s' % self.portal_type)
+        if gseo_field:
+            return gseo_field
+        
+        return 'index'
         
     def perseo_title( self ):
         perseo_property = self.getPerSEOProperty( 'pSEO_title' )
