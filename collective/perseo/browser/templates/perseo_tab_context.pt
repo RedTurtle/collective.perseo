@@ -39,7 +39,7 @@
 					<label i18n:translate="label_override" for="perseo_title_override">
 						Override the default
 					</label>
-					<br />
+					<div class="TitleField">
 					<input type="text"
 					       id="perseo_title"
 					       name="perseo_title"
@@ -47,6 +47,7 @@
 					       value=""
 					       tal:attributes="value request/perseo_title | perseo_context/perseo_title;"
 					       />
+					</div>
 				</div>
 				<div class="field">
 					<label i18n:translate="label_description_meta_tag" for="perseo_description">
@@ -63,7 +64,7 @@
 					<label i18n:translate="label_override" for="perseo_description_override">
 						Override the default
 					</label>
-			        <br />
+			        <div class="DescriptionField">
 			        <textarea type="text"
 						id="perseo_description"
 						name="perseo_description"
@@ -71,6 +72,7 @@
 						cols="40"
 						tal:content="request/perseo_description | perseo_context/perseo_description"
 						/>
+					</div>
 				</div>
 				<div class="field">
 					<label i18n:translate="label_keywords_meta_tag" for="perseo_keywords">
@@ -91,7 +93,7 @@
 					<label i18n:translate="label_override" for="perseo_keywords_override">
 						Override the default
 					</label>
-					<br />
+					<div class="KeywordsField">
 					<textarea id="perseo_keywords"
 						name="perseo_keywords:lines"
 						rows="11"
@@ -100,6 +102,7 @@
 						tal:define="keywords request/perseo_keywords | perseo_context/perseo_keywords"
 						tal:content="python:'\n'.join(keywords)"
 						/>
+					</div>
 				</div>
 			</fieldset>
 			<fieldset>
@@ -115,7 +118,8 @@
 						name="perseo_robots_follow_override"
 						tal:attributes="value string:on"
 						/>
-					<div tal:define="options python:['follow','nofollow'];"
+					<div class="RobotsFollowField"
+						 tal:define="options python:['follow','nofollow'];"
 						 tal:repeat="op options">
 						<input  type="radio"
 								name="perseo_robots_follow"
@@ -140,7 +144,8 @@
 						name="perseo_robots_index_override"
 						tal:attributes="value string:on"
 						/>
-					<div tal:define="options python:['index','noindex'];"
+					<div class="RobotsIndexField"
+						 tal:define="options python:['index','noindex'];"
 						 tal:repeat="op options">
 						<input  type="radio"
 								name="perseo_robots_index"
@@ -170,7 +175,7 @@
 							Override the default
 						</label>
 					</div>
-					<div>
+					<div class="RobotsAdvancedField">
 						<select name="perseo_robots_advanced:list"
 								id="perseo_robots_advanced"
 								multiple="multiple"
