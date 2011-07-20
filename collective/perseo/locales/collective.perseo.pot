@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-20 07:56+0000\n"
+"POT-Creation-Date: 2011-07-20 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,18 +53,23 @@ msgstr ""
 msgid "SEO"
 msgstr ""
 
+#. Default: "Edit SEO Settings"
+#: ./browser/templates/perseo_tab_context.pt:20
+msgid "edit_seo"
+msgstr ""
+
 #. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
-#: ./browser/templates/perseo_tab_context.pt:51
+#: ./browser/templates/perseo_tab_context.pt:55
 msgid "help_perseo_description"
 msgstr ""
 
 #. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
-#: ./browser/templates/perseo_tab_context.pt:75
+#: ./browser/templates/perseo_tab_context.pt:79
 msgid "help_perseo_keywords"
 msgstr ""
 
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
-#: ./browser/templates/perseo_tab_context.pt:25
+#: ./browser/templates/perseo_tab_context.pt:29
 msgid "help_perseo_title"
 msgstr ""
 
@@ -119,7 +124,7 @@ msgid "label_contactpage_title"
 msgstr ""
 
 #. Default: "Meta Description Tag"
-#: ./browser/templates/perseo_tab_context.pt:48
+#: ./browser/templates/perseo_tab_context.pt:52
 msgid "label_description_meta_tag"
 msgstr ""
 
@@ -204,7 +209,7 @@ msgid "label_image_title"
 msgstr ""
 
 #. Default: "Meta Keywords Tag"
-#: ./browser/templates/perseo_tab_context.pt:72
+#: ./browser/templates/perseo_tab_context.pt:76
 msgid "label_keywords_meta_tag"
 msgstr ""
 
@@ -254,22 +259,22 @@ msgid "label_notfoundpage_title"
 msgstr ""
 
 #. Default: "Override the default"
-#: ./browser/templates/perseo_tab_context.pt:35
+#: ./browser/templates/perseo_tab_context.pt:39
 msgid "label_override"
 msgstr ""
 
 #. Default: "Meta Robots Advanced Tag"
-#: ./browser/templates/perseo_tab_context.pt:156
+#: ./browser/templates/perseo_tab_context.pt:160
 msgid "label_robots_advanced_meta_tag"
 msgstr ""
 
 #. Default: "Meta Robots Follow Tag"
-#: ./browser/templates/perseo_tab_context.pt:106
+#: ./browser/templates/perseo_tab_context.pt:110
 msgid "label_robots_follow_meta_tag"
 msgstr ""
 
 #. Default: "Meta Robots Index Tag"
-#: ./browser/templates/perseo_tab_context.pt:131
+#: ./browser/templates/perseo_tab_context.pt:135
 msgid "label_robots_index_meta_tag"
 msgstr ""
 
@@ -354,7 +359,7 @@ msgid "label_sitemappage_title"
 msgstr ""
 
 #. Default: "Title Tag"
-#: ./browser/templates/perseo_tab_context.pt:22
+#: ./browser/templates/perseo_tab_context.pt:26
 msgid "label_title_tag"
 msgstr ""
 
@@ -379,7 +384,7 @@ msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "Advanced"
-#: ./browser/templates/perseo_tab_context.pt:102
+#: ./browser/templates/perseo_tab_context.pt:106
 msgid "legend_advanced"
 msgstr ""
 
