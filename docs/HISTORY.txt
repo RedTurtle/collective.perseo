@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.1.0 20-07-2011
-----------------
+0.1.0 (2011-07-20)
+------------------
 
 - Added Plone SEO control panel tool [fdelia]
 - Added viewlet for insert meta tags in html head of pages [fdelia]
