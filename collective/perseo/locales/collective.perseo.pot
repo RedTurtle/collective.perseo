@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-20 11:42+0000\n"
+"POT-Creation-Date: 2011-07-20 12:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -446,6 +446,11 @@ msgstr ""
 #. Default: "Advanced"
 #: ./browser/templates/perseo_tab_context.pt:109
 msgid "legend_advanced"
+msgstr ""
+
+#. Default: "General settings"
+#: ./browser/templates/perseo_tab_context.pt:22
+msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."

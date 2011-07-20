@@ -19,8 +19,8 @@
 			tal:attributes="action string:${context/absolute_url}/@@perseo-tab-context" >
 			<h1 i18n:translate="edit_seo">Edit SEO Settings</h1>
 			<fieldset>
-				<legend i18n:domain="plone" i18n:translate="legend_item_properties">
-					Item Properties
+				<legend i18n:translate="legend_general_settings">
+					General settings
 				</legend>
 				<div class="field">
 					<label i18n:translate="label_title_tag" for="perseo_title">

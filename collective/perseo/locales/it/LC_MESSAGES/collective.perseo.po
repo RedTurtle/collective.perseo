@@ -441,6 +441,11 @@ msgstr "Yahoo Site Explorer"
 msgid "legend_advanced"
 msgstr "Avanzato"
 
+#. Default: "General settings"
+#: ./browser/templates/perseo_tab_context.pt:22
+msgid "legend_general_settings"
+msgstr "Impostazioni generali"
+
 #. Default: "The SEO settings have been saved."
 #: ./browser/views.py:601
 msgid "perseo_settings_saved"
