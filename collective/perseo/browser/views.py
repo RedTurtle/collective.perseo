@@ -264,11 +264,12 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             return 'homepage'
 
     def perseo_title( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
-        if perseo_property:
-            return perseo_property
-
         page = self.perseo_what_page()
+        if page == 'homepage':
+            perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+            if perseo_property:
+                return perseo_property
+
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
         if gseo_field:
             return gseo_field
@@ -284,11 +285,12 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             return False
     
     def perseo_description( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
-        if perseo_property:
-            return perseo_property
-        
         page = self.perseo_what_page()
+        if page == 'homepage':
+            perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+            if perseo_property:
+                return perseo_property
+        
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % page))
         if gseo_field:
             return gseo_field
@@ -301,11 +303,12 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         return value
     
     def perseo_keywords( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
-        if perseo_property:
-            return perseo_property
-        
         page = self.perseo_what_page()
+        if page == 'homepage':
+            perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+            if perseo_property:
+                return perseo_property
+        
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
         if gseo_field:
             return gseo_field
