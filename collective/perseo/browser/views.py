@@ -90,11 +90,13 @@ class PerSEOContext(BrowserView):
         if self._perseo_metatags["perseo_robots_index"] == 'noindex' \
             and not self._perseo_metatags["perseo_robots_follow"]:
             perseo_robots.append('nofollow')
+            
+        return tuple(perseo_robots) + self._perseo_metatags["perseo_robots_advanced"]
         
-        if perseo_robots:
-            return (', '.join(perseo_robots),) + self._perseo_metatags["perseo_robots_advanced"]
-        else:
-            return self._perseo_metatags["perseo_robots_advanced"]
+#        if perseo_robots:
+#            return (', '.join(perseo_robots),) + self._perseo_metatags["perseo_robots_advanced"]
+#        else:
+#            return self._perseo_metatags["perseo_robots_advanced"]
     
     def getPerSEOProperty( self, property_name, accessor='', default=None ):
         """ Get value from seo property by property name.

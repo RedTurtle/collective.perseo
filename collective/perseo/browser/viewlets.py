@@ -75,7 +75,7 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
                 # No data
                 continue
             
-            if isinstance(value, (list, tuple)) and not key == "robots":
+            if isinstance(value, (list, tuple)): #and not key == "robots":
                 # convert a list to a string
                 value = ', '.join(value)
 
