@@ -209,10 +209,6 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             return None
         
     def perseo_robots_follow(self):
-        perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
-        if perseo_property:
-            return perseo_property
-        
         page = self.perseo_robots_what_page()
         if page:
             gseo_field = self.get_gseo_field('indexing_%s' % page)
@@ -222,10 +218,6 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         return 'follow'
     
     def perseo_robots_index(self):
-        perseo_property = self.getPerSEOProperty('pSEO_robots_index')
-        if perseo_property:
-            return perseo_property
-        
         page = self.perseo_robots_what_page()
         if page:
             gseo_field = self.get_gseo_field('indexing_%s' % page)
