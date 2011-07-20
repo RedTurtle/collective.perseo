@@ -447,6 +447,9 @@ titleset.label = _(u'label_seotitle', default=u'Title')
 indexingset = FormFieldsets(ISEOConfigIndexingSchema)
 indexingset.id = 'seoindexing'
 indexingset.label = _(u'label_seoindexing', default=u'Indexing')
+indexingset.description = _(u'description_seoindexing', default=u"By selecting the options below" \
+                                "you decide to disable the indexing of resources using noindex and nofollow.")
+
 
 class Text2ListWidget(TextAreaWidget):
     height = 2
@@ -459,7 +462,7 @@ class Text2ListWidget(TextAreaWidget):
             return self.context._type(filter(None, self.splitter.split(input)))
 
     def _toFormValue(self, value):
-        if value == self.context.missing_value or value == self.context._type():
+        if value == self.context.missing_value or value == self.context._type(): 
             return self._missing
         else:
             return u'\r\n'.join(list(value))
