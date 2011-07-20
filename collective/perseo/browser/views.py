@@ -469,7 +469,7 @@ class PerSEOTabContext( BrowserView ):
             if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
                 perseo_value = seo_items[perseo_key]
                 t_value = 'string'
-                if perseo_value and perseo_key == "robots_advanced":
+                if perseo_value and perseo_key == "robots_advanced" and '' in perseo_value:
                     perseo_value.remove('')
                 if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
                 state = self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)

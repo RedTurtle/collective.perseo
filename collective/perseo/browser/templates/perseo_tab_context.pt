@@ -175,8 +175,10 @@
 									selected="selected"
 									tal:repeat="op python:options.keys()"
 									tal:content="python:options.getValue(op)"
+									tal:define="radv python:perseo_context['perseo_robots_advanced'];
+												empty_radv python:radv == ()"
 									tal:attributes="value op;
-													selected python:(op in request.get('perseo_robots_advanced', []) or op in perseo_context['perseo_robots_advanced']) and 'selected' or ''"
+													selected python:(op in request.get('perseo_robots_advanced', []) or op in radv or (op == '' and empty_radv)) and 'selected' or ''"
 									i18n:translate=""
 									>dummy</option>
 						</select>
