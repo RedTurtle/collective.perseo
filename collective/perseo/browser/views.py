@@ -7,6 +7,7 @@ from zope.component import queryMultiAdapter
 from plone.memoize import view, ram
 
 from Products.Archetypes.atapi import DisplayList
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -591,8 +592,14 @@ class PerSEOTabContext( BrowserView ):
         request = self.request
         form = request.form
         
+        portal_properties = getToolByName(self.context, 'portal_properties')
+        use_view_action = portal_properties.site_properties.typesUseViewActionInListings
+        item_type = self.context.portal_type
+        item_url = self.context.absolute_url()
+        redirect_url = item_type in use_view_action and item_url+'/view' or item_url
+        
         if form.get('form.button.Cancel', False):
-            return request.response.redirect(self.context.absolute_url())
+            return request.response.redirect(redirect_url)
         
         if form.get('form.button.Save', False):
             state = self.manageSEOProps(**form)
@@ -602,6 +609,6 @@ class PerSEOTabContext( BrowserView ):
                 context.plone_utils.addPortalMessage(state)
                 kwargs = {'modification_date' : DateTime()}
                 context.plone_utils.contentEdit(context, **kwargs)
-            return request.response.redirect(self.context.absolute_url())
+            return request.response.redirect(redirect_url)
         
         return self.template()
