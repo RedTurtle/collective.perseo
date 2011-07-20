@@ -266,6 +266,66 @@ class ISEOConfigTitleSchema(Interface):
 class ISEOConfigIndexingSchema(Interface):
     """Schema for Indexing"""
     
+    search_page = Bool(
+        title=_("label_search_page",
+                default=u"Search pages"),
+        default=False,
+        required=False)
+    
+    login_registration_page = Bool(
+        title=_("label_login_registration_page",
+                default=u"Login and Registration pages"),
+        default=False,
+        required=False)
+    
+    administration_page = Bool(
+        title=_("label_administration_page",
+                default=u"Administration pages"),
+        default=False,
+        required=False)
+    
+    indexing_event = Bool(
+        title=_("label_indexing_event",
+                default=u"Event"),
+        default=False,
+        required=False)
+    
+    indexing_file = Bool(
+        title=_("label_indexing_file",
+                default=u"File"),
+        default=False,
+        required=False)
+    
+    indexing_folder = Bool(
+        title=_("label_indexing_folder",
+                default=u"Folder"),
+        default=False,
+        required=False)
+    
+    indexing_image = Bool(
+        title=_("label_indexing_image",
+                default=u"Image"),
+        default=False,
+        required=False)
+    
+    indexing_link = Bool(
+        title=_("label_indexing_link",
+                default=u"Link"),
+        default=False,
+        required=False)
+    
+    indexing_newsItem = Bool(
+        title=_("label_indexing_newsItem",
+                default=u"NewsItem"),
+        default=False,
+        required=False)
+    
+    indexing_topic = Bool(
+        title=_("label_indexing_topic",
+                default=u"Topic"),
+        default=False,
+        required=False)
+    
     robots_noodp = Bool(
         title=_("label_robots_noodp",
                 default=u"Add noodp in whole site"),
@@ -356,6 +416,16 @@ class SEOConfigAdapter(SchemaAdapterBase):
     robots_noydir = ProxyFieldProperty(ISEOConfigSchema['robots_noydir'])
     robots_noarchive = ProxyFieldProperty(ISEOConfigSchema['robots_noarchive'])
     robots_nosnippet = ProxyFieldProperty(ISEOConfigSchema['robots_nosnippet'])
+    search_page = ProxyFieldProperty(ISEOConfigSchema['search_page'])
+    login_registration_page = ProxyFieldProperty(ISEOConfigSchema['login_registration_page'])
+    administration_page = ProxyFieldProperty(ISEOConfigSchema['administration_page'])
+    indexing_event = ProxyFieldProperty(ISEOConfigSchema['indexing_event'])
+    indexing_file = ProxyFieldProperty(ISEOConfigSchema['indexing_file'])
+    indexing_folder = ProxyFieldProperty(ISEOConfigSchema['indexing_folder'])
+    indexing_image = ProxyFieldProperty(ISEOConfigSchema['indexing_image'])
+    indexing_link = ProxyFieldProperty(ISEOConfigSchema['indexing_link'])
+    indexing_newsItem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsItem'])
+    indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
 
 # Fieldset configurations
 
@@ -458,6 +528,16 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['robots_noydir'].custom_widget = CheckBoxWidget
 #    form_fields['robots_noarchive'].custom_widget = CheckBoxWidget
 #    form_fields['robots_nosnippet'].custom_widget = CheckBoxWidget
+#    form_fields['search_page'].custom_widget = CheckBoxWidget
+#    form_fields['login_registration_page'].custom_widget = CheckBoxWidget
+#    form_fields['administration_page'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_event'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_file'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_folder'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_image'].custom_widget = CheckBoxWidget  
+#    form_fields['indexing_link'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_newsItem'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_topic'].custom_widget = CheckBoxWidget
 
 
     label = _("Plone SEO Configuration")

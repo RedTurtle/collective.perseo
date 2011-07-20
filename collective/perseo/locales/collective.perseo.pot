@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-20 08:23+0000\n"
+"POT-Creation-Date: 2011-07-20 09:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:468
+#: ./browser/seo_config.py:548
 msgid ""
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:463
+#: ./browser/seo_config.py:543
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -59,12 +59,12 @@ msgid "edit_seo"
 msgstr ""
 
 #. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
-#: ./browser/templates/perseo_tab_context.pt:55
+#: ./browser/templates/perseo_tab_context.pt:56
 msgid "help_perseo_description"
 msgstr ""
 
 #. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
-#: ./browser/templates/perseo_tab_context.pt:79
+#: ./browser/templates/perseo_tab_context.pt:81
 msgid "help_perseo_keywords"
 msgstr ""
 
@@ -86,6 +86,11 @@ msgstr ""
 #. Default: "Accessibility Title"
 #: ./browser/seo_config.py:132
 msgid "label_accessibilitypage_title"
+msgstr ""
+
+#. Default: "Administration pages"
+#: ./browser/seo_config.py:282
+msgid "label_administration_page"
 msgstr ""
 
 #. Default: "Author Page Description"
@@ -124,7 +129,7 @@ msgid "label_contactpage_title"
 msgstr ""
 
 #. Default: "Meta Description Tag"
-#: ./browser/templates/perseo_tab_context.pt:52
+#: ./browser/templates/perseo_tab_context.pt:53
 msgid "label_description_meta_tag"
 msgstr ""
 
@@ -208,8 +213,43 @@ msgstr ""
 msgid "label_image_title"
 msgstr ""
 
+#. Default: "Event"
+#: ./browser/seo_config.py:288
+msgid "label_indexing_event"
+msgstr ""
+
+#. Default: "File"
+#: ./browser/seo_config.py:294
+msgid "label_indexing_file"
+msgstr ""
+
+#. Default: "Folder"
+#: ./browser/seo_config.py:300
+msgid "label_indexing_folder"
+msgstr ""
+
+#. Default: "Image"
+#: ./browser/seo_config.py:306
+msgid "label_indexing_image"
+msgstr ""
+
+#. Default: "Link"
+#: ./browser/seo_config.py:312
+msgid "label_indexing_link"
+msgstr ""
+
+#. Default: "NewsItem"
+#: ./browser/seo_config.py:318
+msgid "label_indexing_newsItem"
+msgstr ""
+
+#. Default: "Topic"
+#: ./browser/seo_config.py:324
+msgid "label_indexing_topic"
+msgstr ""
+
 #. Default: "Meta Keywords Tag"
-#: ./browser/templates/perseo_tab_context.pt:76
+#: ./browser/templates/perseo_tab_context.pt:78
 msgid "label_keywords_meta_tag"
 msgstr ""
 
@@ -226,6 +266,11 @@ msgstr ""
 #. Default: "Link Title"
 #: ./browser/seo_config.py:222
 msgid "label_link_title"
+msgstr ""
+
+#. Default: "Login and Registration pages"
+#: ./browser/seo_config.py:276
+msgid "label_login_registration_page"
 msgstr ""
 
 #. Default: "NewsItem Description"
@@ -264,38 +309,43 @@ msgid "label_override"
 msgstr ""
 
 #. Default: "Meta Robots Advanced Tag"
-#: ./browser/templates/perseo_tab_context.pt:160
+#: ./browser/templates/perseo_tab_context.pt:165
 msgid "label_robots_advanced_meta_tag"
 msgstr ""
 
 #. Default: "Meta Robots Follow Tag"
-#: ./browser/templates/perseo_tab_context.pt:110
+#: ./browser/templates/perseo_tab_context.pt:113
 msgid "label_robots_follow_meta_tag"
 msgstr ""
 
 #. Default: "Meta Robots Index Tag"
-#: ./browser/templates/perseo_tab_context.pt:135
+#: ./browser/templates/perseo_tab_context.pt:139
 msgid "label_robots_index_meta_tag"
 msgstr ""
 
 #. Default: "Add noarchive in whole site"
-#: ./browser/seo_config.py:282
+#: ./browser/seo_config.py:342
 msgid "label_robots_noarchive"
 msgstr ""
 
 #. Default: "Add noodp in whole site"
-#: ./browser/seo_config.py:270
+#: ./browser/seo_config.py:330
 msgid "label_robots_noodp"
 msgstr ""
 
 #. Default: "Add nosnippet in whole site"
-#: ./browser/seo_config.py:288
+#: ./browser/seo_config.py:348
 msgid "label_robots_nosnippet"
 msgstr ""
 
 #. Default: "Add noydir in whole site"
-#: ./browser/seo_config.py:276
+#: ./browser/seo_config.py:336
 msgid "label_robots_noydir"
+msgstr ""
+
+#. Default: "Search pages"
+#: ./browser/seo_config.py:270
+msgid "label_search_page"
 msgstr ""
 
 #. Default: "Search Page Description"
@@ -314,17 +364,17 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:372
+#: ./browser/seo_config.py:442
 msgid "label_seoindexing"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:368
+#: ./browser/seo_config.py:438
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:364
+#: ./browser/seo_config.py:434
 msgid "label_seowmtools"
 msgstr ""
 
@@ -384,7 +434,7 @@ msgid "label_yahooSiteExplorer"
 msgstr ""
 
 #. Default: "Advanced"
-#: ./browser/templates/perseo_tab_context.pt:106
+#: ./browser/templates/perseo_tab_context.pt:109
 msgid "legend_advanced"
 msgstr ""
 
@@ -394,7 +444,7 @@ msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:464
+#: ./browser/seo_config.py:544
 msgid "seo_configlet_description"
 msgstr ""
 
