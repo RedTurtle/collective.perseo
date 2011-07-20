@@ -1,15 +1,15 @@
 Changelog
 =========
 
-0.1.0dev (unreleased)
----------------------
+0.1.0 20-07-2011
+----------------
 
 - Added Plone SEO control panel tool [fdelia]
 - Added viewlet for insert meta tags in html head of pages [fdelia]
 - Added view that allows to calculate html header meta tags on context [fdelia]
+- Added some views that allows to calculate meta tags base on the type of context [fdelia]
+- Added some methods that allows to calculate meta tags base on the page in PloneSiteRoot context [fdelia]
 - Added viewlet for custom title tag rendering [fdelia]
-- Added some views that allows to calculate title tag base on the type of context [fdelia]
-- Added some methods that allows to calculate title tag base on the page in PloneSiteRoot context [fdelia]
 - Added handling of variables %%title%% and %%tag%% in meta tags from Plone SEO control panel tool [fdelia]
 - Added object action and view for SEO tab [fdelia]
 - Added handling of meta tags in SEO tab set [fdelia]
