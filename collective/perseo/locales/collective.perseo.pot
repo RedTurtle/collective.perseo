@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-20 09:14+0000\n"
+"POT-Creation-Date: 2011-07-20 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:548
+#: ./browser/seo_config.py:554
 msgid ""
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:543
+#: ./browser/seo_config.py:549
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -214,37 +214,37 @@ msgid "label_image_title"
 msgstr ""
 
 #. Default: "Event"
-#: ./browser/seo_config.py:288
+#: ./browser/seo_config.py:294
 msgid "label_indexing_event"
 msgstr ""
 
 #. Default: "File"
-#: ./browser/seo_config.py:294
+#: ./browser/seo_config.py:300
 msgid "label_indexing_file"
 msgstr ""
 
 #. Default: "Folder"
-#: ./browser/seo_config.py:300
+#: ./browser/seo_config.py:306
 msgid "label_indexing_folder"
 msgstr ""
 
 #. Default: "Image"
-#: ./browser/seo_config.py:306
+#: ./browser/seo_config.py:312
 msgid "label_indexing_image"
 msgstr ""
 
 #. Default: "Link"
-#: ./browser/seo_config.py:312
+#: ./browser/seo_config.py:318
 msgid "label_indexing_link"
 msgstr ""
 
 #. Default: "NewsItem"
-#: ./browser/seo_config.py:318
+#: ./browser/seo_config.py:324
 msgid "label_indexing_newsItem"
 msgstr ""
 
 #. Default: "Topic"
-#: ./browser/seo_config.py:324
+#: ./browser/seo_config.py:330
 msgid "label_indexing_topic"
 msgstr ""
 
@@ -324,22 +324,22 @@ msgid "label_robots_index_meta_tag"
 msgstr ""
 
 #. Default: "Add noarchive in whole site"
-#: ./browser/seo_config.py:342
+#: ./browser/seo_config.py:348
 msgid "label_robots_noarchive"
 msgstr ""
 
 #. Default: "Add noodp in whole site"
-#: ./browser/seo_config.py:330
+#: ./browser/seo_config.py:336
 msgid "label_robots_noodp"
 msgstr ""
 
 #. Default: "Add nosnippet in whole site"
-#: ./browser/seo_config.py:348
+#: ./browser/seo_config.py:354
 msgid "label_robots_nosnippet"
 msgstr ""
 
 #. Default: "Add noydir in whole site"
-#: ./browser/seo_config.py:336
+#: ./browser/seo_config.py:342
 msgid "label_robots_noydir"
 msgstr ""
 
@@ -364,18 +364,23 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:442
+#: ./browser/seo_config.py:448
 msgid "label_seoindexing"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:438
+#: ./browser/seo_config.py:444
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:434
+#: ./browser/seo_config.py:440
 msgid "label_seowmtools"
+msgstr ""
+
+#. Default: "Single Pages"
+#: ./browser/seo_config.py:288
+msgid "label_single_pages"
 msgstr ""
 
 #. Default: "Single Page Description"
@@ -439,12 +444,12 @@ msgid "legend_advanced"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:497
+#: ./browser/views.py:548
 msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:544
+#: ./browser/seo_config.py:550
 msgid "seo_configlet_description"
 msgstr ""
 

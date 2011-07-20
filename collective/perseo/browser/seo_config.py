@@ -266,21 +266,27 @@ class ISEOConfigTitleSchema(Interface):
 class ISEOConfigIndexingSchema(Interface):
     """Schema for Indexing"""
     
-    search_page = Bool(
+    indexing_searchpage = Bool(
         title=_("label_search_page",
                 default=u"Search pages"),
         default=False,
         required=False)
     
-    login_registration_page = Bool(
+    indexing_loginregistrationpage = Bool(
         title=_("label_login_registration_page",
                 default=u"Login and Registration pages"),
         default=False,
         required=False)
     
-    administration_page = Bool(
+    indexing_administrationpage = Bool(
         title=_("label_administration_page",
                 default=u"Administration pages"),
+        default=False,
+        required=False)
+    
+    indexing_page = Bool(
+        title=_("label_single_pages",
+                default=u"Single Pages"),
         default=False,
         required=False)
     
@@ -416,9 +422,10 @@ class SEOConfigAdapter(SchemaAdapterBase):
     robots_noydir = ProxyFieldProperty(ISEOConfigSchema['robots_noydir'])
     robots_noarchive = ProxyFieldProperty(ISEOConfigSchema['robots_noarchive'])
     robots_nosnippet = ProxyFieldProperty(ISEOConfigSchema['robots_nosnippet'])
-    search_page = ProxyFieldProperty(ISEOConfigSchema['search_page'])
-    login_registration_page = ProxyFieldProperty(ISEOConfigSchema['login_registration_page'])
-    administration_page = ProxyFieldProperty(ISEOConfigSchema['administration_page'])
+    indexing_searchpage = ProxyFieldProperty(ISEOConfigSchema['indexing_searchpage'])
+    indexing_loginregistrationpage = ProxyFieldProperty(ISEOConfigSchema['indexing_loginregistrationpage'])
+    indexing_administrationpage = ProxyFieldProperty(ISEOConfigSchema['indexing_administrationpage'])
+    indexing_page = ProxyFieldProperty(ISEOConfigSchema['indexing_page'])
     indexing_event = ProxyFieldProperty(ISEOConfigSchema['indexing_event'])
     indexing_file = ProxyFieldProperty(ISEOConfigSchema['indexing_file'])
     indexing_folder = ProxyFieldProperty(ISEOConfigSchema['indexing_folder'])
@@ -528,9 +535,10 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['robots_noydir'].custom_widget = CheckBoxWidget
 #    form_fields['robots_noarchive'].custom_widget = CheckBoxWidget
 #    form_fields['robots_nosnippet'].custom_widget = CheckBoxWidget
-#    form_fields['search_page'].custom_widget = CheckBoxWidget
-#    form_fields['login_registration_page'].custom_widget = CheckBoxWidget
-#    form_fields['administration_page'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_searchpage'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_loginregistrationpage'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_administrationpage'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_page'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_event'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_file'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_folder'].custom_widget = CheckBoxWidget

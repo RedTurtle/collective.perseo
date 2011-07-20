@@ -38,7 +38,7 @@ msgstr "None"
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:543
+#: ./browser/seo_config.py:549
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -207,37 +207,37 @@ msgid "label_image_title"
 msgstr "Titolo Immagine"
 
 #. Default: "Event"
-#: ./browser/seo_config.py:288
+#: ./browser/seo_config.py:294
 msgid "label_indexing_event"
 msgstr "Evento"
 
 #. Default: "File"
-#: ./browser/seo_config.py:294
+#: ./browser/seo_config.py:300
 msgid "label_indexing_file"
 msgstr "File"
 
 #. Default: "Folder"
-#: ./browser/seo_config.py:300
+#: ./browser/seo_config.py:306
 msgid "label_indexing_folder"
 msgstr "Cartella"
 
 #. Default: "Image"
-#: ./browser/seo_config.py:306
+#: ./browser/seo_config.py:312
 msgid "label_indexing_image"
 msgstr "Immagine"
 
 #. Default: "Link"
-#: ./browser/seo_config.py:312
+#: ./browser/seo_config.py:318
 msgid "label_indexing_link"
 msgstr "Collegamento"
 
 #. Default: "NewsItem"
-#: ./browser/seo_config.py:318
+#: ./browser/seo_config.py:324
 msgid "label_indexing_newsItem"
 msgstr "Notizia"
 
 #. Default: "Topic"
-#: ./browser/seo_config.py:324
+#: ./browser/seo_config.py:330
 msgid "label_indexing_topic"
 msgstr "Collezione"
 
@@ -317,22 +317,22 @@ msgid "label_robots_index_meta_tag"
 msgstr "Robots Index Meta Tag"
 
 #. Default: "Add noarchive in whole site"
-#: ./browser/seo_config.py:342
+#: ./browser/seo_config.py:348
 msgid "label_robots_noarchive"
 msgstr "Aggiungi noarchive in tutto il sito"
 
 #. Default: "Add noodp in whole site"
-#: ./browser/seo_config.py:330
+#: ./browser/seo_config.py:336
 msgid "label_robots_noodp"
 msgstr "Aggiungi noodp in tutto il sito"
 
 #. Default: "Add nosnippet in whole site"
-#: ./browser/seo_config.py:348
+#: ./browser/seo_config.py:354
 msgid "label_robots_nosnippet"
 msgstr "Aggiungi nosnippet in tutto il sito"
 
 #. Default: "Add noydir in whole site"
-#: ./browser/seo_config.py:336
+#: ./browser/seo_config.py:342
 msgid "label_robots_noydir"
 msgstr "Aggiungi noydir in tutto il sito"
 
@@ -357,19 +357,24 @@ msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:442
+#: ./browser/seo_config.py:448
 msgid "label_seoindexing"
 msgstr "Indexing"
 
 #. Default: "Title"
-#: ./browser/seo_config.py:438
+#: ./browser/seo_config.py:444
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:434
+#: ./browser/seo_config.py:440
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
+
+#. Default: "Single Pages"
+#: ./browser/seo_config.py:288
+msgid "label_single_pages"
+msgstr "Pagine singole"
 
 #. Default: "Single Page Description"
 #: ./browser/seo_config.py:62
@@ -432,12 +437,12 @@ msgid "legend_advanced"
 msgstr "Avanzato"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:497
+#: ./browser/views.py:548
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:544
+#: ./browser/seo_config.py:550
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
