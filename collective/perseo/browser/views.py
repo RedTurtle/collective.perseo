@@ -615,7 +615,7 @@ class PerSEOTabContext( BrowserView ):
                 self.canonical_validate(canonical_url)
             except InvalidValue, e:
                 msg = _(u"wrong_canonical_url", 
-                        default=u"The Canonical URL ${url} is incorrect",
+                        default=u'The Canonical URL "${url}" is incorrect',
                         mapping={'url':str(e)})
         return msg
 

@@ -476,8 +476,8 @@ msgstr "Le impostazioni SEO sono state salvate."
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
-#. Default: "The Canonical URL ${url} is incorrect"
+#. Default: "The Canonical URL \"${url}\" is incorrect"
 #: ./browser/views.py:617
 msgid "wrong_canonical_url"
-msgstr "L'URL Canonico ${url} non è corretto"
+msgstr "L'URL Canonico \"${url}\" non è corretto"
 

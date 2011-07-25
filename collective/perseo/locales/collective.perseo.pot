@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-25 14:14+0000\n"
+"POT-Creation-Date: 2011-07-25 14:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -483,7 +483,7 @@ msgstr ""
 msgid "seo_configlet_description"
 msgstr ""
 
-#. Default: "The Canonical URL ${url} is incorrect"
+#. Default: "The Canonical URL \"${url}\" is incorrect"
 #: ./browser/views.py:617
 msgid "wrong_canonical_url"
 msgstr ""
