@@ -6,6 +6,7 @@ Changelog
 
 - Added viewlets for script rendering in the <head> and in the portal footer [fdelia]
 - Added validation for the canonical url [fdelia]
+- Personalized view for sitemap.xml.gz generation [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------

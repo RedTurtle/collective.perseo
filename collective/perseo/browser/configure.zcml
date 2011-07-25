@@ -112,6 +112,14 @@
 		layer=".interfaces.IPerSEOLayer"
 		permission="cmf.ModifyPortalContent"
 		/>
+  
+	<browser:page
+		name="sitemap.xml.gz"
+		for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+		class=".sitemap.PerSEOSiteMapView"
+		layer=".interfaces.IPerSEOLayer"
+		permission="zope2.Public"
+		/>
 
 	<adapter factory=".seo_config.SEOConfigAdapter" />
 	
