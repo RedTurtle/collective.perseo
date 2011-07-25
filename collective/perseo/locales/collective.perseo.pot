@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-25 14:21+0000\n"
+"POT-Creation-Date: 2011-07-25 16:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:602
+#: ./browser/seo_config.py:610
 msgid ""
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:597
+#: ./browser/seo_config.py:605
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgid "SEO"
 msgstr ""
 
 #. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
-#: ./browser/seo_config.py:489
+#: ./browser/seo_config.py:493
 msgid "description_seoindexing"
 msgstr ""
 
@@ -379,17 +379,22 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:488
+#: ./browser/seo_config.py:492
 msgid "label_seoindexing"
 msgstr ""
 
+#. Default: "Site Map"
+#: ./browser/seo_config.py:498
+msgid "label_seositemapxml"
+msgstr ""
+
 #. Default: "Title"
-#: ./browser/seo_config.py:484
+#: ./browser/seo_config.py:488
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:480
+#: ./browser/seo_config.py:484
 msgid "label_seowmtools"
 msgstr ""
 
@@ -479,7 +484,7 @@ msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:598
+#: ./browser/seo_config.py:606
 msgid "seo_configlet_description"
 msgstr ""
 

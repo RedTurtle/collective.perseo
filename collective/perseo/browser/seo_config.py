@@ -367,10 +367,14 @@ class ISEOConfigIndexingSchema(Interface):
                 default=u"Add nosnippet in whole site"),
         default=False,
         required=False)
+    
+class ISEOConfigSiteMapXMLSchema(Interface):
+    """Schema for Site Map XML Tools"""
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
-                       ISEOConfigIndexingSchema):
+                       ISEOConfigIndexingSchema,
+                       ISEOConfigSiteMapXMLSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -489,6 +493,10 @@ indexingset.label = _(u'label_seoindexing', default=u'Indexing')
 indexingset.description = _(u'description_seoindexing', default=u"By selecting the options below" \
                                 " you decide to disable the indexing of resources using noindex and nofollow.")
 
+sitemapxmlset = FormFieldsets(ISEOConfigSiteMapXMLSchema)
+sitemapxmlset.id = 'seositemapxml'
+sitemapxmlset.label = _(u'label_seositemapxml', default=u'Site Map')
+
 
 class Text2ListWidget(TextAreaWidget):
     height = 2
@@ -508,7 +516,7 @@ class Text2ListWidget(TextAreaWidget):
 
 class PerSEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset)
+    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset)
     
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
