@@ -35,6 +35,16 @@ class ISEOConfigWMToolsSchema(Interface):
         description=u"http://www.bing.com/webmaster/",
         required=False)
     
+    tracking_code_header = Text(
+        title=_("label_tracking_code_header",
+                default=u"Tracking Code Header"),
+        required=False)
+    
+    tracking_code_footer = Text(
+        title=_("label_tracking_code_footer",
+                default=u"Tracking Code Footer"),
+        required=False)
+    
 class ISEOConfigTitleSchema(Interface):
     """Schema for Title"""
     
@@ -433,6 +443,8 @@ class SEOConfigAdapter(SchemaAdapterBase):
     indexing_link = ProxyFieldProperty(ISEOConfigSchema['indexing_link'])
     indexing_newsItem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsItem'])
     indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
+    tracking_code_header = ProxyFieldProperty(ISEOConfigSchema['tracking_code_header'])
+    tracking_code_footer = ProxyFieldProperty(ISEOConfigSchema['tracking_code_footer'])
 
 # Fieldset configurations
 
@@ -549,6 +561,10 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['indexing_link'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_newsItem'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_topic'].custom_widget = CheckBoxWidget
+    form_fields['tracking_code_header'].custom_widget = TextAreaWidget
+    form_fields['tracking_code_header'].custom_widget.height = 6
+    form_fields['tracking_code_footer'].custom_widget = TextAreaWidget
+    form_fields['tracking_code_footer'].custom_widget.height = 6
 
 
     label = _("Plone SEO Configuration")
