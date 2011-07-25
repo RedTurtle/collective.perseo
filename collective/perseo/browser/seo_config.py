@@ -4,6 +4,7 @@ from zope.interface import implements
 from zope.component import adapts
 from zope.schema import TextLine, Text, List, Bool
 
+from zope.app.component.hooks import getSite
 from zope.app.form.browser import TextAreaWidget, TextWidget#, CheckBoxWidget
 
 from plone.fieldsets.fieldsets import FormFieldsets
@@ -11,6 +12,7 @@ from plone.app.controlpanel.form import ControlPanelForm
 
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase, ProxyFieldProperty
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+from Products.CMFPlone.utils import getToolByName, safe_unicode
 
 from collective.perseo import perseoMessageFactory as _
 
@@ -379,6 +381,10 @@ class SEOConfigAdapter(SchemaAdapterBase):
 
     def __init__(self, context):
         super(SEOConfigAdapter, self).__init__(context)
+        portal = getSite()
+        portal_properties = getToolByName(portal, 'portal_properties')
+        site_properties = portal_properties.site_properties
+        self.encoding = site_properties.default_charset
         
     googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
     yahooSiteExplorer = ProxyFieldProperty(ISEOConfigSchema['yahooSiteExplorer'])
@@ -443,8 +449,29 @@ class SEOConfigAdapter(SchemaAdapterBase):
     indexing_link = ProxyFieldProperty(ISEOConfigSchema['indexing_link'])
     indexing_newsItem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsItem'])
     indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
-    tracking_code_header = ProxyFieldProperty(ISEOConfigSchema['tracking_code_header'])
-    tracking_code_footer = ProxyFieldProperty(ISEOConfigSchema['tracking_code_footer'])
+    
+    def getTrackingCodeHeader(self):
+        tracking_code_header = getattr(self.context, 'tracking_code_header', u'')
+        return safe_unicode(tracking_code_header)
+
+    def setTrackingCodeHeader(self, value):
+        if value is not None:
+            self.context.tracking_code_header = value.encode(self.encoding)
+        else:
+            self.context.tracking_code_header = ''
+            
+    def getTrackingCodeFooter(self):
+        tracking_code_footer = getattr(self.context, 'tracking_code_footer', u'')
+        return safe_unicode(tracking_code_footer)
+
+    def setTrackingCodeFooter(self, value):
+        if value is not None:
+            self.context.tracking_code_footer = value.encode(self.encoding)
+        else:
+            self.context.tracking_code_footer = ''
+            
+    tracking_code_header = property(getTrackingCodeHeader, setTrackingCodeHeader)
+    tracking_code_footer = property(getTrackingCodeFooter, setTrackingCodeFooter)
 
 # Fieldset configurations
 
