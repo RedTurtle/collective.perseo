@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Added viewlets for script rendering in the <head> and in the portal footer [fdelia]
+- Added validation for the canonical url [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------

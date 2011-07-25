@@ -3,6 +3,7 @@ from DateTime import DateTime
 from time import time
 from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
+from zope.schema.interfaces import InvalidValue
 
 from plone.memoize import view, ram
 
@@ -14,6 +15,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.seo_config import ISEOConfigSchema
+
+import re
 
 PERSEO_PREFIX = 'perseo_'
 SUFFIX = '_override'
@@ -594,6 +597,27 @@ class PerSEOTabContext( BrowserView ):
             state = True
             context.manage_delProperties(delete_list)
         return state
+    
+    def canonical_validate(self, value):
+        # non space and no new line(should be pickier)
+        _is_canonical = re.compile(r"\S*$").match
+        
+        if not _is_canonical(value):
+            raise InvalidValue(value)
+    
+    def validate(self,form):
+        msg = ''
+        if form.has_key(PERSEO_PREFIX+'canonical') \
+            and form.has_key(PERSEO_PREFIX+'canonical'+SUFFIX)\
+            and form.get(PERSEO_PREFIX+'canonical'+SUFFIX):
+            canonical_url = form.get(PERSEO_PREFIX+'canonical')
+            try:
+                self.canonical_validate(canonical_url)
+            except InvalidValue, e:
+                msg = _(u"wrong_canonical_url", 
+                        default=u"The Canonical URL ${url} is incorrect",
+                        mapping={'url':str(e)})
+        return msg
 
     def __call__( self ):
         """ Perform the update SEO properties and redirect if necessary,
@@ -612,9 +636,13 @@ class PerSEOTabContext( BrowserView ):
             return request.response.redirect(redirect_url)
         
         if form.get('form.button.Save', False):
+            context = aq_inner(self.context)
+            msg = self.validate(form)
+            if msg:
+                context.plone_utils.addPortalMessage(msg, 'error')
+                return self.template()
             state = self.manageSEOProps(**form)
             if state:
-                context = aq_inner(self.context)
                 state = _('perseo_settings_saved', default=u'The SEO settings have been saved.')
                 context.plone_utils.addPortalMessage(state)
                 kwargs = {'modification_date' : DateTime()}
