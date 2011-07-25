@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.x.x (2011-xx-xx)
+------------------
+
+- Added viewlets for script rendering in the <head> and in the portal footer [fdelia]
+
 0.1.0 (2011-07-20)
 ------------------
 

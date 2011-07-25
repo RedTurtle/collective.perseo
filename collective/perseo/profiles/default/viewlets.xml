@@ -2,6 +2,10 @@
 <object>
   <order manager="plone.htmlhead" skinname="*">
 	<viewlet name="plone.htmlhead.title" />
+	<viewlet name="collective.perseo.trackingcodeheader" />
 	<viewlet name="collective.perseo.metatags" />
+  </order>
+  <order manager="plone.portalfooter" skinname="*">
+	<viewlet name="collective.perseo.trackingcodefooter" insert-before="*"/>
   </order>
 </object>

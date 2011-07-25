@@ -2,12 +2,12 @@ from Acquisition import aq_inner
 from cgi import escape
 
 #from zope.component import queryAdapter
-from zope.component import getMultiAdapter, queryMultiAdapter
+from zope.component import getMultiAdapter, queryAdapter, queryMultiAdapter
 from plone.app.layout.viewlets.common import ViewletBase
 
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
-#from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.browser.seo_config import ISEOConfigSchema
 from collective.perseo.util import SortedDict
 
 # mapping {meta_name:accessor} of all meta tags
@@ -123,3 +123,32 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
         if self.perseo_context['perseo_canonical']:
             return """<link rel="canonical" href="%s" />""" % self.perseo_context['perseo_canonical']
         return ""
+
+class TrackingCodeViewlet( ViewletBase ):
+    """ Simple viewlet for script rendering.
+    """
+    def update(self):
+        self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
+        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        
+    def getTrackingCode( self ):
+        return ''
+
+    def render( self ):
+        return safe_unicode("""%s""" % self.getTrackingCode())
+
+class TrackingCodeHeaderViewlet( TrackingCodeViewlet ):
+    """ Simple viewlet for script rendering in the <head>.
+    """ 
+    def getTrackingCode( self ):
+        if self.gseo:
+            return self.gseo.tracking_code_header
+        return ''
+    
+class TrackingCodeFooterViewlet( TrackingCodeViewlet ):
+    """ Simple viewlet for script rendering in the portal footer.
+    """
+    def getTrackingCode( self ):
+        if self.gseo:
+            return self.gseo.tracking_code_footer
+        return ''
