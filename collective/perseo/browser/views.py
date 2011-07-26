@@ -15,7 +15,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.seo_config import ISEOConfigSchema
-from collective.perseo.browser.sitemap import BAD_TYPES
 
 import re
 
@@ -36,7 +35,6 @@ class PerSEOContext(BrowserView):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.pcs = queryMultiAdapter((self.context, self.request), name="plone_context_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
-        self.portal_types = getToolByName(self.context, 'portal_types')
         self._perseo_metatags = self._getPerSEOMetaTags()
 
     def __getitem__(self, key):
@@ -61,19 +59,8 @@ class PerSEOContext(BrowserView):
             "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced'),
             "perseo_canonical": self.perseo_canonical(),
             "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
-            "perseo_included_types": self.perseo_included_types()
             }
         return perseo_metatags
-    
-    def perseo_included_types(self):
-        allTypes = self.portal_types.listContentTypes()
-        
-        not_included_types = self.get_gseo_field('not_included_types')
-        if not not_included_types:
-            return [t for t in allTypes if t not in BAD_TYPES]
- 
-        return [t for t in allTypes if t not in not_included_types
-                                    and t not in BAD_TYPES]
     
     def perseo_canonical(self):
         return self.getPerSEOProperty('pSEO_canonical', default=self.context.absolute_url())
