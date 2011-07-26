@@ -14,23 +14,23 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/views.py:85
+#: ./browser/views.py:72
 msgid "NO ODP"
 msgstr "NO ODP"
 
-#: ./browser/views.py:86
+#: ./browser/views.py:73
 msgid "NO YDIR"
 msgstr "NO YDIR"
 
-#: ./browser/views.py:87
+#: ./browser/views.py:74
 msgid "No Archive"
 msgstr "No Archive"
 
-#: ./browser/views.py:88
+#: ./browser/views.py:75
 msgid "No Snippet"
 msgstr "No Snippet"
 
-#: ./browser/views.py:84
+#: ./browser/views.py:71
 msgid "None"
 msgstr "None"
 
@@ -326,6 +326,11 @@ msgstr "Titolo pagina Not Found"
 msgid "label_override"
 msgstr "Sovrascrivi il valore predefinito"
 
+#. Default: "Include in sitemap.xml.gz"
+#: ./browser/templates/perseo_tab_context.pt:234
+msgid "label_perseo_included_sitemapxml"
+msgstr "Includi in sitemap.xml.gz"
+
 #. Default: "Meta Robots Advanced Tag"
 #: ./browser/templates/perseo_tab_context.pt:165
 msgid "label_robots_advanced_meta_tag"
@@ -482,7 +487,7 @@ msgid "legend_general_settings"
 msgstr "Impostazioni generali"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:659
+#: ./browser/views.py:646
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
@@ -492,7 +497,7 @@ msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:630
+#: ./browser/views.py:617
 msgid "wrong_canonical_url"
 msgstr "L'URL Canonico \"${url}\" non è corretto"
 

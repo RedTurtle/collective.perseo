@@ -220,6 +220,22 @@
 							/>
 					</div>
           		</div>
+          		<div class="field">
+					<input type="hidden"
+						id="perseo_included_in_sitemapxml_override"
+						name="perseo_included_in_sitemapxml_override"
+						tal:attributes="value string:on"
+						/>
+					<div class="IncludedInSitemapxmlField">
+						<input  type="checkbox"
+								name="perseo_included_in_sitemapxml"
+								id="perseo_included_in_sitemapxml"
+								tal:attributes="checked python: request.get('perseo_included_in_sitemapxml', '') or perseo_context['perseo_included_in_sitemapxml'] and 'checked' or ''"/>
+						<label i18n:translate="label_perseo_included_sitemapxml" for="perseo_included_in_sitemapxml">
+							Include in sitemap.xml.gz
+						</label>
+					</div>
+				</div>
 			</fieldset>
 			<div class="formControls"
 				i18n:domain="plone">

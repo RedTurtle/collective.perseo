@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-26 10:47+0000\n"
+"POT-Creation-Date: 2011-07-26 13:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,23 +21,23 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:85
+#: ./browser/views.py:72
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:86
+#: ./browser/views.py:73
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:87
+#: ./browser/views.py:74
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:88
+#: ./browser/views.py:75
 msgid "No Snippet"
 msgstr ""
 
-#: ./browser/views.py:84
+#: ./browser/views.py:71
 msgid "None"
 msgstr ""
 
@@ -333,6 +333,11 @@ msgstr ""
 msgid "label_override"
 msgstr ""
 
+#. Default: "Include in sitemap.xml.gz"
+#: ./browser/templates/perseo_tab_context.pt:234
+msgid "label_perseo_included_sitemapxml"
+msgstr ""
+
 #. Default: "Meta Robots Advanced Tag"
 #: ./browser/templates/perseo_tab_context.pt:165
 msgid "label_robots_advanced_meta_tag"
@@ -489,7 +494,7 @@ msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:659
+#: ./browser/views.py:646
 msgid "perseo_settings_saved"
 msgstr ""
 
@@ -499,7 +504,7 @@ msgid "seo_configlet_description"
 msgstr ""
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:630
+#: ./browser/views.py:617
 msgid "wrong_canonical_url"
 msgstr ""
 
