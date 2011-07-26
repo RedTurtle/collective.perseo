@@ -23,7 +23,7 @@ class PerSEOSiteMapView (SiteMapView):
         catalog = getToolByName(self.context, 'portal_catalog')
         query = {'Language': 'all'}
         
-        query['portal_type'] = self.perseo_context['perseo_displayed_types']
+        query['portal_type'] = self.perseo_context['perseo_included_types']
         
         for item in catalog.searchResults(query):
             yield {

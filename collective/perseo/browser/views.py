@@ -61,18 +61,18 @@ class PerSEOContext(BrowserView):
             "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced'),
             "perseo_canonical": self.perseo_canonical(),
             "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
-            "perseo_displayed_types": self.perseo_displayed_types()
+            "perseo_included_types": self.perseo_included_types()
             }
         return perseo_metatags
     
-    def perseo_displayed_types(self):
+    def perseo_included_types(self):
         allTypes = self.portal_types.listContentTypes()
         
-        not_displayed_types = self.get_gseo_field('not_displayed_types')
-        if not not_displayed_types:
+        not_included_types = self.get_gseo_field('not_included_types')
+        if not not_included_types:
             return [t for t in allTypes if t not in BAD_TYPES]
  
-        return [t for t in allTypes if t not in not_displayed_types
+        return [t for t in allTypes if t not in not_included_types
                                     and t not in BAD_TYPES]
     
     def perseo_canonical(self):

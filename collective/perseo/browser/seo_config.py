@@ -373,10 +373,10 @@ class ISEOConfigIndexingSchema(Interface):
 class ISEOConfigSiteMapXMLSchema(Interface):
     """Schema for Site Map XML Tools"""
     
-    not_displayed_types = Tuple(
-        title=_("label_displayed_types",
+    not_included_types = Tuple(
+        title=_("label_included_types",
                 default=u"Types of content included in the XML Site Map"),
-        description=_("help_displayed_types",
+        description=_("help_included_types",
                       default=u"The content types that should be included in the sitemap.xml.gz."),
         required=False,
         missing_value=tuple(),
@@ -493,23 +493,23 @@ class SEOConfigAdapter(SchemaAdapterBase):
     tracking_code_header = property(getTrackingCodeHeader, setTrackingCodeHeader)
     tracking_code_footer = property(getTrackingCodeFooter, setTrackingCodeFooter)
     
-    def getDisplayedTypes(self):
-        not_displayed_types = getattr(self.context, 'not_displayed_types', ())
+    def getIncludedTypes(self):
+        not_included_types = getattr(self.context, 'not_included_types', ())
         
         return [t for t in self.portal_types.listContentTypes()
-                        if t not in not_displayed_types and
+                        if t not in not_included_types and
                            t not in BAD_TYPES]
 
-    def setNotDisplayedTypes(self, value):
+    def setNotIncludedTypes(self, value):
         # The menu pretends to be a whitelist, but we are storing a blacklist so that
         # new types are searchable by default. Inverse the list.
         allTypes = self.portal_types.listContentTypes()
 
         blacklistedTypes = [t for t in allTypes if t not in value
                                                 and t not in BAD_TYPES]
-        self.context.not_displayed_types = blacklistedTypes
+        self.context.not_included_types = blacklistedTypes
 
-    not_displayed_types = property(getDisplayedTypes, setNotDisplayedTypes)
+    not_included_types = property(getIncludedTypes, setNotIncludedTypes)
 
 # Fieldset configurations
 
@@ -634,7 +634,7 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['tracking_code_header'].custom_widget.height = 6
     form_fields['tracking_code_footer'].custom_widget = TextAreaWidget
     form_fields['tracking_code_footer'].custom_widget.height = 6
-    form_fields['not_displayed_types'].custom_widget = MultiCheckBoxThreeColumnWidget
+    form_fields['not_included_types'].custom_widget = MultiCheckBoxThreeColumnWidget
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
