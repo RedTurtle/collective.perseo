@@ -221,19 +221,30 @@
 					</div>
           		</div>
           		<div class="field">
+          			<label i18n:translate="label_perseo_included_sitemapxml" for="perseo_included_in_sitemapxml">
+						Include in sitemap.xml.gz
+					</label>
 					<input type="hidden"
 						id="perseo_included_in_sitemapxml_override"
 						name="perseo_included_in_sitemapxml_override"
 						tal:attributes="value string:on"
 						/>
-					<div class="IncludedInSitemapxmlField">
-						<input  type="checkbox"
+					<div class="IncludedInSitemapxmlField"
+						tal:define="options perseo_context/getYesNoOptions;"
+						tal:repeat="op python:options.keys()">
+						<input  type="radio"
 								name="perseo_included_in_sitemapxml"
-								id="perseo_included_in_sitemapxml"
-								tal:attributes="checked python: request.get('perseo_included_in_sitemapxml', '') or perseo_context['perseo_included_in_sitemapxml'] and 'checked' or ''"/>
-						<label i18n:translate="label_perseo_included_sitemapxml" for="perseo_included_in_sitemapxml">
-							Include in sitemap.xml.gz
-						</label>
+								value="#"
+								checked="checked"
+								tal:define="current_value python: perseo_context['perseo_included_in_sitemapxml'] and 'yes' or 'no';"
+								tal:attributes="value op;
+												id string:perseo_included_in_sitemapxml_${repeat/op/number};
+												checked python:(op == request.get('perseo_included_in_sitemapxml', '') or op == current_value) and 'checked' or ''"/>
+						<label  for=""
+								i18n:translate=""
+								tal:attributes="for string:perseo_included_in_sitemapxml_${repeat/op/number}"
+								tal:content="op"
+								/>
 					</div>
 				</div>
 			</fieldset>

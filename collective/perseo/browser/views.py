@@ -59,8 +59,19 @@ class PerSEOContext(BrowserView):
             "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced'),
             "perseo_canonical": self.perseo_canonical(),
             "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
+            "perseo_included_in_sitemapxml": self.perseo_included_in_sitemapxml(),
             }
         return perseo_metatags
+    
+    def getYesNoOptions(self):
+        """Get a sample vocabulary
+        """
+        return DisplayList((("yes", _(u"Yes"),),
+                            ("no", _(u"No"),),
+                            ))
+    
+    def perseo_included_in_sitemapxml(self):
+        return self.getPerSEOProperty('pSEO_included_in_sitemapxml', default=True)
     
     def perseo_canonical(self):
         return self.getPerSEOProperty('pSEO_canonical', default=self.context.absolute_url())
@@ -589,6 +600,11 @@ class PerSEOTabContext( BrowserView ):
                 t_value = 'string'
                 if perseo_value and perseo_key == "robots_advanced" and '' in perseo_value:
                     perseo_value.remove('')
+                if perseo_value and perseo_key=="included_in_sitemapxml":
+                    if perseo_value == 'no':
+                        perseo_value = False
+                    else:
+                        perseo_value = True 
                 if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
                 state = self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
             elif context.hasProperty(PROP_PREFIX+perseo_key):
