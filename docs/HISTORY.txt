@@ -8,8 +8,7 @@ Changelog
 - Added viewlets for script rendering in the <head> and in the portal footer [fdelia]
 - Added validation for the canonical url [fdelia]
 - Added ReallyUserFriendlyTypes vocabulary [fdelia]
-- Added view that allows to calculate content types that should be included in the sitemap.xml.gz [fdelia]
-- Personalized view for sitemap.xml.gz generation [fdelia]
+- Personalized view for sitemap.xml.gz generation, calculate content types that should be included [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------
