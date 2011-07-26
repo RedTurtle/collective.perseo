@@ -165,7 +165,7 @@
         />
 
 	<utility
-		component=".sitemap.ReallyUserFriendlyTypesVocabularyFactory"
+		component=".types.ReallyUserFriendlyTypesVocabularyFactory"
 		name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
 		/>
 

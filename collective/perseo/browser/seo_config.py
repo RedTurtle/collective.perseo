@@ -16,7 +16,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.utils import getToolByName, safe_unicode
 
 from collective.perseo import perseoMessageFactory as _
-from collective.perseo.browser.sitemap import BAD_TYPES
+from collective.perseo.browser.types import BAD_TYPES
 
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
