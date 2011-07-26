@@ -4,9 +4,11 @@ Changelog
 0.x.x (2011-xx-xx)
 ------------------
 
+- Added some fields to Plone SEO control panel tool [fdelia]
 - Added viewlets for script rendering in the <head> and in the portal footer [fdelia]
 - Added validation for the canonical url [fdelia]
 - Personalized view for sitemap.xml.gz generation [fdelia]
+- Added ReallyUserFriendlyTypes vocabulary [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------
