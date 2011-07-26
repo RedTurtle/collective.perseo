@@ -1,6 +1,7 @@
 from plone.app.layout.sitemap.sitemap import SiteMapView
 from Products.CMFCore.utils import getToolByName
 
+from zope.component import getMultiAdapter
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
@@ -12,18 +13,26 @@ class PerSEOSiteMapView (SiteMapView):
 
     http://www.sitemaps.org/protocol.php
     """
-
+    def __init__(self, context, request):
+        super(PerSEOSiteMapView, self).__init__(context, request)
+        self.perseo_context = getMultiAdapter((self.context, self.request),name=u'perseo-context')
+        
     def objects(self):
         """Returns the data to create the sitemap."""
         
         catalog = getToolByName(self.context, 'portal_catalog')
-        for item in catalog.searchResults({'Language': 'all'}):
+        query = {'Language': 'all'}
+        
+        query['portal_type'] = self.perseo_context['perseo_displayed_types']
+        
+        for item in catalog.searchResults(query):
             yield {
                 'loc': item.getURL(),
                 'lastmod': item.modified.ISO8601(),
                 #'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
                 #'prioriy': 0.5, # 0.0 to 1.0
             }
+
 
 BAD_TYPES = ("ATBooleanCriterion", "ATDateCriteria", "ATDateRangeCriterion",
              "ATListCriterion", "ATPortalTypeCriterion", "ATReferenceCriterion",
