@@ -164,4 +164,9 @@
         permission="zope2.View"
         />
 
+	<utility
+		component=".sitemap.ReallyUserFriendlyTypesVocabularyFactory"
+		name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
+		/>
+
 </configure>

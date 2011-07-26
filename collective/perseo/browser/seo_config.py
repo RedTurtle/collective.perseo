@@ -2,19 +2,21 @@ import re
 from zope.interface import Interface
 from zope.interface import implements
 from zope.component import adapts
-from zope.schema import TextLine, Text, List, Bool
+from zope.schema import TextLine, Text, List, Bool, Tuple, Choice
 
 from zope.app.component.hooks import getSite
 from zope.app.form.browser import TextAreaWidget, TextWidget#, CheckBoxWidget
 
 from plone.fieldsets.fieldsets import FormFieldsets
 from plone.app.controlpanel.form import ControlPanelForm
+from plone.app.controlpanel.widgets import MultiCheckBoxThreeColumnWidget
 
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase, ProxyFieldProperty
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.utils import getToolByName, safe_unicode
 
 from collective.perseo import perseoMessageFactory as _
+from collective.perseo.browser.sitemap import BAD_TYPES
 
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
@@ -370,6 +372,18 @@ class ISEOConfigIndexingSchema(Interface):
     
 class ISEOConfigSiteMapXMLSchema(Interface):
     """Schema for Site Map XML Tools"""
+    
+    not_displayed_types = Tuple(
+        title=_("label_displayed_types",
+                default=u"Types of content included in the XML Site Map"),
+        description=_("help_displayed_types",
+                      default=u"The content types that should be included in the sitemap.xml.gz."),
+        required=False,
+        missing_value=tuple(),
+        value_type=Choice(
+            vocabulary="collective.perseo.vocabularies.ReallyUserFriendlyTypes")
+        )
+        
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
@@ -386,9 +400,11 @@ class SEOConfigAdapter(SchemaAdapterBase):
     def __init__(self, context):
         super(SEOConfigAdapter, self).__init__(context)
         portal = getSite()
+        self.portal_types = getToolByName(portal, 'portal_types')
         portal_properties = getToolByName(portal, 'portal_properties')
         site_properties = portal_properties.site_properties
         self.encoding = site_properties.default_charset
+        self.navtree_properties = portal_properties.navtree_properties
         
     googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
     yahooSiteExplorer = ProxyFieldProperty(ISEOConfigSchema['yahooSiteExplorer'])
@@ -476,6 +492,24 @@ class SEOConfigAdapter(SchemaAdapterBase):
             
     tracking_code_header = property(getTrackingCodeHeader, setTrackingCodeHeader)
     tracking_code_footer = property(getTrackingCodeFooter, setTrackingCodeFooter)
+    
+    def getDisplayedTypes(self):
+        not_displayed_types = getattr(self.context, 'not_displayed_types', ())
+        
+        return [t for t in self.portal_types.listContentTypes()
+                        if t not in not_displayed_types and
+                           t not in BAD_TYPES]
+
+    def setNotDisplayedTypes(self, value):
+        # The menu pretends to be a whitelist, but we are storing a blacklist so that
+        # new types are searchable by default. Inverse the list.
+        allTypes = self.portal_types.listContentTypes()
+
+        blacklistedTypes = [t for t in allTypes if t not in value
+                                                and t not in BAD_TYPES]
+        self.context.not_displayed_types = blacklistedTypes
+
+    not_displayed_types = property(getDisplayedTypes, setNotDisplayedTypes)
 
 # Fieldset configurations
 
@@ -600,7 +634,7 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['tracking_code_header'].custom_widget.height = 6
     form_fields['tracking_code_footer'].custom_widget = TextAreaWidget
     form_fields['tracking_code_footer'].custom_widget.height = 6
-
+    form_fields['not_displayed_types'].custom_widget = MultiCheckBoxThreeColumnWidget
 
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
