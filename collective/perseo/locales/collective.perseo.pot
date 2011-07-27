@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-27 09:07+0000\n"
+"POT-Creation-Date: 2011-07-27 10:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -512,7 +512,7 @@ msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:665
+#: ./browser/views.py:679
 msgid "perseo_settings_saved"
 msgstr ""
 
@@ -524,5 +524,20 @@ msgstr ""
 #. Default: "The Canonical URL \"${url}\" is incorrect"
 #: ./browser/views.py:636
 msgid "wrong_canonical_url"
+msgstr ""
+
+#. Default: "The Priority sitemap.xml.gz must be a number"
+#: ./browser/views.py:651
+msgid "wrong_priority_sitemapxml"
+msgstr ""
+
+#. Default: "The Priority sitemap.xml.gz need to be greater than 0.0"
+#: ./browser/views.py:645
+msgid "wrong_priority_sitemapxml_greater"
+msgstr ""
+
+#. Default: "The Priority sitemap.xml.gz need to be less than or equal to 1.0"
+#: ./browser/views.py:648
+msgid "wrong_priority_sitemapxml_less"
 msgstr ""
 

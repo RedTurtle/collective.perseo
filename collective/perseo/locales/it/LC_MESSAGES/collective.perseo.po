@@ -505,7 +505,7 @@ msgid "legend_general_settings"
 msgstr "Impostazioni generali"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:665
+#: ./browser/views.py:679
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
@@ -518,4 +518,19 @@ msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e con
 #: ./browser/views.py:636
 msgid "wrong_canonical_url"
 msgstr "L'URL Canonico \"${url}\" non è corretto"
+
+#. Default: "The Priority sitemap.xml.gz must be a number"
+#: ./browser/views.py:651
+msgid "wrong_priority_sitemapxml"
+msgstr "La priorità sitemap.xml.gz deve essere un numero"
+
+#. Default: "The Priority sitemap.xml.gz need to be greater than 0.0"
+#: ./browser/views.py:645
+msgid "wrong_priority_sitemapxml_greater"
+msgstr "La priorità sitemap.xml.gz deve essere maggiore di 0.0"
+
+#. Default: "The Priority sitemap.xml.gz need to be less than or equal to 1.0"
+#: ./browser/views.py:648
+msgid "wrong_priority_sitemapxml_less"
+msgstr "La priorità sitemap.xml.gz deve essere minore o uguale a 1.0"
 

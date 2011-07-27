@@ -636,6 +636,20 @@ class PerSEOTabContext( BrowserView ):
                 msg = _(u"wrong_canonical_url", 
                         default=u'The Canonical URL "${url}" is incorrect',
                         mapping={'url':str(e)})
+        if form.has_key(PERSEO_PREFIX+'priority_sitemapxml')\
+            and form.get(PERSEO_PREFIX+'priority_sitemapxml'):
+            priority_sitemapxml = form.get(PERSEO_PREFIX+'priority_sitemapxml')
+            try:
+                priority_sitemapxml = float(priority_sitemapxml)
+                if priority_sitemapxml < 0.1:
+                    msg = _(u"wrong_priority_sitemapxml_greater", 
+                        default=u"The Priority sitemap.xml.gz need to be greater than 0.0")
+                if priority_sitemapxml > 1.0:
+                    msg = _(u"wrong_priority_sitemapxml_less", 
+                        default=u"The Priority sitemap.xml.gz need to be less than or equal to 1.0")
+            except ValueError, e:
+                msg = _(u"wrong_priority_sitemapxml", 
+                        default=u"The Priority sitemap.xml.gz must be a number")
         return msg
 
     def __call__( self ):
