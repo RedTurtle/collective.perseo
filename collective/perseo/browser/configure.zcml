@@ -168,5 +168,7 @@
 		component=".types.ReallyUserFriendlyTypesVocabularyFactory"
 		name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
 		/>
+		
+	<adapter name="getIncludedInSitemapxml" factory=".indexers.get_included_in_sitemapxml" />
 
 </configure>

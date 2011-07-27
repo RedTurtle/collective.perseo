@@ -570,11 +570,13 @@ class PerSEOTabContext( BrowserView ):
         context = aq_inner(self.context)
         if context.hasProperty(property):
             current_value = context.getProperty(property, None)
-            if type=='string' and value != current_value:
+            if (type=='string' or type=='boolean') and value != current_value:
                 state = True
             if type=='lines' and tuple(value) != current_value:
                 state = True
             context.manage_changeProperties({property: value})
+            if property == 'pSEO_included_in_sitemapxml' and state:
+                context.reindexObject(idxs=[])
         else:
             state = True
             context.manage_addProperty(property, value, type)
@@ -606,6 +608,7 @@ class PerSEOTabContext( BrowserView ):
                     else:
                         perseo_value = True 
                 if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
+                if type(perseo_value)==type(True): t_value = 'boolean'
                 state = self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
             elif context.hasProperty(PROP_PREFIX+perseo_key):
                 delete_list.append(PROP_PREFIX+perseo_key)

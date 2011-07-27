@@ -9,6 +9,7 @@ Changelog
 - Added validation for the canonical url [fdelia]
 - Added ReallyUserFriendlyTypes vocabulary [fdelia]
 - Personalized view for sitemap.xml.gz generation, calculate content types that should be included [fdelia]
+- Added getIncludedInSitemapxml metadata and a custom index method to access this metadata [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------
