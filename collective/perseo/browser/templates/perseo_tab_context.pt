@@ -247,6 +247,28 @@
 								/>
 					</div>
 				</div>
+				<div class="field">
+					<label i18n:translate="label_perseo_priority_sitemapxml" for="perseo_priority_sitemapxml">
+						Priority sitemap.xml.gz
+					</label>
+					<div class="formHelp" i18n:translate="help_perseo_priority_sitemapxml">
+						Values ​​from 0.1 to 1.0
+					</div>
+					<input type="hidden"
+						id="perseo_priority_sitemapxml_override"
+						name="perseo_priority_sitemapxml_override"
+						tal:attributes="value string:on"
+						/>
+					<div class="PrioritySitemapxmlField">
+					<input type="text"
+					       id="perseo_priority_sitemapxml"
+					       name="perseo_priority_sitemapxml"
+					       size="5"
+					       value=""
+					       tal:attributes="value request/perseo_priority_sitemapxml | perseo_context/perseo_priority_sitemapxml;"
+					       />
+					</div>
+				</div>
 			</fieldset>
 			<div class="formControls"
 				i18n:domain="plone">

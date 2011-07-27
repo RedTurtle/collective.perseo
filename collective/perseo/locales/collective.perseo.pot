@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-26 13:51+0000\n"
+"POT-Creation-Date: 2011-07-27 09:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,23 +21,27 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:72
+#: ./browser/views.py:83
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:73
+#: ./browser/views.py:84
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:74
+#: ./browser/views.py:70
+msgid "No"
+msgstr ""
+
+#: ./browser/views.py:85
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:75
+#: ./browser/views.py:86
 msgid "No Snippet"
 msgstr ""
 
-#: ./browser/views.py:71
+#: ./browser/views.py:82
 msgid "None"
 msgstr ""
 
@@ -51,6 +55,10 @@ msgstr ""
 
 #: ./profiles/default/actions.xml
 msgid "SEO"
+msgstr ""
+
+#: ./browser/views.py:69
+msgid "Yes"
 msgstr ""
 
 #. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
@@ -81,6 +89,11 @@ msgstr ""
 #. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
 #: ./browser/templates/perseo_tab_context.pt:81
 msgid "help_perseo_keywords"
+msgstr ""
+
+#. Default: "Values ​​from 0.1 to 1.0"
+#: ./browser/templates/perseo_tab_context.pt:254
+msgid "help_perseo_priority_sitemapxml"
 msgstr ""
 
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
@@ -334,8 +347,13 @@ msgid "label_override"
 msgstr ""
 
 #. Default: "Include in sitemap.xml.gz"
-#: ./browser/templates/perseo_tab_context.pt:234
+#: ./browser/templates/perseo_tab_context.pt:224
 msgid "label_perseo_included_sitemapxml"
+msgstr ""
+
+#. Default: "Priority sitemap.xml.gz"
+#: ./browser/templates/perseo_tab_context.pt:251
+msgid "label_perseo_priority_sitemapxml"
 msgstr ""
 
 #. Default: "Meta Robots Advanced Tag"
@@ -494,7 +512,7 @@ msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:646
+#: ./browser/views.py:665
 msgid "perseo_settings_saved"
 msgstr ""
 
@@ -504,7 +522,7 @@ msgid "seo_configlet_description"
 msgstr ""
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:617
+#: ./browser/views.py:636
 msgid "wrong_canonical_url"
 msgstr ""
 

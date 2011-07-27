@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Added some fields to Plone SEO control panel tool [fdelia]
+- Added some fields to SEO tab [fdelia]
 - Added viewlets for script rendering in the <head> and in the portal footer [fdelia]
 - Added validation for the canonical url [fdelia]
 - Added ReallyUserFriendlyTypes vocabulary [fdelia]
