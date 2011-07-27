@@ -60,8 +60,12 @@ class PerSEOContext(BrowserView):
             "perseo_canonical": self.perseo_canonical(),
             "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
             "perseo_included_in_sitemapxml": self.perseo_included_in_sitemapxml(),
+            "perseo_priority_sitemapxml": self.perseo_priority_sitemapxml()
             }
         return perseo_metatags
+    
+    def perseo_priority_sitemapxml(self):
+        return self.getPerSEOProperty('pSEO_priority_sitemapxml', default=None)
     
     def getYesNoOptions(self):
         """Get a sample vocabulary
@@ -570,7 +574,7 @@ class PerSEOTabContext( BrowserView ):
         context = aq_inner(self.context)
         if context.hasProperty(property):
             current_value = context.getProperty(property, None)
-            if (type=='string' or type=='boolean') and value != current_value:
+            if type in ['string','boolean','float'] and value != current_value:
                 state = True
             if type=='lines' and tuple(value) != current_value:
                 state = True
@@ -600,15 +604,19 @@ class PerSEOTabContext( BrowserView ):
             if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
                 perseo_value = seo_items[perseo_key]
                 t_value = 'string'
-                if perseo_value and perseo_key == "robots_advanced" and '' in perseo_value:
-                    perseo_value.remove('')
-                if perseo_value and perseo_key=="included_in_sitemapxml":
-                    if perseo_value == 'no':
-                        perseo_value = False
-                    else:
-                        perseo_value = True 
+                if perseo_value:
+                    if perseo_key == "robots_advanced" and '' in perseo_value:
+                        perseo_value.remove('')
+                    if perseo_key=="included_in_sitemapxml":
+                        if perseo_value == 'no':
+                            perseo_value = False
+                        else:
+                            perseo_value = True
+                    if perseo_key=="priority_sitemapxml":
+                        perseo_value = float(perseo_value)
                 if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
                 if type(perseo_value)==type(True): t_value = 'boolean'
+                if type(perseo_value)==type(0.1): t_value = 'float'
                 state = self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
             elif context.hasProperty(PROP_PREFIX+perseo_key):
                 delete_list.append(PROP_PREFIX+perseo_key)
