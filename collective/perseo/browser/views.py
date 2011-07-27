@@ -66,6 +66,11 @@ class PerSEOContext(BrowserView):
     
     def perseo_priority_sitemapxml(self):
         return self.getPerSEOProperty('pSEO_priority_sitemapxml', default=None)
+        
+    def perseo_included_types(self):
+        if self.gseo:
+            return getattr(self.gseo, 'not_included_types', ())
+        return ()
     
     def getYesNoOptions(self):
         """Get a sample vocabulary
@@ -75,7 +80,12 @@ class PerSEOContext(BrowserView):
                             ))
     
     def perseo_included_in_sitemapxml(self):
-        return self.getPerSEOProperty('pSEO_included_in_sitemapxml', default=True)
+        context = aq_inner(self.context)
+        included_types = self.perseo_included_types()
+        
+        default = context.portal_type in included_types
+        
+        return self.getPerSEOProperty('pSEO_included_in_sitemapxml', default=default)
     
     def perseo_canonical(self):
         return self.getPerSEOProperty('pSEO_canonical', default=self.context.absolute_url())
