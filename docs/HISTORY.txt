@@ -13,6 +13,8 @@ Changelog
 - Added getIncludedInSitemapxml metadata and a custom index method to access this metadata [fdelia]
 - Updated sitemap.xml.gz generation view, calculate whether each object should be included, according to the getIncludedInSitemapxml metadata [fdelia]
 - Added validation for the priority sitemap.xml.gz [fdelia]
+- Added getPrioritySitemapxml metadata and a custom index method to access this metadata [fdelia]
+- Updated sitemap.xml.gz generation view, calculate priority for each object, according to the getPrioritySitemapxml metadata [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------

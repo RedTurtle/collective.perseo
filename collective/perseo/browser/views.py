@@ -579,7 +579,8 @@ class PerSEOTabContext( BrowserView ):
             if type=='lines' and tuple(value) != current_value:
                 state = True
             context.manage_changeProperties({property: value})
-            if property == 'pSEO_included_in_sitemapxml' and state:
+            if (property == 'pSEO_included_in_sitemapxml' or property == 'pSEO_priority_sitemapxml')\
+                and state:
                 context.reindexObject(idxs=[])
         else:
             state = True

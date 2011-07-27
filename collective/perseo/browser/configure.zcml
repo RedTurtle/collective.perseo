@@ -170,5 +170,6 @@
 		/>
 		
 	<adapter name="getIncludedInSitemapxml" factory=".indexers.get_included_in_sitemapxml" />
+	<adapter name="getPrioritySitemapxml" factory=".indexers.get_priority_sitemapxml" />
 
 </configure>

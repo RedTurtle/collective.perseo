@@ -7,3 +7,9 @@ def get_included_in_sitemapxml(object, **kw):
     if object.hasProperty('pSEO_included_in_sitemapxml'):
         return object.getProperty('pSEO_included_in_sitemapxml', True)
     return True
+
+@indexer(IBaseContent)
+def get_priority_sitemapxml(object, **kw):
+    if object.hasProperty('pSEO_priority_sitemapxml'):
+        return object.getProperty('pSEO_priority_sitemapxml', None)
+    return None
