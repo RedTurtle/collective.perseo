@@ -14,7 +14,10 @@
         checkPermission nocall: context/portal_membership/checkPermission;
         site_properties context/portal_properties/site_properties;
         ajax_load request/ajax_load | nothing;
-        ajax_include_head request/ajax_include_head | nothing"
+        ajax_include_head request/ajax_include_head | nothing;
+        perseo_context nocall: context/@@perseo-context;
+		itemscope_itemtype python:perseo_context.perseo_itemscope_itemtype();
+		itemtype python:perseo_context.perseo_itemtype()"
     tal:attributes="lang lang;">
 
     <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
