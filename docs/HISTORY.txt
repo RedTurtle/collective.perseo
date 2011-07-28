@@ -15,6 +15,7 @@ Changelog
 - Added validation for the priority sitemap.xml.gz [fdelia]
 - Added getPrioritySitemapxml metadata and a custom index method to access this metadata [fdelia]
 - Updated sitemap.xml.gz generation view, calculate priority for each object, according to the getPrioritySitemapxml metadata [fdelia]
+- Personalized main_template for added itemscope and itemtype attributes to tag body [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------
