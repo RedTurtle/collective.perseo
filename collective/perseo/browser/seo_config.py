@@ -383,12 +383,16 @@ class ISEOConfigSiteMapXMLSchema(Interface):
         value_type=Choice(
             vocabulary="collective.perseo.vocabularies.ReallyUserFriendlyTypes")
         )
+
+class ISEOConfigSchemaOrgSchema(Interface):
+    """Schema for Site Schema.org"""
         
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
                        ISEOConfigIndexingSchema,
-                       ISEOConfigSiteMapXMLSchema):
+                       ISEOConfigSiteMapXMLSchema,
+                       ISEOConfigSchemaOrgSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -531,6 +535,9 @@ sitemapxmlset = FormFieldsets(ISEOConfigSiteMapXMLSchema)
 sitemapxmlset.id = 'seositemapxml'
 sitemapxmlset.label = _(u'label_seositemapxml', default=u'Site Map')
 
+schemaorgset = FormFieldsets(ISEOConfigSchemaOrgSchema)
+schemaorgset.id = 'seoschemaorg'
+schemaorgset.label = _(u'label_seoschemaorg', default=u'Schema.org')
 
 class Text2ListWidget(TextAreaWidget):
     height = 2
@@ -550,7 +557,7 @@ class Text2ListWidget(TextAreaWidget):
 
 class PerSEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset)
+    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, schemaorgset)
     
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
