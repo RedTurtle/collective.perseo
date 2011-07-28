@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-28 12:21+0000\n"
+"POT-Creation-Date: 2011-07-28 13:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ./browser/views.py:97
+#: ./browser/views.py:102
 msgid "NO ODP"
 msgstr ""
 
-#: ./browser/views.py:98
+#: ./browser/views.py:103
 msgid "NO YDIR"
 msgstr ""
 
-#: ./browser/views.py:79
+#: ./browser/views.py:84
 msgid "No"
 msgstr ""
 
-#: ./browser/views.py:99
+#: ./browser/views.py:104
 msgid "No Archive"
 msgstr ""
 
-#: ./browser/views.py:100
+#: ./browser/views.py:105
 msgid "No Snippet"
 msgstr ""
 
-#: ./browser/views.py:96
+#: ./browser/views.py:101
 msgid "None"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "SEO"
 msgstr ""
 
-#: ./browser/views.py:78
+#: ./browser/views.py:83
 msgid "Yes"
 msgstr ""
 
@@ -356,6 +356,11 @@ msgstr ""
 msgid "label_perseo_included_sitemapxml"
 msgstr ""
 
+#. Default: "itemtype attribute"
+#: ./browser/templates/perseo_tab_context.pt:273
+msgid "label_perseo_itemtype"
+msgstr ""
+
 #. Default: "Priority sitemap.xml.gz"
 #: ./browser/templates/perseo_tab_context.pt:251
 msgid "label_perseo_priority_sitemapxml"
@@ -522,7 +527,7 @@ msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:699
+#: ./browser/views.py:704
 msgid "perseo_settings_saved"
 msgstr ""
 
@@ -532,22 +537,22 @@ msgid "seo_configlet_description"
 msgstr ""
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:655
+#: ./browser/views.py:660
 msgid "wrong_canonical_url"
 msgstr ""
 
 #. Default: "The Priority sitemap.xml.gz must be a number"
-#: ./browser/views.py:670
+#: ./browser/views.py:675
 msgid "wrong_priority_sitemapxml"
 msgstr ""
 
 #. Default: "The Priority sitemap.xml.gz need to be greater than 0.0"
-#: ./browser/views.py:664
+#: ./browser/views.py:669
 msgid "wrong_priority_sitemapxml_greater"
 msgstr ""
 
 #. Default: "The Priority sitemap.xml.gz need to be less than or equal to 1.0"
-#: ./browser/views.py:667
+#: ./browser/views.py:672
 msgid "wrong_priority_sitemapxml_less"
 msgstr ""
 

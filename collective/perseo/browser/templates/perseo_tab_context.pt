@@ -269,6 +269,30 @@
 					       />
 					</div>
 				</div>
+				<div class="field">
+					<label i18n:translate="label_perseo_itemtype" for="perseo_itemtype">
+						itemtype attribute
+					</label>
+					<div>
+						<input type="checkbox"
+							id="perseo_itemtype_override"
+							name="perseo_itemtype_override"
+							tal:attributes="checked python: perseo_context['has_perseo_itemtype'] and 'on' or None;"
+							/>
+						<label i18n:translate="label_override" for="perseo_itemtype_override">
+							Override the default
+						</label>
+					</div>
+					<div class="ItemtypeField">
+						<input type="text"
+							id="perseo_itemtype"
+							name="perseo_itemtype"
+							size="55"
+							value=""
+							tal:attributes="value request/perseo_itemtype | perseo_context/perseo_itemtype;"
+							/>
+					</div>
+          		</div>
 			</fieldset>
 			<div class="formControls"
 				i18n:domain="plone">

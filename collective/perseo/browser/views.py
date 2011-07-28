@@ -60,9 +60,14 @@ class PerSEOContext(BrowserView):
             "perseo_canonical": self.perseo_canonical(),
             "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
             "perseo_included_in_sitemapxml": self.perseo_included_in_sitemapxml(),
-            "perseo_priority_sitemapxml": self.perseo_priority_sitemapxml()
+            "perseo_priority_sitemapxml": self.perseo_priority_sitemapxml(),
+            "perseo_itemtype":self.perseo_itemtype(),
+            "has_perseo_itemtype":self.context.hasProperty('pSEO_itemtype')
             }
         return perseo_metatags
+    
+    def perseo_itemtype(self):
+        return self.getPerSEOProperty('pSEO_itemtype', default='http://schema.org/WebPage')
     
     def perseo_priority_sitemapxml(self):
         return self.getPerSEOProperty('pSEO_priority_sitemapxml', default=None)
