@@ -14,27 +14,27 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/views.py:83
+#: ./browser/views.py:97
 msgid "NO ODP"
 msgstr "NO ODP"
 
-#: ./browser/views.py:84
+#: ./browser/views.py:98
 msgid "NO YDIR"
 msgstr "NO YDIR"
 
-#: ./browser/views.py:70
+#: ./browser/views.py:79
 msgid "No"
 msgstr "No"
 
-#: ./browser/views.py:85
+#: ./browser/views.py:99
 msgid "No Archive"
 msgstr "No Archive"
 
-#: ./browser/views.py:86
+#: ./browser/views.py:100
 msgid "No Snippet"
 msgstr "No Snippet"
 
-#: ./browser/views.py:82
+#: ./browser/views.py:96
 msgid "None"
 msgstr "None"
 
@@ -42,7 +42,7 @@ msgstr "None"
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:639
+#: ./browser/seo_config.py:654
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -50,12 +50,12 @@ msgstr "Plone SEO Configurazione"
 msgid "SEO"
 msgstr "SEO"
 
-#: ./browser/views.py:69
+#: ./browser/views.py:78
 msgid "Yes"
 msgstr "Si"
 
 #. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
-#: ./browser/seo_config.py:527
+#: ./browser/seo_config.py:538
 msgid "description_seoindexing"
 msgstr "Selezionando le opzioni sotto decidi di disabilitare l'indicizzazione delle risorse utilizzando noindex e nofollow."
 
@@ -279,6 +279,11 @@ msgstr "Notizia"
 msgid "label_indexing_topic"
 msgstr "Collezione"
 
+#. Default: "Add itemscope and itemtype attributes to body tag"
+#: ./browser/seo_config.py:391
+msgid "label_itemscope_itemtype_attrs_enable"
+msgstr "Aggiungi gli attributi itemscope e itemtype al tag body"
+
 #. Default: "Meta Keywords Tag"
 #: ./browser/templates/perseo_tab_context.pt:78
 msgid "label_keywords_meta_tag"
@@ -405,22 +410,27 @@ msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:526
+#: ./browser/seo_config.py:537
 msgid "label_seoindexing"
 msgstr "Indexing"
 
+#. Default: "Schema.org"
+#: ./browser/seo_config.py:547
+msgid "label_seoschemaorg"
+msgstr "Schema.org"
+
 #. Default: "Site Map"
-#: ./browser/seo_config.py:532
+#: ./browser/seo_config.py:543
 msgid "label_seositemapxml"
 msgstr "Mappa del sito"
 
 #. Default: "Title"
-#: ./browser/seo_config.py:522
+#: ./browser/seo_config.py:533
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:518
+#: ./browser/seo_config.py:529
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
@@ -505,32 +515,32 @@ msgid "legend_general_settings"
 msgstr "Impostazioni generali"
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:679
+#: ./browser/views.py:699
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:640
+#: ./browser/seo_config.py:655
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:636
+#: ./browser/views.py:655
 msgid "wrong_canonical_url"
 msgstr "L'URL Canonico \"${url}\" non è corretto"
 
 #. Default: "The Priority sitemap.xml.gz must be a number"
-#: ./browser/views.py:651
+#: ./browser/views.py:670
 msgid "wrong_priority_sitemapxml"
 msgstr "La priorità sitemap.xml.gz deve essere un numero"
 
 #. Default: "The Priority sitemap.xml.gz need to be greater than 0.0"
-#: ./browser/views.py:645
+#: ./browser/views.py:664
 msgid "wrong_priority_sitemapxml_greater"
 msgstr "La priorità sitemap.xml.gz deve essere maggiore di 0.0"
 
 #. Default: "The Priority sitemap.xml.gz need to be less than or equal to 1.0"
-#: ./browser/views.py:648
+#: ./browser/views.py:667
 msgid "wrong_priority_sitemapxml_less"
 msgstr "La priorità sitemap.xml.gz deve essere minore o uguale a 1.0"
 

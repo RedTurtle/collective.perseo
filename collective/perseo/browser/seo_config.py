@@ -386,6 +386,12 @@ class ISEOConfigSiteMapXMLSchema(Interface):
 
 class ISEOConfigSchemaOrgSchema(Interface):
     """Schema for Site Schema.org"""
+    
+    itemscope_itemtype_attrs_enable = Bool(
+        title=_("label_itemscope_itemtype_attrs_enable",
+                default=u"Add itemscope and itemtype attributes to body tag"),
+        default=False,
+        required=False)
         
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
@@ -514,6 +520,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
         self.context.not_included_types = blacklistedTypes
 
     not_included_types = property(getIncludedTypes, setNotIncludedTypes)
+    itemscope_itemtype_attrs_enable = ProxyFieldProperty(ISEOConfigSchema['itemscope_itemtype_attrs_enable'])
 
 # Fieldset configurations
 
@@ -642,7 +649,8 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['tracking_code_footer'].custom_widget = TextAreaWidget
     form_fields['tracking_code_footer'].custom_widget.height = 6
     form_fields['not_included_types'].custom_widget = MultiCheckBoxThreeColumnWidget
-
+#    form_fields['itemscope_itemtype_attrs_enable'].custom_widget = CheckBoxWidget
+    
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
                     "content types are qSEOptimizer-enabled, and control if "
