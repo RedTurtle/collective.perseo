@@ -31,7 +31,7 @@ class PerSEOContext(BrowserView):
     """
 
     def __init__(self, *args, **kwargs):
-        super(PerSEOContext, self).__init__(*args, **kwargs)
+        super(PerSEOContext, self).__init__(*args, **kwargs)   
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.pcs = queryMultiAdapter((self.context, self.request), name="plone_context_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
@@ -217,6 +217,26 @@ class PerSEOContext(BrowserView):
             return safe_unicode(value.replace('%%title%%',self.pcs.context.Title()).\
                                     replace('%%tag%%',' '.join(self.pcs.context.Subject())))
         return value
+    
+    def perseo_itemscope_itemtype( self ):
+        """ Returned itemscope_itemtype_attrs_enable from Plone SEO Configuration Control Panel Tool
+        """
+        result = False
+        if self.gseo:
+            result = self.gseo.itemscope_itemtype_attrs_enable
+        return result
+    
+    def perseo_itemtype( self ):
+        """ Returned perseo_itemtype from context
+        """
+        context = aq_inner(self.context)
+
+        default='http://schema.org/WebPage'
+        
+        if context.hasProperty('pSEO_itemtype'):
+            return context.getProperty('pSEO_itemtype', default)
+        
+        return default
 
 class PerSEOContextPloneSiteRoot(PerSEOContext):
     """ Calculate html header meta tags on context. Context == PloneSiteRoot
