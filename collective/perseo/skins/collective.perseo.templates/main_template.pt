@@ -58,8 +58,8 @@
                   sunburst_view python:context.restrictedTraverse('@@sunburstview')"
     tal:attributes="class body_class;
                     dir python:isRTL and 'rtl' or 'ltr';
-                    itemscope python:itemscope_itemtype and 'itemscope' or '';
-                    itemtype python:itemscope_itemtype and itemtype or ''">
+                    itemscope python:itemscope_itemtype and 'itemscope' or None;
+                    itemtype python:itemscope_itemtype and itemtype or None">
 
 <div id="visual-portal-wrapper">
 
