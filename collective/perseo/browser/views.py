@@ -566,7 +566,7 @@ class PerSEOContextPortalTypes(PerSEOContext):
         try:
             self.context.restrictedTraverse(self.request.PATH_INFO)
         except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
+            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_description'))
             if gseo_field:
                 return gseo_field
         
@@ -589,7 +589,7 @@ class PerSEOContextPortalTypes(PerSEOContext):
         try:
             self.context.restrictedTraverse(self.request.PATH_INFO)
         except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
+            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_keywords'))
             if gseo_field:
                 return gseo_field
         
