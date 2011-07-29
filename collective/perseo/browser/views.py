@@ -16,6 +16,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.seo_config import ISEOConfigSchema
 
+from zope.annotation.interfaces import IAnnotations
 import re
 
 PERSEO_PREFIX = 'perseo_'
@@ -47,22 +48,22 @@ class PerSEOContext(BrowserView):
             "yahooSiteExplorer": self.seo_globalYahooSiteExplorer(),
             "bingWebmasterTools":self.seo_globalBingWebmasterTools(),
             "perseo_title":self.perseo_title(),
-            "has_perseo_title":self.context.hasProperty('pSEO_title'),
+            "has_perseo_title":IAnnotations(self.context).has_key('pSEO_title'),
             "has_perseo_title_config":self.has_perseo_title_config(),
             "perseo_description":self.perseo_description(),
-            "has_perseo_description":self.context.hasProperty('pSEO_description'),
+            "has_perseo_description":IAnnotations(self.context).has_key('pSEO_description'),
             "perseo_keywords":self.perseo_keywords(),
-            "has_perseo_keywords":self.context.hasProperty('pSEO_keywords'),
+            "has_perseo_keywords": IAnnotations(self.context).has_key('pSEO_keywords'),
             "perseo_robots_follow":self.perseo_robots_follow(),
             "perseo_robots_index":self.perseo_robots_index(),
             "perseo_robots_advanced":self.perseo_robots_advanced(),
-            "has_perseo_robots_advanced":self.context.hasProperty('pSEO_robots_advanced'),
+            "has_perseo_robots_advanced":IAnnotations(self.context).has_key('pSEO_robots_advanced'),
             "perseo_canonical": self.perseo_canonical(),
-            "has_perseo_canonical": self.context.hasProperty('pSEO_canonical'),
+            "has_perseo_canonical": IAnnotations(self.context).has_key('pSEO_canonical'),
             "perseo_included_in_sitemapxml": self.perseo_included_in_sitemapxml(),
             "perseo_priority_sitemapxml": self.perseo_priority_sitemapxml(),
             "perseo_itemtype":self.perseo_itemtype(),
-            "has_perseo_itemtype":self.context.hasProperty('pSEO_itemtype')
+            "has_perseo_itemtype":IAnnotations(self.context).has_key('pSEO_itemtype')
             }
         return perseo_metatags
     
@@ -116,10 +117,11 @@ class PerSEOContext(BrowserView):
         for key in self.getRobotsAdvanced().keys():
             if self.get_gseo_field('robots_%s' % key):
                 default.append(key)
-        return self.getPerSEOProperty('pSEO_robots_advanced',default=tuple(default))
+        return self.getPerSEOProperty('pSEO_robots_advanced',default=default)
     
     def perseo_robots(self):
         perseo_robots = []
+        
         if self._perseo_metatags["perseo_robots_index"]:
             perseo_robots.append(self._perseo_metatags["perseo_robots_index"])
         if self._perseo_metatags["perseo_robots_follow"]:
@@ -129,7 +131,7 @@ class PerSEOContext(BrowserView):
             and not self._perseo_metatags["perseo_robots_follow"]:
             perseo_robots.append('nofollow')
             
-        return tuple(perseo_robots) + self._perseo_metatags["perseo_robots_advanced"]
+        return perseo_robots + self._perseo_metatags["perseo_robots_advanced"]
         
 #        if perseo_robots:
 #            return (', '.join(perseo_robots),) + self._perseo_metatags["perseo_robots_advanced"]
@@ -140,9 +142,10 @@ class PerSEOContext(BrowserView):
         """ Get value from seo property by property name.
         """
         context = aq_inner(self.context)
+        annotations = IAnnotations(context)
 
-        if context.hasProperty(property_name):
-            return context.getProperty(property_name, default)
+        if annotations.has_key(property_name):
+            return annotations.get(property_name, default)
         
         if accessor:
             method = getattr(context, accessor, default)
@@ -230,11 +233,12 @@ class PerSEOContext(BrowserView):
         """ Returned perseo_itemtype from context
         """
         context = aq_inner(self.context)
+        annotations = IAnnotations(context)
 
         default='http://schema.org/WebPage'
         
-        if context.hasProperty('pSEO_itemtype'):
-            return context.getProperty('pSEO_itemtype', default)
+        if annotations.has_key('pSEO_itemtype'):
+            return annotations.get('pSEO_itemtype', default)
         
         return default
 
@@ -600,34 +604,43 @@ class PerSEOTabContext( BrowserView ):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
         
-    def setProperty(self, property, value, type='string'):
-        """ Add a new property.
+    def setProperty(self, property, value):
+        """ Add a new item to annotation.
 
-            Sets a new property with the given id, value and type or changes it.
+            Sets a new item with the given key, value or changes it.
         """
         state = False
         context = aq_inner(self.context)
-        if context.hasProperty(property):
-            current_value = context.getProperty(property, None)
-            if type in ['string','boolean','float'] and value != current_value:
+        annotations = IAnnotations(context)
+        if annotations.has_key(property):
+            current_value = annotations.get(property, None)
+            if value != current_value:
                 state = True
-            if type=='lines' and tuple(value) != current_value:
-                state = True
-            context.manage_changeProperties({property: value})
+            annotations[property] = value
             if (property == 'pSEO_included_in_sitemapxml' or property == 'pSEO_priority_sitemapxml')\
                 and state:
                 context.reindexObject(idxs=[])
         else:
             state = True
-            context.manage_addProperty(property, value, type)
+            annotations[property] = value
         
         return state
+    
+    def delProperties(self, delete_list):
+        """ Delete some items to annotation.
+        """
+        context = aq_inner(self.context)
+        annotations = IAnnotations(context)
+        for property in delete_list:
+            annotations.pop(property)
         
     def manageSEOProps(self, **kw):
         """ Manage seo properties.
         """
         state = False
         context = aq_inner(self.context)
+        annotations = IAnnotations(context)
+        
         delete_list, perseo_overrides_keys, perseo_keys = [], [], []
         seo_items = dict([(k[len(PERSEO_PREFIX):],v) for k,v in kw.items() if k.startswith(PERSEO_PREFIX)])
         for key in seo_items.keys():
@@ -639,7 +652,6 @@ class PerSEOTabContext( BrowserView ):
         for perseo_key in perseo_keys:
             if perseo_key in perseo_overrides_keys and seo_items.get(perseo_key+SUFFIX):
                 perseo_value = seo_items[perseo_key]
-                t_value = 'string'
                 if perseo_value:
                     if perseo_key == "robots_advanced" and '' in perseo_value:
                         perseo_value.remove('')
@@ -650,15 +662,14 @@ class PerSEOTabContext( BrowserView ):
                             perseo_value = True
                     if perseo_key=="priority_sitemapxml":
                         perseo_value = float(perseo_value)
-                if type(perseo_value)==type([]) or type(perseo_value)==type(()): t_value = 'lines'
-                if type(perseo_value)==type(True): t_value = 'boolean'
-                if type(perseo_value)==type(0.1): t_value = 'float'
-                state = self.setProperty(PROP_PREFIX+perseo_key, perseo_value, type=t_value)
-            elif context.hasProperty(PROP_PREFIX+perseo_key):
+                if self.setProperty(PROP_PREFIX+perseo_key, perseo_value):
+                    state = True
+            elif annotations.has_key(PROP_PREFIX+perseo_key):
                 delete_list.append(PROP_PREFIX+perseo_key)
         if delete_list:
             state = True
-            context.manage_delProperties(delete_list)
+            self.delProperties(delete_list)
+        
         return state
     
     def canonical_validate(self, value):
