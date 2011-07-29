@@ -18,6 +18,7 @@ Changelog
 - Personalized main_template for added itemscope and itemtype attributes to tag body [fdelia]
 - Migrated properties to annotations [fdelia]
 - Added upgradeStep for migrate the existing properties to annotations [fdelia]
+- Added handling of the page not found [fdelia]
 
 0.1.0 (2011-07-20)
 ------------------

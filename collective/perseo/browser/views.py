@@ -427,6 +427,12 @@ class PerSEOContextATDocument(PerSEOContext):
         return 'index'
     
     def perseo_what_page( self ):
+        
+        try:
+            self.context.restrictedTraverse(self.request.PATH_INFO)
+        except:
+            return 'notfoundpage'
+            
         context = self.pcs.context
         parent = self.pcs.parent()
         
@@ -522,6 +528,13 @@ class PerSEOContextPortalTypes(PerSEOContext):
         if perseo_property:
             return perseo_property
         
+        try:
+            self.context.restrictedTraverse(self.request.PATH_INFO)
+        except:
+            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
+            if gseo_field:
+                return gseo_field
+        
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
         if gseo_field:
             return gseo_field
@@ -529,6 +542,16 @@ class PerSEOContextPortalTypes(PerSEOContext):
         return self.pcs.object_title()
     
     def has_perseo_title_config( self ):
+        
+        try:
+            self.context.restrictedTraverse(self.request.PATH_INFO)
+        except:
+            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
+            if gseo_field:
+                return True
+            else:
+                return False
+        
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
         if gseo_field:
             return True
@@ -539,6 +562,13 @@ class PerSEOContextPortalTypes(PerSEOContext):
         perseo_property = self.getPerSEOProperty( 'pSEO_description' )
         if perseo_property:
             return perseo_property
+        
+        try:
+            self.context.restrictedTraverse(self.request.PATH_INFO)
+        except:
+            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
+            if gseo_field:
+                return gseo_field
         
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
         if gseo_field:
@@ -555,6 +585,13 @@ class PerSEOContextPortalTypes(PerSEOContext):
         perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
         if perseo_property:
             return perseo_property
+        
+        try:
+            self.context.restrictedTraverse(self.request.PATH_INFO)
+        except:
+            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
+            if gseo_field:
+                return gseo_field
         
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))
         if gseo_field:
