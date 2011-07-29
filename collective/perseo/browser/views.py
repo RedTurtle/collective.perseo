@@ -48,24 +48,30 @@ class PerSEOContext(BrowserView):
             "yahooSiteExplorer": self.seo_globalYahooSiteExplorer(),
             "bingWebmasterTools":self.seo_globalBingWebmasterTools(),
             "perseo_title":self.perseo_title(),
-            "has_perseo_title":IAnnotations(self.context).has_key('pSEO_title'),
+            "has_perseo_title":self.has_prop('pSEO_title'),
             "has_perseo_title_config":self.has_perseo_title_config(),
             "perseo_description":self.perseo_description(),
-            "has_perseo_description":IAnnotations(self.context).has_key('pSEO_description'),
+            "has_perseo_description":self.has_prop('pSEO_description'),
             "perseo_keywords":self.perseo_keywords(),
-            "has_perseo_keywords": IAnnotations(self.context).has_key('pSEO_keywords'),
+            "has_perseo_keywords": self.has_prop('pSEO_keywords'),
             "perseo_robots_follow":self.perseo_robots_follow(),
             "perseo_robots_index":self.perseo_robots_index(),
             "perseo_robots_advanced":self.perseo_robots_advanced(),
-            "has_perseo_robots_advanced":IAnnotations(self.context).has_key('pSEO_robots_advanced'),
+            "has_perseo_robots_advanced":self.has_prop('pSEO_robots_advanced'),
             "perseo_canonical": self.perseo_canonical(),
-            "has_perseo_canonical": IAnnotations(self.context).has_key('pSEO_canonical'),
+            "has_perseo_canonical": self.has_prop('pSEO_canonical'),
             "perseo_included_in_sitemapxml": self.perseo_included_in_sitemapxml(),
             "perseo_priority_sitemapxml": self.perseo_priority_sitemapxml(),
             "perseo_itemtype":self.perseo_itemtype(),
-            "has_perseo_itemtype":IAnnotations(self.context).has_key('pSEO_itemtype')
+            "has_perseo_itemtype":self.has_prop('pSEO_itemtype')
             }
         return perseo_metatags
+    
+    def has_prop(self,property):
+        try:
+            return IAnnotations(self.context).has_key(property)
+        except:
+            return None
     
     def perseo_itemtype(self):
         return self.getPerSEOProperty('pSEO_itemtype', default='http://schema.org/WebPage')
@@ -142,10 +148,14 @@ class PerSEOContext(BrowserView):
         """ Get value from seo property by property name.
         """
         context = aq_inner(self.context)
-        annotations = IAnnotations(context)
+        
+        try:
+            annotations = IAnnotations(context)
 
-        if annotations.has_key(property_name):
-            return annotations.get(property_name, default)
+            if annotations.has_key(property_name):
+                return annotations.get(property_name, default)
+        except:
+            return default
         
         if accessor:
             method = getattr(context, accessor, default)
@@ -233,12 +243,14 @@ class PerSEOContext(BrowserView):
         """ Returned perseo_itemtype from context
         """
         context = aq_inner(self.context)
-        annotations = IAnnotations(context)
-
         default='http://schema.org/WebPage'
-        
-        if annotations.has_key('pSEO_itemtype'):
-            return annotations.get('pSEO_itemtype', default)
+        try:
+            annotations = IAnnotations(context)
+
+            if annotations.has_key('pSEO_itemtype'):
+                return annotations.get('pSEO_itemtype', default)
+        except:
+            return default
         
         return default
 
@@ -325,6 +337,10 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             else:
                 return 'homepage'
         else:
+            try:
+                self.context.restrictedTraverse(self.request.PATH_INFO)
+            except:
+                return 'notfoundpage'
             return 'homepage'
 
     def perseo_title( self ):
