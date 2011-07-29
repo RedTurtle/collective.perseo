@@ -20,5 +20,13 @@
       description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+      
+  <genericsetup:upgradeStep
+	title="Upgrade Collective perSEO"
+	description="Upgrade Collective perSEO 0.1 to 0.2"
+	source="0.1"
+	destination="0.2"
+	handler=".upgrades.upgrade_1_to_2"
+	profile="collective.perseo:default" />
   
 </configure>
