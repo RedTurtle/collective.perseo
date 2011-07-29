@@ -131,7 +131,7 @@ class PerSEOContext(BrowserView):
             and not self._perseo_metatags["perseo_robots_follow"]:
             perseo_robots.append('nofollow')
             
-        return perseo_robots + self._perseo_metatags["perseo_robots_advanced"]
+        return perseo_robots + list(self._perseo_metatags["perseo_robots_advanced"])
         
 #        if perseo_robots:
 #            return (', '.join(perseo_robots),) + self._perseo_metatags["perseo_robots_advanced"]
