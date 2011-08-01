@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="collective.perseo">
+
+    <include package="collective.monkeypatcher" file="meta.zcml" />
+
+    <monkey:patch
+        description="Customizing listMetaTags method"
+        class="Products.CMFPlone.PloneTool.PloneTool"
+        original="listMetaTags"
+        replacement=".listMetaTags.perSEOListMetaTags"
+        docstringWarning="true"
+        />
+
+</configure>
