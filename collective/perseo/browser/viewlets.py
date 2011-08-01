@@ -31,7 +31,7 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
     def render(self):
         TEMPLATE = '<meta name="%s" content="%s"/>'
         enc = getSiteEncoding(self.context)
-        sfuncd = lambda x, enc=enc:safe_unicode(x, enc)
+        sfuncd = lambda x, enc=enc:escape(safe_unicode(x, enc))
         
         meta_tags = []
         
