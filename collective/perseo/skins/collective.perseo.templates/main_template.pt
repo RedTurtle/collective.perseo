@@ -91,7 +91,7 @@
                     </div>
 
                     <metal:slot define-slot="body">
-                        <div id="content">
+                        <div id="content" itemprop="mainContentOfPage">
 
                             <metal:header define-slot="header" tal:content="nothing">
                             Visual Header
@@ -145,7 +145,9 @@
         </div>
 
         <tal:notajax tal:condition="not:ajax_load">
-        <div id="portal-column-one" 
+        <div id="portal-column-one"
+       		itemscope="itemscope"
+       		itemtype="http://schema.org/WPSideBar"
             class="cell width-1:4 position-0"
             metal:define-slot="column_one_slot" 
             tal:condition="sl"
@@ -155,7 +157,9 @@
             </metal:portlets>
         </div>
 
-        <div id="portal-column-two" 
+        <div id="portal-column-two"
+        	itemscope="itemscope"
+       		itemtype="http://schema.org/WPSideBar"
             class="cell width-1:4 position-3:4"
             metal:define-slot="column_two_slot" 
             tal:condition="sr"
@@ -169,7 +173,9 @@
 
 
     <metal:block i18n:domain="plone" tal:condition="not:ajax_load">
-        <div tal:replace="structure provider:plone.portalfooter" />
+    	<div itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+        	<div tal:replace="structure provider:plone.portalfooter" />
+        </div>
     </metal:block>
 
 </div>
