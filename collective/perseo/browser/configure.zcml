@@ -175,6 +175,37 @@
         permission="zope2.View"
         />
 
+	<!-- Warning: Customized viewlet templates to insert itemscope, itemtype and itemprop attributes -->	
+
+	<!-- The breadcrumbs -->
+    <browser:viewlet
+        name="plone.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class="plone.app.layout.viewlets.common.PathBarViewlet"
+        template="templates/path_bar.pt"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+        
+	<!-- The global sections -->
+    <browser:viewlet
+        name="plone.global_sections"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="plone.app.layout.viewlets.common.GlobalSectionsViewlet"
+        template="templates/sections.pt"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+        
+    <!-- The portal header -->
+    <browser:viewlet
+        name="plone.header"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+        template="templates/portal_header.pt"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
 	<utility
 		component=".types.ReallyUserFriendlyTypesVocabularyFactory"
 		name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
