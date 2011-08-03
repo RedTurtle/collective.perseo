@@ -8,6 +8,7 @@ Changelog
 - Customized some viewlet templates to insert itemscope, itemtype and itemprop attributes [fdelia]
 - Customized main template to insert itemscope, itemtype and itemprop attributes [fdelia]
 - Added some fields to Plone SEO control panel tool [fdelia]
+- Customized rss template for manage the indexing of rss feeds, depending on the check in Plone SEO control panel tool [fdelia]
 
 0.2.0 (2011-08-01)
 ------------------

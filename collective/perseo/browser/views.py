@@ -253,6 +253,14 @@ class PerSEOContext(BrowserView):
             return default
         
         return default
+    
+    def perseo_indexing_feed_rss( self ):
+        """ Returned indexing_feed_rss from Plone SEO Configuration Control Panel Tool
+        """
+        result = False
+        if self.gseo:
+            result = self.gseo.indexing_feed_rss
+        return result
 
 class PerSEOContextPloneSiteRoot(PerSEOContext):
     """ Calculate html header meta tags on context. Context == PloneSiteRoot
