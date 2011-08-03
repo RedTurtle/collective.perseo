@@ -24,7 +24,7 @@
 
   <description>
     <metal:block define-slot="description">
-      <tal:block content="context/id">
+      <tal:block content="context/Description">
         Default rss description goes here
       </tal:block>
     </metal:block>
