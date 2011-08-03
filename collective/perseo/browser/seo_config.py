@@ -383,6 +383,30 @@ class ISEOConfigSiteMapXMLSchema(Interface):
         value_type=Choice(
             vocabulary="collective.perseo.vocabularies.ReallyUserFriendlyTypes")
         )
+    
+    ping_google = Bool(
+        title=_("label_ping_google",
+                default=u"Ping Google"),
+        default=False,
+        required=False)
+    
+    ping_yahoo = Bool(
+        title=_("label_ping_yahoo",
+                default=u"Ping Yahoo"),
+        default=False,
+        required=False)
+    
+    ping_bing = Bool(
+        title=_("label_ping_bing",
+                default=u"Ping Bing"),
+        default=False,
+        required=False)
+    
+    ping_ask = Bool(
+        title=_("label_ping_ask",
+                default=u"Ping Ask"),
+        default=False,
+        required=False)
 
 class ISEOConfigSchemaOrgSchema(Interface):
     """Schema for Schema.org"""
@@ -531,6 +555,10 @@ class SEOConfigAdapter(SchemaAdapterBase):
     not_included_types = property(getIncludedTypes, setNotIncludedTypes)
     itemscope_itemtype_attrs_enable = ProxyFieldProperty(ISEOConfigSchema['itemscope_itemtype_attrs_enable'])
     indexing_feed_rss = ProxyFieldProperty(ISEOConfigSchema['indexing_feed_rss'])
+    ping_google = ProxyFieldProperty(ISEOConfigSchema['ping_google'])
+    ping_yahoo = ProxyFieldProperty(ISEOConfigSchema['ping_yahoo'])
+    ping_bing = ProxyFieldProperty(ISEOConfigSchema['ping_bing'])
+    ping_ask = ProxyFieldProperty(ISEOConfigSchema['ping_ask'])
 
 # Fieldset configurations
 
@@ -665,6 +693,11 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['not_included_types'].custom_widget = MultiCheckBoxThreeColumnWidget
 #    form_fields['itemscope_itemtype_attrs_enable'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_feed_rss'].custom_widget = CheckBoxWidget
+
+#    form_fields['ping_google'].custom_widget = CheckBoxWidget
+#    form_fields['ping_yahoo'].custom_widget = CheckBoxWidget
+#    form_fields['ping_bing'].custom_widget = CheckBoxWidget
+#    form_fields['ping_ask'].custom_widget = CheckBoxWidget
     
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
