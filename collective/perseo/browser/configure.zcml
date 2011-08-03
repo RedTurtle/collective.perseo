@@ -14,7 +14,6 @@
 		class=".seo_config.PerSEOConfig"
 		layer=".interfaces.IPerSEOLayer"
 		permission="cmf.ManagePortal"
-		allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
 		/>
 		
 	<browser:page
@@ -213,5 +212,11 @@
 		
 	<adapter name="getIncludedInSitemapxml" factory=".indexers.get_included_in_sitemapxml" />
 	<adapter name="getPrioritySitemapxml" factory=".indexers.get_priority_sitemapxml" />
+	
+	<subscriber
+		for="Products.Archetypes.interfaces.base.IBaseContent
+		     Products.Archetypes.interfaces.IObjectEditedEvent"
+		handler=".event.Pinging"
+		/>
 
 </configure>
