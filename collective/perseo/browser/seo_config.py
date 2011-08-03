@@ -385,20 +385,23 @@ class ISEOConfigSiteMapXMLSchema(Interface):
         )
 
 class ISEOConfigSchemaOrgSchema(Interface):
-    """Schema for Site Schema.org"""
+    """Schema for Schema.org"""
     
     itemscope_itemtype_attrs_enable = Bool(
         title=_("label_itemscope_itemtype_attrs_enable",
                 default=u"Add itemscope and itemtype attributes to body tag"),
         default=False,
         required=False)
-        
+    
+class ISEOConfigRSSSchema(Interface):
+    """Schema for RSS"""
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
                        ISEOConfigIndexingSchema,
                        ISEOConfigSiteMapXMLSchema,
-                       ISEOConfigSchemaOrgSchema):
+                       ISEOConfigSchemaOrgSchema,
+                       ISEOConfigRSSSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -546,6 +549,10 @@ schemaorgset = FormFieldsets(ISEOConfigSchemaOrgSchema)
 schemaorgset.id = 'seoschemaorg'
 schemaorgset.label = _(u'label_seoschemaorg', default=u'Schema.org')
 
+rssset = FormFieldsets(ISEOConfigRSSSchema)
+rssset.id = 'seorss'
+rssset.label = _(u'label_seorss', default=u'RSS')
+
 class Text2ListWidget(TextAreaWidget):
     height = 2
     splitter = re.compile(u'\\r?\\n', re.S|re.U)
@@ -564,7 +571,7 @@ class Text2ListWidget(TextAreaWidget):
 
 class PerSEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, schemaorgset)
+    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, schemaorgset, rssset)
     
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
