@@ -42,7 +42,7 @@ msgstr "None"
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:661
+#: ./browser/seo_config.py:669
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -55,7 +55,7 @@ msgid "Yes"
 msgstr "Si"
 
 #. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
-#: ./browser/seo_config.py:541
+#: ./browser/seo_config.py:548
 msgid "description_seoindexing"
 msgstr "Selezionando le opzioni sotto decidi di disabilitare l'indicizzazione delle risorse utilizzando noindex e nofollow."
 
@@ -249,6 +249,11 @@ msgstr "Tipi di contenuto inclusi nella Mappa del sito XML"
 msgid "label_indexing_event"
 msgstr "Evento"
 
+#. Default: "Don't index RSS feeds"
+#: ./browser/seo_config.py:400
+msgid "label_indexing_feed_rss"
+msgstr "Non indicizzare i feed RSS"
+
 #. Default: "File"
 #: ./browser/seo_config.py:314
 msgid "label_indexing_file"
@@ -415,32 +420,32 @@ msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:540
+#: ./browser/seo_config.py:547
 msgid "label_seoindexing"
 msgstr "Indexing"
 
 #. Default: "RSS"
-#: ./browser/seo_config.py:554
+#: ./browser/seo_config.py:561
 msgid "label_seorss"
 msgstr "RSS"
 
 #. Default: "Schema.org"
-#: ./browser/seo_config.py:550
+#: ./browser/seo_config.py:557
 msgid "label_seoschemaorg"
 msgstr "Schema.org"
 
 #. Default: "Site Map"
-#: ./browser/seo_config.py:546
+#: ./browser/seo_config.py:553
 msgid "label_seositemapxml"
 msgstr "Mappa del sito"
 
 #. Default: "Title"
-#: ./browser/seo_config.py:536
+#: ./browser/seo_config.py:543
 msgid "label_seotitle"
 msgstr "Titolo"
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:532
+#: ./browser/seo_config.py:539
 msgid "label_seowmtools"
 msgstr "Strumenti WM"
 
@@ -530,7 +535,7 @@ msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:662
+#: ./browser/seo_config.py:670
 msgid "seo_configlet_description"
 msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 

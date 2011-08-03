@@ -395,6 +395,12 @@ class ISEOConfigSchemaOrgSchema(Interface):
     
 class ISEOConfigRSSSchema(Interface):
     """Schema for RSS"""
+    
+    indexing_feed_rss = Bool(
+        title=_("label_indexing_feed_rss",
+                default=u"Don't index RSS feeds"),
+        default=False,
+        required=False)
 
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
@@ -524,6 +530,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
 
     not_included_types = property(getIncludedTypes, setNotIncludedTypes)
     itemscope_itemtype_attrs_enable = ProxyFieldProperty(ISEOConfigSchema['itemscope_itemtype_attrs_enable'])
+    indexing_feed_rss = ProxyFieldProperty(ISEOConfigSchema['indexing_feed_rss'])
 
 # Fieldset configurations
 
@@ -657,6 +664,7 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['tracking_code_footer'].custom_widget.height = 6
     form_fields['not_included_types'].custom_widget = MultiCheckBoxThreeColumnWidget
 #    form_fields['itemscope_itemtype_attrs_enable'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_feed_rss'].custom_widget = CheckBoxWidget
     
     label = _("Plone SEO Configuration")
     description = _("seo_configlet_description", default="You can select what "
