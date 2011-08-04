@@ -221,7 +221,7 @@
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
 			 Products.Archetypes.interfaces.IObjectInitializedEvent"
-          handler=".event.event_ObjectUpdated" />
+          handler=".event.event_objectAdded" />
 
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
@@ -236,6 +236,6 @@
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
 			 zope.lifecycleevent.interfaces.IObjectMovedEvent"
-          handler=".event.event_ObjectUpdated" />
+          handler=".event.event_ObjectMoved" />
 
 </configure>

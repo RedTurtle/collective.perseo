@@ -76,9 +76,7 @@ def Pinging(object):
 def event_ObjectUpdated(object, event):
     """ Cases in which the sitemap.xml is modified:
         An object is modified --> The lastmod property of sitemap.xml is changed
-        An object is created --> A new entry is inserted in the sitemap.xml
         An object has changed its state --> The lastmod property of sitemap.xml is changed
-        An object is copied or moved --> The loc property of sitemap.xml is changed
     """
     Pinging(object)
 
@@ -91,6 +89,38 @@ def event_ObjectRemoved(object, event):
     # I have to manage it
     if hasattr(object,'REQUEST') and\
        hasattr(object.REQUEST,'form') and\
-       object.REQUEST.form.has_key('form.submitted') and\
-       int(object.REQUEST.form.get('form.submitted',0)):
+       (object.REQUEST.form.has_key('form.submitted') and int(object.REQUEST.form.get('form.submitted',0))) or\
+       (object.REQUEST.form.has_key('folder_delete')  and object.REQUEST.form.get('folder_delete','')):
         Pinging(object)
+        
+def event_objectAdded(object, event):
+    """ Cases in which the sitemap.xml is modified:
+        An object is created --> A new entry is inserted in the sitemap.xml
+    """
+    try:
+        annotations = IAnnotations(object)
+        if annotations.has_key('seo_added') and annotations.get('seo_added', ''):
+            return
+        else:
+            Pinging(object)
+            annotations['seo_added'] = object.id
+    except:
+        return
+
+def event_ObjectMoved(object, event):
+    """ Cases in which the sitemap.xml is modified:
+        An object is copied or moved --> The loc property of sitemap.xml is changed
+    """
+    portal_factory = getToolByName(object,'portal_factory')
+    if portal_factory.isTemporary(object):
+        return
+    
+    try:
+        annotations = IAnnotations(object)
+        if annotations.has_key('seo_added') and annotations.get('seo_added','') != object.id:
+            Pinging(object)
+        else:
+            return
+    except:
+        return
+    
