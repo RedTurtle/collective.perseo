@@ -51,7 +51,7 @@ def url_open(url):
     except Exception:
         pass
 
-def Pinging(object, event):
+def Pinging(object):
     gseo = get_gseo(object)
     
     ping_google = get_gseo_field(gseo,'ping_google',default=False)
@@ -72,3 +72,25 @@ def Pinging(object, event):
             url_open("http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
         if ping_ask:
             url_open("http://www.bing.com/webmaster/ping.aspx?siteMap=%s/sitemap.xml.gz" % portal_url)
+            
+def event_ObjectUpdated(object, event):
+    """ Cases in which the sitemap.xml is modified:
+        An object is modified --> The lastmod property of sitemap.xml is changed
+        An object is created --> A new entry is inserted in the sitemap.xml
+        An object has changed its state --> The lastmod property of sitemap.xml is changed
+        An object is copied or moved --> The loc property of sitemap.xml is changed
+    """
+    Pinging(object)
+
+def event_ObjectRemoved(object, event):
+    """ Cases in which the sitemap.xml is modified:
+        An object is removed --> The entry is removed from the sitemap.xml
+    """
+    # Delete events can be fired several times for the same object.
+    # Some delete event transactions are rolled back.
+    # I have to manage it
+    if hasattr(object,'REQUEST') and\
+       hasattr(object.REQUEST,'form') and\
+       object.REQUEST.form.has_key('form.submitted') and\
+       int(object.REQUEST.form.get('form.submitted',0)):
+        Pinging(object)

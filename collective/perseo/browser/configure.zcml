@@ -212,11 +212,30 @@
 		
 	<adapter name="getIncludedInSitemapxml" factory=".indexers.get_included_in_sitemapxml" />
 	<adapter name="getPrioritySitemapxml" factory=".indexers.get_priority_sitemapxml" />
-	
+		
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
-		     Products.Archetypes.interfaces.IObjectEditedEvent"
-		handler=".event.Pinging"
-		/>
+			 Products.Archetypes.interfaces.IObjectEditedEvent"
+          handler=".event.event_ObjectUpdated" />
+
+	<subscriber
+		for="Products.Archetypes.interfaces.base.IBaseContent
+			 Products.Archetypes.interfaces.IObjectInitializedEvent"
+          handler=".event.event_ObjectUpdated" />
+
+	<subscriber
+		for="Products.Archetypes.interfaces.base.IBaseContent
+			 zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+          handler=".event.event_ObjectRemoved" />
+
+	<subscriber
+		for="Products.Archetypes.interfaces.base.IBaseContent
+			 Products.CMFCore.interfaces.IActionSucceededEvent"
+          handler=".event.event_ObjectUpdated" />
+          
+	<subscriber
+		for="Products.Archetypes.interfaces.base.IBaseContent
+			 zope.lifecycleevent.interfaces.IObjectMovedEvent"
+          handler=".event.event_ObjectUpdated" />
 
 </configure>
