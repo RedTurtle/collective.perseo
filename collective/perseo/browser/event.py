@@ -57,22 +57,18 @@ def Pinging(object):
     
     ping_google = get_gseo_field(gseo,'ping_google',default=False)
     
-    ping_yahoo = get_gseo_field(gseo,'ping_yahoo',default=False)
-    
     ping_bing = get_gseo_field(gseo,'ping_bing',default=False)
     
     ping_ask = get_gseo_field(gseo,'ping_ask',default=False)
     
-    if (ping_google or ping_yahoo or ping_bing or ping_ask) and include_in_sitemapxml(object):
+    if (ping_google or ping_bing or ping_ask) and include_in_sitemapxml(object):
         portal_url = getToolByName(object, 'portal_url')()
         if ping_google:
-            url_open("http://submissions.ask.com/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
-        if ping_yahoo:
             url_open("http://www.google.com/webmasters/sitemaps/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
         if ping_bing:
-            url_open("http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
-        if ping_ask:
             url_open("http://www.bing.com/webmaster/ping.aspx?siteMap=%s/sitemap.xml.gz" % portal_url)
+        if ping_ask:
+            url_open("http://submissions.ask.com/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
             
 def event_ObjectUpdated(object, event):
     """ Cases in which the sitemap.xml is modified:
