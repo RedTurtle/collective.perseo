@@ -2,6 +2,7 @@ from collective.perseo.browser.seo_config import ISEOConfigSchema
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
+from zope.lifecycleevent import ObjectMovedEvent
 import urllib2
 
 def get_gseo(object):
@@ -92,35 +93,27 @@ def event_ObjectRemoved(object, event):
        (object.REQUEST.form.has_key('form.submitted') and int(object.REQUEST.form.get('form.submitted',0))) or\
        (object.REQUEST.form.has_key('folder_delete')  and object.REQUEST.form.get('folder_delete','')):
         Pinging(object)
-        
-def event_objectAdded(object, event):
+
+def event_ObjectAddedMoved(object, event):
     """ Cases in which the sitemap.xml is modified:
         An object is created --> A new entry is inserted in the sitemap.xml
-    """
-    try:
-        annotations = IAnnotations(object)
-        if annotations.has_key('seo_added') and annotations.get('seo_added', ''):
-            return
-        else:
-            Pinging(object)
-            annotations['seo_added'] = object.id
-    except:
-        return
-
-def event_ObjectMoved(object, event):
-    """ Cases in which the sitemap.xml is modified:
         An object is copied or moved --> The loc property of sitemap.xml is changed
     """
     portal_factory = getToolByName(object,'portal_factory')
     if portal_factory.isTemporary(object):
         return
     
-    try:
-        annotations = IAnnotations(object)
-        if annotations.has_key('seo_added') and annotations.get('seo_added','') != object.id:
+    if hasattr(object,'REQUEST') and\
+       hasattr(object.REQUEST,'form') and\
+       (object.REQUEST.form.has_key('form.button.save') and object.REQUEST.form.get('form.button.save','')):
+        # I'm adding the object
+        
+        # Add event can be fired several times
+        # Move event can be fired only one time
+        # Then I check that the type of event is Move
+        if type(event) == ObjectMovedEvent:
             Pinging(object)
-        else:
-            return
-    except:
-        return
-    
+    else:
+        # I'm pasting the object
+        
+        Pinging(object)

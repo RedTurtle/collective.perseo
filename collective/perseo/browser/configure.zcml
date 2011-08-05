@@ -217,25 +217,20 @@
 		for="Products.Archetypes.interfaces.base.IBaseContent
 			 Products.Archetypes.interfaces.IObjectEditedEvent"
           handler=".event.event_ObjectUpdated" />
-
+          
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
-			 Products.Archetypes.interfaces.IObjectInitializedEvent"
-          handler=".event.event_objectAdded" />
+			 Products.CMFCore.interfaces.IActionSucceededEvent"
+          handler=".event.event_ObjectUpdated" />
 
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
 			 zope.lifecycleevent.interfaces.IObjectRemovedEvent"
           handler=".event.event_ObjectRemoved" />
-
-	<subscriber
-		for="Products.Archetypes.interfaces.base.IBaseContent
-			 Products.CMFCore.interfaces.IActionSucceededEvent"
-          handler=".event.event_ObjectUpdated" />
           
 	<subscriber
 		for="Products.Archetypes.interfaces.base.IBaseContent
 			 zope.lifecycleevent.interfaces.IObjectMovedEvent"
-          handler=".event.event_ObjectMoved" />
+          handler=".event.event_ObjectAddedMoved" />
 
 </configure>
