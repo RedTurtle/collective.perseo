@@ -98,6 +98,7 @@ def event_ObjectAddedMoved(object, event):
     """ Cases in which the sitemap.xml is modified:
         An object is created --> A new entry is inserted in the sitemap.xml
         An object is copied or moved --> The loc property of sitemap.xml is changed
+        An object is renamed --> The loc property of sitemap.xml is changed
     """
     portal_factory = getToolByName(object,'portal_factory')
     if portal_factory.isTemporary(object):
