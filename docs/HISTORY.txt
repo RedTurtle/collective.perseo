@@ -6,6 +6,7 @@ Changelog
 ------------------
 
 - Changed handling of sitemapxml properties of the objects that cause the change of sitemap.xml, for pinging [fdelia]
+- Fixed bug with properties override [fdelia]
 
 
 0.3.0 (2011-08-05)

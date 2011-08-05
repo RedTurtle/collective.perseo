@@ -67,7 +67,10 @@ class PerSEOContext(BrowserView):
             "perseo_included_in_sitemapxml": self.perseo_included_in_sitemapxml(),
             "perseo_priority_sitemapxml": self.perseo_priority_sitemapxml(),
             "perseo_itemtype":self.perseo_itemtype(),
-            "has_perseo_itemtype":self.has_prop('pSEO_itemtype')
+            "has_perseo_itemtype":self.has_prop('pSEO_itemtype'),
+            "has_perseo_robots_follow":self.has_prop('pSEO_robots_follow'),
+            "has_perseo_robots_index":self.has_prop('pSEO_robots_index'),
+            "has_perseo_included_in_sitemapxml":self.has_prop('pSEO_included_in_sitemapxml'),
             }
         return perseo_metatags
     

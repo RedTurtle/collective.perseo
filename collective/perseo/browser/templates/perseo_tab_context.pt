@@ -113,11 +113,16 @@
 					<label i18n:translate="label_robots_follow_meta_tag" for="perseo_robots_follow">
 						Meta Robots Follow Tag
 					</label>
-					<input type="hidden"
-						id="perseo_robots_follow_override"
-						name="perseo_robots_follow_override"
-						tal:attributes="value string:on"
-						/>
+					<div>
+						<input type="checkbox"
+							id="perseo_robots_follow_override"
+							name="perseo_robots_follow_override"
+							tal:attributes="checked python: perseo_context['has_perseo_robots_follow'] and 'on' or None;"
+							/>
+						<label i18n:translate="label_override" for="perseo_robots_follow_override">
+							Override the default
+						</label>
+					</div>
 					<div class="RobotsFollowField"
 						 tal:define="options python:['follow','nofollow'];"
 						 tal:repeat="op options">
@@ -139,11 +144,16 @@
 					<label i18n:translate="label_robots_index_meta_tag" for="perseo_robots_index">
 						Meta Robots Index Tag
 					</label>
-					<input type="hidden"
-						id="perseo_robots_index_override"
-						name="perseo_robots_index_override"
-						tal:attributes="value string:on"
-						/>
+					<div>
+						<input type="checkbox"
+							id="perseo_robots_index_override"
+							name="perseo_robots_index_override"
+							tal:attributes="checked python: perseo_context['has_perseo_robots_index'] and 'on' or None;"
+							/>
+						<label i18n:translate="label_override" for="perseo_robots_index_override">
+							Override the default
+						</label>
+					</div>
 					<div class="RobotsIndexField"
 						 tal:define="options python:['index','noindex'];"
 						 tal:repeat="op options">
@@ -224,11 +234,16 @@
           			<label i18n:translate="label_perseo_included_sitemapxml" for="perseo_included_in_sitemapxml">
 						Include in sitemap.xml.gz
 					</label>
-					<input type="hidden"
-						id="perseo_included_in_sitemapxml_override"
-						name="perseo_included_in_sitemapxml_override"
-						tal:attributes="value string:on"
-						/>
+					<div>
+						<input type="checkbox"
+							id="perseo_included_in_sitemapxml_override"
+							name="perseo_included_in_sitemapxml_override"
+							tal:attributes="checked python: perseo_context['has_perseo_included_in_sitemapxml'] and 'on' or None;"
+							/>
+						<label i18n:translate="label_override" for="perseo_included_in_sitemapxml_override">
+							Override the default
+						</label>
+					</div>
 					<div class="IncludedInSitemapxmlField"
 						tal:define="options perseo_context/getYesNoOptions;"
 						tal:repeat="op python:options.keys()">
