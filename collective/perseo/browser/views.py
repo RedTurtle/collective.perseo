@@ -729,8 +729,10 @@ class PerSEOTabContext( BrowserView ):
                             perseo_value = False
                         else:
                             perseo_value = True
-                    if perseo_key=="priority_sitemapxml":
-                        perseo_value = float(perseo_value)
+                if perseo_key=="priority_sitemapxml":
+                    if perseo_value == '' and not annotations.has_key(PROP_PREFIX+perseo_key):
+                        continue
+                    perseo_value = perseo_value and float(perseo_value) or perseo_value
                 if self.setProperty(PROP_PREFIX+perseo_key, perseo_value):
                     state = True
                     if perseo_key == 'included_in_sitemapxml' or perseo_key == 'priority_sitemapxml':
