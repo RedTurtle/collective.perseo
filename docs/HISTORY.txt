@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.3.0 (2011-08-02)
+0.3.0 (2011-08-05)
 ------------------
 
 - Customized some viewlet templates to insert itemscope, itemtype and itemprop attributes [fdelia]
