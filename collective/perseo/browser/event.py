@@ -2,7 +2,7 @@ from collective.perseo.browser.seo_config import ISEOConfigSchema
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
-from zope.lifecycleevent import ObjectMovedEvent
+from zope.lifecycleevent import ObjectMovedEvent, ObjectRemovedEvent
 import urllib2
 
 def get_gseo(object):
@@ -116,4 +116,5 @@ def event_ObjectAddedMoved(object, event):
     else:
         # I'm pasting the object
         
-        Pinging(object)
+        if type(event) != ObjectRemovedEvent:
+            Pinging(object)
