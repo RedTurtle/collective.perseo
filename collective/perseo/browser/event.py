@@ -52,6 +52,24 @@ def url_open(url):
     except Exception:
         pass
 
+def PingingObjRemovedFromSiteMapXML(object):
+    gseo = get_gseo(object)
+    
+    ping_google = get_gseo_field(gseo,'ping_google',default=False)
+    
+    ping_bing = get_gseo_field(gseo,'ping_bing',default=False)
+    
+    ping_ask = get_gseo_field(gseo,'ping_ask',default=False)
+    
+    if (ping_google or ping_bing or ping_ask):
+        portal_url = getToolByName(object, 'portal_url')()
+        if ping_google:
+            url_open("http://www.google.com/webmasters/sitemaps/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
+        if ping_bing:
+            url_open("http://www.bing.com/webmaster/ping.aspx?siteMap=%s/sitemap.xml.gz" % portal_url)
+        if ping_ask:
+            url_open("http://submissions.ask.com/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
+
 def Pinging(object):
     gseo = get_gseo(object)
     
@@ -75,6 +93,15 @@ def event_ObjectUpdated(object, event):
         An object is modified --> The lastmod property of sitemap.xml is changed
         An object has changed its state --> The lastmod property of sitemap.xml is changed
     """
+    for desc in event.descriptions:
+        if type(desc) == type({}) and desc.has_key('included_in_sitemapxml'):
+            included_in_sitemapxml = desc.get('included_in_sitemapxml',True)
+            if not included_in_sitemapxml:
+                # In this case, the user cheks not included in sitemapxml in SEO tab
+                # So the object entry is removed from the sitemap.xml
+                # and we need to ping without checking if the object is included in the sitemapxml
+                PingingObjRemovedFromSiteMapXML(object)
+
     Pinging(object)
 
 def event_ObjectRemoved(object, event):

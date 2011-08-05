@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+0.x.x (2011-xx-xx)
+------------------
+
+- Changed handling of sitemapxml properties of the objects that cause the change of sitemap.xml, for pinging [fdelia]
+
+
 0.3.0 (2011-08-05)
 ------------------
 

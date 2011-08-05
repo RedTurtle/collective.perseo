@@ -685,11 +685,6 @@ class PerSEOTabContext( BrowserView ):
             if (property == 'pSEO_included_in_sitemapxml' or property == 'pSEO_priority_sitemapxml')\
                 and state:
                 context.reindexObject(idxs=[])
-                # Cases in which the sitemap.xml is modified:
-                # pSEO_included_in_sitemapxml property is updated --> A new entry is inserted/removed in the sitemap.xml
-                # pSEO_priority_sitemapxml property is updated --> The priority property of sitemap.xml is changed
-                event = ObjectEditedEvent(context, context.REQUEST)
-                zope.event.notify(event)
         else:
             state = True
             annotations[property] = value
@@ -707,6 +702,7 @@ class PerSEOTabContext( BrowserView ):
     def manageSEOProps(self, **kw):
         """ Manage seo properties.
         """
+        description = {}
         state = False
         context = aq_inner(self.context)
         annotations = IAnnotations(context)
@@ -734,11 +730,20 @@ class PerSEOTabContext( BrowserView ):
                         perseo_value = float(perseo_value)
                 if self.setProperty(PROP_PREFIX+perseo_key, perseo_value):
                     state = True
+                    if perseo_key == 'included_in_sitemapxml' or perseo_key == 'priority_sitemapxml':
+                        description[perseo_key] = perseo_value
             elif annotations.has_key(PROP_PREFIX+perseo_key):
                 delete_list.append(PROP_PREFIX+perseo_key)
         if delete_list:
             state = True
             self.delProperties(delete_list)
+        
+        if description:
+            # Cases in which the sitemap.xml is modified:
+            # pSEO_included_in_sitemapxml property is updated --> A new entry is inserted/removed in the sitemap.xml
+            # pSEO_priority_sitemapxml property is updated --> The priority property of sitemap.xml is changed
+            event = ObjectEditedEvent(context, description)
+            zope.event.notify(event)
         
         return state
     
