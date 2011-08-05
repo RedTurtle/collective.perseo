@@ -10,6 +10,7 @@ Changelog
 - Added some fields to Plone SEO control panel tool [fdelia]
 - Customized rss template for manage the indexing of rss feeds, depending on the check in Plone SEO control panel tool [fdelia]
 - Added handling of all the events on the objects that cause the change of sitemap.xml, for pinging [fdelia]
+- Added handling of sitemapxml properties of the objects that cause the change of sitemap.xml, for pinging [fdelia]
 - Added handling of pinging when the sitemap.xml is updated [fdelia]
 
 

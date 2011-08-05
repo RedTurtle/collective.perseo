@@ -8,6 +8,7 @@ from zope.schema.interfaces import InvalidValue
 from plone.memoize import view, ram
 
 from Products.Archetypes.atapi import DisplayList
+from Products.Archetypes.event import ObjectEditedEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
@@ -18,6 +19,9 @@ from collective.perseo.browser.seo_config import ISEOConfigSchema
 
 from zope.annotation.interfaces import IAnnotations
 import re
+import zope.event
+
+
 
 PERSEO_PREFIX = 'perseo_'
 SUFFIX = '_override'
@@ -681,6 +685,11 @@ class PerSEOTabContext( BrowserView ):
             if (property == 'pSEO_included_in_sitemapxml' or property == 'pSEO_priority_sitemapxml')\
                 and state:
                 context.reindexObject(idxs=[])
+                # Cases in which the sitemap.xml is modified:
+                # pSEO_included_in_sitemapxml property is updated --> A new entry is inserted/removed in the sitemap.xml
+                # pSEO_priority_sitemapxml property is updated --> The priority property of sitemap.xml is changed
+                event = ObjectEditedEvent(context, context.REQUEST)
+                zope.event.notify(event)
         else:
             state = True
             annotations[property] = value
