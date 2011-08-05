@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-08-03 09:16+0000\n"
+"POT-Creation-Date: 2011-08-05 08:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:707
+#: ./browser/seo_config.py:699
 msgid ""
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:702
+#: ./browser/seo_config.py:694
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid "Yes"
 msgstr ""
 
 #. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow."
-#: ./browser/seo_config.py:576
+#: ./browser/seo_config.py:569
 msgid "description_seoindexing"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgid "label_indexing_event"
 msgstr ""
 
 #. Default: "Don't index RSS feeds"
-#: ./browser/seo_config.py:424
+#: ./browser/seo_config.py:418
 msgid "label_indexing_feed_rss"
 msgstr ""
 
@@ -292,7 +292,7 @@ msgid "label_indexing_topic"
 msgstr ""
 
 #. Default: "Add itemscope and itemtype attributes to body tag"
-#: ./browser/seo_config.py:415
+#: ./browser/seo_config.py:409
 msgid "label_itemscope_itemtype_attrs_enable"
 msgstr ""
 
@@ -372,23 +372,18 @@ msgid "label_perseo_priority_sitemapxml"
 msgstr ""
 
 #. Default: "Ping Ask"
-#: ./browser/seo_config.py:406
+#: ./browser/seo_config.py:400
 msgid "label_ping_ask"
 msgstr ""
 
 #. Default: "Ping Bing"
-#: ./browser/seo_config.py:400
+#: ./browser/seo_config.py:394
 msgid "label_ping_bing"
 msgstr ""
 
 #. Default: "Ping Google"
 #: ./browser/seo_config.py:388
 msgid "label_ping_google"
-msgstr ""
-
-#. Default: "Ping Yahoo"
-#: ./browser/seo_config.py:394
-msgid "label_ping_yahoo"
 msgstr ""
 
 #. Default: "Meta Robots Advanced Tag"
@@ -447,32 +442,32 @@ msgid "label_searchpage_title"
 msgstr ""
 
 #. Default: "Indexing"
-#: ./browser/seo_config.py:575
+#: ./browser/seo_config.py:568
 msgid "label_seoindexing"
 msgstr ""
 
 #. Default: "RSS"
-#: ./browser/seo_config.py:589
+#: ./browser/seo_config.py:582
 msgid "label_seorss"
 msgstr ""
 
 #. Default: "Schema.org"
-#: ./browser/seo_config.py:585
+#: ./browser/seo_config.py:578
 msgid "label_seoschemaorg"
 msgstr ""
 
 #. Default: "Site Map"
-#: ./browser/seo_config.py:581
+#: ./browser/seo_config.py:574
 msgid "label_seositemapxml"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/seo_config.py:571
+#: ./browser/seo_config.py:564
 msgid "label_seotitle"
 msgstr ""
 
 #. Default: "WM Tools"
-#: ./browser/seo_config.py:567
+#: ./browser/seo_config.py:560
 msgid "label_seowmtools"
 msgstr ""
 
@@ -557,32 +552,32 @@ msgid "legend_general_settings"
 msgstr ""
 
 #. Default: "The SEO settings have been saved."
-#: ./browser/views.py:788
+#: ./browser/views.py:796
 msgid "perseo_settings_saved"
 msgstr ""
 
 #. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:703
+#: ./browser/seo_config.py:695
 msgid "seo_configlet_description"
 msgstr ""
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:744
+#: ./browser/views.py:752
 msgid "wrong_canonical_url"
 msgstr ""
 
 #. Default: "The Priority sitemap.xml.gz must be a number"
-#: ./browser/views.py:759
+#: ./browser/views.py:767
 msgid "wrong_priority_sitemapxml"
 msgstr ""
 
 #. Default: "The Priority sitemap.xml.gz need to be greater than 0.0"
-#: ./browser/views.py:753
+#: ./browser/views.py:761
 msgid "wrong_priority_sitemapxml_greater"
 msgstr ""
 
 #. Default: "The Priority sitemap.xml.gz need to be less than or equal to 1.0"
-#: ./browser/views.py:756
+#: ./browser/views.py:764
 msgid "wrong_priority_sitemapxml_less"
 msgstr ""
 

@@ -390,12 +390,6 @@ class ISEOConfigSiteMapXMLSchema(Interface):
         default=False,
         required=False)
     
-    ping_yahoo = Bool(
-        title=_("label_ping_yahoo",
-                default=u"Ping Yahoo"),
-        default=False,
-        required=False)
-    
     ping_bing = Bool(
         title=_("label_ping_bing",
                 default=u"Ping Bing"),
@@ -556,7 +550,6 @@ class SEOConfigAdapter(SchemaAdapterBase):
     itemscope_itemtype_attrs_enable = ProxyFieldProperty(ISEOConfigSchema['itemscope_itemtype_attrs_enable'])
     indexing_feed_rss = ProxyFieldProperty(ISEOConfigSchema['indexing_feed_rss'])
     ping_google = ProxyFieldProperty(ISEOConfigSchema['ping_google'])
-    ping_yahoo = ProxyFieldProperty(ISEOConfigSchema['ping_yahoo'])
     ping_bing = ProxyFieldProperty(ISEOConfigSchema['ping_bing'])
     ping_ask = ProxyFieldProperty(ISEOConfigSchema['ping_ask'])
 
@@ -695,7 +688,6 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['indexing_feed_rss'].custom_widget = CheckBoxWidget
 
 #    form_fields['ping_google'].custom_widget = CheckBoxWidget
-#    form_fields['ping_yahoo'].custom_widget = CheckBoxWidget
 #    form_fields['ping_bing'].custom_widget = CheckBoxWidget
 #    form_fields['ping_ask'].custom_widget = CheckBoxWidget
     
