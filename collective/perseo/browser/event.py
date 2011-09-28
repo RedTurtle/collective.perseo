@@ -93,7 +93,7 @@ def event_ObjectUpdated(object, event):
         An object is modified --> The lastmod property of sitemap.xml is changed
         An object has changed its state --> The lastmod property of sitemap.xml is changed
     """
-    for desc in event.descriptions:
+    for desc in getattr(event,'descriptions',[]):
         if type(desc) == type({}) and desc.has_key('included_in_sitemapxml'):
             included_in_sitemapxml = desc.get('included_in_sitemapxml',True)
             if not included_in_sitemapxml:
