@@ -17,7 +17,7 @@ attributes, the following are the customizations you can do in your theme.
 Customizations of plone.path_bar viewlet at these points:
 
 - Line 2 of path_bar.pt, added itemprop attribute, itemprop="breadcrumb"
-...
+
 <div id="portal-breadcrumbs"
 	 itemprop="breadcrumb"
 ...
@@ -25,8 +25,8 @@ Customizations of plone.path_bar viewlet at these points:
 Customizations of plone.global_sections viewlet at these points:
 
 - Line 1 of section.pt,
-  added itemscope and itemtype attributes, itemtype="http://schema.org/SiteNavigationElement"
-...
+  added itemscope and itemtype attributes in tag nav, itemtype="http://schema.org/SiteNavigationElement"
+
 <nav itemscope="itemscope"
 	 itemtype="http://schema.org/SiteNavigationElement">
 	 ...
@@ -36,7 +36,7 @@ Customizations of plone.header viewlet at these points:
 
 - Line 2 of portal_header.pt,
   added itemscope and itemtype attributes, itemtype="http://schema.org/WPHeader"
-...
+
 <div id="portal-header"
 	 itemscope="itemscope"
      itemtype="http://schema.org/WPHeader">
