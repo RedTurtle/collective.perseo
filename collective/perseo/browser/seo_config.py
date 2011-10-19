@@ -599,7 +599,7 @@ class Text2ListWidget(TextAreaWidget):
 
 class PerSEOConfig(ControlPanelForm):
 
-    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, schemaorgset, rssset)
+    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset)
     
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
