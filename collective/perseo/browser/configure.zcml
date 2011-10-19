@@ -3,6 +3,10 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.perseo">
 
+	<include package="Products.CMFCore" file="permissions.zcml"
+		xmlns:zcml="http://namespaces.zope.org/zcml"
+		zcml:condition="have plone-41" />
+		
     <browser:resourceDirectory
     	name="collective.perseo"
     	directory="./resources"
@@ -13,7 +17,7 @@
 		for="Products.CMFPlone.interfaces.IPloneSiteRoot"
 		class=".seo_config.PerSEOConfig"
 		layer=".interfaces.IPerSEOLayer"
-		permission="cmf.ManagePortal"
+		permission="collective.perseo.ManageSEO"
 		/>
 		
 	<browser:page
@@ -170,37 +174,6 @@
         name="collective.perseo.trackingcodefooter"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class=".viewlets.TrackingCodeFooterViewlet"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        />
-
-	<!-- Warning: Customized viewlet templates to insert itemscope, itemtype and itemprop attributes -->	
-
-	<!-- The breadcrumbs -->
-    <browser:viewlet
-        name="plone.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class="plone.app.layout.viewlets.common.PathBarViewlet"
-        template="templates/path_bar.pt"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        />
-        
-	<!-- The global sections -->
-    <browser:viewlet
-        name="plone.global_sections"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class="plone.app.layout.viewlets.common.GlobalSectionsViewlet"
-        template="templates/sections.pt"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        />
-        
-    <!-- The portal header -->
-    <browser:viewlet
-        name="plone.header"
-        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-        template="templates/portal_header.pt"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         />

@@ -9,6 +9,10 @@
   
   <i18n:registerTranslations directory="locales" />
   
+  <permission
+	id="collective.perseo.ManageSEO"
+	title="collective.perseo: Manage SEO" />
+  
   <include package=".browser" />
   <include file="patches.zcml" />
   <include file="skins.zcml"/>

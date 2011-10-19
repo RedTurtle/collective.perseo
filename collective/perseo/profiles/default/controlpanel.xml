@@ -6,6 +6,6 @@
     icon_expr="string:${portal_url}/++resource++collective.perseo/seo.png"
     url_expr="string:${portal_url}/@@perseo-config"
     visible="True" i18n:attributes="title">
-  <permission>ManagePortal</permission>
+  <permission>collective.perseo: Manage SEO</permission>
  </configlet>
 </object>
