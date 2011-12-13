@@ -44,7 +44,7 @@ msgstr "Plone SEO"
 
 #: ./browser/seo_config.py:812
 msgid "Plone SEO Configuration"
-msgstr "Plone SEO Configurazione"
+msgstr "Configurazione Plone SEO"
 
 #: ./profiles/default/actions.xml
 msgid "SEO"

@@ -810,4 +810,5 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['ping_ask'].custom_widget = CheckBoxWidget
     
     label = _("Plone SEO Configuration")
+    description = _("")
     form_name = _("")
