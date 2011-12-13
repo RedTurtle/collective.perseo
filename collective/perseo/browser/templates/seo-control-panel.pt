@@ -23,7 +23,7 @@
 		    
 		    <script type="text/javascript">
 				jq(document).ready(function() {
-					jq("#fieldsetlegend-seotitle").click(function() {
+					jq("li.formTab a").click(function() {
 						jq("#accordion" ).accordion();
 					});
 				});
