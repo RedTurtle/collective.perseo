@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.x.x (2011-xx-xx)
+------------------
+- Changed seo icon [fdelia]
+- Customized control-panel template for create the layout of nested fieldsets [fdelia]
+
 0.5.0 (2011-10-19)
 ------------------
 - Moved Schema.org customizations to collective.perseoschema package [fdelia]
