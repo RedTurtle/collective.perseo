@@ -42,7 +42,7 @@ msgstr "None"
 msgid "Plone SEO"
 msgstr "Plone SEO"
 
-#: ./browser/seo_config.py:820
+#: ./browser/seo_config.py:812
 msgid "Plone SEO Configuration"
 msgstr "Plone SEO Configurazione"
 
@@ -618,11 +618,6 @@ msgstr "Impostazioni generali"
 #: ./browser/views.py:815
 msgid "perseo_settings_saved"
 msgstr "Le impostazioni SEO sono state salvate."
-
-#. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:821
-msgid "seo_configlet_description"
-msgstr "È possibile selezionare i tipi di contenuto qSEOptimizer-enabled, e controllare se i metatag Dublin Core sono esposti nell'intestazione delle pagine di contenuto."
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"
 #: ./browser/views.py:771

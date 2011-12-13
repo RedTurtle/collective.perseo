@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-12-13 10:07+0000\n"
+"POT-Creation-Date: 2011-12-13 16:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/seo_config.py:825
+#: ./browser/seo_config.py:813
 msgid ""
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Plone SEO"
 msgstr ""
 
-#: ./browser/seo_config.py:820
+#: ./browser/seo_config.py:812
 msgid "Plone SEO Configuration"
 msgstr ""
 
@@ -624,11 +624,6 @@ msgstr ""
 #. Default: "The SEO settings have been saved."
 #: ./browser/views.py:815
 msgid "perseo_settings_saved"
-msgstr ""
-
-#. Default: "You can select what content types are qSEOptimizer-enabled, and control if Dublin Core metatags are exposed in the header of content pages."
-#: ./browser/seo_config.py:821
-msgid "seo_configlet_description"
 msgstr ""
 
 #. Default: "The Canonical URL \"${url}\" is incorrect"

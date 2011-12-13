@@ -810,8 +810,4 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['ping_ask'].custom_widget = CheckBoxWidget
     
     label = _("Plone SEO Configuration")
-    description = _("seo_configlet_description", default="You can select what "
-                    "content types are qSEOptimizer-enabled, and control if "
-                    "Dublin Core metatags are exposed in the header of content "
-                    "pages.")
     form_name = _("")
