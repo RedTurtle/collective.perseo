@@ -1,47 +1,17 @@
-/* Interaction states
-----------------------------------*/
-.ui-state-default,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default {
-	border: 1px solid #cccccc;
-	background: #205c90 url(ui-bg_flat_75_dddddd_40x100.png) 50% 50% repeat-x;
-	font-weight: normal;
-	color: #ffffff;
-}
-.ui-state-default a,
-.ui-state-default a:link,
-.ui-state-default a:visited {
-	color: #ffffff;
-	text-decoration: none;
-}
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus {
-	border: 1px solid #448dae;
-	background: #dddddd url(ui-bg_flat_45_205c90_40x100.png) 50% 50% repeat-x; 
-	font-weight: normal;
-	color: #444444;
-}
-.ui-state-hover a,
-.ui-state-hover a:hover { 
-	color: #444444;
-	text-decoration: none;
-}
-.ui-state-active,
-.ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active { 
-	border: 1px solid #cccccc; 
-	background: #75ad0a url(ui-bg_flat_50_75ad0a_40x100.png) 50% 50% repeat-x; 
-	font-weight: normal;
-	color: #ffffff;
-}
-
-.ui-state-active a,
-.ui-state-active a:link,
-.ui-state-active a:visited { 
-	color: #ffffff;
-	text-decoration: none;
+#fieldset-seotitle #homepage_keywords textarea,
+#fieldset-seotitle #singlepage_keywords textarea,
+#fieldset-seotitle #searchpage_keywords textarea,
+#fieldset-seotitle #notfoundpage_keywords textarea,
+#fieldset-seotitle #authorpage_keywords textarea,
+#fieldset-seotitle #sitemappage_keywords textarea,
+#fieldset-seotitle #accessibilitypage_keywords textarea,
+#fieldset-seotitle #contactpage_keywords textarea,
+#fieldset-seotitle #event_keywords textarea,
+#fieldset-seotitle #file_keywords textarea,
+#fieldset-seotitle #folder_keywords textarea,
+#fieldset-seotitle #image_keywords textarea,
+#fieldset-seotitle #link_keywords textarea,
+#fieldset-seotitle #newsItem_keywords textarea,
+#fieldset-seotitle #topic_keywords textarea {
+	width: 20%;
 }

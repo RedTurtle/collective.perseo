@@ -162,7 +162,8 @@
 	                        <div class="field"
 	                             tal:define="description widget/hint;
 	                                         error widget/error"
-	                             tal:attributes="class python:'field'+(error and ' error' or '')">
+	                             tal:attributes="class python:'field'+(error and ' error' or '');
+												 id python: widget.name[len(widget._prefix):]">
 	
 	                            <label i18n:translate=""
 	                                   tal:define="name widget/name"
