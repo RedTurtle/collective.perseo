@@ -5,6 +5,7 @@ Changelog
 ------------------
 - Changed seo icon [fdelia]
 - Customized control-panel template for create the layout of nested fieldsets [fdelia]
+- Added accordion and proper style to nested fieldsets in control-panel template [fdelia]
 
 0.5.0 (2011-10-19)
 ------------------

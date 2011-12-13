@@ -16,6 +16,18 @@
     <metal:form metal:define-macro="form">
 
         <metal:block define-macro="header">
+        
+        	<style type="text/css" media="all"
+					tal:content="string: @import url(${context/portal_url}/++resource++collective.perseo/seo-control-panel.css)">
+		    </style>
+		    
+		    <script type="text/javascript">
+				jq(document).ready(function() {
+					jq("#fieldsetlegend-seotitle").click(function() {
+						jq("#accordion" ).accordion();
+					});
+				});
+			</script>
 
             <dl tal:define="status view/status"
                  tal:condition="status"
@@ -132,13 +144,15 @@
                     </p>
                     
 					<tal:block tal:define="nested_fieldsets fieldset/fieldsets;
-										   fieldset_groups python: nested_fieldsets and nested_fieldsets or (fieldset,)"
-							   tal:repeat="fieldset_group fieldset_groups">
+										   fieldset_groups python: nested_fieldsets and nested_fieldsets or (fieldset,)">
+							   
+					<div tal:attributes="id python: nested_fieldsets and 'accordion' or fieldset.id">
 						
-						<h3 tal:content="fieldset_group/label" />
+					<tal:block tal:repeat="fieldset_group fieldset_groups">
 						
+						<h3 tal:condition="nested_fieldsets"><a href="#" tal:content="fieldset_group/label">Section</a></h3>
 						
-						<div class="field">
+						<div class="fieldset_group">
 					
 	                    <tal:block tal:define="names python:[formfield.field.getName() for formfield in fieldset_group]"
 	                    		   tal:repeat="widget fieldset/widgets">
@@ -184,6 +198,8 @@
 							</tal:block>
 	                    </tal:block>
 	                    </div>
+	                </tal:block>
+	                </div>
 					</tal:block>
                 </fieldset>
 
