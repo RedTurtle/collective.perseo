@@ -705,8 +705,17 @@ rssset = FormFieldsets(ISEOConfigRSSSchema)
 rssset.id = 'seorss'
 rssset.label = _(u'label_seorss', default=u'RSS')
 
+class CodeTextAreaWidget(TextAreaWidget):
+    height = 6
+    
+class TitleTextAreaWidget(TextWidget):
+    displayWidth = 50
+
+class DescTextAreaWidget(TextAreaWidget):
+    height = 3
+
 class Text2ListWidget(TextAreaWidget):
-    height = 2
+    height = 5
     splitter = re.compile(u'\\r?\\n', re.S|re.U)
 
     def _toFieldValue(self, input):
@@ -730,65 +739,50 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
     form_fields['bingWebmasterTools'].custom_widget = TextWidget
-    form_fields['homepage_title'].custom_widget = TextWidget
-    form_fields['homepage_description'].custom_widget = TextAreaWidget
-    form_fields['homepage_description'].custom_widget.height = 3
+    form_fields['homepage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['homepage_description'].custom_widget = DescTextAreaWidget
     form_fields['homepage_keywords'].custom_widget = Text2ListWidget
-    form_fields['singlepage_title'].custom_widget = TextWidget
-    form_fields['singlepage_description'].custom_widget = TextAreaWidget
-    form_fields['singlepage_description'].custom_widget.height = 3
+    form_fields['singlepage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['singlepage_description'].custom_widget = DescTextAreaWidget
     form_fields['singlepage_keywords'].custom_widget = Text2ListWidget
-    form_fields['searchpage_title'].custom_widget = TextWidget
-    form_fields['searchpage_description'].custom_widget = TextAreaWidget
-    form_fields['searchpage_description'].custom_widget.height = 3
+    form_fields['searchpage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['searchpage_description'].custom_widget = DescTextAreaWidget
     form_fields['searchpage_keywords'].custom_widget = Text2ListWidget
-    form_fields['notfoundpage_title'].custom_widget = TextWidget
-    form_fields['notfoundpage_description'].custom_widget = TextAreaWidget
-    form_fields['notfoundpage_description'].custom_widget.height = 3
+    form_fields['notfoundpage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['notfoundpage_description'].custom_widget = DescTextAreaWidget
     form_fields['notfoundpage_keywords'].custom_widget = Text2ListWidget
-    form_fields['authorpage_title'].custom_widget = TextWidget
-    form_fields['authorpage_description'].custom_widget = TextAreaWidget
-    form_fields['authorpage_description'].custom_widget.height = 3
+    form_fields['authorpage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['authorpage_description'].custom_widget = DescTextAreaWidget
     form_fields['authorpage_keywords'].custom_widget = Text2ListWidget
-    form_fields['sitemappage_title'].custom_widget = TextWidget
-    form_fields['sitemappage_description'].custom_widget = TextAreaWidget
-    form_fields['sitemappage_description'].custom_widget.height = 3
+    form_fields['sitemappage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['sitemappage_description'].custom_widget = DescTextAreaWidget
     form_fields['sitemappage_keywords'].custom_widget = Text2ListWidget
-    form_fields['accessibilitypage_title'].custom_widget = TextWidget
-    form_fields['accessibilitypage_description'].custom_widget = TextAreaWidget
-    form_fields['accessibilitypage_description'].custom_widget.height = 3
+    form_fields['accessibilitypage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['accessibilitypage_description'].custom_widget = DescTextAreaWidget
     form_fields['accessibilitypage_keywords'].custom_widget = Text2ListWidget
-    form_fields['contactpage_title'].custom_widget = TextWidget
-    form_fields['contactpage_description'].custom_widget = TextAreaWidget
-    form_fields['contactpage_description'].custom_widget.height = 3
+    form_fields['contactpage_title'].custom_widget = TitleTextAreaWidget
+    form_fields['contactpage_description'].custom_widget = DescTextAreaWidget
     form_fields['contactpage_keywords'].custom_widget = Text2ListWidget
-    form_fields['event_title'].custom_widget = TextWidget
-    form_fields['event_description'].custom_widget = TextAreaWidget
-    form_fields['event_description'].custom_widget.height = 3
+    form_fields['event_title'].custom_widget = TitleTextAreaWidget
+    form_fields['event_description'].custom_widget = DescTextAreaWidget
     form_fields['event_keywords'].custom_widget = Text2ListWidget
-    form_fields['file_title'].custom_widget = TextWidget
-    form_fields['file_description'].custom_widget = TextAreaWidget
-    form_fields['file_description'].custom_widget.height = 3
+    form_fields['file_title'].custom_widget = TitleTextAreaWidget
+    form_fields['file_description'].custom_widget = DescTextAreaWidget
     form_fields['file_keywords'].custom_widget = Text2ListWidget
-    form_fields['folder_title'].custom_widget = TextWidget
-    form_fields['folder_description'].custom_widget = TextAreaWidget
-    form_fields['folder_description'].custom_widget.height = 3
+    form_fields['folder_title'].custom_widget = TitleTextAreaWidget
+    form_fields['folder_description'].custom_widget = DescTextAreaWidget
     form_fields['folder_keywords'].custom_widget = Text2ListWidget
-    form_fields['image_title'].custom_widget = TextWidget
-    form_fields['image_description'].custom_widget = TextAreaWidget
-    form_fields['image_description'].custom_widget.height = 3
+    form_fields['image_title'].custom_widget = TitleTextAreaWidget
+    form_fields['image_description'].custom_widget = DescTextAreaWidget
     form_fields['image_keywords'].custom_widget = Text2ListWidget
-    form_fields['link_title'].custom_widget = TextWidget
-    form_fields['link_description'].custom_widget = TextAreaWidget
-    form_fields['link_description'].custom_widget.height = 3
+    form_fields['link_title'].custom_widget = TitleTextAreaWidget
+    form_fields['link_description'].custom_widget = DescTextAreaWidget
     form_fields['link_keywords'].custom_widget = Text2ListWidget
-    form_fields['newsItem_title'].custom_widget = TextWidget
-    form_fields['newsItem_description'].custom_widget = TextAreaWidget
-    form_fields['newsItem_description'].custom_widget.height = 3
+    form_fields['newsItem_title'].custom_widget = TitleTextAreaWidget
+    form_fields['newsItem_description'].custom_widget = DescTextAreaWidget
     form_fields['newsItem_keywords'].custom_widget = Text2ListWidget
-    form_fields['topic_title'].custom_widget = TextWidget
-    form_fields['topic_description'].custom_widget = TextAreaWidget
-    form_fields['topic_description'].custom_widget.height = 3
+    form_fields['topic_title'].custom_widget = TitleTextAreaWidget
+    form_fields['topic_description'].custom_widget = DescTextAreaWidget
     form_fields['topic_keywords'].custom_widget = Text2ListWidget
 #    form_fields['robots_noodp'].custom_widget = CheckBoxWidget
 #    form_fields['robots_noydir'].custom_widget = CheckBoxWidget
@@ -805,10 +799,8 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['indexing_link'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_newsItem'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_topic'].custom_widget = CheckBoxWidget
-    form_fields['tracking_code_header'].custom_widget = TextAreaWidget
-    form_fields['tracking_code_header'].custom_widget.height = 6
-    form_fields['tracking_code_footer'].custom_widget = TextAreaWidget
-    form_fields['tracking_code_footer'].custom_widget.height = 6
+    form_fields['tracking_code_header'].custom_widget = CodeTextAreaWidget
+    form_fields['tracking_code_footer'].custom_widget = CodeTextAreaWidget
     form_fields['not_included_types'].custom_widget = MultiCheckBoxThreeColumnWidget
 #    form_fields['itemscope_itemtype_attrs_enable'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_feed_rss'].custom_widget = CheckBoxWidget
