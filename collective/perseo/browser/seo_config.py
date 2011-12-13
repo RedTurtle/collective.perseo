@@ -66,6 +66,8 @@ class ISEOConfigTitleSchema_homepage(Interface):
     homepage_keywords = List(
         title=_("label_homepage_keywords",
                 default=u"Home Page Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_singlepage(Interface):
@@ -84,6 +86,8 @@ class ISEOConfigTitleSchema_singlepage(Interface):
     singlepage_keywords = List(
         title=_("label_singlepage_keywords",
                 default=u"Single Page Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_searchpage(Interface):
@@ -102,6 +106,8 @@ class ISEOConfigTitleSchema_searchpage(Interface):
     searchpage_keywords = List(
         title=_("label_searchpage_keywords",
                 default=u"Search Page Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_notfoundpage(Interface):
@@ -120,6 +126,8 @@ class ISEOConfigTitleSchema_notfoundpage(Interface):
     notfoundpage_keywords = List(
         title=_("label_notfoundpage_keywords",
                 default=u"Not Found Page Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_authorpage(Interface):
@@ -138,6 +146,8 @@ class ISEOConfigTitleSchema_authorpage(Interface):
     authorpage_keywords = List(
         title=_("label_authorpage_keywords",
                 default=u"Author Page Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_sitemappage(Interface):
@@ -156,6 +166,8 @@ class ISEOConfigTitleSchema_sitemappage(Interface):
     sitemappage_keywords = List(
         title=_("label_sitemappage_keywords",
                 default=u"Site map Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_accessibilitypage(Interface):
@@ -174,6 +186,8 @@ class ISEOConfigTitleSchema_accessibilitypage(Interface):
     accessibilitypage_keywords = List(
         title=_("label_accessibilitypage_keywords",
                 default=u"Accessibility Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_contactpage(Interface):
@@ -192,6 +206,8 @@ class ISEOConfigTitleSchema_contactpage(Interface):
     contactpage_keywords = List(
         title=_("label_contactpage_keywords",
                 default=u"Contact Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_event(Interface):
@@ -210,6 +226,8 @@ class ISEOConfigTitleSchema_event(Interface):
     event_keywords = List(
         title=_("label_event_keywords",
                 default=u"Event Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_file(Interface):
@@ -228,6 +246,8 @@ class ISEOConfigTitleSchema_file(Interface):
     file_keywords = List(
         title=_("label_file_keywords",
                 default=u"File Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_folder(Interface):
@@ -246,6 +266,8 @@ class ISEOConfigTitleSchema_folder(Interface):
     folder_keywords = List(
         title=_("label_folder_keywords",
                 default=u"Folder Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_image(Interface):
@@ -264,6 +286,8 @@ class ISEOConfigTitleSchema_image(Interface):
     image_keywords = List(
         title=_("label_image_keywords",
                 default=u"Image Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_link(Interface):
@@ -282,6 +306,8 @@ class ISEOConfigTitleSchema_link(Interface):
     link_keywords = List(
         title=_("label_link_keywords",
                 default=u"Link Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_newsItem(Interface):
@@ -300,6 +326,8 @@ class ISEOConfigTitleSchema_newsItem(Interface):
     newsItem_keywords = List(
         title=_("label_newsItem_keywords",
                 default=u"NewsItem Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
 class ISEOConfigTitleSchema_topic(Interface):
@@ -318,6 +346,8 @@ class ISEOConfigTitleSchema_topic(Interface):
     topic_keywords = List(
         title=_("label_topic_keywords",
                 default=u"Topic Keywords"),
+        description=_("help_keywords",
+                      default=u"You can enter multiple keywords - one pr. line."),
         required=False)
     
 class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
@@ -809,6 +839,6 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['ping_bing'].custom_widget = CheckBoxWidget
 #    form_fields['ping_ask'].custom_widget = CheckBoxWidget
     
-    label = _("Plone SEO Configuration")
+    label = _("PerSEO Configuration")
     description = _("")
     form_name = _("")

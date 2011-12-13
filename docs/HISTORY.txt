@@ -8,6 +8,7 @@ Changelog
 - Added accordion and proper style to nested fieldsets in control-panel template [fdelia]
 - Fixed layout of fields in control panel [fdelia]
 - Fixed description and title of control panel [fdelia]
+- Fixed description of keyword fields in control panel [fdelia]
 
 0.5.0 (2011-10-19)
 ------------------
