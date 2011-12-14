@@ -93,4 +93,19 @@ Customizations of sunburst_templates / main_template at these points:
 	<div itemscope="itemscope" itemtype="http://schema.org/WPFooter">
 		<div tal:replace="structure provider:plone.portalfooter" />
 	</div>
-	
+
+
+Credits
+=======
+
+Developed with the support of Andrea Pernici.
+collective.perseo is loosely based on quintagroup.seoptimizer.
+
+Authors
+=======
+
+This product was developed by RedTurtle Technology team.
+
+.. image:: http://www.redturtle.it/redturtle_banner.png
+   :alt: RedTurtle Technology Site
+   :target: http://www.redturtle.it/
