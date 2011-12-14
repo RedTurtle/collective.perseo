@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.x.x (2011-xx-xx)
+0.6.0 (2011-12-14)
 ------------------
 - Changed seo icon [fdelia]
 - Customized control-panel template for create the layout of nested fieldsets [fdelia]
