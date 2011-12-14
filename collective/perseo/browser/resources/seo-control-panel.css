@@ -15,3 +15,7 @@
 #fieldset-seotitle #topic_keywords textarea {
 	width: 20%;
 }
+
+#fieldset-seoindexing p {
+    font-weight: bold;
+}
