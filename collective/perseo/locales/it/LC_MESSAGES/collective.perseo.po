@@ -38,13 +38,13 @@ msgstr "No Snippet"
 msgid "None"
 msgstr "None"
 
+#: ./profiles/default/controlpanel.xml
+msgid "PerSEO"
+msgstr "PerSEO"
+
 #: ./browser/seo_config.py:842
 msgid "PerSEO Configuration"
 msgstr "Configurazione PerSEO"
-
-#: ./profiles/default/controlpanel.xml
-msgid "Plone SEO"
-msgstr "Plone SEO"
 
 #: ./profiles/default/actions.xml
 msgid "SEO"
