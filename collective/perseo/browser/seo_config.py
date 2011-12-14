@@ -25,19 +25,22 @@ class ISEOConfigWMToolsSchema(Interface):
     googleWebmasterTools = TextLine(
         title=_("label_googleWebmasterTools",
                 default=u"Google Webmaster Tools"),
-        description=u"https://www.google.com/webmasters/tools/",
+        description=_("help__googleWebmasterTools",
+                      default=u"Enter an id for Google. https://www.google.com/webmasters/tools/"),
         required=False)
     
     yahooSiteExplorer = TextLine(
         title=_("label_yahooSiteExplorer",
                 default=u"Yahoo Site Explorer"),
-        description=u"https://siteexplorer.search.yahoo.com/mysites",
+        description=_("help_yahooSiteExplorer",
+                      default=u"Enter an id for Yahoo. https://siteexplorer.search.yahoo.com/mysites"),
         required=False)
     
     bingWebmasterTools = TextLine(
         title=_("label_bingWebmasterTools",
                 default=u"Bing Webmaster Tools"),
-        description=u"http://www.bing.com/webmaster/",
+        description=_("help_bingWebmasterTools",
+                      default=u"Enter an id for Bing. http://www.bing.com/webmaster/"),
         required=False)
     
     tracking_code_header = Text(
