@@ -8,6 +8,21 @@
       i18n:domain="collective.perseo">
       
   <head>
+	<metal:styleslot fill-slot="style_slot">
+		<style type="text/css">
+			#perseo_edit_form fieldset {
+	   			background-color: #f5fbfb;
+	   			border-style: solid solid solid;
+	   			-moz-border-radius: 5px;
+	   			-webkit-border-radius: 5px;
+	   			border-radius: 5px;
+			}
+			input#perseo_title,
+			textarea#perseo_keywords {
+				width: 30%;
+			}
+		</style>
+	</metal:styleslot>
 	<metal:block fill-slot="top_slot"
 	             tal:define="dummy python:request.set('enable_border',1)" />
   </head>
@@ -15,7 +30,7 @@
   <body>
 	<div metal:fill-slot="main"
 		tal:define="perseo_context here/@@perseo-context">
-		<form name="perseo_edit_form" action="#" method="post"
+		<form name="perseo_edit_form" id="perseo_edit_form" action="#" method="post"
 			tal:attributes="action string:${context/absolute_url}/@@perseo-tab-context" >
 			<h1 i18n:translate="edit_seo">Edit SEO Settings</h1>
 			<fieldset>

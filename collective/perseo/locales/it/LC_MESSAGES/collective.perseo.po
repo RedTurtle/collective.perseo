@@ -60,7 +60,7 @@ msgid "description_seoindexing"
 msgstr "Selezionando le opzioni sotto decidi di disabilitare l'indicizzazione delle risorse utilizzando noindex e nofollow"
 
 #. Default: "Edit SEO Settings"
-#: ./browser/templates/perseo_tab_context.pt:20
+#: ./browser/templates/perseo_tab_context.pt:35
 msgid "edit_seo"
 msgstr "Modifica le impostazioni SEO"
 
@@ -85,27 +85,27 @@ msgid "help_keywords"
 msgstr "È possibile inserire più parole chiave - una per linea."
 
 #. Default: "Specify your canonical URL. If your site has identical or vastly similar content that's accessible through multiple URLs, this format provides you with more control over the URL returned in search results."
-#: ./browser/templates/perseo_tab_context.pt:210
+#: ./browser/templates/perseo_tab_context.pt:225
 msgid "help_perseo_canonical"
 msgstr "Specificare l'URL canonico. Se il vostro sito ha contenuti identici o molto simili, che sono accessibili attraverso più URL, questo formato offre un maggiore controllo sull'URL restituito nei risultati di ricerca."
 
 #. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
-#: ./browser/templates/perseo_tab_context.pt:56
+#: ./browser/templates/perseo_tab_context.pt:71
 msgid "help_perseo_description"
 msgstr "Descrizione del documento indicizzata dai motori di ricerca. Questo testo sarà presente nel meta tag description nella pagina HTML."
 
 #. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
-#: ./browser/templates/perseo_tab_context.pt:81
+#: ./browser/templates/perseo_tab_context.pt:96
 msgid "help_perseo_keywords"
-msgstr "La pagina sarà indicizzata con Keywords. <strong>Inserisci ogni parola chiave in una riga separata, per favore.</ strong> Sebbene la rilevanza delle meta keywords è ora di discutibile, è utile per impostare meta keywords per le pagine - per riferimento futuro."
+msgstr "La pagina sarà indicizzata con Keywords. <strong>Inserisci ogni parola chiave in una riga separata, per favore.</strong> Sebbene la rilevanza delle meta keywords è ora di discutibile, è utile per impostare meta keywords per le pagine - per riferimento futuro."
 
 #. Default: "Values ​​from 0.1 to 1.0"
-#: ./browser/templates/perseo_tab_context.pt:269
+#: ./browser/templates/perseo_tab_context.pt:284
 msgid "help_perseo_priority_sitemapxml"
 msgstr "Valori da 0.1 a 1.0"
 
 #. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
-#: ./browser/templates/perseo_tab_context.pt:29
+#: ./browser/templates/perseo_tab_context.pt:44
 msgid "help_perseo_title"
 msgstr "Testo presente nel tag &lt;TITLE&gt;. Esso è visualizzato nella barra titolo del browser. I motori di ricerca lo mostrano come titolo del documento."
 
@@ -160,7 +160,7 @@ msgid "label_bingWebmasterTools"
 msgstr "Strumenti Bing Webmaster"
 
 #. Default: "Canonical URL"
-#: ./browser/templates/perseo_tab_context.pt:207
+#: ./browser/templates/perseo_tab_context.pt:222
 msgid "label_canonical_tag"
 msgstr "Canonical URL"
 
@@ -180,7 +180,7 @@ msgid "label_contactpage_title"
 msgstr "Titolo Contatti"
 
 #. Default: "Meta Description Tag"
-#: ./browser/templates/perseo_tab_context.pt:53
+#: ./browser/templates/perseo_tab_context.pt:68
 msgid "label_description_meta_tag"
 msgstr "Meta Tag Description"
 
@@ -315,7 +315,7 @@ msgid "label_itemscope_itemtype_attrs_enable"
 msgstr "Aggiungi gli attributi itemscope e itemtype al tag body"
 
 #. Default: "Meta Keywords Tag"
-#: ./browser/templates/perseo_tab_context.pt:78
+#: ./browser/templates/perseo_tab_context.pt:93
 msgid "label_keywords_meta_tag"
 msgstr "Meta Tag Keywords"
 
@@ -370,17 +370,17 @@ msgid "label_notfoundpage_title"
 msgstr "Titolo pagina Not Found"
 
 #. Default: "Override the default"
-#: ./browser/templates/perseo_tab_context.pt:39
+#: ./browser/templates/perseo_tab_context.pt:54
 msgid "label_override"
 msgstr "Sovrascrivi il valore predefinito"
 
 #. Default: "Include in sitemap.xml.gz"
-#: ./browser/templates/perseo_tab_context.pt:234
+#: ./browser/templates/perseo_tab_context.pt:249
 msgid "label_perseo_included_sitemapxml"
 msgstr "Includi in sitemap.xml.gz"
 
 #. Default: "Priority sitemap.xml.gz"
-#: ./browser/templates/perseo_tab_context.pt:266
+#: ./browser/templates/perseo_tab_context.pt:281
 msgid "label_perseo_priority_sitemapxml"
 msgstr "Priorità sitemap.xml.gz"
 
@@ -400,17 +400,17 @@ msgid "label_ping_google"
 msgstr "Ping Google"
 
 #. Default: "Meta Robots Advanced Tag"
-#: ./browser/templates/perseo_tab_context.pt:175
+#: ./browser/templates/perseo_tab_context.pt:190
 msgid "label_robots_advanced_meta_tag"
 msgstr "Robots Avanzati Meta Tag"
 
 #. Default: "Meta Robots Follow Tag"
-#: ./browser/templates/perseo_tab_context.pt:113
+#: ./browser/templates/perseo_tab_context.pt:128
 msgid "label_robots_follow_meta_tag"
 msgstr "Robots Follow Meta Tag"
 
 #. Default: "Meta Robots Index Tag"
-#: ./browser/templates/perseo_tab_context.pt:144
+#: ./browser/templates/perseo_tab_context.pt:159
 msgid "label_robots_index_meta_tag"
 msgstr "Robots Index Meta Tag"
 
@@ -595,7 +595,7 @@ msgid "label_sitemappage_title"
 msgstr "Titolo Mappa del sito"
 
 #. Default: "Title Tag"
-#: ./browser/templates/perseo_tab_context.pt:26
+#: ./browser/templates/perseo_tab_context.pt:41
 msgid "label_title_tag"
 msgstr "Tag Title"
 
@@ -630,12 +630,12 @@ msgid "label_yahooSiteExplorer"
 msgstr "Yahoo Site Explorer"
 
 #. Default: "Advanced"
-#: ./browser/templates/perseo_tab_context.pt:109
+#: ./browser/templates/perseo_tab_context.pt:124
 msgid "legend_advanced"
 msgstr "Avanzato"
 
 #. Default: "General settings"
-#: ./browser/templates/perseo_tab_context.pt:22
+#: ./browser/templates/perseo_tab_context.pt:37
 msgid "legend_general_settings"
 msgstr "Impostazioni generali"
 
