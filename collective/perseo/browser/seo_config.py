@@ -480,18 +480,24 @@ class ISEOConfigSiteMapXMLSchema(Interface):
     ping_google = Bool(
         title=_("label_ping_google",
                 default=u"Ping Google"),
+        description=_("help_ping",
+                      default=u"Ping site automatically when the Site Map is updated."),
         default=False,
         required=False)
     
     ping_bing = Bool(
         title=_("label_ping_bing",
                 default=u"Ping Bing"),
+        description=_("help_ping",
+                      default=u"Ping site automatically when the Site Map is updated."),
         default=False,
         required=False)
     
     ping_ask = Bool(
         title=_("label_ping_ask",
                 default=u"Ping Ask"),
+        description=_("help_ping",
+                      default=u"Ping site automatically when the Site Map is updated."),
         default=False,
         required=False)
 
@@ -724,7 +730,7 @@ indexingset = FormFieldsets(ISEOConfigIndexingSchema)
 indexingset.id = 'seoindexing'
 indexingset.label = _(u'label_seoindexing', default=u'Indexing')
 indexingset.description = _(u'description_seoindexing', default=u"By selecting the options below" \
-                                " you decide to disable the indexing of resources using noindex and nofollow.")
+                                " you decide to disable the indexing of resources using noindex and nofollow")
 
 sitemapxmlset = FormFieldsets(ISEOConfigSiteMapXMLSchema)
 sitemapxmlset.id = 'seositemapxml'
