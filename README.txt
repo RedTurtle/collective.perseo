@@ -12,7 +12,7 @@ With collective.perseo you can manage several kind of SEO features.
 
 Globally
 ~~~~~~~~
-Configurations applied to each page of the site, through “PerSEO” tool under Add-on Configuration:
+Configurations applied to each page of the site, through 'PerSEO' tool under Add-on Configuration:
 	- Webmaster Tools
 	- tag title, description and keywords meta tags, separately for:
 		- Home page
@@ -49,7 +49,7 @@ Configurations applied to each page of the site, through “PerSEO” tool under
 
 One by one
 ~~~~~~~~~~
-Through “SEO” tab on each content of the site (allows you to change SEO settings for that specific content):
+Through 'SEO' tab on each content of the site (allows you to change SEO settings for that specific content):
 	- tag title and description and Keywords meta tags
 	- Meta Robots Follow Tag (follow/nofollow)
 	- Meta Robots Index Tag (index/noindex)
