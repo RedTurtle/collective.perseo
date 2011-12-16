@@ -1,5 +1,63 @@
+.. contents::
+
 Introduction
 ============
+
+Search Engine Optimization Package
+
+Features
+--------
+
+With collective.perseo you can manage several kind of SEO features.
+
+Globally
+~~~~~~~~
+Configurations applied to each page of the site, through “PerSEO” tool under Add-on Configuration:
+	- Webmaster Tools
+	- tag title, description and keywords meta tags, separately for:
+		- Home page
+		- Single pages
+		- Search page
+		- Not Found page
+		- Author page
+		- Site Map page
+		- Contact page
+		- Event
+		- File
+		- Folder
+		- Image
+		- Link
+		- News Item
+		- Topic
+	- Disable the indexing of resources using noindex and nofollow, separately for:
+		- Search page
+		- Login and Registration pages
+		- Administration pages
+		- Single pages
+		- Event
+		- File
+		- Folder
+		- Image
+		- Link
+		- News Item
+		- Topic
+		- (also handle noodp, noydir, noarchive, nosnippet)
+	- Content types included in the sitemap.xml.gz
+	- Ping sites (Google, Bing, Ask) automatically when the Site Map is updated
+	- Indexing RSS feeds
+	- Add itemscope and itemtype attributes to body tag (if you install the extension collective.perseoschema per Schema org)
+
+One by one
+~~~~~~~~~~
+Through “SEO” tab on each content of the site (allows you to change SEO settings for that specific content):
+	- tag title and description and Keywords meta tags
+	- Meta Robots Follow Tag (follow/nofollow)
+	- Meta Robots Index Tag (index/noindex)
+	- Meta Robots Advanced Tag (noodp, noydir, noarchive, nosnippet)
+	- Canonical URL
+	- Content included in the sitemap.xml.gz (yes/no).
+	- Priority of content in sitemap.xml.gz
+	- itemtype attribute (if you install the extension collective.perseoschema per Schema org)
 
 SCHEMA.ORG
 ----------
@@ -98,7 +156,10 @@ Customizations of sunburst_templates / main_template at these points:
 Credits
 =======
 
-Developed with the support of Andrea Pernici.
+Developed with the support of `Andrea Pernici`__.
+
+__ http://www.andreapernici.com/
+
 collective.perseo is loosely based on quintagroup.seoptimizer.
 
 Authors
