@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.6.1'
+version = '0.6.2'
 
 setup(name='collective.perseo',
       version=version,
@@ -12,12 +12,13 @@ setup(name='collective.perseo',
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
+        "Framework :: Plone :: 4.1",
         "Programming Language :: Python",
         ],
       keywords='',
       author='RedTurtle Technology',
       author_email='sviluppoplone@redturtle.net',
-      url='http://svn.plone.org/svn/collective/',
+      url='http://plone.org/products/collective.perseo',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective'],

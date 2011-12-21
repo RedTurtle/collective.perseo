@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.6.2 (2011-12-21)
+------------------
+- fix mismatched tag [fdelia]
+
 0.6.1 (2011-12-16)
 ------------------
 - updated documentation [fdelia]
