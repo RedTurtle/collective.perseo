@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.6.3 (2012-03-27)
+------------------
+- fix bug with perseo_itemtype method [fdelia]
+ 
 0.6.2 (2011-12-21)
 ------------------
 - fix mismatched tag [fdelia]
