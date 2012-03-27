@@ -246,21 +246,6 @@ class PerSEOContext(BrowserView):
             result = self.gseo.itemscope_itemtype_attrs_enable
         return result
     
-    def perseo_itemtype( self ):
-        """ Returned perseo_itemtype from context
-        """
-        context = aq_inner(self.context)
-        default='http://schema.org/WebPage'
-        try:
-            annotations = IAnnotations(context)
-
-            if annotations.has_key('pSEO_itemtype'):
-                return annotations.get('pSEO_itemtype', default)
-        except:
-            return default
-        
-        return default
-    
     def perseo_indexing_feed_rss( self ):
         """ Returned indexing_feed_rss from Plone SEO Configuration Control Panel Tool
         """
