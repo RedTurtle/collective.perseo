@@ -11,11 +11,17 @@ class PerSEOSiteMapView (SiteMapView):
 
     http://www.sitemaps.org/protocol.php
     """
-    template = ViewPageTemplateFile('sitemap.xml')
+    index = ViewPageTemplateFile('sitemap.xml')
 
     def __init__(self, context, request):
         super(PerSEOSiteMapView, self).__init__(context, request)
         self.gseo = queryAdapter(self.context, ISEOConfigSchema)
+
+    def template(self):
+        " manual unicode encode "
+        xml = self.index()
+        xml = xml.encode('utf8','ignore')
+        return xml
 
     def get_gseo_field( self, field, default=None):
         """ Returned field from Plone SEO Configuration Control Panel Tool
@@ -30,9 +36,9 @@ class PerSEOSiteMapView (SiteMapView):
     def add_image(self, url, caption=None, title=None):
         image = {'loc': url}
         if caption:
-            image.update({'caption': caption})
+            image.update({'caption': caption.decode('utf8')})
         if title:
-            image.update({'title': title})
+            image.update({'title': title.decode('utf8')})
         return image
 
     def objects(self):
