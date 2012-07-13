@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.6.4 (unreleased)
+------------------
+
+ - fix small bugs in sitemap registrations [amleczko]
+ - add images to sitemap generation [amleczko]
+
 0.6.3 (2012-03-27)
 ------------------
 - fix bug with perseo_itemtype method [fdelia]
