@@ -15,7 +15,8 @@ class PerSEOSiteMapView (SiteMapView):
 
     def __init__(self, context, request):
         super(PerSEOSiteMapView, self).__init__(context, request)
-        self.gseo = queryAdapter(self.context, ISEOConfigSchema)
+        portal = self.context.portal_url.getPortalObject()
+        self.gseo = queryAdapter(portal, ISEOConfigSchema)
 
     def template(self):
         " manual unicode encode "
