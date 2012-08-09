@@ -7,7 +7,7 @@ from zope.annotation.interfaces import IAnnotations
 def get_included_in_sitemapxml(object, **kw):
     try:
         annotations = IAnnotations(object)
-        if annotations.has_key('pSEO_included_in_sitemapxml'):
+        if 'pSEO_included_in_sitemapxml' in annotations:
             return annotations.get('pSEO_included_in_sitemapxml', None)
     except:
         return None
@@ -17,7 +17,7 @@ def get_included_in_sitemapxml(object, **kw):
 def get_priority_sitemapxml(object, **kw):
     try:
         annotations = IAnnotations(object)
-        if annotations.has_key('pSEO_priority_sitemapxml'):
+        if 'pSEO_priority_sitemapxml' in annotations:
             return annotations.get('pSEO_priority_sitemapxml', None)
     except:
         return None

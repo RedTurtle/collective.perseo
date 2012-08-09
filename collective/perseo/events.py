@@ -28,7 +28,7 @@ def get_included_in_sitemapxml(object):
     """
     try:
         annotations = IAnnotations(object)
-        if annotations.has_key('pSEO_included_in_sitemapxml'):
+        if 'pSEO_included_in_sitemapxml' in annotations:
             return annotations.get('pSEO_included_in_sitemapxml', None)
     except:
         return None
@@ -94,7 +94,7 @@ def event_ObjectUpdated(object, event):
         An object has changed its state --> The lastmod property of sitemap.xml is changed
     """
     for desc in getattr(event,'descriptions',[]):
-        if type(desc) == type({}) and desc.has_key('included_in_sitemapxml'):
+        if type(desc) == type({}) and 'included_in_sitemapxml' in desc:
             included_in_sitemapxml = desc.get('included_in_sitemapxml',True)
             if not included_in_sitemapxml:
                 # In this case, the user cheks not included in sitemapxml in SEO tab

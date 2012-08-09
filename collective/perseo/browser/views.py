@@ -76,7 +76,7 @@ class PerSEOContext(BrowserView):
     
     def has_prop(self,property):
         try:
-            return IAnnotations(self.context).has_key(property)
+            return property in IAnnotations(self.context)
         except:
             return None
     
@@ -159,7 +159,7 @@ class PerSEOContext(BrowserView):
         try:
             annotations = IAnnotations(context)
 
-            if annotations.has_key(property_name):
+            if property_name in annotations:
                 return annotations.get(property_name, default)
         except:
             return default
@@ -665,7 +665,7 @@ class PerSEOTabContext( BrowserView ):
         state = False
         context = aq_inner(self.context)
         annotations = IAnnotations(context)
-        if annotations.has_key(property):
+        if property in annotations:
             current_value = annotations.get(property, None)
             if value != current_value:
                 state = True
@@ -715,14 +715,14 @@ class PerSEOTabContext( BrowserView ):
                         else:
                             perseo_value = True
                 if perseo_key=="priority_sitemapxml":
-                    if perseo_value == '' and not annotations.has_key(PROP_PREFIX+perseo_key):
+                    if perseo_value == '' and not PROP_PREFIX+perseo_key in annotations:
                         continue
                     perseo_value = perseo_value and float(perseo_value) or perseo_value
                 if self.setProperty(PROP_PREFIX+perseo_key, perseo_value):
                     state = True
                     if perseo_key == 'included_in_sitemapxml' or perseo_key == 'priority_sitemapxml':
                         description[perseo_key] = perseo_value
-            elif annotations.has_key(PROP_PREFIX+perseo_key):
+            elif PROP_PREFIX+perseo_key in annotations:
                 delete_list.append(PROP_PREFIX+perseo_key)
         if delete_list:
             state = True
