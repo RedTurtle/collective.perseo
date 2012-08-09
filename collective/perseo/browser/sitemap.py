@@ -11,7 +11,7 @@ class PerSEOSiteMapView (SiteMapView):
 
     http://www.sitemaps.org/protocol.php
     """
-    index = ViewPageTemplateFile('sitemap.xml')
+    index = ViewPageTemplateFile('templates/sitemap.xml.pt')
 
     def __init__(self, context, request):
         super(PerSEOSiteMapView, self).__init__(context, request)

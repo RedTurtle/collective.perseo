@@ -1,0 +1,49 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.perseo">
+
+    
+    <browser:viewlet
+        name="collective.perseo.metatags"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.PerSEOMetaTagsViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+        
+    <!-- Render the browser title -->
+    <browser:viewlet
+        name="plone.htmlhead.title"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.PerSEOTitleTagViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+        
+    <browser:viewlet
+        name="collective.perseo.canonicalurl"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.PerSEOCanonicalUrlViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+        
+    <browser:viewlet
+        name="collective.perseo.trackingcodeheader"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.TrackingCodeHeaderViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+        
+    <browser:viewlet
+        name="collective.perseo.trackingcodefooter"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.TrackingCodeFooterViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
+
+</configure>

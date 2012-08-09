@@ -9,7 +9,7 @@
         description="Customizing listMetaTags method"
         class="Products.CMFPlone.PloneTool.PloneTool"
         original="listMetaTags"
-        replacement=".listMetaTags.perSEOListMetaTags"
+        replacement=".patches.perSEOListMetaTags"
         docstringWarning="true"
         />
 

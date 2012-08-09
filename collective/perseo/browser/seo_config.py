@@ -17,7 +17,8 @@ from Products.CMFPlone.utils import getToolByName, safe_unicode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
-from collective.perseo.browser.types import BAD_TYPES
+from collective.perseo.vocabulary import BAD_TYPES
+
 
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
@@ -53,6 +54,7 @@ class ISEOConfigWMToolsSchema(Interface):
                 default=u"Tracking Code Footer"),
         required=False)
 
+
 class ISEOConfigTitleSchema_homepage(Interface):
     """Schema for Title homepage"""
     
@@ -72,6 +74,7 @@ class ISEOConfigTitleSchema_homepage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_singlepage(Interface):
     """Schema for Title singlepage"""
@@ -93,6 +96,7 @@ class ISEOConfigTitleSchema_singlepage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_searchpage(Interface):
     """Schema for Title searchpage"""
         
@@ -112,6 +116,7 @@ class ISEOConfigTitleSchema_searchpage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_notfoundpage(Interface):
     """Schema for Title notfoundpage"""
@@ -133,6 +138,7 @@ class ISEOConfigTitleSchema_notfoundpage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_authorpage(Interface):
     """Schema for Title authorpage"""
         
@@ -152,6 +158,7 @@ class ISEOConfigTitleSchema_authorpage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_sitemappage(Interface):
     """Schema for Title sitemappage"""
@@ -173,6 +180,7 @@ class ISEOConfigTitleSchema_sitemappage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_accessibilitypage(Interface):
     """Schema for Title accessibilitypages"""
     
@@ -192,6 +200,7 @@ class ISEOConfigTitleSchema_accessibilitypage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_contactpage(Interface):
     """Schema for Title contactpage"""
@@ -213,6 +222,7 @@ class ISEOConfigTitleSchema_contactpage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_event(Interface):
     """Schema for Title event"""
     
@@ -232,6 +242,7 @@ class ISEOConfigTitleSchema_event(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_file(Interface):
     """Schema for Title file"""
@@ -253,6 +264,7 @@ class ISEOConfigTitleSchema_file(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_folder(Interface):
     """Schema for Title folder"""
    
@@ -272,6 +284,7 @@ class ISEOConfigTitleSchema_folder(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_image(Interface):
     """Schema for Title image"""
@@ -293,6 +306,7 @@ class ISEOConfigTitleSchema_image(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_link(Interface):
     """Schema for Title link"""
        
@@ -312,6 +326,7 @@ class ISEOConfigTitleSchema_link(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_newsItem(Interface):
     """Schema for Title newsItem"""
@@ -333,6 +348,7 @@ class ISEOConfigTitleSchema_newsItem(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_topic(Interface):
     """Schema for Title topic"""
   
@@ -353,6 +369,7 @@ class ISEOConfigTitleSchema_topic(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
     
+
 class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
                             ISEOConfigTitleSchema_singlepage,
                             ISEOConfigTitleSchema_searchpage,

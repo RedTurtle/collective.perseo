@@ -11,12 +11,12 @@ from collective.perseo.browser.seo_config import ISEOConfigSchema
 from collective.perseo.util import SortedDict
 
 # mapping {meta_name:accessor} of all meta tags
-METATAGS = {"google-site-verification":"googleWebmasterTools",
-            "y_key":"yahooSiteExplorer",
-            "msvalidate.01":"bingWebmasterTools",
-            "description":"perseo_description",
-            "keywords":"perseo_keywords",
-            "robots":"perseo_robots"}
+METATAGS = {"google-site-verification": "googleWebmasterTools",
+            "y_key": "yahooSiteExplorer",
+            "msvalidate.01": "bingWebmasterTools",
+            "description": "perseo_description",
+            "keywords": "perseo_keywords",
+            "robots": "perseo_robots"}
 
 METATAGS_ORDER = ["google-site-verification",
                   "y_key",
@@ -25,25 +25,25 @@ METATAGS_ORDER = ["google-site-verification",
                   "keywords",
                   "robots"]
 
-class PerSEOMetaTagsViewlet( ViewletBase ):
+
+class PerSEOMetaTagsViewlet(ViewletBase):
     """Inserts meta tags in html head of pages"""
 
     def render(self):
         TEMPLATE = '<meta name="%s" content="%s"/>'
         enc = getSiteEncoding(self.context)
-        sfuncd = lambda x, enc=enc:escape(safe_unicode(x, enc))
-        
+        sfuncd = lambda x, enc=enc: escape(safe_unicode(x, enc))
         meta_tags = []
-        
-        for k,v in self.listMetaTags().items():
+
+        for k, v in self.listMetaTags().items():
             if isinstance(v, (list, tuple)):
                 for x in v:
-                    meta_tags.append((k,x))
+                    meta_tags.append((k, x))
             else:
-                meta_tags.append((k,v))
-    
-        return u'\n'.join([TEMPLATE % tuple(map(sfuncd, (k,v))) \
-                           for k,v in meta_tags])
+                meta_tags.append((k, v))
+
+        return u'\n'.join([TEMPLATE % tuple(map(sfuncd, (k, v))) \
+                           for k, v in meta_tags])
 
     def listMetaTags(self):
         """Calculate list metatags"""
@@ -55,7 +55,7 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
 
         for key in METATAGS_ORDER:
             accessor = METATAGS[key]
-            if seo_context._perseo_metatags.has_key(accessor):
+            if accessor in seo_context._perseo_metatags:
                 value = seo_context._perseo_metatags.get(accessor, None)
             else:
                 method = getattr(seo_context, accessor, None)
@@ -70,19 +70,20 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
                     value = method()
                 except AttributeError:
                     value = None
-                    
+
             if not value:
                 # No data
                 continue
-            
-            if isinstance(value, (list, tuple)): #and not key == "robots":
+
+            if isinstance(value, (list, tuple)):  # and not key == "robots":
                 # convert a list to a string
                 value = ', '.join(value)
 
             result[key] = value
 
         return result
-            
+
+
 class PerSEOTitleTagViewlet(ViewletBase):
     """ Viewlet for custom title tag rendering.
     """
@@ -112,43 +113,50 @@ class PerSEOTitleTagViewlet(ViewletBase):
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
                 self.perseo_context["perseo_title"]))
             return perseo_title
-        
+
+
 class PerSEOCanonicalUrlViewlet(ViewletBase):
     """ Simple viewlet for canonical url link rendering.
     """
     def update(self):
         self.perseo_context = getMultiAdapter((self.context, self.request),
                                              name=u'perseo-context')
-    def render( self ):
+
+    def render(self):
         if self.perseo_context['perseo_canonical']:
             return """<link rel="canonical" href="%s" />""" % self.perseo_context['perseo_canonical']
         return ""
 
-class TrackingCodeViewlet( ViewletBase ):
+
+class TrackingCodeViewlet(ViewletBase):
     """ Simple viewlet for script rendering.
     """
     def update(self):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
-        
-    def getTrackingCode( self ):
+
+    def getTrackingCode(self):
         return ''
 
-    def render( self ):
+    def render(self):
         return safe_unicode("""%s""" % self.getTrackingCode())
 
-class TrackingCodeHeaderViewlet( TrackingCodeViewlet ):
+
+class TrackingCodeHeaderViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the <head>.
-    """ 
-    def getTrackingCode( self ):
+    """
+
+    def getTrackingCode(self):
         if self.gseo:
             return self.gseo.tracking_code_header
         return ''
-    
-class TrackingCodeFooterViewlet( TrackingCodeViewlet ):
+
+
+class TrackingCodeFooterViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the portal footer.
     """
-    def getTrackingCode( self ):
+
+    def getTrackingCode(self):
         if self.gseo:
             return self.gseo.tracking_code_footer
         return ''
