@@ -6,6 +6,7 @@
     i18n_domain="collective.perseo">
 
   <five:registerPackage package="." initialize=".initialize" />
+  <include package="collective.js.jqueryui" />
   
   <i18n:registerTranslations directory="locales" />
   

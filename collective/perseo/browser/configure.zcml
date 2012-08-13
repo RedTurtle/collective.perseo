@@ -124,7 +124,7 @@
     <browser:page
         name="perseo-tab-context"
         for="*"
-        class=".views.PerSEOTabContext"
+        class=".seotab.PerSEOTabContext"
         layer=".interfaces.IPerSEOLayer"
         permission="cmf.ModifyPortalContent"
         />
