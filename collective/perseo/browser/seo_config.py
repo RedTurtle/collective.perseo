@@ -1,9 +1,6 @@
-import re
-
 from zope.interface import implements
 from zope.component import adapts
 from zope.app.component.hooks import getSite
-from zope.app.form.browser import TextAreaWidget, TextWidget  # ,CheckBoxWidget
 
 from plone.fieldsets.fieldsets import FormFieldsets
 from plone.app.controlpanel.form import ControlPanelForm
@@ -16,7 +13,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.vocabulary import BAD_TYPES
-from collective.perseo.browser.seo_schema import ISEOConfigSchema, wmtoolsset, titleset, indexingset, sitemapxmlset, rssset
+from collective.perseo.browser.seo_schema import ISEOConfigSchema, wmtoolsset,\
+    titleset, indexingset, sitemapxmlset, rssset, CodeTextAreaWidget,\
+    TitleTextAreaWidget, DescTextAreaWidget, Text2ListWidget, TextWidget
 
 
 class SEOConfigAdapter(SchemaAdapterBase):
@@ -142,35 +141,6 @@ class SEOConfigAdapter(SchemaAdapterBase):
     ping_google = ProxyFieldProperty(ISEOConfigSchema['ping_google'])
     ping_bing = ProxyFieldProperty(ISEOConfigSchema['ping_bing'])
     ping_ask = ProxyFieldProperty(ISEOConfigSchema['ping_ask'])
-
-
-class CodeTextAreaWidget(TextAreaWidget):
-    height = 6
-
-
-class TitleTextAreaWidget(TextWidget):
-    displayWidth = 50
-
-
-class DescTextAreaWidget(TextAreaWidget):
-    height = 3
-
-
-class Text2ListWidget(TextAreaWidget):
-    height = 5
-    splitter = re.compile(u'\\r?\\n', re.S | re.U)
-
-    def _toFieldValue(self, input):
-        if input == self._missing:
-            return self.context._type()
-        else:
-            return self.context._type(filter(None, self.splitter.split(input)))
-
-    def _toFormValue(self, value):
-        if value == self.context.missing_value or value == self.context._type():
-            return self._missing
-        else:
-            return u'\r\n'.join(list(value))
 
 
 class PerSEOConfig(ControlPanelForm):
