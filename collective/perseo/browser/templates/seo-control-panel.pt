@@ -31,7 +31,7 @@
 				#fieldset-seotitle #folder_keywords textarea,
 				#fieldset-seotitle #image_keywords textarea,
 				#fieldset-seotitle #link_keywords textarea,
-				#fieldset-seotitle #newsItem_keywords textarea,
+				#fieldset-seotitle #newsitem_keywords textarea,
 				#fieldset-seotitle #topic_keywords textarea {
 					width: 20%;
 				}

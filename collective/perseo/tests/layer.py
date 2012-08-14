@@ -48,10 +48,14 @@ class PerSeoLayer(PloneSandboxLayer):
 
         setRoles(portal, TEST_USER_ID, ['Manager'])
 
-        portal.invokeFactory('Document', 'test-page')
+        portal.invokeFactory('Document', 'test-document')
         portal.invokeFactory('Folder', 'test-folder')
         portal.invokeFactory('Collection', 'test-collection')
         portal.invokeFactory('News Item', 'test-newsitem')
+        portal.invokeFactory('Event', 'test-event')
+        portal.invokeFactory('Image', 'test-image')
+        portal.invokeFactory('File', 'test-file')
+        portal.invokeFactory('Link', 'test-link')
 
         # don't require secure cookies in tests
         portal.acl_users.session.secure = False

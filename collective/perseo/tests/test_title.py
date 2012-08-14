@@ -1,4 +1,5 @@
 from collective.perseo.tests.base import PerSeoTestCase
+from zope.component import queryAdapter
 
 
 class TestTitle(PerSeoTestCase):
@@ -9,36 +10,39 @@ class TestTitle(PerSeoTestCase):
         #  without homepage set
         self.assertEqual(portal.unrestrictedTraverse('@@perseo-context').perseo_title(), u'Plone site')
 
-    def test_document_title(self):
-        portal = self.layer['portal']
-        self.assertEqual(portal['test-page'].unrestrictedTraverse('@@perseo-context').perseo_title(), u'test-page')
 
-    def test_document_custom_perseo_title(self):
+class TestContentTypeTitles(PerSeoTestCase):
+
+    TYPES_TO_TEST = ('event', 'file', 'folder', 'image', 'link', 'newsitem',)# 'Document', 'Topic')
+
+    def test_contenttype_without_title(self):
         portal = self.layer['portal']
-        #  if we set perseo title in test-page it should be different:
-        portal['test-page'].unrestrictedTraverse('@@perseo-tab-context').setProperty('pSEO_title', u'My custom page title')
-        self.assertEqual(portal['test-page'].unrestrictedTraverse('@@perseo-context').perseo_title(), u'My custom page title')
+        for t in self.TYPES_TO_TEST:
+            self.assertEqual(portal['test-%s' % t].unrestrictedTraverse('@@perseo-context').perseo_title(), u'test-%s' % t)
+
+    def test_contenttype_with_custom_perseo_title(self):
+        portal = self.layer['portal']
+        #  if we set perseo title in the context it should be different:
+        for t in self.TYPES_TO_TEST:
+            portal['test-%s' % t].unrestrictedTraverse('@@perseo-tab-context').setProperty('pSEO_title', u'My custom %s title' % t)
+            self.assertEqual(portal['test-%s' % t].unrestrictedTraverse('@@perseo-context').perseo_title(), u'My custom %s title' % t)
 
         #  but we should still have original title
-        self.assertEqual(portal['test-page'].title_or_id(), 'test-page')
+        for t in self.TYPES_TO_TEST:
+            self.assertEqual(portal['test-%s' % t].title_or_id(), 'test-%s' % t)
 
-    def test_folder_title(self):
+    def test_contenttype_title_after_change(self):
         portal = self.layer['portal']
-        self.assertEqual(portal['test-folder'].unrestrictedTraverse('@@perseo-context').perseo_title(), u'test-folder')
+        for t in self.TYPES_TO_TEST:
+            portal['test-%s' % t].setTitle(u'This is a new %s title' % t)
+            self.assertEqual(portal['test-%s' % t].unrestrictedTraverse('@@perseo-context').perseo_title(), u'This is a new %s title' % t)
 
-    def test_folder_title_after_change(self):
+    def test_contenttype_perseo_global_title(self):
+        from collective.perseo.browser.seo_config import ISEOConfigSchema
         portal = self.layer['portal']
-        portal['test-folder'].setTitle(u'This is a new folder title')
-        self.assertEqual(portal['test-folder'].unrestrictedTraverse('@@perseo-context').perseo_title(), u'This is a new folder title')
+        gseo = queryAdapter(portal, ISEOConfigSchema)
 
-    def test_collection_title(self):
-        portal = self.layer['portal']
-        self.assertEqual(portal['test-collection'].unrestrictedTraverse('@@perseo-context').perseo_title(), u'test-collection')
-
-    def test_newsitem_title(self):
-        portal = self.layer['portal']
-        self.assertEqual(portal['test-newsitem'].unrestrictedTraverse('@@perseo-context').perseo_title(), u'test-newsitem')
-
-
-
+        for t in self.TYPES_TO_TEST:
+            setattr(gseo, '%s_title' % t, u'My custom %s title' % t)
+            self.assertEqual(portal['test-%s' % t].unrestrictedTraverse('@@perseo-context').perseo_title(), u'My custom %s title' % t)
 

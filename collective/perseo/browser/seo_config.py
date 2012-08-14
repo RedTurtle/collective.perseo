@@ -328,21 +328,21 @@ class ISEOConfigTitleSchema_link(Interface):
         required=False)
 
 
-class ISEOConfigTitleSchema_newsItem(Interface):
-    """Schema for Title newsItem"""
+class ISEOConfigTitleSchema_newsitem(Interface):
+    """Schema for Title newsitem"""
        
-    newsItem_title = TextLine(
-        title=_("label_newsItem_title",
+    newsitem_title = TextLine(
+        title=_("label_newsitem_title",
                 default=u"NewsItem Title"),
         required=False)
     
-    newsItem_description = Text(
-        title=_("label_newsItem_description",
+    newsitem_description = Text(
+        title=_("label_newsitem_description",
                 default=u"NewsItem Description"),
         required=False)
     
-    newsItem_keywords = List(
-        title=_("label_newsItem_keywords",
+    newsitem_keywords = List(
+        title=_("label_newsitem_keywords",
                 default=u"NewsItem Keywords"),
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
@@ -383,7 +383,7 @@ class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
                             ISEOConfigTitleSchema_folder,
                             ISEOConfigTitleSchema_image,
                             ISEOConfigTitleSchema_link,
-                            ISEOConfigTitleSchema_newsItem,
+                            ISEOConfigTitleSchema_newsitem,
                             ISEOConfigTitleSchema_topic):
     """Schema for Title"""
     
@@ -444,8 +444,8 @@ class ISEOConfigIndexingSchema(Interface):
         default=False,
         required=False)
     
-    indexing_newsItem = Bool(
-        title=_("label_indexing_newsItem",
+    indexing_newsitem = Bool(
+        title=_("label_indexing_newsitem",
                 default=u"NewsItem"),
         default=False,
         required=False)
@@ -601,9 +601,9 @@ class SEOConfigAdapter(SchemaAdapterBase):
     link_title = ProxyFieldProperty(ISEOConfigSchema['link_title'])
     link_description = ProxyFieldProperty(ISEOConfigSchema['link_description'])
     link_keywords = ProxyFieldProperty(ISEOConfigSchema['link_keywords'])
-    newsItem_title = ProxyFieldProperty(ISEOConfigSchema['newsItem_title'])
-    newsItem_description = ProxyFieldProperty(ISEOConfigSchema['newsItem_description'])
-    newsItem_keywords = ProxyFieldProperty(ISEOConfigSchema['newsItem_keywords'])
+    newsitem_title = ProxyFieldProperty(ISEOConfigSchema['newsitem_title'])
+    newsitem_description = ProxyFieldProperty(ISEOConfigSchema['newsitem_description'])
+    newsitem_keywords = ProxyFieldProperty(ISEOConfigSchema['newsitem_keywords'])
     topic_title = ProxyFieldProperty(ISEOConfigSchema['topic_title'])
     topic_description = ProxyFieldProperty(ISEOConfigSchema['topic_description'])
     topic_keywords = ProxyFieldProperty(ISEOConfigSchema['topic_keywords'])
@@ -620,7 +620,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
     indexing_folder = ProxyFieldProperty(ISEOConfigSchema['indexing_folder'])
     indexing_image = ProxyFieldProperty(ISEOConfigSchema['indexing_image'])
     indexing_link = ProxyFieldProperty(ISEOConfigSchema['indexing_link'])
-    indexing_newsItem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsItem'])
+    indexing_newsitem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsitem'])
     indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
     
     def getTrackingCodeHeader(self):
@@ -727,9 +727,9 @@ titleset_link = FormFieldsets(ISEOConfigTitleSchema_link)
 titleset_link.id = 'seotitle_link'
 titleset_link.label = _(u'label_seotitle_link', default=u'Link')
 
-titleset_newsItem = FormFieldsets(ISEOConfigTitleSchema_newsItem)
-titleset_newsItem.id = 'seotitle_newsItem'
-titleset_newsItem.label = _(u'label_seotitle_newsItem', default=u'News Item')
+titleset_newsitem = FormFieldsets(ISEOConfigTitleSchema_newsitem)
+titleset_newsitem.id = 'seotitle_newsitem'
+titleset_newsitem.label = _(u'label_seotitle_newsitem', default=u'News Item')
 
 titleset_topic = FormFieldsets(ISEOConfigTitleSchema_topic)
 titleset_topic.id = 'seotitle_topic'
@@ -739,7 +739,7 @@ titleset = FormFieldsets(titleset_homepage, titleset_singlepage, titleset_search
                          titleset_notfoundpage, titleset_authorpage, titleset_sitemappage,
                          titleset_accessibilitypage, titleset_contactpage, titleset_event,
                          titleset_file, titleset_folder, titleset_image, titleset_link,
-                         titleset_newsItem, titleset_topic)
+                         titleset_newsitem, titleset_topic)
 titleset.id = 'seotitle'
 titleset.label = _(u'label_seotitle', default=u'Title')
 
@@ -834,9 +834,9 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['link_title'].custom_widget = TitleTextAreaWidget
     form_fields['link_description'].custom_widget = DescTextAreaWidget
     form_fields['link_keywords'].custom_widget = Text2ListWidget
-    form_fields['newsItem_title'].custom_widget = TitleTextAreaWidget
-    form_fields['newsItem_description'].custom_widget = DescTextAreaWidget
-    form_fields['newsItem_keywords'].custom_widget = Text2ListWidget
+    form_fields['newsitem_title'].custom_widget = TitleTextAreaWidget
+    form_fields['newsitem_description'].custom_widget = DescTextAreaWidget
+    form_fields['newsitem_keywords'].custom_widget = Text2ListWidget
     form_fields['topic_title'].custom_widget = TitleTextAreaWidget
     form_fields['topic_description'].custom_widget = DescTextAreaWidget
     form_fields['topic_keywords'].custom_widget = Text2ListWidget
@@ -853,7 +853,7 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['indexing_folder'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_image'].custom_widget = CheckBoxWidget  
 #    form_fields['indexing_link'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_newsItem'].custom_widget = CheckBoxWidget
+#    form_fields['indexing_newsitem'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_topic'].custom_widget = CheckBoxWidget
     form_fields['tracking_code_header'].custom_widget = CodeTextAreaWidget
     form_fields['tracking_code_footer'].custom_widget = CodeTextAreaWidget

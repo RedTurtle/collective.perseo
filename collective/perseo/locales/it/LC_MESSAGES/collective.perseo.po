@@ -301,7 +301,7 @@ msgstr "Collegamento"
 
 #. Default: "NewsItem"
 #: ./browser/seo_config.py:431
-msgid "label_indexing_newsItem"
+msgid "label_indexing_newsitem"
 msgstr "Notizia"
 
 #. Default: "Topic"
@@ -341,17 +341,17 @@ msgstr "Pagine di login e registrazione"
 
 #. Default: "NewsItem Description"
 #: ./browser/seo_config.py:325
-msgid "label_newsItem_description"
+msgid "label_newsitem_description"
 msgstr "Descrizione Notizia"
 
 #. Default: "NewsItem Keywords"
 #: ./browser/seo_config.py:330
-msgid "label_newsItem_keywords"
+msgid "label_newsitem_keywords"
 msgstr "Keywords Notizia"
 
 #. Default: "NewsItem Title"
 #: ./browser/seo_config.py:320
-msgid "label_newsItem_title"
+msgid "label_newsitem_title"
 msgstr "Titolo Notizia"
 
 #. Default: "Not Found Page Description"
@@ -526,7 +526,7 @@ msgstr "Collegamento"
 
 #. Default: "News Item"
 #: ./browser/seo_config.py:715
-msgid "label_seotitle_newsItem"
+msgid "label_seotitle_newsitem"
 msgstr "Notizia"
 
 #. Default: "Not Found Page"
