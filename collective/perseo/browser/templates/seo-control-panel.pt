@@ -19,7 +19,7 @@
         
         	<style type="text/css">
 				#fieldset-seotitle #homepage_keywords textarea,
-				#fieldset-seotitle #singlepage_keywords textarea,
+				#fieldset-seotitle #document_keywords textarea,
 				#fieldset-seotitle #searchpage_keywords textarea,
 				#fieldset-seotitle #notfoundpage_keywords textarea,
 				#fieldset-seotitle #authorpage_keywords textarea,

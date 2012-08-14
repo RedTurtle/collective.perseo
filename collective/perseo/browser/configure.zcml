@@ -30,74 +30,11 @@
         permission="zope2.View"
         allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
         />
-        
+
     <browser:page
         name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATDocument"
-        class=".views.PerSEOContextATDocument"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATEvent"
-        class=".views.PerSEOContextATEvent"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATFile"
-        class=".views.PerSEOContextATFile"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATFolder"
-        class=".views.PerSEOContextATFolder"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATImage"
-        class=".views.PerSEOContextATImage"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATLink"
-        class=".views.PerSEOContextATLink"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATNewsItem"
-        class=".views.PerSEOContextATNewsItem"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-        
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATTopic"
-        class=".views.PerSEOContextATTopic"
+        for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
+        class=".views.PerSEOContextPortalTypes"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"

@@ -52,19 +52,19 @@ class ISEOConfigTitleSchema_homepage(Interface):
         required=False)
 
 
-class ISEOConfigTitleSchema_singlepage(Interface):
-    """Schema for Title singlepage"""
+class ISEOConfigTitleSchema_document(Interface):
+    """Schema for Title document"""
 
-    singlepage_title = TextLine(
-        title=_("label_singlepage_title", default=u"Single Page Title"),
+    document_title = TextLine(
+        title=_("label_document_title", default=u"Single Page Title"),
         required=False)
 
-    singlepage_description = Text(
-        title=_("label_singlepage_description", default=u"Single Page Description"),
+    document_description = Text(
+        title=_("label_document_description", default=u"Single Page Description"),
         required=False)
 
-    singlepage_keywords = List(
-        title=_("label_singlepage_keywords", default=u"Single Page Keywords"),
+    document_keywords = List(
+        title=_("label_document_keywords", default=u"Single Page Keywords"),
         description=_("help_keywords", default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
@@ -291,7 +291,7 @@ class ISEOConfigTitleSchema_topic(Interface):
 
 
 class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
-                            ISEOConfigTitleSchema_singlepage,
+                            ISEOConfigTitleSchema_document,
                             ISEOConfigTitleSchema_searchpage,
                             ISEOConfigTitleSchema_notfoundpage,
                             ISEOConfigTitleSchema_authorpage,
@@ -452,9 +452,9 @@ titleset_homepage = FormFieldsets(ISEOConfigTitleSchema_homepage)
 titleset_homepage.id = 'seotitle_homepage'
 titleset_homepage.label = _(u'label_seotitle_homepage', default=u'Home Page')
 
-titleset_singlepage = FormFieldsets(ISEOConfigTitleSchema_singlepage)
-titleset_singlepage.id = 'seotitle_singlepage'
-titleset_singlepage.label = _(u'label_seotitle_singlepage', default=u'Single Pages')
+titleset_document = FormFieldsets(ISEOConfigTitleSchema_document)
+titleset_document.id = 'seotitle_document'
+titleset_document.label = _(u'label_seotitle_document', default=u'Single Pages')
 
 titleset_searchpage = FormFieldsets(ISEOConfigTitleSchema_searchpage)
 titleset_searchpage.id = 'seotitle_searchpage'
@@ -508,7 +508,7 @@ titleset_topic = FormFieldsets(ISEOConfigTitleSchema_topic)
 titleset_topic.id = 'seotitle_topic'
 titleset_topic.label = _(u'label_seotitle_topic', default=u'Topic')
 
-titleset = FormFieldsets(titleset_homepage, titleset_singlepage, titleset_searchpage,
+titleset = FormFieldsets(titleset_homepage, titleset_document, titleset_searchpage,
                          titleset_notfoundpage, titleset_authorpage, titleset_sitemappage,
                          titleset_accessibilitypage, titleset_contactpage, titleset_event,
                          titleset_file, titleset_folder, titleset_image, titleset_link,

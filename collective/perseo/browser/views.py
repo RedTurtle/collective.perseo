@@ -395,252 +395,101 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         return value
 
 
-class PerSEOContextATDocument(PerSEOContext):
-    """ Calculate html header meta tags on context. Context == ATDocument
+class PerSEOContextPortalTypes(PerSEOContext):
+    """ Calculate html header meta tags on context. Context == a portal type
     """
 
-    def perseo_robots_follow(self):
-        perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
-        if perseo_property:
-            return perseo_property
-        
-        gseo_field = self.get_gseo_field('indexing_page')
-        if gseo_field:
-            return 'nofollow'
-        
-        return 'follow'
-    
-    def perseo_robots_index(self):
-        perseo_property = self.getPerSEOProperty('pSEO_robots_index')
-        if perseo_property:
-            return perseo_property
-        
-        gseo_field = self.get_gseo_field('indexing_page')
-        if gseo_field:
-            return 'noindex'
-        
-        return 'index'
-    
-    def perseo_what_page( self ):
-        
+    @property
+    def portal_type(self):
+        return self.context.portal_type.lower().replace(' ','')
+
+    @property
+    def context_name(self):
         try:
             self.context.restrictedTraverse(self.request.PATH_INFO)
         except:
             return 'notfoundpage'
-            
+
         context = self.pcs.context
         parent = self.pcs.parent()
-        
+
         if parent == self.pps.portal() and parent.getDefaultPage() == context.id:
             # this document is the home page
             return 'homepage'
         else:
-            return 'singlepage'
-        
-    def perseo_title( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
-        if perseo_property:
-            return perseo_property
-        
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
-        if gseo_field:
-            return gseo_field
-        
-        return self.pcs.object_title()
-    
-    def has_perseo_title_config( self ):
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
-        if gseo_field:
-            return True
-        else:
-            return False
-    
-    def perseo_description( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
-        if perseo_property:
-            return perseo_property
-        
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % page))
-        if gseo_field:
-            return gseo_field
-        
-        context = aq_inner(self.context)
-        try:
-            value = context.Description()
-        except AttributeError:
-            value = None
-        return value
-    
-    def perseo_keywords( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
-        if perseo_property:
-            return perseo_property
-        
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
-        if gseo_field:
-            return gseo_field
-        
-        context = aq_inner(self.context)
-        try:
-            value = context.Subject()
-        except AttributeError:
-            value = ()
-        return value
+            return self.portal_type
 
-
-class PerSEOContextPortalTypes(PerSEOContext):
-    """ Calculate html header meta tags on context. Context == a portal type
-    """
-    portal_type = ''
-    
     def perseo_robots_follow(self):
         perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
         if perseo_property:
             return perseo_property
-        
+
         gseo_field = self.get_gseo_field('indexing_%s' % self.portal_type)
         if gseo_field:
             return 'nofollow'
-        
+
         return 'follow'
-    
+
     def perseo_robots_index(self):
         perseo_property = self.getPerSEOProperty('pSEO_robots_index')
         if perseo_property:
             return perseo_property
-        
+
         gseo_field = self.get_gseo_field('indexing_%s' % self.portal_type)
         if gseo_field:
             return 'noindex'
-        
+
         return 'index'
-        
-    def perseo_title( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+
+    def perseo_title(self):
+        perseo_property = self.getPerSEOProperty('pSEO_title')
         if perseo_property:
             return perseo_property
-        
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
-            if gseo_field:
-                return gseo_field
-        
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.context_name))
         if gseo_field:
             return gseo_field
-        
+
         return self.pcs.object_title()
-    
-    def has_perseo_title_config( self ):
-        
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
-            if gseo_field:
-                return True
-            else:
-                return False
-        
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+
+    def has_perseo_title_config(self):
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.context_name))
         if gseo_field:
             return True
         else:
             return False
-        
-    def perseo_description( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+
+    def perseo_description(self):
+        perseo_property = self.getPerSEOProperty('pSEO_description')
         if perseo_property:
             return perseo_property
-        
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_description'))
-            if gseo_field:
-                return gseo_field
-        
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
+
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % self.context_name))
         if gseo_field:
             return gseo_field
-        
+
         context = aq_inner(self.context)
         try:
             value = context.Description()
         except AttributeError:
             value = None
         return value
-    
+
     def perseo_keywords( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+        perseo_property = self.getPerSEOProperty('pSEO_keywords')
         if perseo_property:
             return perseo_property
-        
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_keywords'))
-            if gseo_field:
-                return gseo_field
-        
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))
+
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % self.context_name))
         if gseo_field:
             return gseo_field
-        
+
         context = aq_inner(self.context)
         try:
             value = context.Subject()
         except AttributeError:
             value = ()
         return value
-
-
-class PerSEOContextATEvent(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATEvent
-    """
-    portal_type = 'event'
-
-
-class PerSEOContextATFile(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATFile
-    """
-    portal_type = 'file'
-
-
-class PerSEOContextATFolder(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATFolder
-    """
-    portal_type = 'folder'
-
-
-class PerSEOContextATImage(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATImage
-    """
-    portal_type = 'image'
-
-
-class PerSEOContextATLink(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATLink
-    """
-    portal_type = 'link'
-
-
-class PerSEOContextATNewsItem(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATNewsItem
-    """
-    portal_type = 'newsitem'
-
-
-class PerSEOContextATTopic(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATTopic
-    """
-    portal_type = 'topic'
 
 
 class PerseoTabAvailable(BrowserView):

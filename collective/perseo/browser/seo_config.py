@@ -38,9 +38,9 @@ class SEOConfigAdapter(SchemaAdapterBase):
     homepage_title = ProxyFieldProperty(ISEOConfigSchema['homepage_title'])
     homepage_description = ProxyFieldProperty(ISEOConfigSchema['homepage_description'])
     homepage_keywords = ProxyFieldProperty(ISEOConfigSchema['homepage_keywords'])
-    singlepage_title = ProxyFieldProperty(ISEOConfigSchema['singlepage_title'])
-    singlepage_description = ProxyFieldProperty(ISEOConfigSchema['singlepage_description'])
-    singlepage_keywords = ProxyFieldProperty(ISEOConfigSchema['singlepage_keywords'])
+    document_title = ProxyFieldProperty(ISEOConfigSchema['document_title'])
+    document_description = ProxyFieldProperty(ISEOConfigSchema['document_description'])
+    document_keywords = ProxyFieldProperty(ISEOConfigSchema['document_keywords'])
     searchpage_title = ProxyFieldProperty(ISEOConfigSchema['searchpage_title'])
     searchpage_description = ProxyFieldProperty(ISEOConfigSchema['searchpage_description'])
     searchpage_keywords = ProxyFieldProperty(ISEOConfigSchema['searchpage_keywords'])
@@ -154,9 +154,9 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['homepage_title'].custom_widget = TitleTextAreaWidget
     form_fields['homepage_description'].custom_widget = DescTextAreaWidget
     form_fields['homepage_keywords'].custom_widget = Text2ListWidget
-    form_fields['singlepage_title'].custom_widget = TitleTextAreaWidget
-    form_fields['singlepage_description'].custom_widget = DescTextAreaWidget
-    form_fields['singlepage_keywords'].custom_widget = Text2ListWidget
+    form_fields['document_title'].custom_widget = TitleTextAreaWidget
+    form_fields['document_description'].custom_widget = DescTextAreaWidget
+    form_fields['document_keywords'].custom_widget = Text2ListWidget
     form_fields['searchpage_title'].custom_widget = TitleTextAreaWidget
     form_fields['searchpage_description'].custom_widget = DescTextAreaWidget
     form_fields['searchpage_keywords'].custom_widget = Text2ListWidget
