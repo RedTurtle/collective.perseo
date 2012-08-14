@@ -13,6 +13,9 @@ BAD_TYPES = ("ATBooleanCriterion", "ATDateCriteria", "ATDateRangeCriterion",
              "Discussion Item", "TempFolder", "ATCurrentAuthorCriterion",
              "ATPathCriterion", "ATRelativePathCriterion", )
 
+TYPES_TO_GENERATE = ('Event', 'File', 'Folder', 'Image', 'Link', 'News Item',)# 'Document', 'Topic')
+
+
 class ReallyUserFriendlyTypesVocabulary(object):
     """Vocabulary factory for really user friendly portal types.
     """

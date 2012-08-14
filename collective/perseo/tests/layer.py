@@ -56,6 +56,8 @@ class PerSeoLayer(PloneSandboxLayer):
         portal.invokeFactory('Image', 'test-image')
         portal.invokeFactory('File', 'test-file')
         portal.invokeFactory('Link', 'test-link')
+        portal.portal_types['Topic'].global_allow = True
+        portal.invokeFactory('Topic', 'test-topic')
 
         # don't require secure cookies in tests
         portal.acl_users.session.secure = False

@@ -13,7 +13,7 @@ class TestTitle(PerSeoTestCase):
 
 class TestContentTypeTitles(PerSeoTestCase):
 
-    TYPES_TO_TEST = ('event', 'file', 'folder', 'image', 'link', 'newsitem',)# 'Document', 'Topic')
+    TYPES_TO_TEST = ('event', 'file', 'folder', 'image', 'link', 'newsitem', 'topic')# 'Document')
 
     def test_contenttype_without_title(self):
         portal = self.layer['portal']
