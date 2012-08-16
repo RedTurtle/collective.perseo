@@ -180,18 +180,66 @@ class TwitterCardsViewlet(ViewletBase):
         self.twitter_image = self.perseo_context.perseo_image()
 
     def render(self):
-        return safe_unicode("""<meta name="twitter:card" content="%(card)s">
-        <meta name="twitter:site" content="@%(site)s">
-        <meta name="twitter:creator" content="@%(creator)s">
-        <meta name="twitter:url" content="%(url)s">
-        <meta name="twitter:title" content="%(title)s">
-        <meta name="twitter:description" content="%(description)s">
-        <meta name="twitter:image" content="%(image)s">
-        """ % {'card': self.twitter_card,
-               'site': self.twitter_site,
-               'creator': self.twitter_creator,
-               'url': self.twitter_url,
-               'title': self.twitter_title,
-               'description': self.twitter_description,
-               'image': self.twitter_image})
+        if not self.global_perseo.twitter_enabled:
+            return ''
+        results = []
+        results.append('<meta name="twitter:card" content="%s">' % self.twitter_card)
+        results.append('<meta name="twitter:site" content="@%s">' % self.twitter_site)
+        if self.twitter_creator:
+            results.append('<meta name="twitter:creator" content="@%s">' %  self.twitter_creator)
+        results.append('<meta name="twitter:url" content="%s">' % self.twitter_url)
+        results.append('<meta name="twitter:title" content="%s">' % self.twitter_title)
+        results.append('<meta name="twitter:description" content="%s">' % self.twitter_description)
+        results.append('<meta name="twitter:image" content="%s">' % self.twitter_image)
+        return safe_unicode('\n'.join(results))
+
+
+class FacebookViewlet(ViewletBase):
+    """ Simple viewlet for facebook/opengraph meta tags.
+    """
+    def update(self):
+        self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
+        self.global_perseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        self.perseo_context = getMultiAdapter((self.context, self.request), name=u'perseo-context')
+        self.context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        self.facebook_url = self.perseo_context.perseo_canonical() or self.context.absolute_url()
+        self.facebook_type = 'website'  # BBB: to be finished
+        self.facebook_title = self.perseo_context.perseo_title() or self.context_state.object_title()
+        self.facebook_description = self.perseo_context.perseo_description()
+        self.facebook_image = self.perseo_context.perseo_image()
+        self.facebook_site_name = safe_unicode(self.pps.portal_title())
+        self.facebook_app_id = self.global_perseo.facebook_app_id
+        self.facebook_script = self.global_perseo.facebook_script
+
+    def render(self):
+        if not self.global_perseo.facebook_enabled:
+            return ''
+        results = []
+        results.append('<meta property="og:title" content="%s" />' % self.facebook_title)
+        results.append('<meta property="og:type" content="%s" />' % self.facebook_type)
+        results.append('<meta property="og:url" content="%s" />' % self.facebook_url)
+        results.append('<meta property="og:image" content="%s" />' % self.facebook_image)
+        results.append('<meta property="og:description" content="%s" />' % self.facebook_description)
+        results.append('<meta property="og:site_name" content="%s" />' % self.facebook_site_name)
+        if self.facebook_app_id:
+            results.append('<meta property="fb:app_id" content="%s" />' % self.facebook_app_id)
+        results.append(self.facebook_script)
+        return safe_unicode('\n'.join(results))
+
+
+class GooglePlusViewlet(ViewletBase):
+    """ Simple viewlet for google+ meta tags.
+    """
+    def update(self):
+        self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
+        self.global_perseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        self.googleplus_script = self.global_perseo.googleplus_script
+
+    def render(self):
+        if not self.global_perseo.googleplus_enabled:
+            return ''
+        results = []
+        results.append(self.googleplus_script)
+        return safe_unicode('\n'.join(results))
+
 

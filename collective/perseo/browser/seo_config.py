@@ -96,7 +96,13 @@ class SEOConfigAdapter(SchemaAdapterBase):
     indexing_newsitem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsitem'])
     indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
 
+    twitter_enabled = ProxyFieldProperty(ISEOConfigSchema['twitter_enabled'])
+    googleplus_enabled = ProxyFieldProperty(ISEOConfigSchema['googleplus_enabled'])
+    facebook_enabled = ProxyFieldProperty(ISEOConfigSchema['facebook_enabled'])
     twitter_site_id = ProxyFieldProperty(ISEOConfigSchema['twitter_site_id'])
+    facebook_app_id = ProxyFieldProperty(ISEOConfigSchema['facebook_app_id'])
+    facebook_script = ProxyFieldProperty(ISEOConfigSchema['facebook_script'])
+    googleplus_script = ProxyFieldProperty(ISEOConfigSchema['googleplus_script'])
 
     def getTrackingCodeHeader(self):
         tracking_code_header = getattr(self.context, 'tracking_code_header', u'')
@@ -151,6 +157,9 @@ class PerSEOConfig(ControlPanelForm):
 
     form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset, socialset)
     form_fields['twitter_site_id'].custom_widget = TextWidget
+    form_fields['facebook_app_id'].custom_widget = TextWidget
+    form_fields['facebook_script'].custom_widget = CodeTextAreaWidget
+    form_fields['googleplus_script'].custom_widget = CodeTextAreaWidget
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
     form_fields['bingWebmasterTools'].custom_widget = TextWidget

@@ -54,4 +54,22 @@
         permission="zope2.View"
         />
 
+    <!-- Facebook -->
+    <browser:viewlet
+        name="collective.perseo.facebook"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.FacebookViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
+    <!-- Google+ -->
+    <browser:viewlet
+        name="collective.perseo.google_plus"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.GooglePlusViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
 </configure>

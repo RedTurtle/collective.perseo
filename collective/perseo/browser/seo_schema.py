@@ -436,8 +436,37 @@ class ISEOConfigRSSSchema(Interface):
 class ISEOSocialSchema(Interface):
     """Schema for social integrations"""
 
+    twitter_enabled = Bool(
+        title=_("label_twitter_enabled", default=u"Enable Twitter integration"),
+        default=False,
+        required=False)
+
+    facebook_enabled = Bool(
+        title=_("label_facebook_enabled", default=u"Enable Facebook integration"),
+        default=False,
+        required=False)
+
+    googleplus_enabled = Bool(
+        title=_("label_googleplus_enabled", default=u"Enable Google+ integration"),
+        default=False,
+        required=False)
+
     twitter_site_id = Text(
-        title=_("label_twitter_site_id", default=u"This site twitter ID"),
+        title=_("label_twitter_site_id", default=u"Website's twitter account"),
+        required=False)
+
+    facebook_app_id = Text(
+        title=_("label_facebook_app_id", default=u"Website's facebook app id"),
+        required=False)
+
+    facebook_script = Text(
+        title=_("label_facebook_script", default=u"Facebook javascript"),
+        default= u'<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>',
+        required=False)
+
+    googleplus_script = Text(
+        title=_("label_googleplus_script", default=u"Google+ javascript"),
+        default= u'<script type="text/javascript" src="http://apis.google.com/js/plusone.js">{"parsetags": "explicit"}</script>',
         required=False)
 
 
@@ -546,6 +575,7 @@ rssset.label = _(u'label_seorss', default=u'RSS')
 socialset = FormFieldsets(ISEOSocialSchema)
 socialset.id = 'seosocial'
 socialset.label = _(u'label_seosocial', default=u'Social')
+
 
 class CodeTextAreaWidget(TextAreaWidget):
     height = 6
