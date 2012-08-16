@@ -13,7 +13,7 @@ class TestDescription(PerSeoTestCase):
 
 class TestContentTypeDescriptions(PerSeoTestCase):
 
-    TYPES_TO_TEST = ('event', 'file', 'folder', 'image', 'link', 'newsitem', 'topic')# 'Document')
+    TYPES_TO_TEST = ('event', 'file', 'folder', 'image', 'link', 'newsitem', 'topic', 'document')
 
     def test_contenttype_without_description(self):
         portal = self.layer['portal']
