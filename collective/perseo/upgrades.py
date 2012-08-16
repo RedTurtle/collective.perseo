@@ -37,4 +37,8 @@ def upgrade_1_to_2(setuptool):
     """
     pps = queryMultiAdapter((setuptool, setuptool.REQUEST), name="plone_portal_state")
     migrationPropertyToAnnotation(pps.portal())
-    
+
+
+def upgrade_063_to_07(context):
+    context.runAllImportStepsFromProfile('profile-collective.perseo:upgrade_0.6.3_to_0.7')
+

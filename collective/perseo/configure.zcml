@@ -1,23 +1,23 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.perseo">
 
   <five:registerPackage package="." initialize=".initialize" />
   <include package="collective.js.jqueryui" />
-  
+
   <i18n:registerTranslations directory="locales" />
-  
+
   <permission
     id="collective.perseo.ManageSEO"
     title="collective.perseo: Manage SEO" />
-  
+
   <include package=".browser" />
   <include file="events.zcml" />
   <include file="patches.zcml" />
   <include file="skins.zcml"/>
+  <include file="profiles.zcml"/>
 
   <utility
         component=".vocabulary.ReallyUserFriendlyTypesVocabularyFactory"
@@ -27,22 +27,4 @@
   <adapter name="getIncludedInSitemapxml" factory=".indexers.get_included_in_sitemapxml" />
   <adapter name="getPrioritySitemapxml" factory=".indexers.get_priority_sitemapxml" />
 
-
-  <!-- Register the installation GenericSetup extension profile -->
-  <genericsetup:registerProfile
-      name="default"
-      title="Collective perSEO"
-      directory="profiles/default"
-      description=""
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
-      
-  <genericsetup:upgradeStep
-    title="Upgrade Collective perSEO"
-    description="Upgrade Collective perSEO 0.1 to 0.2"
-    source="0.1"
-    destination="0.2"
-    handler=".upgrades.upgrade_1_to_2"
-    profile="collective.perseo:default" />
-  
 </configure>

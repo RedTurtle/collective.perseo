@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_memberdata" meta_type="Plone Memberdata Tool">
+ <property name="facebook_id" type="string"></property>
+ <property name="twitter_id" type="string"></property>
+ <property name="googleplus_id" type="string"></property>
+</object> 

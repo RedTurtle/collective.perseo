@@ -49,8 +49,6 @@ class PerSEOMetaTagsViewlet(ViewletBase):
         """Calculate list metatags"""
 
         result = SortedDict()
-        #pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        #seo_global = queryAdapter(pps.portal(), ISEOConfigSchema)
         seo_context = queryMultiAdapter((self.context, self.request), name='perseo-context')
 
         for key in METATAGS_ORDER:
