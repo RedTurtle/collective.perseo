@@ -1,5 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.perseo">
 
   <adapter
@@ -7,5 +9,15 @@
       for="Products.CMFCore.interfaces.ISiteRoot"
       factory=".userdataschema.EnhancedUserDataPanelAdapter"
    />
+
+    <!-- override sc.social.like metadata viewlet -->
+    <browser:viewlet
+        zcml:condition="installed sc.social.like"
+        name="sc.social.likes_metadata"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".browser.viewlets.IgnoreSocialLikeViewlet"
+        layer="sc.social.like.interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+    />
 
 </configure>

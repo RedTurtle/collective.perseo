@@ -21,7 +21,7 @@ SUFFIX = '_override'
 PROP_PREFIX = 'pSEO_'
 
 
-class PerSEOTabContext( BrowserView ):
+class PerSEOTabContext(BrowserView):
     "This class contains methods that allows to manage SEO tab."
 
     template = ViewPageTemplateFile('templates/perseo_tab_context.pt')

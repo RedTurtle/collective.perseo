@@ -174,7 +174,7 @@ class TwitterCardsViewlet(ViewletBase):
         self.twitter_creator = creator and creator.getProperty('twitter_id','') or 'plone'
         self.twitter_site = self.global_perseo.twitter_site_id
         self.twitter_url = self.perseo_context.perseo_canonical() or self.context.absolute_url()
-        self.twitter_card = 'summary'  # BBB: to be finished
+        self.twitter_card = self.perseo_context.twitter_card_type()
         self.twitter_title = self.perseo_context.perseo_title() or self.context_state.object_title()
         self.twitter_description = self.perseo_context.perseo_description()
         self.twitter_image = self.perseo_context.perseo_image()
@@ -203,7 +203,7 @@ class FacebookViewlet(ViewletBase):
         self.perseo_context = getMultiAdapter((self.context, self.request), name=u'perseo-context')
         self.context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         self.facebook_url = self.perseo_context.perseo_canonical() or self.context.absolute_url()
-        self.facebook_type = 'website'  # BBB: to be finished
+        self.facebook_type = self.perseo_context.facebook_metatype()
         self.facebook_title = self.perseo_context.perseo_title() or self.context_state.object_title()
         self.facebook_description = self.perseo_context.perseo_description()
         self.facebook_image = self.perseo_context.perseo_image()
@@ -243,3 +243,7 @@ class GooglePlusViewlet(ViewletBase):
         return safe_unicode('\n'.join(results))
 
 
+class IgnoreSocialLikeViewlet(ViewletBase):
+
+    def render(self):
+        return ''

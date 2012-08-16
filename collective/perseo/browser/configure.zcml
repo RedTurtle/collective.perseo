@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.perseo">
 
     <include file="viewlets.zcml" />
@@ -25,7 +26,7 @@
     <browser:page
         name="perseo-context"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".views.PerSEOContextPloneSiteRoot"
+        class=".seo_context.PerSEOContextPloneSiteRoot"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
@@ -34,16 +35,35 @@
     <browser:page
         name="perseo-context"
         for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
-        class=".views.PerSEOContextPortalTypes"
+        class=".seo_context.PerSEOContextPortalTypes"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
         />
-        
+
+    <browser:page
+        zcml:condition="installed collective.contentleadimage"
+        name="perseo-context"
+        for="collective.contentleadimage.interfaces.ILeadImageable"
+        class=".leadimage.PerSEOContextLeadImageable"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
+        />
+
+    <browser:page
+        name="perseo-context"
+        for="Products.ATContentTypes.interfaces.IATImage"
+        class=".seo_context.PerSEOContextIImage"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
+        />
+
     <browser:page
         name="perseo-context"
         for="*"
-        class=".views.PerSEOContext"
+        class=".seo_context.PerSEOContext"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
