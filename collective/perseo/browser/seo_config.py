@@ -13,7 +13,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.vocabulary import BAD_TYPES
-from collective.perseo.browser.seo_schema import ISEOConfigSchema, wmtoolsset, socialset,\
+from collective.perseo.browser.seo_schema import ISEOConfigSchema, wmtoolsset, socialset, schemaorgset,\
     titleset, indexingset, sitemapxmlset, rssset, CodeTextAreaWidget,\
     TitleTextAreaWidget, DescTextAreaWidget, Text2ListWidget, TextWidget
 
