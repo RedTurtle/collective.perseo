@@ -11,6 +11,8 @@ from Products.Five.browser import BrowserView
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.browser.seo_tab import PerSEOTabContext; PerSEOTabContext #compatibility
+
 
 from zope.annotation.interfaces import IAnnotations
 
