@@ -247,6 +247,9 @@ class PerSEOContext(BrowserView):
             result = self.gseo.indexing_feed_rss
         return result
 
+    def perseo_image(self):
+        return '' # BBB: to be finished
+
 
 class PerSEOContextPloneSiteRoot(PerSEOContext):
     """ Calculate html header meta tags on context. Context == PloneSiteRoot

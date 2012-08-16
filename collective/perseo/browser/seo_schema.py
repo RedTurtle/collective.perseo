@@ -433,12 +433,21 @@ class ISEOConfigRSSSchema(Interface):
         required=False)
 
 
+class ISEOSocialSchema(Interface):
+    """Schema for social integrations"""
+
+    twitter_site_id = Text(
+        title=_("label_twitter_site_id", default=u"This site twitter ID"),
+        required=False)
+
+
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
                        ISEOConfigIndexingSchema,
                        ISEOConfigSiteMapXMLSchema,
                        ISEOConfigSchemaOrgSchema,
-                       ISEOConfigRSSSchema):
+                       ISEOConfigRSSSchema,
+                       ISEOSocialSchema):
     """Combined schema for the adapter lookup.
     """
 
@@ -534,6 +543,9 @@ rssset = FormFieldsets(ISEOConfigRSSSchema)
 rssset.id = 'seorss'
 rssset.label = _(u'label_seorss', default=u'RSS')
 
+socialset = FormFieldsets(ISEOSocialSchema)
+socialset.id = 'seosocial'
+socialset.label = _(u'label_seosocial', default=u'Social')
 
 class CodeTextAreaWidget(TextAreaWidget):
     height = 6

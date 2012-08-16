@@ -13,7 +13,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.vocabulary import BAD_TYPES
-from collective.perseo.browser.seo_schema import ISEOConfigSchema, wmtoolsset,\
+from collective.perseo.browser.seo_schema import ISEOConfigSchema, wmtoolsset, socialset,\
     titleset, indexingset, sitemapxmlset, rssset, CodeTextAreaWidget,\
     TitleTextAreaWidget, DescTextAreaWidget, Text2ListWidget, TextWidget
 
@@ -96,6 +96,8 @@ class SEOConfigAdapter(SchemaAdapterBase):
     indexing_newsitem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsitem'])
     indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
 
+    twitter_site_id = ProxyFieldProperty(ISEOConfigSchema['twitter_site_id'])
+
     def getTrackingCodeHeader(self):
         tracking_code_header = getattr(self.context, 'tracking_code_header', u'')
         return safe_unicode(tracking_code_header)
@@ -147,7 +149,8 @@ class PerSEOConfig(ControlPanelForm):
 
     template = ViewPageTemplateFile('templates/seo-control-panel.pt')
 
-    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset)
+    form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset, socialset)
+    form_fields['twitter_site_id'].custom_widget = TextWidget
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['yahooSiteExplorer'].custom_widget = TextWidget
     form_fields['bingWebmasterTools'].custom_widget = TextWidget

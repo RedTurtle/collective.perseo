@@ -45,5 +45,13 @@
         permission="zope2.View"
         />
 
+    <!-- Twitter -->
+    <browser:viewlet
+        name="collective.perseo.twitter_cards"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.TwitterCardsViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
 
 </configure>

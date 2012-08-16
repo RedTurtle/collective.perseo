@@ -158,3 +158,40 @@ class TrackingCodeFooterViewlet(TrackingCodeViewlet):
         if self.gseo:
             return self.gseo.tracking_code_footer
         return ''
+
+
+class TwitterCardsViewlet(ViewletBase):
+    """ Simple viewlet for twitter cards.
+    """
+    def update(self):
+        self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
+        self.global_perseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        self.perseo_context = getMultiAdapter((self.context, self.request), name=u'perseo-context')
+        self.context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        mtool = self.context.portal_membership
+
+        creator = mtool.getMemberById(self.context.Creator())
+        self.twitter_creator = creator and creator.getProperty('twitter_id','') or 'plone'
+        self.twitter_site = self.global_perseo.twitter_site_id
+        self.twitter_url = self.perseo_context.perseo_canonical() or self.context.absolute_url()
+        self.twitter_card = 'summary'  # BBB: to be finished
+        self.twitter_title = self.perseo_context.perseo_title() or self.context_state.object_title()
+        self.twitter_description = self.perseo_context.perseo_description()
+        self.twitter_image = self.perseo_context.perseo_image()
+
+    def render(self):
+        return safe_unicode("""<meta name="twitter:card" content="%(card)s">
+        <meta name="twitter:site" content="@%(site)s">
+        <meta name="twitter:creator" content="@%(creator)s">
+        <meta name="twitter:url" content="%(url)s">
+        <meta name="twitter:title" content="%(title)s">
+        <meta name="twitter:description" content="%(description)s">
+        <meta name="twitter:image" content="%(image)s">
+        """ % {'card': self.twitter_card,
+               'site': self.twitter_site,
+               'creator': self.twitter_creator,
+               'url': self.twitter_url,
+               'title': self.twitter_title,
+               'description': self.twitter_description,
+               'image': self.twitter_image})
+
