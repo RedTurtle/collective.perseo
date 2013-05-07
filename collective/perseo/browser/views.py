@@ -1,25 +1,28 @@
+import re
+import zope.event
+
 from Acquisition import aq_inner
 from DateTime import DateTime
 from time import time
 from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
 from zope.schema.interfaces import InvalidValue
-
+from zope.annotation.interfaces import IAnnotations
 from plone.memoize import view, ram
-
 from Products.Archetypes.atapi import DisplayList
 from Products.Archetypes.event import ObjectEditedEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+try:
+    from Products.LinguaPlone.interfaces import ITranslatable
+    LINGUA_PLONE = True
+except ImportError:
+    LINGUA_PLONE = False
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.seo_config import ISEOConfigSchema
-
-from zope.annotation.interfaces import IAnnotations
-import re
-import zope.event
 
 
 PERSEO_PREFIX = 'perseo_'
@@ -70,6 +73,7 @@ class PerSEOContext(BrowserView):
             "has_perseo_robots_follow":self.has_prop('pSEO_robots_follow'),
             "has_perseo_robots_index":self.has_prop('pSEO_robots_index'),
             "has_perseo_included_in_sitemapxml":self.has_prop('pSEO_included_in_sitemapxml'),
+            "alternate_i18n": self.perseo_alternate_i18n(),
             }
         return perseo_metatags
 
@@ -238,6 +242,16 @@ class PerSEOContext(BrowserView):
         if self.gseo:
             result = self.gseo.indexing_feed_rss
         return result
+
+    def perseo_alternate_i18n(self):
+        """ Return available translations if LinguaPlone is available """
+        if LINGUA_PLONE and ITranslatable.providedBy(self.context):
+            translations = self.context.getTranslations(review_state=False)
+            if self.context.Language() in translations:
+                del translations[self.context.Language()]
+            return translations
+        else:
+            return []
 
 
 class PerSEOContextPloneSiteRoot(PerSEOContext):

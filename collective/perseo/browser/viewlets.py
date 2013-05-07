@@ -121,10 +121,17 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
     def update(self):
         self.perseo_context = getMultiAdapter((self.context, self.request),
                                              name=u'perseo-context')
-    def render( self ):
-        if self.perseo_context['perseo_canonical']:
-            return """<link rel="canonical" href="%s" />""" % self.perseo_context['perseo_canonical']
-        return ""
+    def render(self):
+        result = ""
+        opts = {'canonical': self.perseo_context['perseo_canonical'],
+                'alternate': self.perseo_context['alternate_i18n']}
+
+        if opts['canonical']:
+            result += """<link rel="canonical" href="%(canonical)s" />\n""" % opts
+        if opts['alternate']:
+            for lang, translation in opts['alternate'].items():
+                result += """<link rel="alternate" hreflang="%s" href="%s" />\n""" % (lang, translation.absolute_url())
+        return result
 
 
 class TrackingCodeViewlet( ViewletBase ):
