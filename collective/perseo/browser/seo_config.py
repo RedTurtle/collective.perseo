@@ -19,6 +19,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.browser.types import BAD_TYPES
 
+
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
     
@@ -27,13 +28,6 @@ class ISEOConfigWMToolsSchema(Interface):
                 default=u"Google Webmaster Tools"),
         description=_("help__googleWebmasterTools",
                       default=u"Enter an id for Google. https://www.google.com/webmasters/tools/"),
-        required=False)
-    
-    yahooSiteExplorer = TextLine(
-        title=_("label_yahooSiteExplorer",
-                default=u"Yahoo Site Explorer"),
-        description=_("help_yahooSiteExplorer",
-                      default=u"Enter an id for Yahoo. https://siteexplorer.search.yahoo.com/mysites"),
         required=False)
     
     bingWebmasterTools = TextLine(
@@ -52,6 +46,7 @@ class ISEOConfigWMToolsSchema(Interface):
         title=_("label_tracking_code_footer",
                 default=u"Tracking Code Footer"),
         required=False)
+
 
 class ISEOConfigTitleSchema_homepage(Interface):
     """Schema for Title homepage"""
@@ -73,6 +68,7 @@ class ISEOConfigTitleSchema_homepage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_singlepage(Interface):
     """Schema for Title singlepage"""
   
@@ -92,6 +88,7 @@ class ISEOConfigTitleSchema_singlepage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_searchpage(Interface):
     """Schema for Title searchpage"""
@@ -113,6 +110,7 @@ class ISEOConfigTitleSchema_searchpage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_notfoundpage(Interface):
     """Schema for Title notfoundpage"""
         
@@ -132,6 +130,7 @@ class ISEOConfigTitleSchema_notfoundpage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_authorpage(Interface):
     """Schema for Title authorpage"""
@@ -153,6 +152,7 @@ class ISEOConfigTitleSchema_authorpage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_sitemappage(Interface):
     """Schema for Title sitemappage"""
         
@@ -172,6 +172,7 @@ class ISEOConfigTitleSchema_sitemappage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_accessibilitypage(Interface):
     """Schema for Title accessibilitypages"""
@@ -193,6 +194,7 @@ class ISEOConfigTitleSchema_accessibilitypage(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_contactpage(Interface):
     """Schema for Title contactpage"""
     
@@ -212,6 +214,7 @@ class ISEOConfigTitleSchema_contactpage(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_event(Interface):
     """Schema for Title event"""
@@ -233,6 +236,7 @@ class ISEOConfigTitleSchema_event(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_file(Interface):
     """Schema for Title file"""
     
@@ -252,6 +256,7 @@ class ISEOConfigTitleSchema_file(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_folder(Interface):
     """Schema for Title folder"""
@@ -273,6 +278,7 @@ class ISEOConfigTitleSchema_folder(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_image(Interface):
     """Schema for Title image"""
         
@@ -292,6 +298,7 @@ class ISEOConfigTitleSchema_image(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_link(Interface):
     """Schema for Title link"""
@@ -313,6 +320,7 @@ class ISEOConfigTitleSchema_link(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
 
+
 class ISEOConfigTitleSchema_newsItem(Interface):
     """Schema for Title newsItem"""
        
@@ -332,6 +340,7 @@ class ISEOConfigTitleSchema_newsItem(Interface):
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
+
 
 class ISEOConfigTitleSchema_topic(Interface):
     """Schema for Title topic"""
@@ -353,6 +362,7 @@ class ISEOConfigTitleSchema_topic(Interface):
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
     
+
 class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
                             ISEOConfigTitleSchema_singlepage,
                             ISEOConfigTitleSchema_searchpage,
@@ -370,6 +380,7 @@ class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
                             ISEOConfigTitleSchema_topic):
     """Schema for Title"""
     
+
 class ISEOConfigIndexingSchema(Interface):
     """Schema for Indexing"""
     
@@ -463,6 +474,7 @@ class ISEOConfigIndexingSchema(Interface):
         default=False,
         required=False)
     
+
 class ISEOConfigSiteMapXMLSchema(Interface):
     """Schema for Site Map XML Tools"""
     
@@ -501,6 +513,7 @@ class ISEOConfigSiteMapXMLSchema(Interface):
         default=False,
         required=False)
 
+
 class ISEOConfigSchemaOrgSchema(Interface):
     """Schema for Schema.org"""
     
@@ -509,7 +522,8 @@ class ISEOConfigSchemaOrgSchema(Interface):
                 default=u"Add itemscope and itemtype attributes to body tag"),
         default=False,
         required=False)
-    
+
+
 class ISEOConfigRSSSchema(Interface):
     """Schema for RSS"""
     
@@ -519,6 +533,7 @@ class ISEOConfigRSSSchema(Interface):
         default=False,
         required=False)
 
+
 class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
                        ISEOConfigIndexingSchema,
@@ -527,6 +542,7 @@ class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigRSSSchema):
     """Combined schema for the adapter lookup.
     """
+
 
 class SEOConfigAdapter(SchemaAdapterBase):
 
@@ -543,7 +559,6 @@ class SEOConfigAdapter(SchemaAdapterBase):
         self.navtree_properties = portal_properties.navtree_properties
         
     googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
-    yahooSiteExplorer = ProxyFieldProperty(ISEOConfigSchema['yahooSiteExplorer'])
     bingWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['bingWebmasterTools'])
     homepage_title = ProxyFieldProperty(ISEOConfigSchema['homepage_title'])
     homepage_description = ProxyFieldProperty(ISEOConfigSchema['homepage_description'])
@@ -744,14 +759,18 @@ rssset = FormFieldsets(ISEOConfigRSSSchema)
 rssset.id = 'seorss'
 rssset.label = _(u'label_seorss', default=u'RSS')
 
+
 class CodeTextAreaWidget(TextAreaWidget):
     height = 6
-    
+
+
 class TitleTextAreaWidget(TextWidget):
     displayWidth = 50
 
+
 class DescTextAreaWidget(TextAreaWidget):
     height = 3
+
 
 class Text2ListWidget(TextAreaWidget):
     height = 5
@@ -769,6 +788,7 @@ class Text2ListWidget(TextAreaWidget):
         else:
             return u'\r\n'.join(list(value))
 
+
 class PerSEOConfig(ControlPanelForm):
     
     template = ViewPageTemplateFile('templates/seo-control-panel.pt')
@@ -776,7 +796,6 @@ class PerSEOConfig(ControlPanelForm):
     form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset)
     
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
-    form_fields['yahooSiteExplorer'].custom_widget = TextWidget
     form_fields['bingWebmasterTools'].custom_widget = TextWidget
     form_fields['homepage_title'].custom_widget = TitleTextAreaWidget
     form_fields['homepage_description'].custom_widget = DescTextAreaWidget

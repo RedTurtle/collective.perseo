@@ -4,7 +4,7 @@ Changelog
 0.6.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- remove yahoo explorer config (dead) [amleczko]
 
 
 0.6.4 (2012-07-16)

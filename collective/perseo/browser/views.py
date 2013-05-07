@@ -49,7 +49,6 @@ class PerSEOContext(BrowserView):
     def _getPerSEOMetaTags(self):
         perseo_metatags = {
             "googleWebmasterTools": self.seo_globalGoogleWebmasterTools(),
-            "yahooSiteExplorer": self.seo_globalYahooSiteExplorer(),
             "bingWebmasterTools":self.seo_globalBingWebmasterTools(),
             "perseo_title":self.perseo_title(),
             "has_perseo_title":self.has_prop('pSEO_title'),
@@ -186,15 +185,6 @@ class PerSEOContext(BrowserView):
         result = ''
         if self.gseo:
             result = self.gseo.googleWebmasterTools
-        return result
-    
-    @ram.cache(plone_instance_time)
-    def seo_globalYahooSiteExplorer( self ):
-        """ Returned Yahoo Site Explorer from Plone SEO Configuration Control Panel Tool
-        """
-        result = ''
-        if self.gseo:
-            result = self.gseo.yahooSiteExplorer
         return result
     
     @ram.cache(plone_instance_time)
