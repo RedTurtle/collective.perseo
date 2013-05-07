@@ -121,16 +121,23 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
     def update(self):
         self.perseo_context = getMultiAdapter((self.context, self.request),
                                              name=u'perseo-context')
+        self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
+        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+
     def render(self):
         result = ""
         opts = {'canonical': self.perseo_context['perseo_canonical'],
                 'alternate': self.perseo_context['alternate_i18n']}
+        if self.gseo and self.gseo.google_publisher:
+            opts['google_publisher'] = self.gseo.google_publisher
 
         if opts['canonical']:
             result += """<link rel="canonical" href="%(canonical)s" />\n""" % opts
         if opts['alternate']:
             for lang, translation in opts['alternate'].items():
                 result += """<link rel="alternate" hreflang="%s" href="%s" />\n""" % (lang, translation.absolute_url())
+        if opts.get('google_publisher'):
+            result += """<link href="%(google_publisher)s" rel="publisher" />""" % opts
         return result
 
 

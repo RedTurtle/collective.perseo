@@ -47,6 +47,13 @@ class ISEOConfigWMToolsSchema(Interface):
                 default=u"Tracking Code Footer"),
         required=False)
 
+    google_publisher = TextLine(
+        title=_("label_google_publisher",
+                default=u"Google+ Publisher Page"),
+        description=_("help_google_publisher",
+                      default=u"Enter a Google+ Page, ie. https://plus.google.com/117510669985299383051/"),
+        required=False)
+
 
 class ISEOConfigTitleSchema_homepage(Interface):
     """Schema for Title homepage"""
@@ -559,6 +566,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
         self.navtree_properties = portal_properties.navtree_properties
 
     googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
+    google_publisher = ProxyFieldProperty(ISEOConfigSchema['google_publisher'])
     bingWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['bingWebmasterTools'])
     homepage_title = ProxyFieldProperty(ISEOConfigSchema['homepage_title'])
     homepage_description = ProxyFieldProperty(ISEOConfigSchema['homepage_description'])
@@ -796,6 +804,7 @@ class PerSEOConfig(ControlPanelForm):
     form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset)
 
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
+    form_fields['google_publisher'].custom_widget = TitleTextAreaWidget
     form_fields['bingWebmasterTools'].custom_widget = TextWidget
     form_fields['homepage_title'].custom_widget = TitleTextAreaWidget
     form_fields['homepage_description'].custom_widget = DescTextAreaWidget
@@ -842,30 +851,9 @@ class PerSEOConfig(ControlPanelForm):
     form_fields['topic_title'].custom_widget = TitleTextAreaWidget
     form_fields['topic_description'].custom_widget = DescTextAreaWidget
     form_fields['topic_keywords'].custom_widget = Text2ListWidget
-#    form_fields['robots_noodp'].custom_widget = CheckBoxWidget
-#    form_fields['robots_noydir'].custom_widget = CheckBoxWidget
-#    form_fields['robots_noarchive'].custom_widget = CheckBoxWidget
-#    form_fields['robots_nosnippet'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_searchpage'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_loginregistrationpage'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_administrationpage'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_page'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_event'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_file'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_folder'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_image'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_link'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_newsItem'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_topic'].custom_widget = CheckBoxWidget
     form_fields['tracking_code_header'].custom_widget = CodeTextAreaWidget
     form_fields['tracking_code_footer'].custom_widget = CodeTextAreaWidget
     form_fields['not_included_types'].custom_widget = MultiCheckBoxThreeColumnWidget
-#    form_fields['itemscope_itemtype_attrs_enable'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_feed_rss'].custom_widget = CheckBoxWidget
-
-#    form_fields['ping_google'].custom_widget = CheckBoxWidget
-#    form_fields['ping_bing'].custom_widget = CheckBoxWidget
-#    form_fields['ping_ask'].custom_widget = CheckBoxWidget
 
     label = _("PerSEO Configuration")
     description = _("")

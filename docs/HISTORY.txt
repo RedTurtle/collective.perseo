@@ -6,6 +6,7 @@ Changelog
 
 - remove yahoo explorer config (dead) [amleczko]
 - add support for alternate multiligua tags [amleczko]
+- add support for google publisher [amleczko]
 
 
 0.6.4 (2012-07-16)
