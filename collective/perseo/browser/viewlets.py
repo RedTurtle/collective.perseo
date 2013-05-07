@@ -1,10 +1,9 @@
 from Acquisition import aq_inner
 from cgi import escape
 
-#from zope.component import queryAdapter
 from zope.component import getMultiAdapter, queryAdapter, queryMultiAdapter
 from plone.app.layout.viewlets.common import ViewletBase
-
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
 from collective.perseo.browser.seo_config import ISEOConfigSchema
@@ -123,6 +122,7 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
                                              name=u'perseo-context')
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        self.pm = getToolByName(self.context, 'portal_membership')
 
     def render(self):
         result = ""
@@ -131,13 +131,19 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
         if self.gseo and self.gseo.google_publisher:
             opts['google_publisher'] = self.gseo.google_publisher
 
+        author = self.pm.getMemberById(self.context.Creator())
+        if author and author.getProperty('google_author'):
+            opts['google_author'] = author.getProperty('google_author')
+
         if opts['canonical']:
             result += """<link rel="canonical" href="%(canonical)s" />\n""" % opts
         if opts['alternate']:
             for lang, translation in opts['alternate'].items():
                 result += """<link rel="alternate" hreflang="%s" href="%s" />\n""" % (lang, translation.absolute_url())
         if opts.get('google_publisher'):
-            result += """<link href="%(google_publisher)s" rel="publisher" />""" % opts
+            result += """<link href="%(google_publisher)s" rel="publisher" />\n""" % opts
+        if opts.get('google_author'):
+            result += """<link href="%(google_author)s" rel="author" />\n""" % opts
         return result
 
 

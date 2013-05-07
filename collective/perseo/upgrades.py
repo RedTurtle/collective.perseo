@@ -15,6 +15,7 @@ REMOVE_SEOPROPERTIES = ['pSEO_title',
                         'pSEO_priority_sitemapxml',
                         'pSEO_itemtype']
 
+
 def toAnnotation(obj):
     for property in REMOVE_SEOPROPERTIES:
         if obj.hasProperty(property):
@@ -26,15 +27,24 @@ def toAnnotation(obj):
             msg = "Migrate property %(property)s to annotation, for object %(object)s"
             logger.log(logging.INFO, msg % {'object':obj.id,'property':property} )
 
+
 def migrationPropertyToAnnotation(portal):
     toAnnotation(portal)
     catalog = getToolByName(portal, 'portal_catalog')
     for item in catalog.searchResults():
         toAnnotation(item.getObject())
 
+
 def upgrade_1_to_2(setuptool):
     """ Upgrade Collective perSEO 0.1 to 0.2
     """
     pps = queryMultiAdapter((setuptool, setuptool.REQUEST), name="plone_portal_state")
     migrationPropertyToAnnotation(pps.portal())
-    
+
+
+def upgrade_to_0_6_4(context):
+    """ Upgrade Collective perSEO to 0.6.4
+    """
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'componentregistry')
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'propertiestool')
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'memberdata-properties')

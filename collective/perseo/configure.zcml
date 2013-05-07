@@ -10,8 +10,8 @@
   <i18n:registerTranslations directory="locales" />
   
   <permission
-	id="collective.perseo.ManageSEO"
-	title="collective.perseo: Manage SEO" />
+    id="collective.perseo.ManageSEO"
+    title="collective.perseo: Manage SEO" />
   
   <include package=".browser" />
   <include file="patches.zcml" />
@@ -27,11 +27,19 @@
       />
       
   <genericsetup:upgradeStep
-	title="Upgrade Collective perSEO"
-	description="Upgrade Collective perSEO 0.1 to 0.2"
-	source="0.1"
-	destination="0.2"
-	handler=".upgrades.upgrade_1_to_2"
-	profile="collective.perseo:default" />
+    title="Upgrade Collective perSEO"
+    description="Upgrade Collective perSEO 0.1 to 0.2"
+    source="0.1"
+    destination="0.2"
+    handler=".upgrades.upgrade_1_to_2"
+    profile="collective.perseo:default" />
+
+  <genericsetup:upgradeStep
+    title="Upgrade Collective perSEO"
+    description="Upgrade Collective perSEO to 0.6.4"
+    source="*"
+    destination="0.6.4"
+    handler=".upgrades.upgrade_to_0_6_4"
+    profile="collective.perseo:default" />
   
 </configure>
