@@ -22,26 +22,26 @@ from collective.perseo.browser.types import BAD_TYPES
 
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
-    
+
     googleWebmasterTools = TextLine(
         title=_("label_googleWebmasterTools",
                 default=u"Google Webmaster Tools"),
         description=_("help__googleWebmasterTools",
                       default=u"Enter an id for Google. https://www.google.com/webmasters/tools/"),
         required=False)
-    
+
     bingWebmasterTools = TextLine(
         title=_("label_bingWebmasterTools",
                 default=u"Bing Webmaster Tools"),
         description=_("help_bingWebmasterTools",
                       default=u"Enter an id for Bing. http://www.bing.com/webmaster/"),
         required=False)
-    
+
     tracking_code_header = Text(
         title=_("label_tracking_code_header",
                 default=u"Tracking Code Header"),
         required=False)
-    
+
     tracking_code_footer = Text(
         title=_("label_tracking_code_footer",
                 default=u"Tracking Code Footer"),
@@ -50,17 +50,17 @@ class ISEOConfigWMToolsSchema(Interface):
 
 class ISEOConfigTitleSchema_homepage(Interface):
     """Schema for Title homepage"""
-    
+
     homepage_title = TextLine(
         title=_("label_homepage_title",
                 default=u"Home Page Title"),
         required=False)
-    
+
     homepage_description = Text(
         title=_("label_homepage_description",
                 default=u"Home Page Description"),
         required=False)
-    
+
     homepage_keywords = List(
         title=_("label_homepage_keywords",
                 default=u"Home Page Keywords"),
@@ -71,17 +71,17 @@ class ISEOConfigTitleSchema_homepage(Interface):
 
 class ISEOConfigTitleSchema_singlepage(Interface):
     """Schema for Title singlepage"""
-  
+
     singlepage_title = TextLine(
         title=_("label_singlepage_title",
                 default=u"Single Page Title"),
         required=False)
-    
+
     singlepage_description = Text(
         title=_("label_singlepage_description",
                 default=u"Single Page Description"),
         required=False)
-    
+
     singlepage_keywords = List(
         title=_("label_singlepage_keywords",
                 default=u"Single Page Keywords"),
@@ -92,17 +92,17 @@ class ISEOConfigTitleSchema_singlepage(Interface):
 
 class ISEOConfigTitleSchema_searchpage(Interface):
     """Schema for Title searchpage"""
-        
+
     searchpage_title = TextLine(
         title=_("label_searchpage_title",
                 default=u"Search Page Title"),
         required=False)
-    
+
     searchpage_description = Text(
         title=_("label_searchpage_description",
                 default=u"Search Page Description"),
         required=False)
-    
+
     searchpage_keywords = List(
         title=_("label_searchpage_keywords",
                 default=u"Search Page Keywords"),
@@ -113,17 +113,17 @@ class ISEOConfigTitleSchema_searchpage(Interface):
 
 class ISEOConfigTitleSchema_notfoundpage(Interface):
     """Schema for Title notfoundpage"""
-        
+
     notfoundpage_title = TextLine(
         title=_("label_notfoundpage_title",
                 default=u"Not Found Page Title"),
         required=False)
-    
+
     notfoundpage_description = Text(
         title=_("label_notfoundpage_description",
                 default=u"Not Found Page Description"),
         required=False)
-    
+
     notfoundpage_keywords = List(
         title=_("label_notfoundpage_keywords",
                 default=u"Not Found Page Keywords"),
@@ -134,17 +134,17 @@ class ISEOConfigTitleSchema_notfoundpage(Interface):
 
 class ISEOConfigTitleSchema_authorpage(Interface):
     """Schema for Title authorpage"""
-        
+
     authorpage_title = TextLine(
         title=_("label_authorpage_title",
                 default=u"Author Page Title"),
         required=False)
-    
+
     authorpage_description = Text(
         title=_("label_authorpage_description",
                 default=u"Author Page Description"),
         required=False)
-    
+
     authorpage_keywords = List(
         title=_("label_authorpage_keywords",
                 default=u"Author Page Keywords"),
@@ -155,17 +155,17 @@ class ISEOConfigTitleSchema_authorpage(Interface):
 
 class ISEOConfigTitleSchema_sitemappage(Interface):
     """Schema for Title sitemappage"""
-        
+
     sitemappage_title = TextLine(
         title=_("label_sitemappage_title",
                 default=u"Site map Title"),
         required=False)
-    
+
     sitemappage_description = Text(
         title=_("label_sitemappage_description",
                 default=u"Site map Description"),
         required=False)
-    
+
     sitemappage_keywords = List(
         title=_("label_sitemappage_keywords",
                 default=u"Site map Keywords"),
@@ -176,17 +176,17 @@ class ISEOConfigTitleSchema_sitemappage(Interface):
 
 class ISEOConfigTitleSchema_accessibilitypage(Interface):
     """Schema for Title accessibilitypages"""
-    
+
     accessibilitypage_title = TextLine(
         title=_("label_accessibilitypage_title",
                 default=u"Accessibility Title"),
         required=False)
-    
+
     accessibilitypage_description = Text(
         title=_("label_accessibilitypage_description",
                 default=u"Accessibility Description"),
         required=False)
-    
+
     accessibilitypage_keywords = List(
         title=_("label_accessibilitypage_keywords",
                 default=u"Accessibility Keywords"),
@@ -197,17 +197,17 @@ class ISEOConfigTitleSchema_accessibilitypage(Interface):
 
 class ISEOConfigTitleSchema_contactpage(Interface):
     """Schema for Title contactpage"""
-    
+
     contactpage_title = TextLine(
         title=_("label_contactpage_title",
                 default=u"Contact Title"),
         required=False)
-    
+
     contactpage_description = Text(
         title=_("label_contactpage_description",
                 default=u"Contact Description"),
         required=False)
-    
+
     contactpage_keywords = List(
         title=_("label_contactpage_keywords",
                 default=u"Contact Keywords"),
@@ -218,17 +218,17 @@ class ISEOConfigTitleSchema_contactpage(Interface):
 
 class ISEOConfigTitleSchema_event(Interface):
     """Schema for Title event"""
-    
+
     event_title = TextLine(
         title=_("label_event_title",
                 default=u"Event Title"),
         required=False)
-    
+
     event_description = Text(
         title=_("label_event_description",
                 default=u"Event Description"),
         required=False)
-    
+
     event_keywords = List(
         title=_("label_event_keywords",
                 default=u"Event Keywords"),
@@ -239,17 +239,17 @@ class ISEOConfigTitleSchema_event(Interface):
 
 class ISEOConfigTitleSchema_file(Interface):
     """Schema for Title file"""
-    
+
     file_title = TextLine(
         title=_("label_file_title",
                 default=u"File Title"),
         required=False)
-    
+
     file_description = Text(
         title=_("label_file_description",
                 default=u"File Description"),
         required=False)
-    
+
     file_keywords = List(
         title=_("label_file_keywords",
                 default=u"File Keywords"),
@@ -260,17 +260,17 @@ class ISEOConfigTitleSchema_file(Interface):
 
 class ISEOConfigTitleSchema_folder(Interface):
     """Schema for Title folder"""
-   
+
     folder_title = TextLine(
         title=_("label_folder_title",
                 default=u"Folder Title"),
         required=False)
-    
+
     folder_description = Text(
         title=_("label_folder_description",
                 default=u"Folder Description"),
         required=False)
-    
+
     folder_keywords = List(
         title=_("label_folder_keywords",
                 default=u"Folder Keywords"),
@@ -281,17 +281,17 @@ class ISEOConfigTitleSchema_folder(Interface):
 
 class ISEOConfigTitleSchema_image(Interface):
     """Schema for Title image"""
-        
+
     image_title = TextLine(
         title=_("label_image_title",
                 default=u"Image Title"),
         required=False)
-    
+
     image_description = Text(
         title=_("label_image_description",
                 default=u"Image Description"),
         required=False)
-    
+
     image_keywords = List(
         title=_("label_image_keywords",
                 default=u"Image Keywords"),
@@ -302,17 +302,17 @@ class ISEOConfigTitleSchema_image(Interface):
 
 class ISEOConfigTitleSchema_link(Interface):
     """Schema for Title link"""
-       
+
     link_title = TextLine(
         title=_("label_link_title",
                 default=u"Link Title"),
         required=False)
-    
+
     link_description = Text(
         title=_("label_link_description",
                 default=u"Link Description"),
         required=False)
-    
+
     link_keywords = List(
         title=_("label_link_keywords",
                 default=u"Link Keywords"),
@@ -323,17 +323,17 @@ class ISEOConfigTitleSchema_link(Interface):
 
 class ISEOConfigTitleSchema_newsItem(Interface):
     """Schema for Title newsItem"""
-       
+
     newsItem_title = TextLine(
         title=_("label_newsItem_title",
                 default=u"NewsItem Title"),
         required=False)
-    
+
     newsItem_description = Text(
         title=_("label_newsItem_description",
                 default=u"NewsItem Description"),
         required=False)
-    
+
     newsItem_keywords = List(
         title=_("label_newsItem_keywords",
                 default=u"NewsItem Keywords"),
@@ -344,24 +344,24 @@ class ISEOConfigTitleSchema_newsItem(Interface):
 
 class ISEOConfigTitleSchema_topic(Interface):
     """Schema for Title topic"""
-  
+
     topic_title = TextLine(
         title=_("label_topic_title",
                 default=u"Topic Title"),
         required=False)
-    
+
     topic_description = Text(
         title=_("label_topic_description",
                 default=u"Topic Description"),
         required=False)
-    
+
     topic_keywords = List(
         title=_("label_topic_keywords",
                 default=u"Topic Keywords"),
         description=_("help_keywords",
                       default=u"You can enter multiple keywords - one pr. line."),
         required=False)
-    
+
 
 class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
                             ISEOConfigTitleSchema_singlepage,
@@ -379,105 +379,105 @@ class ISEOConfigTitleSchema(ISEOConfigTitleSchema_homepage,
                             ISEOConfigTitleSchema_newsItem,
                             ISEOConfigTitleSchema_topic):
     """Schema for Title"""
-    
+
 
 class ISEOConfigIndexingSchema(Interface):
     """Schema for Indexing"""
-    
+
     indexing_searchpage = Bool(
         title=_("label_search_page",
                 default=u"Search pages"),
         default=False,
         required=False)
-    
+
     indexing_loginregistrationpage = Bool(
         title=_("label_login_registration_page",
                 default=u"Login and Registration pages"),
         default=False,
         required=False)
-    
+
     indexing_administrationpage = Bool(
         title=_("label_administration_page",
                 default=u"Administration pages"),
         default=False,
         required=False)
-    
+
     indexing_page = Bool(
         title=_("label_single_pages",
                 default=u"Single Pages"),
         default=False,
         required=False)
-    
+
     indexing_event = Bool(
         title=_("label_indexing_event",
                 default=u"Event"),
         default=False,
         required=False)
-    
+
     indexing_file = Bool(
         title=_("label_indexing_file",
                 default=u"File"),
         default=False,
         required=False)
-    
+
     indexing_folder = Bool(
         title=_("label_indexing_folder",
                 default=u"Folder"),
         default=False,
         required=False)
-    
+
     indexing_image = Bool(
         title=_("label_indexing_image",
                 default=u"Image"),
         default=False,
         required=False)
-    
+
     indexing_link = Bool(
         title=_("label_indexing_link",
                 default=u"Link"),
         default=False,
         required=False)
-    
+
     indexing_newsItem = Bool(
         title=_("label_indexing_newsItem",
                 default=u"NewsItem"),
         default=False,
         required=False)
-    
+
     indexing_topic = Bool(
         title=_("label_indexing_topic",
                 default=u"Topic"),
         default=False,
         required=False)
-    
+
     robots_noodp = Bool(
         title=_("label_robots_noodp",
                 default=u"Add noodp in whole site"),
         default=False,
         required=False)
-    
+
     robots_noydir = Bool(
         title=_("label_robots_noydir",
                 default=u"Add noydir in whole site"),
         default=False,
         required=False)
-    
+
     robots_noarchive = Bool(
         title=_("label_robots_noarchive",
                 default=u"Add noarchive in whole site"),
         default=False,
         required=False)
-    
+
     robots_nosnippet = Bool(
         title=_("label_robots_nosnippet",
                 default=u"Add nosnippet in whole site"),
         default=False,
         required=False)
-    
+
 
 class ISEOConfigSiteMapXMLSchema(Interface):
     """Schema for Site Map XML Tools"""
-    
+
     not_included_types = Tuple(
         title=_("label_included_types",
                 default=u"Types of content included in the XML Site Map"),
@@ -488,7 +488,7 @@ class ISEOConfigSiteMapXMLSchema(Interface):
         value_type=Choice(
             vocabulary="collective.perseo.vocabularies.ReallyUserFriendlyTypes")
         )
-    
+
     ping_google = Bool(
         title=_("label_ping_google",
                 default=u"Ping Google"),
@@ -496,7 +496,7 @@ class ISEOConfigSiteMapXMLSchema(Interface):
                       default=u"Ping site automatically when the Site Map is updated."),
         default=False,
         required=False)
-    
+
     ping_bing = Bool(
         title=_("label_ping_bing",
                 default=u"Ping Bing"),
@@ -504,7 +504,7 @@ class ISEOConfigSiteMapXMLSchema(Interface):
                       default=u"Ping site automatically when the Site Map is updated."),
         default=False,
         required=False)
-    
+
     ping_ask = Bool(
         title=_("label_ping_ask",
                 default=u"Ping Ask"),
@@ -516,7 +516,7 @@ class ISEOConfigSiteMapXMLSchema(Interface):
 
 class ISEOConfigSchemaOrgSchema(Interface):
     """Schema for Schema.org"""
-    
+
     itemscope_itemtype_attrs_enable = Bool(
         title=_("label_itemscope_itemtype_attrs_enable",
                 default=u"Add itemscope and itemtype attributes to body tag"),
@@ -526,7 +526,7 @@ class ISEOConfigSchemaOrgSchema(Interface):
 
 class ISEOConfigRSSSchema(Interface):
     """Schema for RSS"""
-    
+
     indexing_feed_rss = Bool(
         title=_("label_indexing_feed_rss",
                 default=u"Don't index RSS feeds"),
@@ -557,7 +557,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
         site_properties = portal_properties.site_properties
         self.encoding = site_properties.default_charset
         self.navtree_properties = portal_properties.navtree_properties
-        
+
     googleWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['googleWebmasterTools'])
     bingWebmasterTools = ProxyFieldProperty(ISEOConfigSchema['bingWebmasterTools'])
     homepage_title = ProxyFieldProperty(ISEOConfigSchema['homepage_title'])
@@ -589,7 +589,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
     event_keywords = ProxyFieldProperty(ISEOConfigSchema['event_keywords'])
     file_title = ProxyFieldProperty(ISEOConfigSchema['file_title'])
     file_description = ProxyFieldProperty(ISEOConfigSchema['file_description'])
-    file_keywords = ProxyFieldProperty(ISEOConfigSchema['file_keywords']) 
+    file_keywords = ProxyFieldProperty(ISEOConfigSchema['file_keywords'])
     folder_title = ProxyFieldProperty(ISEOConfigSchema['folder_title'])
     folder_description = ProxyFieldProperty(ISEOConfigSchema['folder_description'])
     folder_keywords = ProxyFieldProperty(ISEOConfigSchema['folder_keywords'])
@@ -620,7 +620,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
     indexing_link = ProxyFieldProperty(ISEOConfigSchema['indexing_link'])
     indexing_newsItem = ProxyFieldProperty(ISEOConfigSchema['indexing_newsItem'])
     indexing_topic = ProxyFieldProperty(ISEOConfigSchema['indexing_topic'])
-    
+
     def getTrackingCodeHeader(self):
         tracking_code_header = getattr(self.context, 'tracking_code_header', u'')
         return safe_unicode(tracking_code_header)
@@ -630,7 +630,7 @@ class SEOConfigAdapter(SchemaAdapterBase):
             self.context.tracking_code_header = value.encode(self.encoding)
         else:
             self.context.tracking_code_header = ''
-            
+
     def getTrackingCodeFooter(self):
         tracking_code_footer = getattr(self.context, 'tracking_code_footer', u'')
         return safe_unicode(tracking_code_footer)
@@ -640,13 +640,13 @@ class SEOConfigAdapter(SchemaAdapterBase):
             self.context.tracking_code_footer = value.encode(self.encoding)
         else:
             self.context.tracking_code_footer = ''
-            
+
     tracking_code_header = property(getTrackingCodeHeader, setTrackingCodeHeader)
     tracking_code_footer = property(getTrackingCodeFooter, setTrackingCodeFooter)
-    
+
     def getIncludedTypes(self):
         not_included_types = getattr(self.context, 'not_included_types', ())
-        
+
         return [t for t in self.portal_types.listContentTypes()
                         if t not in not_included_types and
                            t not in BAD_TYPES]
@@ -783,18 +783,18 @@ class Text2ListWidget(TextAreaWidget):
             return self.context._type(filter(None, self.splitter.split(input)))
 
     def _toFormValue(self, value):
-        if value == self.context.missing_value or value == self.context._type(): 
+        if value == self.context.missing_value or value == self.context._type():
             return self._missing
         else:
             return u'\r\n'.join(list(value))
 
 
 class PerSEOConfig(ControlPanelForm):
-    
+
     template = ViewPageTemplateFile('templates/seo-control-panel.pt')
-    
+
     form_fields = FormFieldsets(wmtoolsset, titleset, indexingset, sitemapxmlset, rssset)
-    
+
     form_fields['googleWebmasterTools'].custom_widget = TextWidget
     form_fields['bingWebmasterTools'].custom_widget = TextWidget
     form_fields['homepage_title'].custom_widget = TitleTextAreaWidget
@@ -853,7 +853,7 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['indexing_event'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_file'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_folder'].custom_widget = CheckBoxWidget
-#    form_fields['indexing_image'].custom_widget = CheckBoxWidget  
+#    form_fields['indexing_image'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_link'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_newsItem'].custom_widget = CheckBoxWidget
 #    form_fields['indexing_topic'].custom_widget = CheckBoxWidget
@@ -866,7 +866,7 @@ class PerSEOConfig(ControlPanelForm):
 #    form_fields['ping_google'].custom_widget = CheckBoxWidget
 #    form_fields['ping_bing'].custom_widget = CheckBoxWidget
 #    form_fields['ping_ask'].custom_widget = CheckBoxWidget
-    
+
     label = _("PerSEO Configuration")
     description = _("")
     form_name = _("")

@@ -3,6 +3,7 @@ from Products.Archetypes.interfaces.base import IBaseContent
 from plone.indexer.decorator import indexer
 from zope.annotation.interfaces import IAnnotations
 
+
 @indexer(IBaseContent)
 def get_included_in_sitemapxml(object, **kw):
     try:
@@ -12,6 +13,7 @@ def get_included_in_sitemapxml(object, **kw):
     except:
         return None
     return None
+
 
 @indexer(IBaseContent)
 def get_priority_sitemapxml(object, **kw):

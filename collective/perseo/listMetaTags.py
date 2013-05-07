@@ -10,9 +10,9 @@ def perSEOListMetaTags(self, context):
     from collective.perseo.browser.interfaces import IPerSEOLayer
     if not IPerSEOLayer.providedBy(self.REQUEST):
         return originalListMetaTags(self, context)
-    
+
     list_meta_tags = originalListMetaTags(self, context)
-    
+
     for key in METATAGS.keys():
         if list_meta_tags.has_key(key):
             list_meta_tags.pop(key)

@@ -43,7 +43,7 @@ def include_in_sitemapxml(object):
         return in_sitemapxml
     else:
         return object.portal_type in included_types
-    
+
 def url_open(url):
     """ Perform the url open
     """
@@ -54,13 +54,13 @@ def url_open(url):
 
 def PingingObjRemovedFromSiteMapXML(object):
     gseo = get_gseo(object)
-    
+
     ping_google = get_gseo_field(gseo,'ping_google',default=False)
-    
+
     ping_bing = get_gseo_field(gseo,'ping_bing',default=False)
-    
+
     ping_ask = get_gseo_field(gseo,'ping_ask',default=False)
-    
+
     if (ping_google or ping_bing or ping_ask):
         portal_url = getToolByName(object, 'portal_url')()
         if ping_google:
@@ -72,13 +72,13 @@ def PingingObjRemovedFromSiteMapXML(object):
 
 def Pinging(object):
     gseo = get_gseo(object)
-    
+
     ping_google = get_gseo_field(gseo,'ping_google',default=False)
-    
+
     ping_bing = get_gseo_field(gseo,'ping_bing',default=False)
-    
+
     ping_ask = get_gseo_field(gseo,'ping_ask',default=False)
-    
+
     if (ping_google or ping_bing or ping_ask) and include_in_sitemapxml(object):
         portal_url = getToolByName(object, 'portal_url')()
         if ping_google:
@@ -87,7 +87,7 @@ def Pinging(object):
             url_open("http://www.bing.com/webmaster/ping.aspx?siteMap=%s/sitemap.xml.gz" % portal_url)
         if ping_ask:
             url_open("http://submissions.ask.com/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
-            
+
 def event_ObjectUpdated(object, event):
     """ Cases in which the sitemap.xml is modified:
         An object is modified --> The lastmod property of sitemap.xml is changed
@@ -126,12 +126,12 @@ def event_ObjectAddedMoved(object, event):
     portal_factory = getToolByName(object,'portal_factory')
     if portal_factory.isTemporary(object):
         return
-    
+
     if hasattr(object,'REQUEST') and\
        hasattr(object.REQUEST,'form') and\
        (object.REQUEST.form.has_key('form.button.save') and object.REQUEST.form.get('form.button.save','')):
         # I'm adding the object
-        
+
         # Add event can be fired several times
         # Move event can be fired only one time
         # Then I check that the type of event is Move
@@ -139,6 +139,6 @@ def event_ObjectAddedMoved(object, event):
             Pinging(object)
     else:
         # I'm pasting the object
-        
+
         if type(event) != ObjectRemovedEvent:
             Pinging(object)

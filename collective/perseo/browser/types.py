@@ -6,12 +6,14 @@ from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.site.hooks import getSite
 
+
 BAD_TYPES = ("ATBooleanCriterion", "ATDateCriteria", "ATDateRangeCriterion",
              "ATListCriterion", "ATPortalTypeCriterion", "ATReferenceCriterion",
              "ATSelectionCriterion", "ATSimpleIntCriterion", "Plone Site",
              "ATSimpleStringCriterion", "ATSortCriterion",
              "Discussion Item", "TempFolder", "ATCurrentAuthorCriterion",
              "ATPathCriterion", "ATRelativePathCriterion", )
+
 
 class ReallyUserFriendlyTypesVocabulary(object):
     """Vocabulary factory for really user friendly portal types.
