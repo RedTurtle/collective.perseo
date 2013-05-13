@@ -31,7 +31,7 @@
   <div metal:fill-slot="main"
     tal:define="perseo_context here/@@perseo-context">
     <form name="perseo_edit_form" id="perseo_edit_form" action="#" method="post"
-      tal:attributes="action string:${context/absolute_url}/@@perseo-tab-context" >
+      tal:attributes="action string:${context/absolute_url}/@@perseo-context-settings" >
       <h1 i18n:translate="edit_seo">Edit SEO Settings</h1>
       <fieldset>
         <legend i18n:translate="legend_general_settings">

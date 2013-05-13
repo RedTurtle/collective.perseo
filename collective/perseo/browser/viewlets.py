@@ -26,7 +26,7 @@ METATAGS_ORDER = ["google-site-verification",
                   "robots"]
 
 
-class PerSEOMetaTagsViewlet( ViewletBase ):
+class PerSEOMetaTagsViewlet(ViewletBase):
     """Inserts meta tags in html head of pages"""
 
     def render(self):
@@ -156,22 +156,22 @@ class TrackingCodeViewlet(ViewletBase):
         registry = getUtility(IRegistry)
         self.settings = registry.forInterface(ISEOConfigSchema)
 
-    def getTrackingCode( self ):
+    def getTrackingCode(self):
         return ''
 
-    def render( self ):
+    def render(self):
         return safe_unicode("""%s""" % self.getTrackingCode())
 
 
 class TrackingCodeHeaderViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the <head>.
     """
-    def getTrackingCode( self ):
+    def getTrackingCode(self):
         return self.settings.tracking_code_header or ''
 
 
 class TrackingCodeFooterViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the portal footer.
     """
-    def getTrackingCode( self ):
+    def getTrackingCode(self):
         return self.settings.tracking_code_footer or ''

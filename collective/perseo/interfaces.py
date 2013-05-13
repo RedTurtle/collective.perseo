@@ -37,6 +37,30 @@ class ISEOConfigWMToolsSchema(Interface):
                       default=u"Enter a Google+ Page, ie. https://plus.google.com/117510669985299383051/"),
         required=False)
 
+class ISEOConfigSocialSchema(Interface):
+    """Schema for Social Networks"""
+
+    site_name = schema.TextLine(
+        title=_("label_social_site_name",
+                default=u"Site name for Social Networks"),
+        description=_("help_social_site_name",
+                      default=u"Enter your site name"),
+        required=False)
+
+    facebook_admins = schema.TextLine(
+        title=_("label_facebook_admins",
+                default=u"Facebook admins IDs"),
+        description=_("help_facebook_admins",
+                      default=u"Enter a Facebook admins Ids"),
+        required=False)
+
+    twitter_site = schema.TextLine(
+        title=_("label_twitter_site",
+                default=u"Twitter site account"),
+        description=_("help_twitter_site",
+                      default=u"Enter twitter site account name, ie. @redturtle"),
+        required=False)
+
 
 class ISEOConfigTitleSchema_homepage(Interface):
     """Schema for Title homepage"""
@@ -543,6 +567,7 @@ class ISEOConfigSchema(ISEOConfigWMToolsSchema,
                        ISEOConfigIndexingSchema,
                        ISEOConfigSiteMapXMLSchema,
                        ISEOConfigSchemaOrgSchema,
+                       ISEOConfigSocialSchema,
                        ISEOConfigRSSSchema):
     """Combined schema for the adapter lookup.
     """

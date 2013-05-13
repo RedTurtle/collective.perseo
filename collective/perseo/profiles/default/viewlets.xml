@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
 <object>
   <order manager="plone.htmlhead" skinname="*">
-	<viewlet name="plone.htmlhead.title" />
-	<viewlet name="collective.perseo.trackingcodeheader" />
-	<viewlet name="collective.perseo.metatags" />
+    <viewlet name="plone.htmlhead.title" />
+    <viewlet name="collective.perseo.trackingcodeheader" />
+    <viewlet name="collective.perseo.metatags" />
   </order>
   <order manager="plone.portalfooter" skinname="*">
-	<viewlet name="collective.perseo.trackingcodefooter" insert-before="*"/>
+    <viewlet name="collective.perseo.trackingcodefooter" insert-before="*"/>
   </order>
+  <hidden manager="plone.portalheader" skinname="*">
+    <viewlet name="sc.social.likes_metadata" /> <!-- make sure even with sc.social.likes our viewlet is the only one -->
+  </hidden>
 </object>

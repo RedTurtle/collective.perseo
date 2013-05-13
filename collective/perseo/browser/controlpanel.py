@@ -4,7 +4,8 @@ from plone.z3cform.fieldsets import group
 
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.interfaces import ISEOConfigSchema, \
-   ISEOConfigTitleSchema, ISEOConfigSiteMapXMLSchema, ISEOConfigIndexingSchema
+   ISEOConfigTitleSchema, ISEOConfigSiteMapXMLSchema, ISEOConfigIndexingSchema,\
+   ISEOConfigSocialSchema
 
 
 class TitleForm(group.Group):
@@ -24,12 +25,18 @@ class IndexingForm(group.Group):
     fields = field.Fields(ISEOConfigIndexingSchema)
 
 
+class SocialForm(group.Group):
+    label = _(u"Social networks")
+    description = _(u"Handle how your site will be indexed by social networks")
+    fields = field.Fields(ISEOConfigSocialSchema)
+
+
 class PerSEOSettingsEditForm(controlpanel.RegistryEditForm):
 
     label = _(u"PerSEO settings")
     description = _(u"")
     schema = ISEOConfigSchema
-    groups = (SitemapForm, IndexingForm, TitleForm,)
+    groups = (SitemapForm, IndexingForm, SocialForm, TitleForm,)
 
     def updateFields(self):
         super(PerSEOSettingsEditForm, self).updateFields()
