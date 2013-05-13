@@ -1,11 +1,15 @@
 from z3c.form import field
 from plone.app.registry.browser import controlpanel
 from plone.z3cform.fieldsets import group
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
+from Products.Five.browser import BrowserView
 
 from collective.perseo import perseoMessageFactory as _
-from collective.perseo.interfaces import ISEOConfigSchema, \
-   ISEOConfigTitleSchema, ISEOConfigSiteMapXMLSchema, ISEOConfigIndexingSchema,\
-   ISEOConfigSocialSchema
+from collective.perseo.interfaces import ISEOConfigSchema
+from collective.perseo.interfaces.metaconfig import ISEOConfigTitleSchema
+from collective.perseo.interfaces.controlpanel import ISEOConfigSiteMapXMLSchema,\
+        ISEOConfigIndexingSchema, ISEOConfigSocialSchema
 
 
 class TitleForm(group.Group):
@@ -44,3 +48,11 @@ class PerSEOSettingsEditForm(controlpanel.RegistryEditForm):
 
 class PerSEOControlPanel(controlpanel.ControlPanelFormWrapper):
     form = PerSEOSettingsEditForm
+
+
+class PerSEORSS(BrowserView):
+
+    def __call__(self):
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(ISEOConfigSchema)
+        return {'indexing_feed_rss':  settings.indexing_feed_rss}

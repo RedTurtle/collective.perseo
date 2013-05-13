@@ -21,7 +21,7 @@
   <adapter name="getIncludedInSitemapxml" factory=".adapter.get_included_in_sitemapxml" />
   <adapter name="getPrioritySitemapxml" factory=".adapter.get_priority_sitemapxml" />
   <utility
-        component=".utils.ReallyUserFriendlyTypesVocabularyFactory"
+        component=".vocabularies.ReallyUserFriendlyTypesVocabularyFactory"
         name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
       />
 

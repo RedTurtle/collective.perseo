@@ -9,6 +9,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
 from collective.perseo.interfaces import ISEOConfigSchema
+from collective.perseo.interfaces.settings import ISEOContextMetaSchema, \
+        ISEOContextAdvancedSchema
 from collective.perseo.utils import SortedDict
 
 
@@ -50,7 +52,8 @@ class PerSEOMetaTagsViewlet(ViewletBase):
         """Calculate list metatags"""
 
         result = SortedDict()
-        seo_context = queryMultiAdapter((self.context, self.request), name='perseo-context')
+
+        METATAGS_ORDER = []
 
         for key in METATAGS_ORDER:
             accessor = METATAGS[key]
@@ -92,8 +95,6 @@ class PerSEOTitleTagViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.context_state = getMultiAdapter((self.context, self.request),
                                              name=u'plone_context_state')
-        self.perseo_context = getMultiAdapter((self.context, self.request),
-                                             name=u'perseo-context')
 
     def std_title(self):
         page_title = safe_unicode(self.context_state.object_title())
@@ -106,11 +107,12 @@ class PerSEOTitleTagViewlet(ViewletBase):
                 escape(safe_unicode(portal_title)))
 
     def render(self):
-        if not self.perseo_context['has_perseo_title'] and not self.perseo_context['has_perseo_title_config']:
+        context_meta = ISEOContextMetaSchema(self.context)
+        if not context_meta.title_override and not context_meta.title:
             return self.std_title()
         else:
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
-                self.perseo_context["perseo_title"]))
+                context_meta.title))
             return perseo_title
 
 
@@ -118,8 +120,6 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
     """ Simple viewlet for canonical url link rendering.
     """
     def update(self):
-        self.perseo_context = getMultiAdapter((self.context, self.request),
-                                             name=u'perseo-context')
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.pm = getToolByName(self.context, 'portal_membership')
         registry = getUtility(IRegistry)
@@ -127,8 +127,9 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
 
     def render(self):
         result = ""
-        opts = {'canonical': self.perseo_context['perseo_canonical'],
-                'alternate': self.perseo_context['alternate_i18n']}
+        context_meta = ISEOContextAdvancedSchema(self.context)
+        opts = {'canonical': context_meta.canonical_override and context_meta.canonical,
+                'alternate': context_meta.alternate_i18n}
         if self.settings.google_publisher:
             opts['google_publisher'] = self.settings.google_publisher
 

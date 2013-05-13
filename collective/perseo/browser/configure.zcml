@@ -21,36 +21,17 @@
         />
 
     <browser:page
-        name="perseo-context"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".views.PerSEOContextPloneSiteRoot"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.Archetypes.interfaces.base.IBaseObject"
-        class=".views.PerSEOContextPortalTypes"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
+        name="perseo-rss"
         for="*"
-        class=".views.PerSEOContext"
+        class=".controlpanel.PerSEORSS"
         layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
+        permission="zope2.Public"
         />
 
     <browser:page
         name="perseo-tab-available"
         for="*"
-        class=".views.PerseoTabAvailable"
+        class=".settings.PerseoTabAvailable"
         attribute="checkPerseoTabAvailable"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.Public"
@@ -58,11 +39,29 @@
 
     <browser:page
         name="perseo-context-settings"
-        for="*"
-        class=".views.PerSEOTabContext"
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        class=".settings.manageSEOContext"
         layer=".interfaces.IPerSEOLayer"
         permission="cmf.ModifyPortalContent"
         />
+
+    <adapter 
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        factory=".settings_at.ATSeoContextMetaAdapter" />
+
+    <adapter 
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        factory=".settings_at.ATSeoContextAdvancedAdapter" />
+
+    <adapter 
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="..interfaces.settings.ISEOContextMetaSchema"
+        factory=".settings_plone.PloneSiteSeoContextAdapter" />
+
+    <adapter 
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="..interfaces.settings.ISEOContextAdvancedSchema"
+        factory=".settings_plone.PloneSiteSeoContextAdapter" />
 
     <browser:page
         name="sitemap.xml.gz"
