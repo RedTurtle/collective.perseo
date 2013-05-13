@@ -48,3 +48,4 @@ def upgrade_to_0_6_4(context):
     context.runImportStepFromProfile('profile-collective.perseo:default', 'componentregistry')
     context.runImportStepFromProfile('profile-collective.perseo:default', 'propertiestool')
     context.runImportStepFromProfile('profile-collective.perseo:default', 'memberdata-properties')
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'controlpanel')

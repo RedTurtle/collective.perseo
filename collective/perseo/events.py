@@ -4,7 +4,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
 from zope.lifecycleevent import ObjectMovedEvent, ObjectRemovedEvent
-from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.interfaces import ISEOConfigSchema
 
 
 def get_gseo(object):

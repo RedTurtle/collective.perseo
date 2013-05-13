@@ -1,9 +1,10 @@
 from plone.app.layout.sitemap.sitemap import SiteMapView
-from zope.component import queryAdapter
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.interfaces import ISEOConfigSchema
 
 
 class PerSEOSiteMapView (SiteMapView):
@@ -15,8 +16,8 @@ class PerSEOSiteMapView (SiteMapView):
 
     def __init__(self, context, request):
         super(PerSEOSiteMapView, self).__init__(context, request)
-        portal = self.context.portal_url.getPortalObject()
-        self.gseo = queryAdapter(portal, ISEOConfigSchema)
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOConfigSchema)
 
     def template(self):
         " manual unicode encode "
@@ -27,8 +28,8 @@ class PerSEOSiteMapView (SiteMapView):
     def get_gseo_field( self, field, default=None):
         """ Returned field from Plone SEO Configuration Control Panel Tool
         """
-        if self.gseo:
-            return getattr(self.gseo, field, default)
+        if self.settings:
+            return getattr(self.settings, field, default)
         return default
 
     def perseo_included_types(self):

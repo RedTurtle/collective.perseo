@@ -1,12 +1,14 @@
 from Acquisition import aq_inner
 from cgi import escape
 
-from zope.component import getMultiAdapter, queryAdapter, queryMultiAdapter
+from zope.component import getMultiAdapter, queryMultiAdapter
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
-from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.interfaces import ISEOConfigSchema
 from collective.perseo.utils import SortedDict
 
 
@@ -48,8 +50,6 @@ class PerSEOMetaTagsViewlet( ViewletBase ):
         """Calculate list metatags"""
 
         result = SortedDict()
-        #pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        #seo_global = queryAdapter(pps.portal(), ISEOConfigSchema)
         seo_context = queryMultiAdapter((self.context, self.request), name='perseo-context')
 
         for key in METATAGS_ORDER:
@@ -121,15 +121,16 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
         self.perseo_context = getMultiAdapter((self.context, self.request),
                                              name=u'perseo-context')
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
         self.pm = getToolByName(self.context, 'portal_membership')
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOConfigSchema)
 
     def render(self):
         result = ""
         opts = {'canonical': self.perseo_context['perseo_canonical'],
                 'alternate': self.perseo_context['alternate_i18n']}
-        if self.gseo and self.gseo.google_publisher:
-            opts['google_publisher'] = self.gseo.google_publisher
+        if self.settings.google_publisher:
+            opts['google_publisher'] = self.settings.google_publisher
 
         author = self.pm.getMemberById(self.context.Creator())
         if author and author.getProperty('google_author'):
@@ -147,12 +148,13 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
         return result
 
 
-class TrackingCodeViewlet( ViewletBase ):
+class TrackingCodeViewlet(ViewletBase):
     """ Simple viewlet for script rendering.
     """
     def update(self):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOConfigSchema)
 
     def getTrackingCode( self ):
         return ''
@@ -161,19 +163,15 @@ class TrackingCodeViewlet( ViewletBase ):
         return safe_unicode("""%s""" % self.getTrackingCode())
 
 
-class TrackingCodeHeaderViewlet( TrackingCodeViewlet ):
+class TrackingCodeHeaderViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the <head>.
     """
     def getTrackingCode( self ):
-        if self.gseo:
-            return self.gseo.tracking_code_header
-        return ''
+        return self.settings.tracking_code_header or ''
 
 
-class TrackingCodeFooterViewlet( TrackingCodeViewlet ):
+class TrackingCodeFooterViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the portal footer.
     """
     def getTrackingCode( self ):
-        if self.gseo:
-            return self.gseo.tracking_code_footer
-        return ''
+        return self.settings.tracking_code_footer or ''

@@ -4,10 +4,11 @@ import zope.event
 from Acquisition import aq_inner
 from DateTime import DateTime
 from time import time
-from zope.component import queryAdapter
+from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.schema.interfaces import InvalidValue
 from zope.annotation.interfaces import IAnnotations
+from plone.registry.interfaces import IRegistry
 from plone.memoize import view, ram
 from Products.Archetypes.atapi import DisplayList
 from Products.Archetypes.event import ObjectEditedEvent
@@ -22,7 +23,7 @@ except ImportError:
     LINGUA_PLONE = False
 
 from collective.perseo import perseoMessageFactory as _
-from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.interfaces import ISEOConfigSchema
 
 
 PERSEO_PREFIX = 'perseo_'
@@ -42,7 +43,8 @@ class PerSEOContext(BrowserView):
         super(PerSEOContext, self).__init__(*args, **kwargs)
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.pcs = queryMultiAdapter((self.context, self.request), name="plone_context_state")
-        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOConfigSchema)
         self._perseo_metatags = self._getPerSEOMetaTags()
 
     def __getitem__(self, key):
@@ -90,16 +92,13 @@ class PerSEOContext(BrowserView):
         return self.getPerSEOProperty('pSEO_priority_sitemapxml', default=None)
 
     def perseo_included_types(self):
-        if self.gseo:
-            return getattr(self.gseo, 'not_included_types', ())
-        return ()
+        return getattr(self.settings, 'not_included_types', ())
 
     def getYesNoOptions(self):
         """Get a sample vocabulary
         """
         return DisplayList((("yes", _(u"Yes"),),
-                            ("no", _(u"No"),),
-                            ))
+                            ("no", _(u"No"),),))
 
     def perseo_included_in_sitemapxml(self):
         context = aq_inner(self.context)
@@ -119,8 +118,7 @@ class PerSEOContext(BrowserView):
                             ("noodp", _(u"NO ODP"),),
                             ("noydir", _(u"NO YDIR"),),
                             ("noarchive", _(u"No Archive"),),
-                            ("nosnippet", _(u"No Snippet"),),
-                            ))
+                            ("nosnippet", _(u"No Snippet"),),))
 
     def perseo_robots_follow(self):
         return self.getPerSEOProperty('pSEO_robots_follow',default='follow')
@@ -149,7 +147,7 @@ class PerSEOContext(BrowserView):
 
         return perseo_robots + list(self._perseo_metatags["perseo_robots_advanced"])
 
-    def getPerSEOProperty( self, property_name, accessor='', default=None ):
+    def getPerSEOProperty(self, property_name, accessor='', default=None):
         """ Get value from seo property by property name.
         """
         context = aq_inner(self.context)
@@ -178,42 +176,33 @@ class PerSEOContext(BrowserView):
         return default
 
     @ram.cache(plone_instance_time)
-    def seo_globalGoogleWebmasterTools( self ):
+    def seo_globalGoogleWebmasterTools(self):
         """ Returned Google Webmaster Tools from Plone SEO Configuration Control Panel Tool
         """
-        result = ''
-        if self.gseo:
-            result = self.gseo.googleWebmasterTools
-        return result
+        return self.settings.googleWebmasterTools or ''
 
     @ram.cache(plone_instance_time)
-    def seo_globalBingWebmasterTools( self ):
+    def seo_globalBingWebmasterTools(self):
         """ Returned Bing Webmaster Tools from Plone SEO Configuration Control Panel Tool
         """
-        result = ''
-        if self.gseo:
-            result = self.gseo.bingWebmasterTools
-        return result
+        return self.settings.bingWebmasterTools or ''
 
-    def get_gseo_field( self, field ):
+    def get_gseo_field(self, field):
         """ Returned field from Plone SEO Configuration Control Panel Tool
         """
-        result = None
-        if self.gseo:
-            result = getattr(self.gseo, field, None)
-        return result
+        return getattr(self.settings, field, '')
 
-    def perseo_title( self ):
-        return self.getPerSEOProperty( 'pSEO_title', default=self.pcs.object_title() )
+    def perseo_title(self):
+        return self.getPerSEOProperty('pSEO_title', default=self.pcs.object_title())
 
-    def has_perseo_title_config( self ):
+    def has_perseo_title_config(self):
         return False
 
-    def perseo_description( self ):
-        return self.getPerSEOProperty( 'pSEO_description', accessor='Description' )
+    def perseo_description(self):
+        return self.getPerSEOProperty('pSEO_description', accessor='Description')
 
-    def perseo_keywords( self ):
-        return self.getPerSEOProperty( 'pSEO_keywords', 'Subject', () )
+    def perseo_keywords(self):
+        return self.getPerSEOProperty('pSEO_keywords', 'Subject', ())
 
     def perseo_variables(self, value):
         if value:
@@ -227,21 +216,15 @@ class PerSEOContext(BrowserView):
                                     replace('%%tag%%',' '.join(self.pcs.context.Subject())))
         return value
 
-    def perseo_itemscope_itemtype( self ):
+    def perseo_itemscope_itemtype(self):
         """ Returned itemscope_itemtype_attrs_enable from Plone SEO Configuration Control Panel Tool
         """
-        result = False
-        if self.gseo:
-            result = self.gseo.itemscope_itemtype_attrs_enable
-        return result
+        return self.settings.itemscope_itemtype_attrs_enable or False
 
-    def perseo_indexing_feed_rss( self ):
+    def perseo_indexing_feed_rss(self):
         """ Returned indexing_feed_rss from Plone SEO Configuration Control Panel Tool
         """
-        result = False
-        if self.gseo:
-            result = self.gseo.indexing_feed_rss
-        return result
+        return self.settings.indexing_feed_rss or False
 
     def perseo_alternate_i18n(self):
         """ Return available translations if LinguaPlone is available """
@@ -343,10 +326,10 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
                 return 'notfoundpage'
             return 'homepage'
 
-    def perseo_title( self ):
+    def perseo_title(self):
         page = self.perseo_what_page()
         if page == 'homepage':
-            perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+            perseo_property = self.getPerSEOProperty('pSEO_title')
             if perseo_property:
                 return perseo_property
 
@@ -356,7 +339,7 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
 
         return self.pcs.object_title()
 
-    def has_perseo_title_config( self ):
+    def has_perseo_title_config(self):
         page = self.perseo_what_page()
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
         if gseo_field:
@@ -364,10 +347,10 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
         else:
             return False
 
-    def perseo_description( self ):
+    def perseo_description(self):
         page = self.perseo_what_page()
         if page == 'homepage':
-            perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+            perseo_property = self.getPerSEOProperty('pSEO_description')
             if perseo_property:
                 return perseo_property
 
@@ -382,110 +365,13 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             value = None
         return value
 
-    def perseo_keywords( self ):
+    def perseo_keywords(self):
         page = self.perseo_what_page()
         if page == 'homepage':
-            perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+            perseo_property = self.getPerSEOProperty('pSEO_keywords')
             if perseo_property:
                 return perseo_property
 
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
-        if gseo_field:
-            return gseo_field
-
-        context = aq_inner(self.context)
-        try:
-            value = context.Subject()
-        except AttributeError:
-            value = ()
-        return value
-
-
-class PerSEOContextATDocument(PerSEOContext):
-    """ Calculate html header meta tags on context. Context == ATDocument
-    """
-
-    def perseo_robots_follow(self):
-        perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
-        if perseo_property:
-            return perseo_property
-
-        gseo_field = self.get_gseo_field('indexing_page')
-        if gseo_field:
-            return 'nofollow'
-
-        return 'follow'
-
-    def perseo_robots_index(self):
-        perseo_property = self.getPerSEOProperty('pSEO_robots_index')
-        if perseo_property:
-            return perseo_property
-
-        gseo_field = self.get_gseo_field('indexing_page')
-        if gseo_field:
-            return 'noindex'
-
-        return 'index'
-
-    def perseo_what_page( self ):
-
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            return 'notfoundpage'
-
-        context = self.pcs.context
-        parent = self.pcs.parent()
-
-        if parent == self.pps.portal() and parent.getDefaultPage() == context.id:
-            # this document is the home page
-            return 'homepage'
-        else:
-            return 'singlepage'
-
-    def perseo_title( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
-        if perseo_property:
-            return perseo_property
-
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
-        if gseo_field:
-            return gseo_field
-
-        return self.pcs.object_title()
-
-    def has_perseo_title_config( self ):
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
-        if gseo_field:
-            return True
-        else:
-            return False
-
-    def perseo_description( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
-        if perseo_property:
-            return perseo_property
-
-        page = self.perseo_what_page()
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % page))
-        if gseo_field:
-            return gseo_field
-
-        context = aq_inner(self.context)
-        try:
-            value = context.Description()
-        except AttributeError:
-            value = None
-        return value
-
-    def perseo_keywords( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
-        if perseo_property:
-            return perseo_property
-
-        page = self.perseo_what_page()
         gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
         if gseo_field:
             return gseo_field
@@ -501,7 +387,24 @@ class PerSEOContextATDocument(PerSEOContext):
 class PerSEOContextPortalTypes(PerSEOContext):
     """ Calculate html header meta tags on context. Context == a portal type
     """
-    portal_type = ''
+
+    @property
+    def portal_type(self):
+        return self.pcs.context.portal_type.lower()
+
+    def find_context(self):
+        try:
+            self.context.restrictedTraverse(self.request.PATH_INFO)
+        except:
+            return 'notfoundpage'
+
+        context = self.pcs.context
+        parent = self.pcs.parent()
+
+        if parent == self.pps.portal() and parent.getDefaultPage() == context.id:
+            return 'homepage'
+        else:
+            return self.portal_type
 
     def perseo_robots_follow(self):
         perseo_property = self.getPerSEOProperty('pSEO_robots_follow')
@@ -525,54 +428,33 @@ class PerSEOContextPortalTypes(PerSEOContext):
 
         return 'index'
 
-    def perseo_title( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_title' )
+    def perseo_title(self):
+        perseo_property = self.getPerSEOProperty('pSEO_title')
         if perseo_property:
             return perseo_property
 
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
-            if gseo_field:
-                return gseo_field
-
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+        page = self.find_context()
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
         if gseo_field:
             return gseo_field
 
         return self.pcs.object_title()
 
-    def has_perseo_title_config( self ):
-
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_title'))
-            if gseo_field:
-                return True
-            else:
-                return False
-
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % self.portal_type))
+    def has_perseo_title_config(self):
+        page = self.find_context()
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_title' % page))
         if gseo_field:
             return True
         else:
             return False
 
-    def perseo_description( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_description' )
+    def perseo_description(self):
+        perseo_property = self.getPerSEOProperty('pSEO_description')
         if perseo_property:
             return perseo_property
 
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_description'))
-            if gseo_field:
-                return gseo_field
-
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % self.portal_type))
+        page = self.find_context()
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_description' % page))
         if gseo_field:
             return gseo_field
 
@@ -583,19 +465,13 @@ class PerSEOContextPortalTypes(PerSEOContext):
             value = None
         return value
 
-    def perseo_keywords( self ):
-        perseo_property = self.getPerSEOProperty( 'pSEO_keywords' )
+    def perseo_keywords(self):
+        perseo_property = self.getPerSEOProperty('pSEO_keywords')
         if perseo_property:
             return perseo_property
 
-        try:
-            self.context.restrictedTraverse(self.request.PATH_INFO)
-        except:
-            gseo_field = self.perseo_variables(self.get_gseo_field('notfoundpage_keywords'))
-            if gseo_field:
-                return gseo_field
-
-        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % self.portal_type))
+        page = self.find_context()
+        gseo_field = self.perseo_variables(self.get_gseo_field('%s_keywords' % page))
         if gseo_field:
             return gseo_field
 
@@ -607,57 +483,6 @@ class PerSEOContextPortalTypes(PerSEOContext):
         return value
 
 
-class PerSEOContextATEvent(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATEvent
-    """
-    portal_type = 'event'
-
-
-class PerSEOContextATFile(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATFile
-    """
-    portal_type = 'file'
-
-
-class PerSEOContextATFolder(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATFolder
-    """
-    portal_type = 'folder'
-
-
-class PerSEOContextATImage(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATImage
-    """
-    portal_type = 'image'
-
-
-class PerSEOContextATLink(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATLink
-    """
-    portal_type = 'link'
-
-
-class PerSEOContextATNewsItem(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATNewsItem
-    """
-    portal_type = 'newsItem'
-
-
-class PerSEOContextATTopic(PerSEOContextPortalTypes):
-    """ Calculate html header meta tags on context. Context == ATTopic
-    """
-    portal_type = 'topic'
-
-
-class PerseoTabAvailable(BrowserView):
-    """"""
-
-    def checkPerseoTabAvailable(self):
-        """ Checks visibility of SEO tab for context
-        """
-        return True
-
-
 class PerSEOTabContext(BrowserView):
     """ This class contains methods that allows to manage SEO tab.
     """
@@ -666,7 +491,8 @@ class PerSEOTabContext(BrowserView):
     def __init__(self, *args, **kwargs):
         super(PerSEOTabContext, self).__init__(*args, **kwargs)
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOConfigSchema)
 
     def setProperty(self, property, value):
         """ Add a new item to annotation.
@@ -783,7 +609,7 @@ class PerSEOTabContext(BrowserView):
                              default=u"The Priority sitemap.xml.gz must be a number"))
         return msg
 
-    def __call__( self ):
+    def __call__(self):
         """ Perform the update SEO properties and redirect if necessary,
             or render the template.
         """
@@ -815,3 +641,11 @@ class PerSEOTabContext(BrowserView):
             return request.response.redirect(redirect_url)
 
         return self.template()
+
+
+class PerseoTabAvailable(BrowserView):
+
+    def checkPerseoTabAvailable(self):
+        """ Checks visibility of SEO tab for context
+        """
+        return True
