@@ -1,15 +1,18 @@
-from collective.perseo.browser.seo_config import ISEOConfigSchema
+import urllib2
+
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
 from zope.lifecycleevent import ObjectMovedEvent, ObjectRemovedEvent
-import urllib2
+from collective.perseo.browser.seo_config import ISEOConfigSchema
+
 
 def get_gseo(object):
     """ Returned the Adapter for Plone SEO Configuration Control Panel Tool
     """
     portal = getToolByName(object, 'portal_url').getPortalObject()
     return queryAdapter(portal, ISEOConfigSchema)
+
 
 def get_gseo_field( gseo, field, default=None):
     """ Returned field from Plone SEO Configuration Control Panel Tool
@@ -18,10 +21,12 @@ def get_gseo_field( gseo, field, default=None):
         return getattr(gseo, field, default)
     return default
 
+
 def perseo_included_types(object):
     """ Returned the included types in sitemap.xml from Plone SEO Configuration Control Panel Tool
     """
     return get_gseo_field(get_gseo(object),'not_included_types',default=())
+
 
 def get_included_in_sitemapxml(object):
     """ Returned the value of the pSEO_included_in_sitemapxml annotation attribute of the object
@@ -34,6 +39,7 @@ def get_included_in_sitemapxml(object):
         return None
     return None
 
+
 def include_in_sitemapxml(object):
     """ Returned True if the object is included in sitemap.xml
     """
@@ -44,6 +50,7 @@ def include_in_sitemapxml(object):
     else:
         return object.portal_type in included_types
 
+
 def url_open(url):
     """ Perform the url open
     """
@@ -52,13 +59,11 @@ def url_open(url):
     except Exception:
         pass
 
+
 def PingingObjRemovedFromSiteMapXML(object):
     gseo = get_gseo(object)
-
     ping_google = get_gseo_field(gseo,'ping_google',default=False)
-
     ping_bing = get_gseo_field(gseo,'ping_bing',default=False)
-
     ping_ask = get_gseo_field(gseo,'ping_ask',default=False)
 
     if (ping_google or ping_bing or ping_ask):
@@ -70,13 +75,11 @@ def PingingObjRemovedFromSiteMapXML(object):
         if ping_ask:
             url_open("http://submissions.ask.com/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
 
+
 def Pinging(object):
     gseo = get_gseo(object)
-
     ping_google = get_gseo_field(gseo,'ping_google',default=False)
-
     ping_bing = get_gseo_field(gseo,'ping_bing',default=False)
-
     ping_ask = get_gseo_field(gseo,'ping_ask',default=False)
 
     if (ping_google or ping_bing or ping_ask) and include_in_sitemapxml(object):
@@ -87,6 +90,7 @@ def Pinging(object):
             url_open("http://www.bing.com/webmaster/ping.aspx?siteMap=%s/sitemap.xml.gz" % portal_url)
         if ping_ask:
             url_open("http://submissions.ask.com/ping?sitemap=%s/sitemap.xml.gz" % portal_url)
+
 
 def event_ObjectUpdated(object, event):
     """ Cases in which the sitemap.xml is modified:
@@ -104,6 +108,7 @@ def event_ObjectUpdated(object, event):
 
     Pinging(object)
 
+
 def event_ObjectRemoved(object, event):
     """ Cases in which the sitemap.xml is modified:
         An object is removed --> The entry is removed from the sitemap.xml
@@ -116,6 +121,7 @@ def event_ObjectRemoved(object, event):
        (object.REQUEST.form.has_key('form.submitted') and int(object.REQUEST.form.get('form.submitted',0))) or\
        (object.REQUEST.form.has_key('folder_delete')  and object.REQUEST.form.get('folder_delete','')):
         Pinging(object)
+
 
 def event_ObjectAddedMoved(object, event):
     """ Cases in which the sitemap.xml is modified:

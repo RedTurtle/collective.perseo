@@ -17,7 +17,7 @@ from Products.CMFPlone.utils import getToolByName, safe_unicode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.perseo import perseoMessageFactory as _
-from collective.perseo.browser.types import BAD_TYPES
+from collective.perseo.utils import BAD_TYPES
 
 
 class ISEOConfigWMToolsSchema(Interface):

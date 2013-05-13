@@ -9,9 +9,8 @@ class UserDataSchemaProvider(object):
     implements(IUserDataSchemaProvider)
 
     def getSchema(self):
-        """
-        """
         return IEnhancedUserDataSchema
+
 
 class IEnhancedUserDataSchema(IUserDataSchema):
     google_author = schema.TextLine(

@@ -7,7 +7,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
 from collective.perseo.browser.seo_config import ISEOConfigSchema
-from collective.perseo.util import SortedDict
+from collective.perseo.utils import SortedDict
 
 
 # mapping {meta_name:accessor} of all meta tags

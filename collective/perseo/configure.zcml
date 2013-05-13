@@ -14,8 +14,16 @@
     title="collective.perseo: Manage SEO" />
   
   <include package=".browser" />
+  <include file="events.zcml" />
   <include file="patches.zcml" />
   <include file="skins.zcml"/>
+
+  <adapter name="getIncludedInSitemapxml" factory=".adapter.get_included_in_sitemapxml" />
+  <adapter name="getPrioritySitemapxml" factory=".adapter.get_priority_sitemapxml" />
+  <utility
+        component=".utils.ReallyUserFriendlyTypesVocabularyFactory"
+        name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
+      />
 
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
