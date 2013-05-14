@@ -1,0 +1,13 @@
+<tal:metas i18n:domain="sc.social.like" tal:condition="view/enabled">
+  <tal:fb tal:condition="view/fb_enabled">
+    <script
+        tal:attributes="src string:http://connect.facebook.net/${view/language}/all.js#xfbml=1"
+        src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+  </tal:fb>
+  <tal:gp  tal:condition="view/gp_enabled">
+  <script tal:attributes="type string:text/javascript;
+                          src string:http://apis.google.com/js/plusone.js"
+          tal:content="python:'''{'parsetags': 'explicit','lang':'%s'}''' %(view.language)">
+      </script>
+  </tal:gp>
+</tal:metas>

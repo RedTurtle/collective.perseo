@@ -1,9 +1,9 @@
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from collective.contentleadimage.interfaces import ILeadImageable
-from collective.perseo.browser.settings_image import ImageSeoContextAdapter
+from collective.perseo.browser.settings_at import ATSeoContextAdapter
 
 
-class LeadImageSeoContextAdapter(ImageSeoContextAdapter):
+class LeadImageSeoContextAdapter(ATSeoContextAdapter):
 
     @property
     def og_image(self):

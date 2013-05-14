@@ -140,11 +140,23 @@ class ISEOTwitterSettings(Interface):
                       default=u"i.e. a short title"),
         required=False)
 
+    twitter_title_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
+        required=False)
+
     twitter_description = schema.Text(
         title=_("label_twitter_description",
                 default="Twitter description"),
         description=_("help_twitter_description",
                       default=u"i.e. a short site description"),
+        required=False)
+
+    twitter_description_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
         required=False)
 
     twitter_card = schema.Choice(
@@ -153,6 +165,12 @@ class ISEOTwitterSettings(Interface):
         description=_("help_twitter_card",
                       default=u"i.e. summary"),
         values=['summary', 'photo', 'gallery', 'product', 'app', 'player'],
+        required=False)
+
+    twitter_card_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
         required=False)
 
     twitter_site = schema.TextLine(
@@ -169,11 +187,23 @@ class ISEOTwitterSettings(Interface):
                       default=u"i.e. @redturtle"),
         required=False)
 
+    twitter_creator_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
+        required=False)
+
     twitter_image = schema.TextLine(
         title=_("label_twitter_image",
                 default="Twitter image"),
         description=_("help_twitter_image",
                       default=u"URL to image preview"),
+        required=False)
+
+    twitter_image_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
         required=False)
 
 
@@ -193,11 +223,23 @@ class ISEOFacebookSettings(Interface):
                       default=u"URL to image preview"),
         required=False)
 
+    og_image_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
+        required=False)
+
     og_url = schema.TextLine(
         title=_("label_og_url",
                 default="Facebook URL"),
         description=_("help_og_url",
                       default=u"URL used by Facebook"),
+        required=False)
+
+    og_url_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
         required=False)
 
     og_title = schema.TextLine(
@@ -207,11 +249,23 @@ class ISEOFacebookSettings(Interface):
                       default=u"Title used by Facebook"),
         required=False)
 
-    og_description = schema.TextLine(
+    og_title_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
+        required=False)
+
+    og_description = schema.Text(
         title=_("label_og_description",
                 default="Facebook description"),
         description=_("help_og_description",
                       default=u"Description used by Facebook"),
+        required=False)
+
+    og_description_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
         required=False)
 
     og_locale = schema.TextLine(
@@ -221,11 +275,23 @@ class ISEOFacebookSettings(Interface):
                       default=u"Locale used by Facebook"),
         required=False)
 
+    og_locale_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
+        required=False)
+
     og_type = schema.TextLine(
         title=_("label_og_type",
                 default="Facebook og:type"),
         description=_("help_og_type",
                       default=u"Type used by Facebook, usually article"),
+        required=False)
+
+    og_type_override = schema.Bool(
+        title=_("label_title_override",
+                default=u"Override the default"),
+        default=False,
         required=False)
 
 

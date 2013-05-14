@@ -28,7 +28,7 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
         perseo_property = self.get('meta_robots_follow')
         if perseo_property:
             return perseo_property
-        return getattr(self.settings, 'indexing_%s' % self.portal_type) \
+        return getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
                                                     and 'nofollow' or 'follow'
 
     @property
@@ -38,5 +38,5 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
         perseo_property = self.get('meta_robots_index')
         if perseo_property:
             return perseo_property
-        return getattr(self.settings, 'indexing_%s' % self.portal_type) \
+        return getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
                                                     and 'noindex' or 'index'

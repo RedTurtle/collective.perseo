@@ -25,16 +25,32 @@ class SEOContextAdvancedForm(group.Group):
 
 
 class SEOContextTwitterForm(group.Group):
-    fields = field.Fields(ISEOTwitterSettings).select('twitter_card', 
-            'twitter_creator', 'twitter_title', 'twitter_description',
-            'twitter_image')
+    fields = field.Fields(ISEOTwitterSettings).select('twitter_card',
+            'twitter_card_override', 'twitter_creator',
+            'twitter_creator_override', 'twitter_title',
+            'twitter_title_override', 'twitter_description', 
+            'twitter_description_override',
+            'twitter_image', 'twitter_image_override')
     label = _(u"Twitter settings")
+
+    def updateWidgets(self):
+        super(SEOContextTwitterForm, self).updateWidgets()
+        self.widgets['twitter_description'].cols = 40
+        self.widgets['twitter_description'].rows = 5
 
 
 class SEOContextFacebookForm(group.Group):
     fields = field.Fields(ISEOFacebookSettings).select('og_title', 
-            'og_description', 'og_url', 'og_locale', 'og_image', 'og_type')
+            'og_title_override', 'og_description', 'og_description_override',
+            'og_url', 'og_url_override', 'og_locale', 
+            'og_locale_override', 'og_image', 'og_image_override', 'og_type',
+            'og_type_override')
     label = _(u"Facebook settings")
+
+    def updateWidgets(self):
+        super(SEOContextFacebookForm, self).updateWidgets()
+        self.widgets['og_description'].cols = 40
+        self.widgets['og_description'].rows = 5
 
 
 class SEOContextForm(extensible.ExtensibleForm, form.Form):
@@ -68,11 +84,6 @@ class SEOContextForm(extensible.ExtensibleForm, form.Form):
         self.widgets['description'].cols = 40
         self.widgets['description'].rows = 5
 
-    @button.buttonAndHandler(_(u'Cancel'))
-    def handleCancel(self, action):  # pylint: disable=W0613
-        self.setStatusMessage(self.message_cancel)
-        self.redirectAction()
-
     @button.buttonAndHandler(_(u'Save'))
     def handleApply(self, action):  # pylint: disable=W0613
         data, errors = self.extractData()
@@ -87,6 +98,12 @@ class SEOContextForm(extensible.ExtensibleForm, form.Form):
 
         self.setStatusMessage(self.message_ok)
         self.redirectAction()
+
+    @button.buttonAndHandler(_(u'Cancel'))
+    def handleCancel(self, action):  # pylint: disable=W0613
+        self.setStatusMessage(self.message_cancel)
+        self.redirectAction()
+
 
 manageSEOContext = wrap_form(
         SEOContextForm,

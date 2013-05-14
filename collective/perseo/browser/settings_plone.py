@@ -26,6 +26,11 @@ class PloneSiteSeoContextAdapter(object):
         self.pps = queryMultiAdapter((self.context, context.REQUEST), name="plone_portal_state")
 
     def get(self, name):
+        # first check overrides if exists and is True
+        overrides = getattr(self, '%s_override' % name, True)
+        if not overrides:
+            return None
+
         context = aq_inner(self.context)
         if not IAnnotatable.providedBy(self.context):
             return None
@@ -93,73 +98,42 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def title(self):
-        if not self.title_override:
-            return self.pcs.object_title()
         page = self.find_context()
         return self.get('title') or \
-               getattr(self.settings, '%s_title' % page) or \
+               getattr(self.settings, '%s_title' % page, None) or \
                self.pcs.object_title()
 
     @property
     def description(self):
         context = aq_inner(self.context)
-        if not self.description_override:
-            return context.Description() or ''
         page = self.find_context()
         return self.get('description') or \
-               getattr(self.settings, '%s_description' % page) or \
+               getattr(self.settings, '%s_description' % page, None) or \
                context.Description()
 
     @property
     def keywords(self):
         context = aq_inner(self.context)
-        if not self.keywords_override:
-            return context.Subject() or ''
         page = self.find_context()
         return self.get('keywords') or \
-               getattr(self.settings, '%s_keywords' % page) or \
+               getattr(self.settings, '%s_keywords' % page, None) or \
                context.Subject()
-
-    @property
-    def title_override(self):
-        return self.get('title_override') or False
-
-    @property
-    def description_override(self):
-        return self.get('description_override') or False
-
-    @property
-    def keywords_override(self):
-        return self.get('keywords_override') or False
 
     @property
     def meta_robots_follow(self):
         page = self.find_robots_context()
-        return getattr(self.settings, 'indexing_%s' % page) \
+        return getattr(self.settings, 'indexing_%s' % page, None) \
                                                     and 'nofollow' or 'follow'
-
-    @property
-    def meta_robots_follow_override(self):
-        return self.get('meta_robots_follow_override') or False
 
     @property
     def meta_robots_index(self):
         page = self.find_robots_context()
-        return getattr(self.settings, 'indexing_%s' % page) \
+        return getattr(self.settings, 'indexing_%s' % page, None) \
                                                     and 'noindex' or 'index'
     @property
     def meta_robots_advanced(self):
         site_globals = self.settings.meta_robots_advanced
-        return self.get('meta_robots_advanced_override') \
-                and self.get('meta_robots_advanced') or site_globals or ()
-
-    @property
-    def meta_robots_index_override(self):
-        return self.get('meta_robots_index_override') or False
-
-    @property
-    def meta_robots_advanced_override(self):
-        return self.get('meta_robots_advanced_override') or False
+        return self.get('meta_robots_advanced') or site_globals or ()
 
     @property
     def robots(self):
@@ -167,17 +141,8 @@ class PloneSiteSeoContextAdapter(object):
                 ', '.join(self.meta_robots_advanced))
 
     @property
-    def canonical_override(self):
-        return self.get('canonical_override') or False
-
-    @property
     def canonical(self):
-        if self.canonical_override:
-            return self.get('canonical')
-
-    @property
-    def include_in_sitemap_override(self):
-        return self.get('include_in_sitemap_override') or False
+        return self.get('canonical') or ''
 
     @property
     def sitemap_priority(self):
@@ -185,9 +150,7 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def include_in_sitemap(self):
-        if not self.include_in_sitemap_override:
-            return False
-        return self.get('include_in_sitemap')
+        return self.get('include_in_sitemap') or False
 
     @property
     def alternate_i18n(self):
@@ -208,10 +171,46 @@ class PloneSiteSeoContextAdapter(object):
     def googleWebmasterTools(self):
         return self.settings.googleWebmasterTools
 
+    @property
+    def meta_robots_index_override(self):
+        return self.get('meta_robots_index_override') or False
+
+    @property
+    def meta_robots_follow_override(self):
+        return self.get('meta_robots_follow_override') or False
+
+    @property
+    def title_override(self):
+        return self.get('title_override') or False
+
+    @property
+    def description_override(self):
+        return self.get('description_override') or False
+
+    @property
+    def keywords_override(self):
+        return self.get('keywords_override') or False
+
+    @property
+    def meta_robots_advanced_override(self):
+        return self.get('meta_robots_advanced_override') or False
+
+    @property
+    def canonical_override(self):
+        return self.get('canonical_override') or False
+
+    @property
+    def include_in_sitemap_override(self):
+        return self.get('include_in_sitemap_override') or False
+
     # Twitter stuff
     @property
     def twitter_card(self):
         return self.get('twitter_card') or 'summary'
+
+    @property
+    def twitter_card_override(self):
+        return self.get('twitter_card_override') or False
 
     @property
     def twitter_site(self):
@@ -224,16 +223,32 @@ class PloneSiteSeoContextAdapter(object):
             author and author.getProperty('twitter_author') or ''
 
     @property
+    def twitter_creator_override(self):
+        return self.get('twitter_creator_override') or False
+
+    @property
     def twitter_description(self):
         return self.get('twitter_description') or self.description
+
+    @property
+    def twitter_description_override(self):
+        return self.get('twitter_description_override') or False
 
     @property
     def twitter_title(self):
         return self.get('twitter_title') or self.title
 
     @property
+    def twitter_title_override(self):
+        return self.get('twitter_title_override') or False
+
+    @property
     def twitter_image(self):
         return self.get('twitter_image') or self.og_image
+
+    @property
+    def twitter_image_override(self):
+        return self.get('twitter_image_override') or False
 
     # Facebook stuff
     @property
@@ -249,21 +264,45 @@ class PloneSiteSeoContextAdapter(object):
         return self.get('og_locale') or self.context.Language()
 
     @property
+    def og_locale_override(self):
+        return self.get('og_locale_override') or False
+
+    @property
     def og_type(self):
         return self.get('og_type') or 'article'
+
+    @property
+    def og_type_override(self):
+        return self.get('og_type_override') or False
 
     @property
     def og_title(self):
         return self.get('og_title') or self.title
 
     @property
+    def og_title_override(self):
+        return self.get('og_title_override') or False
+
+    @property
     def og_description(self):
         return self.get('og_description') or self.description
+
+    @property
+    def og_description_override(self):
+        return self.get('og_description_override') or False
 
     @property
     def og_url(self):
         return self.get('og_url') or self.canonical
 
     @property
+    def og_url_override(self):
+        return self.get('og_url_override') or False
+
+    @property
     def og_image(self):
         return self.get('og_image') or '%s/logo.png' % self.context.absolute_url()
+
+    @property
+    def og_image_override(self):
+        return self.get('og_image_override') or False
