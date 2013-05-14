@@ -22,18 +22,17 @@ class SEOContextAdvancedForm(group.Group):
     fields['include_in_sitemap'].widgetFactory = RadioFieldWidget
     fields['meta_robots_follow'].widgetFactory = RadioFieldWidget
     fields['meta_robots_index'].widgetFactory = RadioFieldWidget
-    fields['meta_robots_advanced'].widgetFactory = RadioFieldWidget
 
 
 class SEOContextTwitterForm(group.Group):
-    fields = field.Fields(ISEOFacebookSettings).select('twitter_card', 
+    fields = field.Fields(ISEOTwitterSettings).select('twitter_card', 
             'twitter_creator', 'twitter_title', 'twitter_description',
             'twitter_image')
     label = _(u"Twitter settings")
 
 
 class SEOContextFacebookForm(group.Group):
-    fields = field.Fields(ISEOTwitterSettings).select('og_title', 
+    fields = field.Fields(ISEOFacebookSettings).select('og_title', 
             'og_description', 'og_url', 'og_locale', 'og_image', 'og_type')
     label = _(u"Facebook settings")
 

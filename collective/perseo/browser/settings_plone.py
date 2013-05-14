@@ -101,10 +101,6 @@ class PloneSiteSeoContextAdapter(object):
                self.pcs.object_title()
 
     @property
-    def title_override(self):
-        return False
-
-    @property
     def description(self):
         context = aq_inner(self.context)
         if not self.description_override:
@@ -113,10 +109,6 @@ class PloneSiteSeoContextAdapter(object):
         return self.get('description') or \
                getattr(self.settings, '%s_description' % page) or \
                context.Description()
-
-    @property
-    def description_override(self):
-        return False
 
     @property
     def keywords(self):
@@ -129,8 +121,16 @@ class PloneSiteSeoContextAdapter(object):
                context.Subject()
 
     @property
+    def title_override(self):
+        return self.get('title_override') or False
+
+    @property
+    def description_override(self):
+        return self.get('description_override') or False
+
+    @property
     def keywords_override(self):
-        return False
+        return self.get('keywords_override') or False
 
     @property
     def meta_robots_follow(self):
@@ -139,24 +139,55 @@ class PloneSiteSeoContextAdapter(object):
                                                     and 'nofollow' or 'follow'
 
     @property
+    def meta_robots_follow_override(self):
+        return self.get('meta_robots_follow_override') or False
+
+    @property
     def meta_robots_index(self):
         page = self.find_robots_context()
         return getattr(self.settings, 'indexing_%s' % page) \
                                                     and 'noindex' or 'index'
+    @property
+    def meta_robots_advanced(self):
+        site_globals = self.settings.meta_robots_advanced
+        return self.get('meta_robots_advanced_override') \
+                and self.get('meta_robots_advanced') or site_globals or ()
+
+    @property
+    def meta_robots_index_override(self):
+        return self.get('meta_robots_index_override') or False
+
+    @property
+    def meta_robots_advanced_override(self):
+        return self.get('meta_robots_advanced_override') or False
+
+    @property
+    def robots(self):
+        return (self.meta_robots_follow, self.meta_robots_index,
+                ', '.join(self.meta_robots_advanced))
 
     @property
     def canonical_override(self):
-        return False
+        return self.get('canonical_override') or False
+
+    @property
+    def canonical(self):
+        if self.canonical_override:
+            return self.get('canonical')
+
+    @property
+    def include_in_sitemap_override(self):
+        return self.get('include_in_sitemap_override') or False
+
+    @property
+    def sitemap_priority(self):
+        return self.get('sitemap_priority')
 
     @property
     def include_in_sitemap(self):
         if not self.include_in_sitemap_override:
             return False
         return self.get('include_in_sitemap')
-
-    @property
-    def include_in_sitemap_override(self):
-        return False
 
     @property
     def alternate_i18n(self):

@@ -133,28 +133,12 @@ class ISEOConfigIndexingSchema(Interface):
         default=False,
         required=False)
 
-    robots_noodp = schema.Bool(
-        title=_("label_robots_noodp",
-                default=u"Add noodp in whole site"),
-        default=False,
-        required=False)
-
-    robots_noydir = schema.Bool(
-        title=_("label_robots_noydir",
-                default=u"Add noydir in whole site"),
-        default=False,
-        required=False)
-
-    robots_noarchive = schema.Bool(
-        title=_("label_robots_noarchive",
-                default=u"Add noarchive in whole site"),
-        default=False,
-        required=False)
-
-    robots_nosnippet = schema.Bool(
-        title=_("label_robots_nosnippet",
-                default=u"Add nosnippet in whole site"),
-        default=False,
+    meta_robots_advanced = schema.List(
+        title=_("label_meta_robots_advanced",
+                default=u"Meta Robots Advanced Tag"),
+        value_type=schema.Choice(
+                values=['noodp', 'noydir', 'noarchive', 'nosnippet']
+                ),
         required=False)
 
 

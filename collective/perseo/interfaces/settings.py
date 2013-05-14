@@ -80,10 +80,12 @@ class ISEOAdvancedSettings(Interface):
         default=False,
         required=False)
 
-    meta_robots_advanced = schema.Choice(
+    meta_robots_advanced = schema.List(
         title=_("label_meta_robots_advanced",
                 default=u"Meta Robots Advanced Tag"),
-        values=['noodp', 'noydir', 'noarchive', 'nosnippet'],
+        value_type=schema.Choice(
+                values=['noodp', 'noydir', 'noarchive', 'nosnippet']
+                ),
         required=False)
 
     meta_robots_advanced_override = schema.Bool(
