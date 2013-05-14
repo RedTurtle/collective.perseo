@@ -1,5 +1,5 @@
 from ZODB.PersistentMapping import PersistentMapping
-from zope.annotation.interfaces import IAnnotations
+from zope.annotation.interfaces import IAnnotations, IAnnotatable
 from zope.interface import implements
 from z3c.form import form, field, button
 from z3c.form.browser.radio import RadioFieldWidget
@@ -9,7 +9,8 @@ from plone.z3cform.layout import wrap_form
 from plone.z3cform.fieldsets import extensible
 from plone.z3cform.fieldsets import group
 
-from collective.perseo.interfaces.settings import ISEOSettings, ISEOAdvancedSettings
+from collective.perseo.interfaces.settings import ISEOSettings, \
+        ISEOAdvancedSettings, ISEOTwitterSettings, ISEOFacebookSettings
 from collective.perseo import perseoMessageFactory as _
 
 PERSEO = 'collective.perseo'
@@ -24,13 +25,26 @@ class SEOContextAdvancedForm(group.Group):
     fields['meta_robots_advanced'].widgetFactory = RadioFieldWidget
 
 
+class SEOContextTwitterForm(group.Group):
+    fields = field.Fields(ISEOFacebookSettings).select('twitter_card', 
+            'twitter_creator', 'twitter_title', 'twitter_description',
+            'twitter_image')
+    label = _(u"Twitter settings")
+
+
+class SEOContextFacebookForm(group.Group):
+    fields = field.Fields(ISEOTwitterSettings).select('og_title', 
+            'og_description', 'og_url', 'og_locale', 'og_image', 'og_type')
+    label = _(u"Facebook settings")
+
+
 class SEOContextForm(extensible.ExtensibleForm, form.Form):
     implements(ISEOSettings)
 
     form_name = "perseo_context_settings"
     id = 'perseo-context-settings-form'
     description = _(u"Manage SEO settings for this content")
-    groups = (SEOContextAdvancedForm,)
+    groups = (SEOContextTwitterForm, SEOContextFacebookForm, SEOContextAdvancedForm,)
     ignoreContext = False
     message_ok = _(u'Changes saved.')
     message_cancel = _(u'No changes made.')
@@ -87,4 +101,4 @@ class PerseoTabAvailable(BrowserView):
     def checkPerseoTabAvailable(self):
         """ Checks visibility of SEO tab for context
         """
-        return True
+        return IAnnotatable.providedBy(self.context)

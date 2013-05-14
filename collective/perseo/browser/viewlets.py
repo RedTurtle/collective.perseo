@@ -10,32 +10,50 @@ from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 from collective.perseo.interfaces import ISEOControlpanel
 from collective.perseo.interfaces.settings import ISEOSettings
 
-
-METATAGS = (("google-site-verification", "googleWebmasterTools"),
-            ("msvalidate.01"           , "bingWebmasterTools"),
-            ("description"             , "description"),
-            ("keywords"                , "keywords"),
-            ("robots"                  , "robots"))
+#        <meta name/property=""                    content=""/>
+METATAGS = (({"name":"google-site-verification"}, "googleWebmasterTools"),
+            ({"name":"msvalidate.01"}           , "bingWebmasterTools"),
+            ({"name":"description"}             , "description"),
+            ({"name":"keywords"}                , "keywords"),
+            ({"name":"robots"}                  , "robots"),
+            ({"name":"twitter:card"}            , "twitter_card"),
+            ({"name":"twitter:site"}            , "twitter_site"),
+            ({"name":"twitter:creator"}         , "twitter_creator"),
+            ({"name":"twitter:image"}           , "twitter_image"),
+            ({"name":"twitter:description"}     , "twitter_description"),
+            ({"name":"twitter:title"}           , "twitter_title"),
+            ({"property":"fb:admins"}           , "facebook_admins"),
+            ({"property":"og:site_name"}        , "og_site_name"),
+            ({"property":"og:locale"}           , "og_locale"),
+            ({"property":"og:type"}             , "og_type"),
+            ({"property":"og:title"}            , "og_title"),
+            ({"property":"og:description"}      , "og_description"),
+            ({"property":"og:url"}              , "og_url"),
+            ({"property":"og:image"}            , "og_image"),
+            )
 
 
 class PerSEOMetaTagsViewlet(ViewletBase):
     """Inserts meta tags in html head of pages"""
 
     def render(self):
-        TEMPLATE = '<meta name="%(name)s" content="%(content)s"/>'
+        TEMPLATE = '<meta %(key)s content="%(content)s "/>'
         enc = getSiteEncoding(self.context)
         seo = ISEOSettings(self.context)
         meta_tags = []
 
-        for seoname, name in METATAGS:
+        for seodict, name in METATAGS:
             content = getattr(seo, name, None)
             if not content:
                 continue
             if isinstance(content, list) or isinstance(content, tuple):
                 content = ', '.join(content)
-            opts = {'name': seoname,
-                    'content': escape(safe_unicode(content, enc))}
-            meta_tags.append(TEMPLATE % opts)
+
+            # each metatag can have more then one name/property 
+            for k,v in seodict.items():
+                opts = {'key': '%s="%s"' % (k,v), # i.e. name="twitter:card"
+                        'content': escape(safe_unicode(content, enc))}
+                meta_tags.append(TEMPLATE % opts)
         return u'\n'.join(meta_tags)
 
 

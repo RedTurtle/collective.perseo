@@ -129,5 +129,104 @@ class ISEOAdvancedSettings(Interface):
         required=False)
 
 
-class ISEOSettings(ISEODefaultSettings, ISEOAdvancedSettings):
+class ISEOTwitterSettings(Interface):
+
+    twitter_title = schema.TextLine(
+        title=_("label_twitter_title",
+                default="Twitter title"),
+        description=_("help_twitter_title",
+                      default=u"i.e. a short title"),
+        required=False)
+
+    twitter_description = schema.Text(
+        title=_("label_twitter_description",
+                default="Twitter description"),
+        description=_("help_twitter_description",
+                      default=u"i.e. a short site description"),
+        required=False)
+
+    twitter_card = schema.Choice(
+        title=_("label_twitter_card",
+                default="Twitter card"),
+        description=_("help_twitter_card",
+                      default=u"i.e. summary"),
+        values=['summary', 'photo', 'gallery', 'product', 'app', 'player'],
+        required=False)
+
+    twitter_site = schema.TextLine(
+        title=_("label_twitter_site",
+                default="Twitter site"),
+        description=_("help_twitter_site",
+                      default=u"Site twitter account"),
+        required=False)
+
+    twitter_creator = schema.TextLine(
+        title=_("label_twitter_creator",
+                default="Twitter creator"),
+        description=_("help_twitter_creator",
+                      default=u"i.e. @redturtle"),
+        required=False)
+
+    twitter_image = schema.TextLine(
+        title=_("label_twitter_image",
+                default="Twitter image"),
+        description=_("help_twitter_image",
+                      default=u"URL to image preview"),
+        required=False)
+
+
+class ISEOFacebookSettings(Interface):
+
+    facebook_admins = schema.TextLine(
+        title=_("label_facebook_admins",
+                default="Facebook admins"),
+        description=_("help_facebook_admins",
+                      default=u"i.e. 1235455444"),
+        required=False)
+
+    og_image = schema.TextLine(
+        title=_("label_og_image",
+                default="Facebook image URL"),
+        description=_("help_og_image",
+                      default=u"URL to image preview"),
+        required=False)
+
+    og_url = schema.TextLine(
+        title=_("label_og_url",
+                default="Facebook URL"),
+        description=_("help_og_url",
+                      default=u"URL used by Facebook"),
+        required=False)
+
+    og_title = schema.TextLine(
+        title=_("label_og_title",
+                default="Facebook title"),
+        description=_("help_og_title",
+                      default=u"Title used by Facebook"),
+        required=False)
+
+    og_description = schema.TextLine(
+        title=_("label_og_description",
+                default="Facebook description"),
+        description=_("help_og_description",
+                      default=u"Description used by Facebook"),
+        required=False)
+
+    og_locale = schema.TextLine(
+        title=_("label_og_locale",
+                default="Facebook i18n"),
+        description=_("help_og_locale",
+                      default=u"Locale used by Facebook"),
+        required=False)
+
+    og_type = schema.TextLine(
+        title=_("label_og_type",
+                default="Facebook og:type"),
+        description=_("help_og_type",
+                      default=u"Type used by Facebook, usually article"),
+        required=False)
+
+
+class ISEOSettings(ISEODefaultSettings, ISEOAdvancedSettings,
+        ISEOTwitterSettings, ISEOFacebookSettings):
     """ """

@@ -5,11 +5,18 @@ from plone.app.users.browser.personalpreferences import UserDataPanelAdapter
 
 
 class EnhancedUserDataPanelAdapter(UserDataPanelAdapter):
+
     def get_google_author(self):
         return self.context.getProperty('google_author', '')
     def set_google_author(self, value):
         return self.context.setMemberProperties({'google_author': value})
     google_author = property(get_google_author, set_google_author)
+
+    def get_twitter_author(self):
+        return self.context.getProperty('twitter_author', '')
+    def set_twitter_author(self, value):
+        return self.context.setMemberProperties({'twitter_author': value})
+    twitter_author = property(get_twitter_author, set_twitter_author)
 
 
 @indexer(IBaseContent)

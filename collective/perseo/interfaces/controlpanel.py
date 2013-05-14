@@ -38,13 +38,14 @@ class ISEOConfigWMToolsSchema(Interface):
                       default=u"Enter a Google+ Page, ie. https://plus.google.com/117510669985299383051/"),
         required=False)
 
+
 class ISEOConfigSocialSchema(Interface):
     """Schema for Social Networks"""
 
-    site_name = schema.TextLine(
-        title=_("label_social_site_name",
+    og_site_name = schema.TextLine(
+        title=_("label_og_site_name",
                 default=u"Site name for Social Networks"),
-        description=_("help_social_site_name",
+        description=_("help_og_site_name",
                       default=u"Enter your site name"),
         required=False)
 

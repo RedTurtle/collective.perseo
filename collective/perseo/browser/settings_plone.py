@@ -3,6 +3,7 @@ from zope.annotation.interfaces import IAnnotations, IAnnotatable
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.utils import getToolByName
 
 try:
     from Products.LinguaPlone.interfaces import ITranslatable
@@ -20,6 +21,7 @@ class PloneSiteSeoContextAdapter(object):
         registry = getUtility(IRegistry)
         self.context = context
         self.settings = registry.forInterface(ISEOControlpanel)
+        self.pm = getToolByName(self.context, 'portal_membership')
         self.pcs = queryMultiAdapter((self.context, context.REQUEST), name="plone_context_state")
         self.pps = queryMultiAdapter((self.context, context.REQUEST), name="plone_portal_state")
 
@@ -174,3 +176,63 @@ class PloneSiteSeoContextAdapter(object):
     @property
     def googleWebmasterTools(self):
         return self.settings.googleWebmasterTools
+
+    # Twitter stuff
+    @property
+    def twitter_card(self):
+        return self.get('twitter_card') or 'summary'
+
+    @property
+    def twitter_site(self):
+        return self.settings.twitter_site
+
+    @property
+    def twitter_creator(self):
+        author = self.pm.getMemberById(self.context.Creator())
+        return self.get('twitter_creator') or \
+            author and author.getProperty('twitter_author') or ''
+
+    @property
+    def twitter_description(self):
+        return self.get('twitter_description') or self.description
+
+    @property
+    def twitter_title(self):
+        return self.get('twitter_title') or self.title
+
+    @property
+    def twitter_image(self):
+        return self.get('twitter_image') or self.og_image
+
+    # Facebook stuff
+    @property
+    def facebook_admins(self):
+        return self.settings.facebook_admins
+
+    @property
+    def og_site_name(self):
+        return self.settings.og_site_name
+
+    @property
+    def og_locale(self):
+        return self.get('og_locale') or self.context.Language()
+
+    @property
+    def og_type(self):
+        return self.get('og_type') or 'article'
+
+    @property
+    def og_title(self):
+        return self.get('og_title') or self.title
+
+    @property
+    def og_description(self):
+        return self.get('og_description') or self.description
+
+    @property
+    def og_url(self):
+        return self.get('og_url') or self.canonical
+
+    @property
+    def og_image(self):
+        return self.get('og_image') or '%s/logo.png' % self.context.absolute_url()
