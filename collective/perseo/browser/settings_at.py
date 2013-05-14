@@ -10,11 +10,11 @@ try:
 except ImportError:
     LINGUA_PLONE = False
 
+from collective.perseo import PERSEO
 from collective.perseo.interfaces import ISEOConfigSchema
 from collective.perseo.interfaces.settings import ISEOContextAdvancedSchema,\
         ISEOContextMetaSchema
 
-PERSEO = 'collective.perseo'
 
 
 class ATSeoContextAdapter(object):

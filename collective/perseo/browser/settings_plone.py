@@ -5,8 +5,6 @@ from plone.registry.interfaces import IRegistry
 from zope.component import queryMultiAdapter
 from collective.perseo.interfaces import ISEOConfigSchema
 
-PERSEO = 'collective.perseo'
-
 
 class PloneSiteSeoContextAdapter(object):
 
