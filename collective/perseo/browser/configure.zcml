@@ -7,6 +7,8 @@
         xmlns:zcml="http://namespaces.zope.org/zcml"
         zcml:condition="have plone-41" />
 
+    <include file="settings.zcml" />
+
     <browser:resourceDirectory
         name="collective.perseo"
         directory="./resources"
@@ -44,24 +46,6 @@
         layer=".interfaces.IPerSEOLayer"
         permission="cmf.ModifyPortalContent"
         />
-
-    <adapter 
-        for="Products.Archetypes.interfaces.base.IBaseObject"
-        factory=".settings_at.ATSeoContextMetaAdapter" />
-
-    <adapter 
-        for="Products.Archetypes.interfaces.base.IBaseObject"
-        factory=".settings_at.ATSeoContextAdvancedAdapter" />
-
-    <adapter 
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="..interfaces.settings.ISEOContextMetaSchema"
-        factory=".settings_plone.PloneSiteSeoContextAdapter" />
-
-    <adapter 
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="..interfaces.settings.ISEOContextAdvancedSchema"
-        factory=".settings_plone.PloneSiteSeoContextAdapter" />
 
     <browser:page
         name="sitemap.xml.gz"

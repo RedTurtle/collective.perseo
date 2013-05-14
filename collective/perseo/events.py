@@ -5,17 +5,17 @@ from zope.component import getUtility
 from zope.lifecycleevent import ObjectMovedEvent, ObjectRemovedEvent
 from plone.registry.interfaces import IRegistry
 
-from collective.perseo.interfaces import ISEOConfigSchema
-from collective.perseo.interfaces.settings import ISEOContextAdvancedSchema
+from collective.perseo.interfaces import ISEOControlpanel
+from collective.perseo.interfaces.settings import ISEOSettings
 
 
 def include_in_sitemapxml(object):
     """ Returned True if the object is included in sitemap.xml
     """
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISEOConfigSchema)
+    settings = registry.forInterface(ISEOControlpanel)
 
-    return ISEOContextAdvancedSchema(object).include_in_sitemap or \
+    return ISEOSettings(object).include_in_sitemap or \
             object.portal_type in settings.not_included_types
 
 
@@ -30,7 +30,7 @@ def url_open(url):
 
 def PingingObjRemovedFromSiteMapXML(object):
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISEOConfigSchema)
+    settings = registry.forInterface(ISEOControlpanel)
     ping_google = settings.ping_google
     ping_bing = settings.ping_bing
     ping_ask = settings.ping_ask
@@ -47,7 +47,7 @@ def PingingObjRemovedFromSiteMapXML(object):
 
 def Pinging(object):
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISEOConfigSchema)
+    settings = registry.forInterface(ISEOControlpanel)
     ping_google = settings.ping_google
     ping_bing = settings.ping_bing
     ping_ask = settings.ping_ask

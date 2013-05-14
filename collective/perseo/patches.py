@@ -13,7 +13,7 @@ def perSEOListMetaTags(self, context):
 
     list_meta_tags = originalListMetaTags(self, context)
 
-    for key in METATAGS.keys():
+    for key, value in METATAGS:
         if list_meta_tags.has_key(key):
             list_meta_tags.pop(key)
 

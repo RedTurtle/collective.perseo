@@ -1,9 +1,17 @@
 from Acquisition import aq_inner
+from zope.annotation.interfaces import IAnnotations, IAnnotatable
 from zope.component import getUtility
+from zope.component import queryMultiAdapter
 from plone.registry.interfaces import IRegistry
 
-from zope.component import queryMultiAdapter
-from collective.perseo.interfaces import ISEOConfigSchema
+try:
+    from Products.LinguaPlone.interfaces import ITranslatable
+    LINGUA_PLONE = True
+except ImportError:
+    LINGUA_PLONE = False
+
+from collective.perseo.interfaces import ISEOControlpanel
+from collective.perseo import PERSEO
 
 
 class PloneSiteSeoContextAdapter(object):
@@ -11,8 +19,18 @@ class PloneSiteSeoContextAdapter(object):
     def __init__(self, context):
         registry = getUtility(IRegistry)
         self.context = context
-        self.settings = registry.forInterface(ISEOConfigSchema)
+        self.settings = registry.forInterface(ISEOControlpanel)
         self.pcs = queryMultiAdapter((self.context, context.REQUEST), name="plone_context_state")
+        self.pps = queryMultiAdapter((self.context, context.REQUEST), name="plone_portal_state")
+
+    def get(self, name):
+        context = aq_inner(self.context)
+        if not IAnnotatable.providedBy(self.context):
+            return None
+        annotations = IAnnotations(context)
+        if annotations.has_key(PERSEO):
+            return annotations[PERSEO].get(name, None)
+        return None
 
     def find_robots_context(self):
         template_id = None
@@ -73,27 +91,44 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def title(self):
+        if not self.title_override:
+            return self.pcs.object_title()
         page = self.find_context()
-        return getattr(self.settings, '%s_title' % page) or \
+        return self.get('title') or \
+               getattr(self.settings, '%s_title' % page) or \
                self.pcs.object_title()
 
     @property
     def title_override(self):
-        return True
+        return False
 
     @property
     def description(self):
-        page = self.find_context()
         context = aq_inner(self.context)
-        return getattr(self.settings, '%s_description' % page) or \
+        if not self.description_override:
+            return context.Description() or ''
+        page = self.find_context()
+        return self.get('description') or \
+               getattr(self.settings, '%s_description' % page) or \
                context.Description()
 
     @property
+    def description_override(self):
+        return False
+
+    @property
     def keywords(self):
-        page = self.find_context()
         context = aq_inner(self.context)
-        return getattr(self.settings, '%s_keywords' % page) or \
+        if not self.keywords_override:
+            return context.Subject() or ''
+        page = self.find_context()
+        return self.get('keywords') or \
+               getattr(self.settings, '%s_keywords' % page) or \
                context.Subject()
+
+    @property
+    def keywords_override(self):
+        return False
 
     @property
     def meta_robots_follow(self):
@@ -112,5 +147,30 @@ class PloneSiteSeoContextAdapter(object):
         return False
 
     @property
+    def include_in_sitemap(self):
+        if not self.include_in_sitemap_override:
+            return False
+        return self.get('include_in_sitemap')
+
+    @property
+    def include_in_sitemap_override(self):
+        return False
+
+    @property
     def alternate_i18n(self):
-        return []
+        """ Return available translations if LinguaPlone is available """
+        if LINGUA_PLONE and ITranslatable.providedBy(self.context):
+            translations = self.context.getTranslations(review_state=False)
+            if self.context.Language() in translations:
+                del translations[self.context.Language()]
+            return translations
+        else:
+            return []
+
+    @property
+    def bingWebmasterTools(self):
+        return self.settings.bingWebmasterTools
+
+    @property
+    def googleWebmasterTools(self):
+        return self.settings.googleWebmasterTools

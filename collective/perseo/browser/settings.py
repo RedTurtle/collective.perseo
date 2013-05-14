@@ -1,5 +1,6 @@
 from ZODB.PersistentMapping import PersistentMapping
 from zope.annotation.interfaces import IAnnotations
+from zope.interface import implements
 from z3c.form import form, field, button
 from z3c.form.browser.radio import RadioFieldWidget
 from Products.CMFCore.utils import getToolByName
@@ -8,15 +9,14 @@ from plone.z3cform.layout import wrap_form
 from plone.z3cform.fieldsets import extensible
 from plone.z3cform.fieldsets import group
 
-from collective.perseo.interfaces.settings import ISEOContextAdvancedSchema,\
-        ISEOContextMetaSchema
+from collective.perseo.interfaces.settings import ISEOSettings, ISEOAdvancedSettings
 from collective.perseo import perseoMessageFactory as _
 
 PERSEO = 'collective.perseo'
 
 
 class SEOContextAdvancedForm(group.Group):
-    fields = field.Fields(ISEOContextAdvancedSchema)
+    fields = field.Fields(ISEOAdvancedSettings)
     label = _(u"Advanced settings")
     fields['include_in_sitemap'].widgetFactory = RadioFieldWidget
     fields['meta_robots_follow'].widgetFactory = RadioFieldWidget
@@ -25,18 +25,21 @@ class SEOContextAdvancedForm(group.Group):
 
 
 class SEOContextForm(extensible.ExtensibleForm, form.Form):
+    implements(ISEOSettings)
+
     form_name = "perseo_context_settings"
     id = 'perseo-context-settings-form'
     description = _(u"Manage SEO settings for this content")
-    fields = field.Fields(ISEOContextMetaSchema)
     groups = (SEOContextAdvancedForm,)
     ignoreContext = False
     message_ok = _(u'Changes saved.')
     message_cancel = _(u'No changes made.')
+    fields = field.Fields(ISEOSettings).select('title', 'title_override', 
+       'description', 'description_override', 'keywords', 'keywords_override')
 
     @property
     def next_url(self):
-        return self.context.absolute_url()
+        return '%s/@@perseo-context-settings' % self.context.absolute_url()
 
     def redirectAction(self):
         self.request.response.redirect(self.next_url)

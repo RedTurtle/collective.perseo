@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="collective.perseo">
+
+    <adapter 
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        provides="..interfaces.settings.ISEOSettings"
+        factory=".settings_at.ATSeoContextAdapter" />
+
+    <adapter 
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="..interfaces.settings.ISEOSettings"
+        factory=".settings_plone.PloneSiteSeoContextAdapter" />
+
+</configure>

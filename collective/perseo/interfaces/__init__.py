@@ -1,1 +1,1 @@
-from controlpanel import ISEOConfigSchema; ISEOConfigSchema
+from controlpanel import ISEOControlpanel; ISEOControlpanel

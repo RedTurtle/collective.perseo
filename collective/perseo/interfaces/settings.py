@@ -3,7 +3,7 @@ from zope import schema
 from collective.perseo import perseoMessageFactory as _
 
 
-class ISEOContextMetaSchema(Interface):
+class ISEODefaultSettings(Interface):
 
     title = schema.TextLine(
         title=_("label_title",
@@ -17,6 +17,7 @@ class ISEOContextMetaSchema(Interface):
     title_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     description = schema.Text(
@@ -31,6 +32,7 @@ class ISEOContextMetaSchema(Interface):
     description_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     keywords = schema.List(
@@ -48,10 +50,11 @@ class ISEOContextMetaSchema(Interface):
     keywords_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
 
-class ISEOContextAdvancedSchema(Interface):
+class ISEOAdvancedSettings(Interface):
 
     meta_robots_follow = schema.Choice(
         title=_("label_meta_robots_follow",
@@ -62,6 +65,7 @@ class ISEOContextAdvancedSchema(Interface):
     meta_robots_follow_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     meta_robots_index = schema.Choice(
@@ -73,6 +77,7 @@ class ISEOContextAdvancedSchema(Interface):
     meta_robots_index_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     meta_robots_advanced = schema.Choice(
@@ -84,6 +89,7 @@ class ISEOContextAdvancedSchema(Interface):
     meta_robots_advanced_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     canonical = schema.TextLine(
@@ -100,6 +106,7 @@ class ISEOContextAdvancedSchema(Interface):
     canonical_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     include_in_sitemap = schema.Choice(
@@ -111,6 +118,7 @@ class ISEOContextAdvancedSchema(Interface):
     include_in_sitemap_override = schema.Bool(
         title=_("label_title_override",
                 default=u"Override the default"),
+        default=False,
         required=False)
 
     sitemap_priority = schema.TextLine(
@@ -119,3 +127,7 @@ class ISEOContextAdvancedSchema(Interface):
         description=_("help_sitemap_priority",
                       default=u"Values from 0.1 to 1.0"),
         required=False)
+
+
+class ISEOSettings(ISEODefaultSettings, ISEOAdvancedSettings):
+    """ """

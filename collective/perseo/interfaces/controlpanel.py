@@ -215,7 +215,7 @@ class ISEOConfigRSSSchema(Interface):
         required=False)
 
 
-class ISEOConfigSchema(ISEOConfigWMToolsSchema,
+class ISEOControlpanel(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
                        ISEOConfigIndexingSchema,
                        ISEOConfigSiteMapXMLSchema,

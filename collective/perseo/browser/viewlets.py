@@ -1,4 +1,3 @@
-from Acquisition import aq_inner
 from cgi import escape
 
 from zope.component import getMultiAdapter, queryMultiAdapter
@@ -8,82 +7,36 @@ from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
-from collective.perseo.interfaces import ISEOConfigSchema
-from collective.perseo.interfaces.settings import ISEOContextMetaSchema, \
-        ISEOContextAdvancedSchema
-from collective.perseo.utils import SortedDict
+from collective.perseo.interfaces import ISEOControlpanel
+from collective.perseo.interfaces.settings import ISEOSettings
 
 
-# mapping {meta_name:accessor} of all meta tags
-METATAGS = {"google-site-verification":"googleWebmasterTools",
-            "msvalidate.01":"bingWebmasterTools",
-            "description":"perseo_description",
-            "keywords":"perseo_keywords",
-            "robots":"perseo_robots"}
-
-METATAGS_ORDER = ["google-site-verification",
-                  "msvalidate.01",
-                  "description",
-                  "keywords",
-                  "robots"]
+METATAGS = (("google-site-verification", "googleWebmasterTools"),
+            ("msvalidate.01"           , "bingWebmasterTools"),
+            ("description"             , "description"),
+            ("keywords"                , "keywords"),
+            ("robots"                  , "robots"))
 
 
 class PerSEOMetaTagsViewlet(ViewletBase):
     """Inserts meta tags in html head of pages"""
 
     def render(self):
-        TEMPLATE = '<meta name="%s" content="%s"/>'
+        TEMPLATE = '<meta name="%(name)s" content="%(content)s"/>'
         enc = getSiteEncoding(self.context)
-        sfuncd = lambda x, enc=enc:escape(safe_unicode(x, enc))
-
+        seo = ISEOSettings(self.context)
         meta_tags = []
 
-        for k,v in self.listMetaTags().items():
-            if isinstance(v, (list, tuple)):
-                for x in v:
-                    meta_tags.append((k,x))
-            else:
-                meta_tags.append((k,v))
-
-        return u'\n'.join([TEMPLATE % tuple(map(sfuncd, (k,v))) \
-                           for k,v in meta_tags])
-
-    def listMetaTags(self):
-        """Calculate list metatags"""
-
-        result = SortedDict()
-
-        METATAGS_ORDER = []
-
-        for key in METATAGS_ORDER:
-            accessor = METATAGS[key]
-            if seo_context._perseo_metatags.has_key(accessor):
-                value = seo_context._perseo_metatags.get(accessor, None)
-            else:
-                method = getattr(seo_context, accessor, None)
-                if method is None:
-                    method = getattr(aq_inner(self.context).aq_explicit, accessor, None)
-
-                if not callable(method):
-                    continue
-
-                # Catch AttributeErrors raised by some AT applications
-                try:
-                    value = method()
-                except AttributeError:
-                    value = None
-
-            if not value:
-                # No data
+        for seoname, name in METATAGS:
+            content = getattr(seo, name, None)
+            if not content:
                 continue
-
-            if isinstance(value, (list, tuple)): #and not key == "robots":
-                # convert a list to a string
-                value = ', '.join(value)
-
-            result[key] = value
-
-        return result
+            if isinstance(content, list) or isinstance(content, tuple):
+                content = ', '.join(content)
+            opts = {'name': seoname,
+                    'content': escape(safe_unicode(content, enc))}
+            meta_tags.append(TEMPLATE % opts)
+        return u'\n'.join(meta_tags)
 
 
 class PerSEOTitleTagViewlet(ViewletBase):
@@ -107,12 +60,12 @@ class PerSEOTitleTagViewlet(ViewletBase):
                 escape(safe_unicode(portal_title)))
 
     def render(self):
-        context_meta = ISEOContextMetaSchema(self.context)
-        if not context_meta.title_override and not context_meta.title:
+        seo = ISEOSettings(self.context)
+        if not seo.title_override and not seo.title:
             return self.std_title()
         else:
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
-                context_meta.title))
+                seo.title))
             return perseo_title
 
 
@@ -123,13 +76,13 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         self.pm = getToolByName(self.context, 'portal_membership')
         registry = getUtility(IRegistry)
-        self.settings = registry.forInterface(ISEOConfigSchema)
+        self.settings = registry.forInterface(ISEOControlpanel)
 
     def render(self):
         result = ""
-        context_meta = ISEOContextAdvancedSchema(self.context)
-        opts = {'canonical': context_meta.canonical_override and context_meta.canonical,
-                'alternate': context_meta.alternate_i18n}
+        seo = ISEOSettings(self.context)
+        opts = {'canonical': seo.canonical_override and seo.canonical,
+                'alternate': seo.alternate_i18n}
         if self.settings.google_publisher:
             opts['google_publisher'] = self.settings.google_publisher
 
@@ -155,7 +108,7 @@ class TrackingCodeViewlet(ViewletBase):
     def update(self):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
         registry = getUtility(IRegistry)
-        self.settings = registry.forInterface(ISEOConfigSchema)
+        self.settings = registry.forInterface(ISEOControlpanel)
 
     def getTrackingCode(self):
         return ''

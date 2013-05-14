@@ -6,7 +6,7 @@ from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 
 from collective.perseo import perseoMessageFactory as _
-from collective.perseo.interfaces import ISEOConfigSchema
+from collective.perseo.interfaces import ISEOControlpanel
 from collective.perseo.interfaces.metaconfig import ISEOConfigTitleSchema
 from collective.perseo.interfaces.controlpanel import ISEOConfigSiteMapXMLSchema,\
         ISEOConfigIndexingSchema, ISEOConfigSocialSchema
@@ -39,7 +39,7 @@ class PerSEOSettingsEditForm(controlpanel.RegistryEditForm):
 
     label = _(u"PerSEO settings")
     description = _(u"")
-    schema = ISEOConfigSchema
+    schema = ISEOControlpanel
     groups = (SitemapForm, IndexingForm, SocialForm, TitleForm,)
 
     def updateFields(self):
@@ -54,5 +54,5 @@ class PerSEORSS(BrowserView):
 
     def __call__(self):
         registry = getUtility(IRegistry)
-        settings = registry.forInterface(ISEOConfigSchema)
+        settings = registry.forInterface(ISEOControlpanel)
         return {'indexing_feed_rss':  settings.indexing_feed_rss}
