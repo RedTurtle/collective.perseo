@@ -1,86 +1,60 @@
-from Acquisition import aq_inner
 from cgi import escape
 
-from zope.component import getMultiAdapter, queryAdapter, queryMultiAdapter
+from zope.component import getMultiAdapter, queryMultiAdapter
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 
-from collective.perseo.browser.seo_config import ISEOConfigSchema
-from collective.perseo.util import SortedDict
+from collective.perseo.interfaces import ISEOControlpanel
+from collective.perseo.interfaces.settings import ISEOSettings
+
+#        <meta name/property=""                    content=""/>
+METATAGS = (({"name":"google-site-verification"}, "googleWebmasterTools"),
+            ({"name":"msvalidate.01"}           , "bingWebmasterTools"),
+            ({"name":"description"}             , "description"),
+            ({"name":"keywords"}                , "keywords"),
+            ({"name":"robots"}                  , "robots"),
+            ({"name":"twitter:card"}            , "twitter_card"),
+            ({"name":"twitter:site"}            , "twitter_site"),
+            ({"name":"twitter:creator"}         , "twitter_creator"),
+            ({"name":"twitter:image"}           , "twitter_image"),
+            ({"name":"twitter:description"}     , "twitter_description"),
+            ({"name":"twitter:title"}           , "twitter_title"),
+            ({"property":"fb:admins"}           , "facebook_admins"),
+            ({"property":"og:site_name"}        , "og_site_name"),
+            ({"property":"og:locale"}           , "og_locale"),
+            ({"property":"og:type"}             , "og_type"),
+            ({"property":"og:title"}            , "og_title"),
+            ({"property":"og:description"}      , "og_description"),
+            ({"property":"og:url"}              , "og_url"),
+            ({"property":"og:image"}            , "og_image"),
+            )
 
 
-# mapping {meta_name:accessor} of all meta tags
-METATAGS = {"google-site-verification":"googleWebmasterTools",
-            "msvalidate.01":"bingWebmasterTools",
-            "description":"perseo_description",
-            "keywords":"perseo_keywords",
-            "robots":"perseo_robots"}
-
-METATAGS_ORDER = ["google-site-verification",
-                  "msvalidate.01",
-                  "description",
-                  "keywords",
-                  "robots"]
-
-
-class PerSEOMetaTagsViewlet( ViewletBase ):
+class PerSEOMetaTagsViewlet(ViewletBase):
     """Inserts meta tags in html head of pages"""
 
     def render(self):
-        TEMPLATE = '<meta name="%s" content="%s"/>'
+        TEMPLATE = '<meta %(key)s content="%(content)s "/>'
         enc = getSiteEncoding(self.context)
-        sfuncd = lambda x, enc=enc:escape(safe_unicode(x, enc))
-
+        seo = ISEOSettings(self.context)
         meta_tags = []
 
-        for k,v in self.listMetaTags().items():
-            if isinstance(v, (list, tuple)):
-                for x in v:
-                    meta_tags.append((k,x))
-            else:
-                meta_tags.append((k,v))
-
-        return u'\n'.join([TEMPLATE % tuple(map(sfuncd, (k,v))) \
-                           for k,v in meta_tags])
-
-    def listMetaTags(self):
-        """Calculate list metatags"""
-
-        result = SortedDict()
-        #pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        #seo_global = queryAdapter(pps.portal(), ISEOConfigSchema)
-        seo_context = queryMultiAdapter((self.context, self.request), name='perseo-context')
-
-        for key in METATAGS_ORDER:
-            accessor = METATAGS[key]
-            if seo_context._perseo_metatags.has_key(accessor):
-                value = seo_context._perseo_metatags.get(accessor, None)
-            else:
-                method = getattr(seo_context, accessor, None)
-                if method is None:
-                    method = getattr(aq_inner(self.context).aq_explicit, accessor, None)
-
-                if not callable(method):
-                    continue
-
-                # Catch AttributeErrors raised by some AT applications
-                try:
-                    value = method()
-                except AttributeError:
-                    value = None
-
-            if not value:
-                # No data
+        for seodict, name in METATAGS:
+            content = getattr(seo, name, None)
+            if not content:
                 continue
+            if isinstance(content, list) or isinstance(content, tuple):
+                content = ', '.join(content)
 
-            if isinstance(value, (list, tuple)): #and not key == "robots":
-                # convert a list to a string
-                value = ', '.join(value)
-
-            result[key] = value
-
-        return result
+            # each metatag can have more then one name/property 
+            for k,v in seodict.items():
+                opts = {'key': '%s="%s"' % (k,v), # i.e. name="twitter:card"
+                        'content': escape(safe_unicode(content, enc))}
+                meta_tags.append(TEMPLATE % opts)
+        return u'\n'.join(meta_tags)
 
 
 class PerSEOTitleTagViewlet(ViewletBase):
@@ -92,8 +66,6 @@ class PerSEOTitleTagViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.context_state = getMultiAdapter((self.context, self.request),
                                              name=u'plone_context_state')
-        self.perseo_context = getMultiAdapter((self.context, self.request),
-                                             name=u'perseo-context')
 
     def std_title(self):
         page_title = safe_unicode(self.context_state.object_title())
@@ -106,11 +78,12 @@ class PerSEOTitleTagViewlet(ViewletBase):
                 escape(safe_unicode(portal_title)))
 
     def render(self):
-        if not self.perseo_context['has_perseo_title'] and not self.perseo_context['has_perseo_title_config']:
+        seo = ISEOSettings(self.context)
+        if not seo.title_override and not seo.title:
             return self.std_title()
         else:
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
-                self.perseo_context["perseo_title"]))
+                seo.title))
             return perseo_title
 
 
@@ -118,18 +91,18 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
     """ Simple viewlet for canonical url link rendering.
     """
     def update(self):
-        self.perseo_context = getMultiAdapter((self.context, self.request),
-                                             name=u'perseo-context')
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
         self.pm = getToolByName(self.context, 'portal_membership')
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOControlpanel)
 
     def render(self):
         result = ""
-        opts = {'canonical': self.perseo_context['perseo_canonical'],
-                'alternate': self.perseo_context['alternate_i18n']}
-        if self.gseo and self.gseo.google_publisher:
-            opts['google_publisher'] = self.gseo.google_publisher
+        seo = ISEOSettings(self.context)
+        opts = {'canonical': seo.canonical_override and seo.canonical,
+                'alternate': seo.alternate_i18n}
+        if self.settings.google_publisher:
+            opts['google_publisher'] = self.settings.google_publisher
 
         author = self.pm.getMemberById(self.context.Creator())
         if author and author.getProperty('google_author'):
@@ -147,33 +120,30 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
         return result
 
 
-class TrackingCodeViewlet( ViewletBase ):
+class TrackingCodeViewlet(ViewletBase):
     """ Simple viewlet for script rendering.
     """
     def update(self):
         self.pps = queryMultiAdapter((self.context, self.request), name="plone_portal_state")
-        self.gseo = queryAdapter(self.pps.portal(), ISEOConfigSchema)
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOControlpanel)
 
-    def getTrackingCode( self ):
+    def getTrackingCode(self):
         return ''
 
-    def render( self ):
+    def render(self):
         return safe_unicode("""%s""" % self.getTrackingCode())
 
 
-class TrackingCodeHeaderViewlet( TrackingCodeViewlet ):
+class TrackingCodeHeaderViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the <head>.
     """
-    def getTrackingCode( self ):
-        if self.gseo:
-            return self.gseo.tracking_code_header
-        return ''
+    def getTrackingCode(self):
+        return self.settings.tracking_code_header or ''
 
 
-class TrackingCodeFooterViewlet( TrackingCodeViewlet ):
+class TrackingCodeFooterViewlet(TrackingCodeViewlet):
     """ Simple viewlet for script rendering in the portal footer.
     """
-    def getTrackingCode( self ):
-        if self.gseo:
-            return self.gseo.tracking_code_footer
-        return ''
+    def getTrackingCode(self):
+        return self.settings.tracking_code_footer or ''

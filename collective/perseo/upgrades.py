@@ -42,9 +42,12 @@ def upgrade_1_to_2(setuptool):
     migrationPropertyToAnnotation(pps.portal())
 
 
-def upgrade_to_0_6_4(context):
+def upgrade_to_0_7(context):
     """ Upgrade Collective perSEO to 0.6.4
     """
     context.runImportStepFromProfile('profile-collective.perseo:default', 'componentregistry')
     context.runImportStepFromProfile('profile-collective.perseo:default', 'propertiestool')
     context.runImportStepFromProfile('profile-collective.perseo:default', 'memberdata-properties')
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'controlpanel')
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'viewlets')
+    context.runImportStepFromProfile('profile-collective.perseo:default', 'actions')

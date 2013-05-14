@@ -14,8 +14,16 @@
     title="collective.perseo: Manage SEO" />
   
   <include package=".browser" />
+  <include file="events.zcml" />
   <include file="patches.zcml" />
   <include file="skins.zcml"/>
+
+  <adapter name="getIncludedInSitemapxml" factory=".adapter.get_included_in_sitemapxml" />
+  <adapter name="getPrioritySitemapxml" factory=".adapter.get_priority_sitemapxml" />
+  <utility
+        component=".vocabularies.ReallyUserFriendlyTypesVocabularyFactory"
+        name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
+      />
 
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
@@ -36,10 +44,10 @@
 
   <genericsetup:upgradeStep
     title="Upgrade Collective perSEO"
-    description="Upgrade Collective perSEO to 0.6.4"
+    description="Upgrade Collective perSEO to 0.7"
     source="*"
-    destination="0.6.4"
-    handler=".upgrades.upgrade_to_0_6_4"
+    destination="0.7"
+    handler=".upgrades.upgrade_to_0_7"
     profile="collective.perseo:default" />
   
 </configure>

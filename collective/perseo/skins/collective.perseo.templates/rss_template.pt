@@ -38,10 +38,10 @@
 
   <metal:block define-slot="syndication" />
 
-  <tal:block define="perseo_context nocall: context/@@perseo-context;
-					 perseo_indexing_feed_rss python:perseo_context.perseo_indexing_feed_rss();"
-			 condition="perseo_indexing_feed_rss">
-	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+  <tal:block define="perseo_rss context/@@perseo-rss;
+                     perseo_indexing_feed_rss python:perseo_rss['indexing_feed_rss'];"
+       condition="perseo_indexing_feed_rss">
+  <xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
   </tal:block>
 
   <image

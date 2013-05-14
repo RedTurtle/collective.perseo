@@ -6,7 +6,7 @@
    <property name="title" i18n:translate="">SEO</property>
    <property name="description" i18n:translate=""></property>
    <property
-      name="url_expr">string:${object_url}/@@perseo-tab-context</property>
+      name="url_expr">string:${object_url}/@@perseo-context-settings</property>
    <property name="icon_expr"></property>
    <property name="available_expr">object/@@perseo-tab-available</property>
    <property name="permissions">

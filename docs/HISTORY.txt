@@ -1,13 +1,16 @@
 Changelog
 =========
 
-0.6.5 (unreleased)
+0.7 (unreleased)
 ------------------
 
+- major refactoring [amleczko]
 - remove yahoo explorer config (dead) [amleczko]
 - add support for alternate multiligua tags [amleczko]
 - add support for google publisher [amleczko]
 - add support for google author [amleczko]
+- add support for social networks <meta> headers [amleczko]
+
 
 0.6.4 (2012-07-16)
 ------------------

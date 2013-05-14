@@ -7,122 +7,42 @@
         xmlns:zcml="http://namespaces.zope.org/zcml"
         zcml:condition="have plone-41" />
 
+    <include file="settings.zcml" />
+
     <browser:resourceDirectory
         name="collective.perseo"
         directory="./resources"
         />
 
     <browser:page
-        name="perseo-config"
+        name="perseo-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".seo_config.PerSEOConfig"
+        class=".controlpanel.PerSEOControlPanel"
         layer=".interfaces.IPerSEOLayer"
         permission="collective.perseo.ManageSEO"
         />
 
     <browser:page
-        name="perseo-context"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".views.PerSEOContextPloneSiteRoot"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATDocument"
-        class=".views.PerSEOContextATDocument"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATEvent"
-        class=".views.PerSEOContextATEvent"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATFile"
-        class=".views.PerSEOContextATFile"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATFolder"
-        class=".views.PerSEOContextATFolder"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATImage"
-        class=".views.PerSEOContextATImage"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATLink"
-        class=".views.PerSEOContextATLink"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATNewsItem"
-        class=".views.PerSEOContextATNewsItem"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
-        for="Products.ATContentTypes.interfaces.IATTopic"
-        class=".views.PerSEOContextATTopic"
-        layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
-        />
-
-    <browser:page
-        name="perseo-context"
+        name="perseo-rss"
         for="*"
-        class=".views.PerSEOContext"
+        class=".controlpanel.PerSEORSS"
         layer=".interfaces.IPerSEOLayer"
-        permission="zope2.View"
-        allowed_attributes="perseo_itemscope_itemtype perseo_itemtype perseo_indexing_feed_rss"
+        permission="zope2.Public"
         />
 
     <browser:page
         name="perseo-tab-available"
         for="*"
-        class=".views.PerseoTabAvailable"
+        class=".settings.PerseoTabAvailable"
         attribute="checkPerseoTabAvailable"
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.Public"
         />
 
     <browser:page
-        name="perseo-tab-context"
-        for="*"
-        class=".views.PerSEOTabContext"
+        name="perseo-context-settings"
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        class=".settings.manageSEOContext"
         layer=".interfaces.IPerSEOLayer"
         permission="cmf.ModifyPortalContent"
         />
@@ -134,8 +54,6 @@
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.Public"
         />
-
-    <adapter factory=".seo_config.SEOConfigAdapter" />
 
     <browser:viewlet
         name="collective.perseo.metatags"
@@ -177,33 +95,5 @@
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         />
-
-    <utility
-        component=".types.ReallyUserFriendlyTypesVocabularyFactory"
-        name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
-        />
-
-    <adapter name="getIncludedInSitemapxml" factory=".indexers.get_included_in_sitemapxml" />
-    <adapter name="getPrioritySitemapxml" factory=".indexers.get_priority_sitemapxml" />
-
-    <subscriber
-        for="Products.Archetypes.interfaces.base.IBaseContent
-             Products.Archetypes.interfaces.IObjectEditedEvent"
-          handler=".event.event_ObjectUpdated" />
-
-    <subscriber
-        for="Products.Archetypes.interfaces.base.IBaseContent
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-          handler=".event.event_ObjectUpdated" />
-
-    <subscriber
-        for="Products.Archetypes.interfaces.base.IBaseContent
-             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
-          handler=".event.event_ObjectRemoved" />
-
-    <subscriber
-        for="Products.Archetypes.interfaces.base.IBaseContent
-             zope.lifecycleevent.interfaces.IObjectMovedEvent"
-          handler=".event.event_ObjectAddedMoved" />
 
 </configure>

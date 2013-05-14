@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="collective.perseo">
+
+    <subscriber
+        for="Products.Archetypes.interfaces.base.IBaseContent
+             Products.Archetypes.interfaces.IObjectEditedEvent"
+          handler=".events.event_ObjectUpdated" />
+
+    <subscriber
+        for="Products.Archetypes.interfaces.base.IBaseContent
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+          handler=".events.event_ObjectUpdated" />
+
+    <subscriber
+        for="Products.Archetypes.interfaces.base.IBaseContent
+             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+          handler=".events.event_ObjectRemoved" />
+
+    <subscriber
+        for="Products.Archetypes.interfaces.base.IBaseContent
+             zope.lifecycleevent.interfaces.IObjectMovedEvent"
+          handler=".events.event_ObjectAddedMoved" />
+
+</configure>

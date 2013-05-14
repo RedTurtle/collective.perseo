@@ -1,9 +1,10 @@
 from plone.app.layout.sitemap.sitemap import SiteMapView
-from zope.component import queryAdapter
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from collective.perseo.browser.seo_config import ISEOConfigSchema
+from collective.perseo.interfaces import ISEOControlpanel
 
 
 class PerSEOSiteMapView (SiteMapView):
@@ -15,24 +16,14 @@ class PerSEOSiteMapView (SiteMapView):
 
     def __init__(self, context, request):
         super(PerSEOSiteMapView, self).__init__(context, request)
-        portal = self.context.portal_url.getPortalObject()
-        self.gseo = queryAdapter(portal, ISEOConfigSchema)
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISEOControlpanel)
 
     def template(self):
         " manual unicode encode "
         xml = self.index()
         xml = xml.encode('utf8','ignore')
         return xml
-
-    def get_gseo_field( self, field, default=None):
-        """ Returned field from Plone SEO Configuration Control Panel Tool
-        """
-        if self.gseo:
-            return getattr(self.gseo, field, default)
-        return default
-
-    def perseo_included_types(self):
-        return self.get_gseo_field('not_included_types',default=())
 
     def add_image(self, url, caption=None, title=None):
         image = {'loc': url}
@@ -46,7 +37,7 @@ class PerSEOSiteMapView (SiteMapView):
         """Returns the data to create the sitemap."""
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        included_types = self.perseo_included_types()
+        included_types = self.settings.not_included_types
         image_types = ('Image',)
 
         for item in catalog.searchResults({'Language': 'all'}):

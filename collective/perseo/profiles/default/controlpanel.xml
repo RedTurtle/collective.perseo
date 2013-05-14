@@ -4,7 +4,7 @@
  <configlet title="PerSEO" action_id="collective.perseo"
     appId="collective.perseo" category="Products" condition_expr=""
     icon_expr="string:${portal_url}/++resource++collective.perseo/seo.png"
-    url_expr="string:${portal_url}/@@perseo-config"
+    url_expr="string:${portal_url}/@@perseo-settings"
     visible="True" i18n:attributes="title">
   <permission>collective.perseo: Manage SEO</permission>
  </configlet>

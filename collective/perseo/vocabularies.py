@@ -1,9 +1,15 @@
-from Products.CMFCore.utils import getToolByName
+# -*- coding: utf-8 -*-
 
 from zope.interface import implements
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary
-from zope.schema.vocabulary import SimpleTerm
+
+try:
+    from zope.app.schema.vocabulary import IVocabularyFactory
+except ImportError:
+    # Plone 4.1+
+    from zope.schema.interfaces import IVocabularyFactory
+
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from Products.CMFCore.utils import getToolByName
 from zope.site.hooks import getSite
 
 
