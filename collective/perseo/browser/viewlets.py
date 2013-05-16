@@ -37,9 +37,11 @@ class PerSEOMetaTagsViewlet(ViewletBase):
     """Inserts meta tags in html head of pages"""
 
     def render(self):
+        seo = ISEOSettings(self.context, None)
+        if not seo:
+            return ''
         TEMPLATE = '<meta %(key)s content="%(content)s "/>'
         enc = getSiteEncoding(self.context)
-        seo = ISEOSettings(self.context)
         meta_tags = []
 
         for seodict, name in METATAGS:
@@ -78,8 +80,8 @@ class PerSEOTitleTagViewlet(ViewletBase):
                 escape(safe_unicode(portal_title)))
 
     def render(self):
-        seo = ISEOSettings(self.context)
-        if not seo.title_override and not seo.title:
+        seo = ISEOSettings(self.context, None)
+        if not seo or (not seo.title_override and not seo.title):
             return self.std_title()
         else:
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
@@ -98,7 +100,9 @@ class PerSEOCanonicalUrlViewlet(ViewletBase):
 
     def render(self):
         result = ""
-        seo = ISEOSettings(self.context)
+        seo = ISEOSettings(self.context, None)
+        if not seo:
+            return result
         opts = {'canonical': seo.canonical_override and seo.canonical,
                 'alternate': seo.alternate_i18n}
         if self.settings.google_publisher:
