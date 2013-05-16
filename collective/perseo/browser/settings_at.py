@@ -1,3 +1,4 @@
+from Products.CMFPlone.utils import safe_unicode
 from collective.perseo.browser.settings_plone import PloneSiteSeoContextAdapter
 
 
@@ -28,8 +29,9 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
         perseo_property = self.get('meta_robots_follow')
         if perseo_property:
             return perseo_property
-        return getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
+        result = getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
                                                     and 'nofollow' or 'follow'
+        return safe_unicode(result)
 
     @property
     def meta_robots_index(self):
@@ -38,5 +40,6 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
         perseo_property = self.get('meta_robots_index')
         if perseo_property:
             return perseo_property
-        return getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
+        result = getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
                                                     and 'noindex' or 'index'
+        return safe_unicode(result)

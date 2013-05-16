@@ -4,6 +4,7 @@ from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 
 try:
     from Products.LinguaPlone.interfaces import ITranslatable
@@ -99,54 +100,63 @@ class PloneSiteSeoContextAdapter(object):
     @property
     def title(self):
         page = self.find_context()
-        return self.get('title') or \
-               getattr(self.settings, '%s_title' % page, None) or \
-               self.pcs.object_title()
+        result = self.get('title') or \
+                 getattr(self.settings, '%s_title' % page, None) or \
+                 self.pcs.object_title()
+        return safe_unicode(result)
 
     @property
     def description(self):
         context = aq_inner(self.context)
         page = self.find_context()
-        return self.get('description') or \
-               getattr(self.settings, '%s_description' % page, None) or \
-               context.Description()
+        result = self.get('description') or \
+                 getattr(self.settings, '%s_description' % page, None) or \
+                 context.Description()
+        return safe_unicode(result)
 
     @property
     def keywords(self):
         context = aq_inner(self.context)
         page = self.find_context()
-        return self.get('keywords') or \
+        result = self.get('keywords') or \
                getattr(self.settings, '%s_keywords' % page, None) or \
                context.Subject()
+        return safe_unicode(result)
 
     @property
     def meta_robots_follow(self):
         page = self.find_robots_context()
-        return getattr(self.settings, 'indexing_%s' % page, None) \
+        result = getattr(self.settings, 'indexing_%s' % page, None) \
                                                     and 'nofollow' or 'follow'
+        return safe_unicode(result)
 
     @property
     def meta_robots_index(self):
         page = self.find_robots_context()
-        return getattr(self.settings, 'indexing_%s' % page, None) \
+        result = getattr(self.settings, 'indexing_%s' % page, None) \
                                                     and 'noindex' or 'index'
+        return safe_unicode(result)
     @property
     def meta_robots_advanced(self):
         site_globals = self.settings.meta_robots_advanced
-        return self.get('meta_robots_advanced') or site_globals or ()
+        result = self.get('meta_robots_advanced') or site_globals or ()
+        return safe_unicode(result)
 
     @property
     def robots(self):
-        return (self.meta_robots_follow, self.meta_robots_index,
+        result = (self.meta_robots_follow, self.meta_robots_index,
                 ', '.join(self.meta_robots_advanced))
+        return safe_unicode(result)
 
     @property
     def canonical(self):
-        return self.get('canonical') or ''
+        result = self.get('canonical') or ''
+        return safe_unicode(result)
 
     @property
     def sitemap_priority(self):
-        return self.get('sitemap_priority')
+        result = self.get('sitemap_priority')
+        return safe_unicode(result)
 
     @property
     def include_in_sitemap(self):
@@ -165,11 +175,13 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def bingWebmasterTools(self):
-        return self.settings.bingWebmasterTools
+        result = self.settings.bingWebmasterTools
+        return safe_unicode(result)
 
     @property
     def googleWebmasterTools(self):
-        return self.settings.googleWebmasterTools
+        result = self.settings.googleWebmasterTools
+        return safe_unicode(result)
 
     @property
     def meta_robots_index_override(self):
@@ -206,7 +218,8 @@ class PloneSiteSeoContextAdapter(object):
     # Twitter stuff
     @property
     def twitter_card(self):
-        return self.get('twitter_card') or 'summary'
+        result = self.get('twitter_card') or 'summary'
+        return safe_unicode(result)
 
     @property
     def twitter_card_override(self):
@@ -214,13 +227,15 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def twitter_site(self):
-        return self.settings.twitter_site
+        result = self.settings.twitter_site
+        return safe_unicode(result)
 
     @property
     def twitter_creator(self):
         author = self.pm.getMemberById(self.context.Creator())
-        return self.get('twitter_creator') or \
+        result = self.get('twitter_creator') or \
             author and author.getProperty('twitter_author') or ''
+        return safe_unicode(result)
 
     @property
     def twitter_creator_override(self):
@@ -228,7 +243,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def twitter_description(self):
-        return self.get('twitter_description') or self.description
+        result = self.get('twitter_description') or self.description
+        return safe_unicode(result)
 
     @property
     def twitter_description_override(self):
@@ -236,7 +252,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def twitter_title(self):
-        return self.get('twitter_title') or self.title
+        result = self.get('twitter_title') or self.title
+        return safe_unicode(result)
 
     @property
     def twitter_title_override(self):
@@ -253,15 +270,18 @@ class PloneSiteSeoContextAdapter(object):
     # Facebook stuff
     @property
     def facebook_admins(self):
-        return self.settings.facebook_admins
+        result = self.settings.facebook_admins
+        return safe_unicode(result)
 
     @property
     def og_site_name(self):
-        return self.settings.og_site_name
+        result = self.settings.og_site_name
+        return safe_unicode(result)
 
     @property
     def og_locale(self):
-        return self.get('og_locale') or self.context.Language()
+        result = self.get('og_locale') or self.context.Language()
+        return safe_unicode(result)
 
     @property
     def og_locale_override(self):
@@ -269,7 +289,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def og_type(self):
-        return self.get('og_type') or 'article'
+        result = self.get('og_type') or 'article'
+        return safe_unicode(result)
 
     @property
     def og_type_override(self):
@@ -277,7 +298,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def og_title(self):
-        return self.get('og_title') or self.title
+        result = self.get('og_title') or self.title
+        return safe_unicode(result)
 
     @property
     def og_title_override(self):
@@ -285,7 +307,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def og_description(self):
-        return self.get('og_description') or self.description
+        result = self.get('og_description') or self.description
+        return safe_unicode(result)
 
     @property
     def og_description_override(self):
@@ -293,7 +316,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def og_url(self):
-        return self.get('og_url') or self.canonical
+        result = self.get('og_url') or self.canonical
+        return safe_unicode(result)
 
     @property
     def og_url_override(self):
@@ -301,7 +325,8 @@ class PloneSiteSeoContextAdapter(object):
 
     @property
     def og_image(self):
-        return self.get('og_image') or '%s/logo.png' % self.context.absolute_url()
+        result = self.get('og_image') or '%s/logo.png' % self.context.absolute_url()
+        return safe_unicode(result)
 
     @property
     def og_image_override(self):

@@ -69,7 +69,7 @@ class SEOContextForm(extensible.ExtensibleForm, form.Form):
 
     @property
     def next_url(self):
-        return '%s/@@perseo-context-settings' % self.context.absolute_url()
+        return self.context.absolute_url()
 
     def redirectAction(self):
         self.request.response.redirect(self.next_url)
