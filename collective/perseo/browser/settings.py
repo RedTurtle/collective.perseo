@@ -5,6 +5,7 @@ from z3c.form import form, field, button
 from z3c.form.browser.radio import RadioFieldWidget
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from plone.z3cform.layout import wrap_form
 from plone.z3cform.fieldsets import extensible
 from plone.z3cform.fieldsets import group
@@ -117,4 +118,5 @@ class PerseoTabAvailable(BrowserView):
     def checkPerseoTabAvailable(self):
         """ Checks visibility of SEO tab for context
         """
-        return IAnnotatable.providedBy(self.context)
+        return not IPloneSiteRoot.providedBy(self.context) and \
+                IAnnotatable.providedBy(self.context)
