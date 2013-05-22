@@ -13,10 +13,11 @@ def include_in_sitemapxml(object):
     """ Returned True if the object is included in sitemap.xml
     """
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISEOControlpanel)
+    settings = registry.forInterface(ISEOControlpanel, check=False)
+    not_included_types = settings.not_included_types or []
 
     return ISEOSettings(object).include_in_sitemap or \
-            object.portal_type in settings.not_included_types
+            object.portal_type in not_included_types
 
 
 def url_open(url):
@@ -30,7 +31,7 @@ def url_open(url):
 
 def PingingObjRemovedFromSiteMapXML(object):
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISEOControlpanel)
+    settings = registry.forInterface(ISEOControlpanel, check=False)
     ping_google = settings.ping_google
     ping_bing = settings.ping_bing
     ping_ask = settings.ping_ask
@@ -47,7 +48,7 @@ def PingingObjRemovedFromSiteMapXML(object):
 
 def Pinging(object):
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISEOControlpanel)
+    settings = registry.forInterface(ISEOControlpanel, check=False)
     ping_google = settings.ping_google
     ping_bing = settings.ping_bing
     ping_ask = settings.ping_ask
