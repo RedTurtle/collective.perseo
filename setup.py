@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.7a'
+version = '0.7.1.dev0'
 
 setup(name='collective.perseo',
       version=version,
