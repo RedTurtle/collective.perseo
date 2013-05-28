@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.7a (unreleased)
-------------------
+0.7a (2013-05-28)
+-----------------
 
 - major refactoring [amleczko]
 - remove yahoo explorer config (dead) [amleczko]
