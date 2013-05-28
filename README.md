@@ -1,5 +1,11 @@
 .. contents::
 
+WARNING
+=======
+
+Version 0.7a is not compatible with previous releases. Use at your own risk - or wait for the final 0.7.
+
+
 Introduction
 ============
 
