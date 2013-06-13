@@ -49,7 +49,7 @@ class PerSEOMetaTagsViewlet(ViewletBase):
             if not content:
                 continue
             if isinstance(content, list) or isinstance(content, tuple):
-                content = ', '.join(content)
+                content = ', '.join(content).strip().strip(',')
 
             # each metatag can have more then one name/property 
             for k,v in seodict.items():

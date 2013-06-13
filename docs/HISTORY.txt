@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - fix problem with empty space in meta tags [amleczko]
+- make sure the meta tag value is striped [amleczko]
 
 
 0.7a1 (2013-05-28)
