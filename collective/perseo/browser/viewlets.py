@@ -40,7 +40,7 @@ class PerSEOMetaTagsViewlet(ViewletBase):
         seo = ISEOSettings(self.context, None)
         if not seo:
             return ''
-        TEMPLATE = '<meta %(key)s content="%(content)s "/>'
+        TEMPLATE = '<meta %(key)s content="%(content)s"/>'
         enc = getSiteEncoding(self.context)
         meta_tags = []
 
