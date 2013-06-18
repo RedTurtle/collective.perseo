@@ -4,6 +4,11 @@ from collective.perseo import perseoMessageFactory as _
 from collective.perseo.interfaces.metaconfig import ISEOConfigTitleSchema
 
 
+TYPE_CONFIGURATION = ('search_page', 'login_registration_page', 'administration_page',
+                      'document', 'event', 'file', 'folder', 'image', 'link',
+                      'newsitem', 'topic')
+
+
 class ISEOConfigWMToolsSchema(Interface):
     """Schema for WebMaster Tools"""
 
@@ -67,79 +72,50 @@ class ISEOConfigSocialSchema(Interface):
 class ISEOConfigIndexingSchema(Interface):
     """Schema for Indexing"""
 
-    indexing_searchpage = schema.Bool(
-        title=_("label_search_page",
-                default=u"Search pages"),
-        default=False,
-        required=False)
 
-    indexing_loginregistrationpage = schema.Bool(
-        title=_("label_login_registration_page",
-                default=u"Login and Registration pages"),
-        default=False,
-        required=False)
+def add_fields_to_indexing_schema(schemata):
+    for t in TYPE_CONFIGURATION:
+        title = ' '.join(t.split('_'))
 
-    indexing_administrationpage = schema.Bool(
-        title=_("label_administration_page",
-                default=u"Administration pages"),
-        default=False,
-        required=False)
+        meta_robots_index_override = schema.Bool(
+            title=_("label_meta_robots_override_%s" % t,
+                    default=u"Override the default for %s" % title),
+            default=False,
+            required=False)
+        meta_robots_index_override.__name__ = 'meta_robots_index_override_%s' % t
+        meta_robots_index_override.interface = schemata
+        schemata._InterfaceClass__attrs[meta_robots_index_override.__name__] = meta_robots_index_override
 
-    indexing_page = schema.Bool(
-        title=_("label_single_pages",
-                default=u"Single Pages"),
-        default=False,
-        required=False)
+        meta_robots_follow = schema.Choice(
+            title=_("label_meta_robots_follow_%s" % t,
+                    default=u"Meta Robots Follow Tag for %s" % title),
+            values=['follow', 'nofollow'],
+            required=False)
+        meta_robots_follow.__name__ = 'meta_robots_follow_%s' % t
+        meta_robots_follow.interface = schemata
+        schemata._InterfaceClass__attrs[meta_robots_follow.__name__] = meta_robots_follow
 
-    indexing_event = schema.Bool(
-        title=_("label_indexing_event",
-                default=u"Event"),
-        default=False,
-        required=False)
+        meta_robots_index = schema.Choice(
+            title=_("label_meta_robots_index_%s" % t,
+                    default=u"Meta Robots Index Tag for %s" % title),
+            values=['index', 'noindex'],
+            required=False)
+        meta_robots_index.__name__ = 'meta_robots_index_%s' % t
+        meta_robots_index.interface = schemata
+        schemata._InterfaceClass__attrs[meta_robots_index.__name__] = meta_robots_index
 
-    indexing_file = schema.Bool(
-        title=_("label_indexing_file",
-                default=u"File"),
-        default=False,
-        required=False)
+        meta_robots_advanced = schema.List(
+            title=_("label_meta_robots_advanced_%s" % t,
+                    default=u"Meta Robots Advanced Tag for %s" % title),
+            value_type=schema.Choice(
+                    values=['noodp', 'noydir', 'noarchive', 'nosnippet']
+                    ),
+            required=False)
+        meta_robots_advanced.__name__ = 'meta_robots_advanced_%s' % t
+        meta_robots_advanced.interface = schemata
+        schemata._InterfaceClass__attrs[meta_robots_advanced.__name__] = meta_robots_advanced
 
-    indexing_folder = schema.Bool(
-        title=_("label_indexing_folder",
-                default=u"Folder"),
-        default=False,
-        required=False)
-
-    indexing_image = schema.Bool(
-        title=_("label_indexing_image",
-                default=u"Image"),
-        default=False,
-        required=False)
-
-    indexing_link = schema.Bool(
-        title=_("label_indexing_link",
-                default=u"Link"),
-        default=False,
-        required=False)
-
-    indexing_newsItem = schema.Bool(
-        title=_("label_indexing_newsItem",
-                default=u"NewsItem"),
-        default=False,
-        required=False)
-
-    indexing_topic = schema.Bool(
-        title=_("label_indexing_topic",
-                default=u"Topic"),
-        default=False,
-        required=False)
-
-    meta_robots_advanced = schema.List(
-        title=_("label_meta_robots_advanced",
-                default=u"Meta Robots Advanced Tag"),
-        value_type=schema.Choice(
-                values=['noodp', 'noydir', 'noarchive', 'nosnippet']
-                ),
-        required=False)
+add_fields_to_indexing_schema(ISEOConfigIndexingSchema)
 
 
 class ISEOConfigSiteMapXMLSchema(Interface):

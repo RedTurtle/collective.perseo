@@ -140,7 +140,7 @@ class PloneSiteSeoContextAdapter(object):
     def meta_robots_advanced(self):
         site_globals = self.settings.meta_robots_advanced
         result = self.get('meta_robots_advanced') or site_globals or ()
-        return safe_unicode(result)
+        return result
 
     @property
     def robots(self):

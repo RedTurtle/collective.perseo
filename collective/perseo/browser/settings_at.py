@@ -24,22 +24,38 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
 
     @property
     def meta_robots_follow(self):
-        if not self.meta_robots_follow_override:
-            return 'follow'
-        perseo_property = self.get('meta_robots_follow')
-        if perseo_property:
-            return perseo_property
-        result = getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
-                                                    and 'nofollow' or 'follow'
-        return safe_unicode(result)
+        if self.meta_robots_follow_override:
+            perseo_property = self.get('meta_robots_follow')
+            if perseo_property:
+                return perseo_property
+        override = getattr(self.settings, 'meta_robots_index_override_%s' % self.portal_type, False)  # override?
+        if override:
+            result = getattr(self.settings, 'meta_robots_follow_%s' % self.portal_type, None) \
+                                                        and 'nofollow' or 'follow'
+            return safe_unicode(result)
+        return 'follow'
 
     @property
     def meta_robots_index(self):
-        if not self.meta_robots_index_override:
-            return 'index'
-        perseo_property = self.get('meta_robots_index')
-        if perseo_property:
-            return perseo_property
-        result = getattr(self.settings, 'indexing_%s' % self.portal_type, None) \
+        if self.meta_robots_index_override:
+            perseo_property = self.get('meta_robots_index')
+            if perseo_property:
+                return perseo_property
+        override = getattr(self.settings, 'meta_robots_index_override_%s' % self.portal_type, False)  # override?
+        if override:
+            result = getattr(self.settings, 'meta_robots_index_%s' % self.portal_type, None) \
                                                     and 'noindex' or 'index'
-        return safe_unicode(result)
+            return safe_unicode(result)
+        return 'index'
+
+    @property
+    def meta_robots_advanced(self):
+        if self.meta_robots_advanced_override:
+            perseo_property = self.get('meta_robots_advanced')
+            if perseo_property:
+                return perseo_property
+        override = getattr(self.settings, 'meta_robots_index_override_%s' % self.portal_type, False)  # override?
+        if override:
+            result = getattr(self.settings, 'meta_robots_advanced_%s' % self.portal_type, ())
+            return result
+        return ()
