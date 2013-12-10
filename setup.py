@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.6.4'
+version = '0.6.5'
 
 setup(name='collective.perseo',
       version=version,
@@ -36,6 +36,4 @@ setup(name='collective.perseo',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      setup_requires=["PasteScript"],
-      paster_plugins=["ZopeSkel"],
       )

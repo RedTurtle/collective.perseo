@@ -4,7 +4,12 @@ from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
-from zope.site.hooks import getSite
+try:
+    # Plone < 4.3
+    from zope.app.component.hooks import getSite
+except ImportError:
+    # Plone >= 4.3
+    from zope.component.hooks import getSite  # NOQA
 
 BAD_TYPES = ("ATBooleanCriterion", "ATDateCriteria", "ATDateRangeCriterion",
              "ATListCriterion", "ATPortalTypeCriterion", "ATReferenceCriterion",

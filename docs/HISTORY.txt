@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.6.5 (Unreleased)
+------------------
+- fix plone4 dependency [amleczko]
+
 0.6.4 (2012-07-16)
 ------------------
 
