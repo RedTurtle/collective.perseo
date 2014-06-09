@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.6.6 (Unreleased)
+------------------
+- fix bug in search form template [amleczko]
+
 0.6.5 (2013-12-10)
 ------------------
 - fix plone4 dependency [amleczko]

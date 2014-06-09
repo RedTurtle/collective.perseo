@@ -266,7 +266,7 @@ class PerSEOContextPloneSiteRoot(PerSEOContext):
             if getattr(self.request['PUBLISHED'], 'getId', None):
                 # template inside skins   
                 template_id = self.request['PUBLISHED'].getId()
-            if getattr(self.request['PUBLISHED'], __name__, None):
+            if getattr(self.request['PUBLISHED'], '__name__', None):
                 # template inside browser view
                 template_id = self.request['PUBLISHED'].__name__
         
