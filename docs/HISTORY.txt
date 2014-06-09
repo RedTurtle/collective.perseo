@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.6 (Unreleased)
+0.6.6 (2014-06-09)
 ------------------
 - fix bug in search form template [amleczko]
 
