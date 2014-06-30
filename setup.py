@@ -27,7 +27,6 @@ setup(name='collective.perseo',
       install_requires=[
           'setuptools',
           'collective.monkeypatcher',
-          'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
