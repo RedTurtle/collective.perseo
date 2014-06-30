@@ -4,6 +4,9 @@ Changelog
 0.7a2 (unreleased)
 ------------------
 
+- fix title tag viewlet to show page title too if no override is specified
+  [fRiSi]
+- use the navigation root title in the title tag viewlet (this fixes #4) [fRiSi]
 - fix problem with empty space in meta tags [amleczko]
 - make sure the meta tag value is striped [amleczko]
 - fix problem with rendering robots meta tag [amleczko]
@@ -29,7 +32,7 @@ Changelog
 0.6.3 (2012-03-27)
 ------------------
 - fix bug with perseo_itemtype method [fdelia]
- 
+
 0.6.2 (2011-12-21)
 ------------------
 - fix mismatched tag [fdelia]

@@ -51,7 +51,7 @@ class PerSEOMetaTagsViewlet(ViewletBase):
             if isinstance(content, list) or isinstance(content, tuple):
                 content = ', '.join(content).strip().strip(',')
 
-            # each metatag can have more then one name/property 
+            # each metatag can have more then one name/property
             for k,v in seodict.items():
                 opts = {'key': '%s="%s"' % (k,v), # i.e. name="twitter:card"
                         'content': escape(safe_unicode(content, enc))}
@@ -71,7 +71,7 @@ class PerSEOTitleTagViewlet(ViewletBase):
 
     def std_title(self):
         page_title = safe_unicode(self.context_state.object_title())
-        portal_title = safe_unicode(self.portal_state.portal_title())
+        portal_title = safe_unicode(self.portal_state.navigation_root_title())
         if page_title == portal_title:
             return u"<title>%s</title>" % (escape(portal_title))
         else:
@@ -81,12 +81,11 @@ class PerSEOTitleTagViewlet(ViewletBase):
 
     def render(self):
         seo = ISEOSettings(self.context, None)
-        if not seo or (not seo.title_override and not seo.title):
-            return self.std_title()
-        else:
+        if seo and (seo.title_override and seo.title):
             perseo_title = u"<title>%s</title>" % escape(safe_unicode(
                 seo.title))
             return perseo_title
+        return self.std_title()
 
 
 class PerSEOCanonicalUrlViewlet(ViewletBase):
