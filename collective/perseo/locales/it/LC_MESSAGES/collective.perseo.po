@@ -14,653 +14,676 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.perseo\n"
 
-#: ./browser/views.py:116
-msgid "NO ODP"
-msgstr "NO ODP"
+#: ./browser/settings.py:22
+msgid "Advanced settings"
+msgstr "Impostazioni avanzate"
 
-#: ./browser/views.py:117
-msgid "NO YDIR"
-msgstr "NO YDIR"
+#: ./browser/settings.py:103
+msgid "Cancel"
+msgstr "Annulla"
 
-#: ./browser/views.py:98
-msgid "No"
-msgstr "No"
+#: ./browser/settings.py:65
+msgid "Changes saved."
+msgstr "Modifiche salvate"
 
-#: ./browser/views.py:118
-msgid "No Archive"
-msgstr "No Archive"
+#: ./browser/settings.py:49
+msgid "Facebook settings"
+msgstr "Impostazioni Facebook"
 
-#: ./browser/views.py:119
-msgid "No Snippet"
-msgstr "No Snippet"
+#: ./browser/controlpanel.py:43
+msgid "Handle how different types with be index by robots"
+msgstr "Impostazioni sull'indicizzazione da parte dei robots: permette di impostare il meta tag robots con le varie combinazioni di valori"
 
-#: ./browser/views.py:115
-msgid "None"
-msgstr "None"
+#: ./browser/controlpanel.py:37
+msgid "Handle how sitemap will be generated; remember to flag enable_sitemap in site_properties"
+msgstr "Impostazioni su come generare la mappa del sito. È necessario impostare il flag 'Esponi sitempa.xml.gz' nel pannello di controllo alla voce 'Sito'"
+
+#: ./browser/controlpanel.py:49
+msgid "Handle how your site will be indexed by social networks"
+msgstr "Impostazioni sull'indicizzazione del sito sui social network"
+
+#: ./browser/controlpanel.py:26
+msgid "Here you can override at global level value for title, description and keywords for different types and templates. In these box you can use variables like: %%title%%', '%%tag%%', '%%description%%', '%%startdate%%', '%%enddate%%', '%%sitename%%', '%%fullname%%', '%%searchedtext%%. 'title', 'tag' and 'description' are taken from the context you are looking. If your context it's an event, you can use 'startdata' and 'enddate'. If you are in the author page, you can use 'fullname' to use the author fullname or, if you are on a content, you can get the authors list. If you are customizing search page, you can use 'searchedtext' to take the search query string"
+msgstr "In questa sezione si possono sovrascrivere titolo, descrizione e keywords a livello globale per i vari tipi di contenuti base e alcune viste (homepage, ricerca, pagina autori). Nei box si possono utilizzare delle variabili:  %%title%%', '%%tag%%', '%%description%%', '%%startdate%%', '%%enddate%%', '%%sitename%%', '%%fullname%%', '%%searchedtext%%. \n\n'%%title%%', '%%tag%%' e '%%description%%' si possono prendere solo dal contenuto che si sta guardando. Se il contenuto è un evento, si possono prendere anche la '%%startdate%%' e la '%%enddate%%'. \n\nSe si sta guardando una pagina autore, si può usare '%%fullname%%' per utilizzare il nome completo dell'autore; se si sta guardando un contenuto, %%fullname%% si può usare per ottenere la lista dei creatori del documento. \n\nSe si sta personalizzando la pagina di ricerca, si può utilizzare %%searchedtext%% per ottenere la query string delle parole cercate. Se si inserisce una variabile per cui non si trova un valore di sostituzione, si ritorna valore vuoto"
+
+#: ./browser/controlpanel.py:19
+msgid "Hreflang settings"
+msgstr "Impostazioni Href lang"
+
+#: ./browser/controlpanel.py:20
+msgid "If LinguaPlone is installed below you can activate options for hreflang link tag in header"
+msgstr "Se LinguaPlone è installato si possono attivare le opzioni sotto per avere i link href lang nel header della pagina"
+
+#: ./browser/controlpanel.py:42
+msgid "Indexing"
+msgstr "Indicizzazione"
+
+#: ./browser/settings.py:112
+msgid "Manage PerSEO settings for this content."
+msgstr "Impostazioni PerSEO per il contenuto corrente"
+
+#: ./browser/settings.py:62
+msgid "Manage SEO settings for this content"
+msgstr "Impostazioni SEO per il contenuto corrente"
+
+#: ./browser/settings.py:66
+msgid "No changes made."
+msgstr "Nessuna modifica effettuata"
 
 #: ./profiles/default/controlpanel.xml
 msgid "PerSEO"
 msgstr "PerSEO"
 
-#: ./browser/seo_config.py:851
-msgid "PerSEO Configuration"
-msgstr "Configurazione PerSEO"
+#: ./browser/controlpanel.py:55
+#: ./browser/settings.py:111
+msgid "PerSEO settings"
+msgstr "Impostazioni PerSEO"
 
 #: ./profiles/default/actions.xml
 msgid "SEO"
 msgstr "SEO"
 
-#: ./browser/views.py:97
-msgid "Yes"
-msgstr "Si"
+#: ./browser/settings.py:88
+msgid "Save"
+msgstr "Salva"
 
-#. Default: "By selecting the options below you decide to disable the indexing of resources using noindex and nofollow"
-#: ./browser/seo_config.py:732
-msgid "description_seoindexing"
-msgstr "Selezionando le opzioni sotto decidi di disabilitare l'indicizzazione delle risorse utilizzando noindex e nofollow"
+#: ./browser/controlpanel.py:36
+msgid "Sitemap"
+msgstr "Mappa del sito"
 
-#. Default: "Edit SEO Settings"
-#: ./browser/templates/perseo_tab_context.pt:35
-msgid "edit_seo"
-msgstr "Modifica le impostazioni SEO"
+#: ./browser/controlpanel.py:48
+msgid "Social networks"
+msgstr ""
 
-#. Default: "Enter an id for Google. https://www.google.com/webmasters/tools/"
-#: ./browser/seo_config.py:28
+#: ./browser/settings.py:35
+msgid "Twitter settings"
+msgstr "Impostazioni Twitter"
+
+#: ./browser/controlpanel.py:25
+msgid "Type headers"
+msgstr "Titoli & Meta dati"
+
+#. Default: "Add robots noindex to rss template"
+#: ./interfaces/controlpanel.py:175
+msgid "description_indexing_feed_rss"
+msgstr "Aggiunge il robots noindex al template per i feed RSS"
+
+#. Default: "Enter an id for Google. https://www.google.com/webmasters/tools/; it will be rendered in your page as <meta name='google-site-verification' content='xxxx'/>"
+#: ./interfaces/controlpanel.py:18
 msgid "help__googleWebmasterTools"
 msgstr "Inserisci un id per Google. https://www.google.com/webmasters/tools/"
 
-#. Default: "Enter an id for Bing. http://www.bing.com/webmaster/"
-#: ./browser/seo_config.py:42
+#. Default: "Enter an id for Bing. http://www.bing.com/webmaster/; it will be renderd in your page as <meta name='msvalidate.01' content='xxxxxx'/>"
+#: ./interfaces/controlpanel.py:25
 msgid "help_bingWebmasterTools"
 msgstr "Inserisci un id per Bing. http://www.bing.com/webmaster/"
 
+#. Default: "Specify your canonical URL. If your site has identical or vastly similar content that's accessible through multiple URLs, this format provides you with more control over the URL returned in search results."
+#: ./interfaces/settings.py:100
+msgid "help_canonical"
+msgstr "Specificare il canonical URL. Se il sito ha contenuti identici o molto simili accessibili da più URL, questo check permette di avere un maggior controllo sugli URL restituiti nei risultati di una ricerca"
+
+#. Default: "Keywords, the page will be indexed with. Enter each keyword in separate line, please. Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
+#: ./interfaces/settings.py:41
+msgid "help_context_keywords"
+msgstr "Indica le keyword con cui la pagina sarà indicizzata. Inserisci ogni keyword in una riga separata."
+
+#. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
+#: ./interfaces/settings.py:26
+msgid "help_description"
+msgstr "La descrizione del documento che verrà indicizzata dai motori di ricerca. Questo testo verrà inserito in un tag meta description nell'HTML"
+
+#. Default: "Enter a Facebook admins Ids; it will be renderd in your page as: <meta property='fb:admins' content='xxxxxxxxx'/>"
+#: ./interfaces/controlpanel.py:60
+#: ./interfaces/settings.py:215
+msgid "help_facebook_admins"
+msgstr "Indicare un admin Id Facebook; questo verrà mostrato nella pagina come: &lt;meta property='fb:admins' content='xxxxxxxxx'/&gt;"
+
+#. Default: "Fill in your google author page, ie. https://plus.google.com/117510669985299383051/"
+#: ./userdataschema.py:18
+msgid "help_google_author"
+msgstr "Indicare la propria pagina google plus, es: https://plus.google.com/117510669985299383051/"
+
+#. Default: "Enter a Google+ Page, ie. https://plus.google.com/117510669985299383051/; it will be rendered in your page as <link href='https://plus.google.com/117510669985299383051/' rel='publisher' />"
+#: ./interfaces/controlpanel.py:42
+msgid "help_google_publisher"
+msgstr "Indicare una pagina google+, es: https://plus.google.com/117510669985299383051/; verrà renderizzata come: &lt;link href='https://plus.google.com/117510669985299383051/' rel='publisher' /&gt;"
+
 #. Default: "The content types that should be included in the sitemap.xml.gz."
-#: ./browser/seo_config.py:472
+#: ./interfaces/controlpanel.py:127
 msgid "help_included_types"
-msgstr "I tipi di contenuto che dovrebbero essere inclusi nel sitemap.xml.gz."
+msgstr "I tipi di contenuto che dovrebbero essere inclusi nel sitemap.xml.gz"
 
 #. Default: "You can enter multiple keywords - one pr. line."
-#: ./browser/seo_config.py:72
+#: ./interfaces/metaconfig.py:22
 msgid "help_keywords"
 msgstr "È possibile inserire più parole chiave - una per linea."
 
-#. Default: "Specify your canonical URL. If your site has identical or vastly similar content that's accessible through multiple URLs, this format provides you with more control over the URL returned in search results."
-#: ./browser/templates/perseo_tab_context.pt:225
-msgid "help_perseo_canonical"
-msgstr "Specificare l'URL canonico. Se il vostro sito ha contenuti identici o molto simili, che sono accessibili attraverso più URL, questo formato offre un maggiore controllo sull'URL restituito nei risultati di ricerca."
+#. Default: "Description used by Facebook"
+#: ./interfaces/settings.py:261
+msgid "help_og_description"
+msgstr "Descrizione usata da Facebook"
 
-#. Default: "Description of the document to be indexed by Search Engines. This text will be present in meta description tag in page HTML source."
-#: ./browser/templates/perseo_tab_context.pt:71
-msgid "help_perseo_description"
-msgstr "Descrizione del documento indicizzata dai motori di ricerca. Questo testo sarà presente nel meta tag description nella pagina HTML."
+#. Default: "URL to image preview"
+#: ./interfaces/settings.py:222
+msgid "help_og_image"
+msgstr "URL alla preview dell'immagine"
 
-#. Default: "Keywords, the page will be indexed with. <strong>Enter each keyword in separate line, please.</strong> Though the relevance of listing meta keywords is of questionable value now, it is useful to set meta keywords for pages - for future reference."
-#: ./browser/templates/perseo_tab_context.pt:96
-msgid "help_perseo_keywords"
-msgstr "La pagina sarà indicizzata con Keywords. <strong>Inserisci ogni parola chiave in una riga separata, per favore.</strong> Sebbene la rilevanza delle meta keywords è ora di discutibile, è utile per impostare meta keywords per le pagine - per riferimento futuro."
+#. Default: "Locale used by Facebook"
+#: ./interfaces/settings.py:274
+msgid "help_og_locale"
+msgstr "Lingua utilizzata da Facebook"
 
-#. Default: "Values ​​from 0.1 to 1.0"
-#: ./browser/templates/perseo_tab_context.pt:284
-msgid "help_perseo_priority_sitemapxml"
-msgstr "Valori da 0.1 a 1.0"
+#. Default: "Enter your site name; it will be rendered in your page as: <meta property='og:site_name' content='sitename'/>"
+#: ./interfaces/controlpanel.py:53
+msgid "help_og_site_name"
+msgstr "Inserisci il tuo nome del sito; verrà mostrato nel codice della pagina come: &lt;meta property='og:site_name' content='sitename'/&gt;"
 
-#. Default: "Text to be present in &lt;TITLE&gt; tag. It is displayed in browser title bar. Search engines display it as a title of the document."
-#: ./browser/templates/perseo_tab_context.pt:44
-msgid "help_perseo_title"
-msgstr "Testo presente nel tag &lt;TITLE&gt;. Esso è visualizzato nella barra titolo del browser. I motori di ricerca lo mostrano come titolo del documento."
+#. Default: "Title used by Facebook"
+#: ./interfaces/settings.py:248
+msgid "help_og_title"
+msgstr "Titolo utilizzato da Facebook"
+
+#. Default: "Type used by Facebook, usually article"
+#: ./interfaces/settings.py:287
+msgid "help_og_type"
+msgstr "Tipo utilizzato da Facebook, solitamente 'article'"
+
+#. Default: "URL used by Facebook"
+#: ./interfaces/settings.py:235
+msgid "help_og_url"
+msgstr "URL utilizzato da Facebook"
 
 #. Default: "Ping site automatically when the Site Map is updated."
-#: ./browser/seo_config.py:483
+#: ./interfaces/controlpanel.py:137
 msgid "help_ping"
 msgstr "Ping automatico del sito quando la Site Map viene aggiornata."
 
-#. Default: "Enter an id for Yahoo. https://siteexplorer.search.yahoo.com/mysites"
-#: ./browser/seo_config.py:35
-msgid "help_yahooSiteExplorer"
-msgstr "Inserisci un id per Yahoo. https://siteexplorer.search.yahoo.com/mysites"
+#. Default: "Values from 0.1 to 1.0"
+#: ./interfaces/settings.py:129
+msgid "help_sitemap_priority"
+msgstr "Valori da 0.1 a 1.0"
+
+#. Default: "Text to be present in TITLE tag. It is displayed in browser title bar. Search engines display it as a title of the document."
+#: ./interfaces/settings.py:11
+msgid "help_title"
+msgstr "Testo per il tag title. È mostrato nella barra del titolo nel browser. I motori di ricerca lo mostrano come titolo del documento."
+
+#. Default: "Fill in your twitter author page, ie. @redturtle"
+#: ./userdataschema.py:25
+msgid "help_twitter_author"
+msgstr "Indicare l'account Twitter da associare; es. @redturtle"
+
+#. Default: "i.e. summary"
+#: ./interfaces/settings.py:165
+msgid "help_twitter_card"
+msgstr "Ad esempio: summary"
+
+#. Default: "i.e. @redturtle"
+#: ./interfaces/settings.py:186
+msgid "help_twitter_creator"
+msgstr "Ad esempio: @redturtle"
+
+#. Default: "i.e. a short site description"
+#: ./interfaces/settings.py:152
+msgid "help_twitter_description"
+msgstr "Indica una breve descrizione del sito"
+
+#. Default: "URL to image preview"
+#: ./interfaces/settings.py:199
+msgid "help_twitter_image"
+msgstr "URL della preview all'immagine"
+
+#. Default: "Enter twitter site account name, ie. @redturtle; it will be renderd in your page as: <meta name='twitter:site' content='@YourAccount'/>"
+#: ./interfaces/controlpanel.py:67
+#: ./interfaces/settings.py:179
+msgid "help_twitter_site"
+msgstr "Indicare un nome dell'account name legato al sito, es: @redturtle; verrà mostrato nella pagina come: &lt;meta name='twitter:site' content='@YourAccount'/&gt;"
+
+#. Default: "i.e. a short title"
+#: ./interfaces/settings.py:139
+msgid "help_twitter_title"
+msgstr "Ad esempio un titolo breve"
 
 #. Default: "Accessibility Description"
-#: ./browser/seo_config.py:185
+#: ./interfaces/metaconfig.py:125
 msgid "label_accessibilitypage_description"
 msgstr "Descrizione Accessibilità"
 
 #. Default: "Accessibility Keywords"
-#: ./browser/seo_config.py:190
+#: ./interfaces/metaconfig.py:130
 msgid "label_accessibilitypage_keywords"
 msgstr "Keywords Accessibilità"
 
 #. Default: "Accessibility Title"
-#: ./browser/seo_config.py:180
+#: ./interfaces/metaconfig.py:120
 msgid "label_accessibilitypage_title"
 msgstr "Titolo Accessibilità"
 
-#. Default: "Administration pages"
-#: ./browser/seo_config.py:389
-msgid "label_administration_page"
-msgstr "Pagine di amministrazione"
+#. Default: "Add hreflang link tag"
+#: ./interfaces/controlpanel.py:185
+msgid "label_activate_href_lang_link_tag"
+msgstr "Aggiungi i tag link per l'hreflang"
+
+#. Default: "Activate hreflang x-default link tag"
+#: ./interfaces/controlpanel.py:191
+msgid "label_activate_hreflang_x_default"
+msgstr "Aggiungi il tag link per l'hreflang x-default"
 
 #. Default: "Author Page Description"
-#: ./browser/seo_config.py:145
+#: ./interfaces/metaconfig.py:81
 msgid "label_authorpage_description"
 msgstr "Descrizione pagina autore"
 
 #. Default: "Author Page Keywords"
-#: ./browser/seo_config.py:150
+#: ./interfaces/metaconfig.py:86
 msgid "label_authorpage_keywords"
 msgstr "Keywords pagina autore"
 
 #. Default: "Author Page Title"
-#: ./browser/seo_config.py:140
+#: ./interfaces/metaconfig.py:76
 msgid "label_authorpage_title"
 msgstr "Titolo pagina autore"
 
 #. Default: "Bing Webmaster Tools"
-#: ./browser/seo_config.py:40
+#: ./interfaces/controlpanel.py:23
 msgid "label_bingWebmasterTools"
 msgstr "Strumenti Bing Webmaster"
 
 #. Default: "Canonical URL"
-#: ./browser/templates/perseo_tab_context.pt:222
-msgid "label_canonical_tag"
-msgstr "Canonical URL"
+#: ./interfaces/settings.py:98
+msgid "label_canonical"
+msgstr "URL canonical"
 
 #. Default: "Contact Description"
-#: ./browser/seo_config.py:205
+#: ./interfaces/metaconfig.py:147
 msgid "label_contactpage_description"
 msgstr "Descrizione Contatti"
 
 #. Default: "Contact Keywords"
-#: ./browser/seo_config.py:210
+#: ./interfaces/metaconfig.py:152
 msgid "label_contactpage_keywords"
 msgstr "Keywords Contatti"
 
 #. Default: "Contact Title"
-#: ./browser/seo_config.py:200
+#: ./interfaces/metaconfig.py:142
 msgid "label_contactpage_title"
 msgstr "Titolo Contatti"
 
 #. Default: "Meta Description Tag"
-#: ./browser/templates/perseo_tab_context.pt:68
-msgid "label_description_meta_tag"
-msgstr "Meta Tag Description"
+#: ./interfaces/settings.py:24
+msgid "label_description"
+msgstr "Meta tag per la descrizione"
+
+#. Default: "Single Page Description"
+#: ./interfaces/metaconfig.py:169
+msgid "label_document_description"
+msgstr "Descrizione per il tipo Documento"
+
+#. Default: "Single Page Keywords"
+#: ./interfaces/metaconfig.py:174
+msgid "label_document_keywords"
+msgstr "Keyword per il tipo Documento"
+
+#. Default: "Single Page Title"
+#: ./interfaces/metaconfig.py:164
+msgid "label_document_title"
+msgstr "Titolo per il tipo Documento"
 
 #. Default: "Event Description"
-#: ./browser/seo_config.py:225
+#: ./interfaces/metaconfig.py:191
 msgid "label_event_description"
 msgstr "Descrizione Evento"
 
 #. Default: "Event Keywords"
-#: ./browser/seo_config.py:230
+#: ./interfaces/metaconfig.py:196
 msgid "label_event_keywords"
 msgstr "Keywords Evento"
 
 #. Default: "Event Title"
-#: ./browser/seo_config.py:220
+#: ./interfaces/metaconfig.py:186
 msgid "label_event_title"
 msgstr "Titolo Evento"
 
+#. Default: "Facebook admins IDs"
+#: ./interfaces/controlpanel.py:58
+#: ./interfaces/settings.py:213
+msgid "label_facebook_admins"
+msgstr "Admin id Facebook"
+
 #. Default: "File Description"
-#: ./browser/seo_config.py:245
+#: ./interfaces/metaconfig.py:213
 msgid "label_file_description"
 msgstr "Descrizione File"
 
 #. Default: "File Keywords"
-#: ./browser/seo_config.py:250
+#: ./interfaces/metaconfig.py:218
 msgid "label_file_keywords"
 msgstr "Keywords File"
 
 #. Default: "File Title"
-#: ./browser/seo_config.py:240
+#: ./interfaces/metaconfig.py:208
 msgid "label_file_title"
 msgstr "Titolo File"
 
 #. Default: "Folder Description"
-#: ./browser/seo_config.py:265
+#: ./interfaces/metaconfig.py:235
 msgid "label_folder_description"
 msgstr "Descrizione Cartella"
 
 #. Default: "Folder Keywords"
-#: ./browser/seo_config.py:270
+#: ./interfaces/metaconfig.py:240
 msgid "label_folder_keywords"
 msgstr "Keywords Cartella"
 
 #. Default: "Folder Title"
-#: ./browser/seo_config.py:260
+#: ./interfaces/metaconfig.py:230
 msgid "label_folder_title"
 msgstr "Titolo Cartella"
 
 #. Default: "Google Webmaster Tools"
-#: ./browser/seo_config.py:26
+#: ./interfaces/controlpanel.py:16
 msgid "label_googleWebmasterTools"
 msgstr "Strumenti Google Webmaster"
 
+#. Default: "Google author"
+#: ./userdataschema.py:17
+msgid "label_google_author"
+msgstr "Google author"
+
+#. Default: "Google+ Publisher Page"
+#: ./interfaces/controlpanel.py:40
+msgid "label_google_publisher"
+msgstr "Pagina Google+"
+
 #. Default: "Home Page Description"
-#: ./browser/seo_config.py:65
+#: ./interfaces/metaconfig.py:15
 msgid "label_homepage_description"
 msgstr "Descrizione Home Page"
 
 #. Default: "Home Page Keywords"
-#: ./browser/seo_config.py:70
+#: ./interfaces/metaconfig.py:20
 msgid "label_homepage_keywords"
 msgstr "Keywords Home Page"
 
 #. Default: "Home Page Title"
-#: ./browser/seo_config.py:60
+#: ./interfaces/metaconfig.py:10
 msgid "label_homepage_title"
 msgstr "Titolo Home Page"
 
 #. Default: "Image Description"
-#: ./browser/seo_config.py:285
+#: ./interfaces/metaconfig.py:257
 msgid "label_image_description"
 msgstr "Descrizione Immagine"
 
 #. Default: "Image Keywords"
-#: ./browser/seo_config.py:290
+#: ./interfaces/metaconfig.py:262
 msgid "label_image_keywords"
 msgstr "Keywords Immagine"
 
 #. Default: "Image Title"
-#: ./browser/seo_config.py:280
+#: ./interfaces/metaconfig.py:252
 msgid "label_image_title"
 msgstr "Titolo Immagine"
 
+#. Default: "Include in sitemap.xml.gz"
+#: ./interfaces/settings.py:115
+msgid "label_include_in_sitemap"
+msgstr "Includere nel sitemap.xml.gz"
+
 #. Default: "Types of content included in the XML Site Map"
-#: ./browser/seo_config.py:470
+#: ./interfaces/controlpanel.py:125
 msgid "label_included_types"
 msgstr "Tipi di contenuto inclusi nella Mappa del sito XML"
 
-#. Default: "Event"
-#: ./browser/seo_config.py:401
-msgid "label_indexing_event"
-msgstr "Evento"
-
 #. Default: "Don't index RSS feeds"
-#: ./browser/seo_config.py:517
+#: ./interfaces/controlpanel.py:173
 msgid "label_indexing_feed_rss"
 msgstr "Non indicizzare i feed RSS"
 
-#. Default: "File"
-#: ./browser/seo_config.py:407
-msgid "label_indexing_file"
-msgstr "File"
-
-#. Default: "Folder"
-#: ./browser/seo_config.py:413
-msgid "label_indexing_folder"
-msgstr "Cartella"
-
-#. Default: "Image"
-#: ./browser/seo_config.py:419
-msgid "label_indexing_image"
-msgstr "Immagine"
-
-#. Default: "Link"
-#: ./browser/seo_config.py:425
-msgid "label_indexing_link"
-msgstr "Collegamento"
-
-#. Default: "NewsItem"
-#: ./browser/seo_config.py:431
-msgid "label_indexing_newsItem"
-msgstr "Notizia"
-
-#. Default: "Topic"
-#: ./browser/seo_config.py:437
-msgid "label_indexing_topic"
-msgstr "Collezione"
-
 #. Default: "Add itemscope and itemtype attributes to body tag"
-#: ./browser/seo_config.py:508
+#: ./interfaces/controlpanel.py:163
 msgid "label_itemscope_itemtype_attrs_enable"
 msgstr "Aggiungi gli attributi itemscope e itemtype al tag body"
 
 #. Default: "Meta Keywords Tag"
-#: ./browser/templates/perseo_tab_context.pt:93
-msgid "label_keywords_meta_tag"
-msgstr "Meta Tag Keywords"
+#: ./interfaces/settings.py:39
+msgid "label_keywords"
+msgstr "Meta tag keywords"
 
 #. Default: "Link Description"
-#: ./browser/seo_config.py:305
+#: ./interfaces/metaconfig.py:279
 msgid "label_link_description"
 msgstr "Descrizione Collegamento"
 
 #. Default: "Link Keywords"
-#: ./browser/seo_config.py:310
+#: ./interfaces/metaconfig.py:284
 msgid "label_link_keywords"
 msgstr "Keywords Collegamento"
 
 #. Default: "Link Title"
-#: ./browser/seo_config.py:300
+#: ./interfaces/metaconfig.py:274
 msgid "label_link_title"
 msgstr "Titolo Collegamento"
 
-#. Default: "Login and Registration pages"
-#: ./browser/seo_config.py:383
-msgid "label_login_registration_page"
-msgstr "Pagine di login e registrazione"
+#. Default: "Meta Robots Advanced Tag"
+#: ./interfaces/settings.py:84
+msgid "label_meta_robots_advanced"
+msgstr "Meta tag robots (impostazioni avanzate)"
+
+#. Default: "Meta Robots Advanced Tag for %s"
+#: ./interfaces/controlpanel.py:108
+msgid "label_meta_robots_advanced_%s"
+msgstr ""
+
+#. Default: "Meta Robots Follow Tag"
+#: ./interfaces/settings.py:60
+msgid "label_meta_robots_follow"
+msgstr ""
+
+#. Default: "Meta Robots Follow Tag for %s"
+#: ./interfaces/controlpanel.py:90
+msgid "label_meta_robots_follow_%s"
+msgstr ""
+
+#. Default: "Meta Robots Index Tag"
+#: ./interfaces/settings.py:72
+msgid "label_meta_robots_index"
+msgstr ""
+
+#. Default: "Meta Robots Index Tag for %s"
+#: ./interfaces/controlpanel.py:99
+msgid "label_meta_robots_index_%s"
+msgstr ""
+
+#. Default: "Override the default for %s"
+#: ./interfaces/controlpanel.py:81
+msgid "label_meta_robots_override_%s"
+msgstr ""
 
 #. Default: "NewsItem Description"
-#: ./browser/seo_config.py:325
+#: ./interfaces/metaconfig.py:301
 msgid "label_newsItem_description"
 msgstr "Descrizione Notizia"
 
 #. Default: "NewsItem Keywords"
-#: ./browser/seo_config.py:330
+#: ./interfaces/metaconfig.py:306
 msgid "label_newsItem_keywords"
 msgstr "Keywords Notizia"
 
 #. Default: "NewsItem Title"
-#: ./browser/seo_config.py:320
+#: ./interfaces/metaconfig.py:296
 msgid "label_newsItem_title"
 msgstr "Titolo Notizia"
 
 #. Default: "Not Found Page Description"
-#: ./browser/seo_config.py:125
+#: ./interfaces/metaconfig.py:59
 msgid "label_notfoundpage_description"
 msgstr "Descrizione pagina Not Found"
 
 #. Default: "Not Found Page Keywords"
-#: ./browser/seo_config.py:130
+#: ./interfaces/metaconfig.py:64
 msgid "label_notfoundpage_keywords"
 msgstr "Keywords pagina Not Found"
 
 #. Default: "Not Found Page Title"
-#: ./browser/seo_config.py:120
+#: ./interfaces/metaconfig.py:54
 msgid "label_notfoundpage_title"
 msgstr "Titolo pagina Not Found"
 
-#. Default: "Override the default"
-#: ./browser/templates/perseo_tab_context.pt:54
-msgid "label_override"
-msgstr "Sovrascrivi il valore predefinito"
+#. Default: "Facebook description"
+#: ./interfaces/settings.py:259
+msgid "label_og_description"
+msgstr "Descrizione per Facebook"
 
-#. Default: "Include in sitemap.xml.gz"
-#: ./browser/templates/perseo_tab_context.pt:249
-msgid "label_perseo_included_sitemapxml"
-msgstr "Includi in sitemap.xml.gz"
+#. Default: "Facebook image URL"
+#: ./interfaces/settings.py:220
+msgid "label_og_image"
+msgstr "URL all'immagine per Facebook"
 
-#. Default: "Priority sitemap.xml.gz"
-#: ./browser/templates/perseo_tab_context.pt:281
-msgid "label_perseo_priority_sitemapxml"
-msgstr "Priorità sitemap.xml.gz"
+#. Default: "Facebook i18n"
+#: ./interfaces/settings.py:272
+msgid "label_og_locale"
+msgstr "Lingua per Facebook"
+
+#. Default: "Site name for Social Networks"
+#: ./interfaces/controlpanel.py:51
+msgid "label_og_site_name"
+msgstr "Nome del sito per i social network"
+
+#. Default: "Facebook title"
+#: ./interfaces/settings.py:246
+msgid "label_og_title"
+msgstr "Titolo per Facebook"
+
+#. Default: "Facebook og:type"
+#: ./interfaces/settings.py:285
+msgid "label_og_type"
+msgstr "og:type per Facebook"
+
+#. Default: "Facebook URL"
+#: ./interfaces/settings.py:233
+msgid "label_og_url"
+msgstr "URL per Facebook"
 
 #. Default: "Ping Ask"
-#: ./browser/seo_config.py:497
+#: ./interfaces/controlpanel.py:151
 msgid "label_ping_ask"
 msgstr "Ping Ask"
 
 #. Default: "Ping Bing"
-#: ./browser/seo_config.py:489
+#: ./interfaces/controlpanel.py:143
 msgid "label_ping_bing"
 msgstr "Ping Bing"
 
 #. Default: "Ping Google"
-#: ./browser/seo_config.py:481
+#: ./interfaces/controlpanel.py:135
 msgid "label_ping_google"
 msgstr "Ping Google"
 
-#. Default: "Meta Robots Advanced Tag"
-#: ./browser/templates/perseo_tab_context.pt:190
-msgid "label_robots_advanced_meta_tag"
-msgstr "Robots Avanzati Meta Tag"
-
-#. Default: "Meta Robots Follow Tag"
-#: ./browser/templates/perseo_tab_context.pt:128
-msgid "label_robots_follow_meta_tag"
-msgstr "Robots Follow Meta Tag"
-
-#. Default: "Meta Robots Index Tag"
-#: ./browser/templates/perseo_tab_context.pt:159
-msgid "label_robots_index_meta_tag"
-msgstr "Robots Index Meta Tag"
-
-#. Default: "Add noarchive in whole site"
-#: ./browser/seo_config.py:455
-msgid "label_robots_noarchive"
-msgstr "Aggiungi noarchive in tutto il sito"
-
-#. Default: "Add noodp in whole site"
-#: ./browser/seo_config.py:443
-msgid "label_robots_noodp"
-msgstr "Aggiungi noodp in tutto il sito"
-
-#. Default: "Add nosnippet in whole site"
-#: ./browser/seo_config.py:461
-msgid "label_robots_nosnippet"
-msgstr "Aggiungi nosnippet in tutto il sito"
-
-#. Default: "Add noydir in whole site"
-#: ./browser/seo_config.py:449
-msgid "label_robots_noydir"
-msgstr "Aggiungi noydir in tutto il sito"
-
-#. Default: "Search pages"
-#: ./browser/seo_config.py:377
-msgid "label_search_page"
-msgstr "Pagine di ricerca"
-
 #. Default: "Search Page Description"
-#: ./browser/seo_config.py:105
+#: ./interfaces/metaconfig.py:37
 msgid "label_searchpage_description"
 msgstr "Descrizione pagina di ricerca"
 
 #. Default: "Search Page Keywords"
-#: ./browser/seo_config.py:110
+#: ./interfaces/metaconfig.py:42
 msgid "label_searchpage_keywords"
 msgstr "Keywords pagina di ricerca"
 
 #. Default: "Search Page Title"
-#: ./browser/seo_config.py:100
+#: ./interfaces/metaconfig.py:32
 msgid "label_searchpage_title"
 msgstr "Titolo pagina di ricerca"
 
-#. Default: "Indexing"
-#: ./browser/seo_config.py:731
-msgid "label_seoindexing"
-msgstr "Indexing"
-
-#. Default: "RSS"
-#: ./browser/seo_config.py:745
-msgid "label_seorss"
-msgstr "RSS"
-
-#. Default: "Schema.org"
-#: ./browser/seo_config.py:741
-msgid "label_seoschemaorg"
-msgstr "Schema.org"
-
-#. Default: "Site Map"
-#: ./browser/seo_config.py:737
-msgid "label_seositemapxml"
-msgstr "Mappa del sito"
-
-#. Default: "Title"
-#: ./browser/seo_config.py:727
-msgid "label_seotitle"
-msgstr "Titolo"
-
-#. Default: "Accessibility"
-#: ./browser/seo_config.py:687
-msgid "label_seotitle_accessibilitypage"
-msgstr "Accessibilità"
-
-#. Default: "Author Page"
-#: ./browser/seo_config.py:679
-msgid "label_seotitle_authorpage"
-msgstr "Pagina autore"
-
-#. Default: "Contact"
-#: ./browser/seo_config.py:691
-msgid "label_seotitle_contactpage"
-msgstr "Contatti"
-
-#. Default: "Event"
-#: ./browser/seo_config.py:695
-msgid "label_seotitle_event"
-msgstr "Evento"
-
-#. Default: "File"
-#: ./browser/seo_config.py:699
-msgid "label_seotitle_file"
-msgstr "File"
-
-#. Default: "Folder"
-#: ./browser/seo_config.py:703
-msgid "label_seotitle_folder"
-msgstr "Cartella"
-
-#. Default: "Home Page"
-#: ./browser/seo_config.py:663
-msgid "label_seotitle_homepage"
-msgstr "Home Page"
-
-#. Default: "Image"
-#: ./browser/seo_config.py:707
-msgid "label_seotitle_image"
-msgstr "Immagine"
-
-#. Default: "Link"
-#: ./browser/seo_config.py:711
-msgid "label_seotitle_link"
-msgstr "Collegamento"
-
-#. Default: "News Item"
-#: ./browser/seo_config.py:715
-msgid "label_seotitle_newsItem"
-msgstr "Notizia"
-
-#. Default: "Not Found Page"
-#: ./browser/seo_config.py:675
-msgid "label_seotitle_notfoundpage"
-msgstr "Pagina Not Found"
-
-#. Default: "Search Page"
-#: ./browser/seo_config.py:671
-msgid "label_seotitle_searchpage"
-msgstr "Pagina di ricerca"
-
-#. Default: "Single Pages"
-#: ./browser/seo_config.py:667
-msgid "label_seotitle_singlepage"
-msgstr "Pagine singole"
-
-#. Default: "Site Map"
-#: ./browser/seo_config.py:683
-msgid "label_seotitle_sitemappage"
-msgstr "Mappa del sito"
-
-#. Default: "Topic"
-#: ./browser/seo_config.py:719
-msgid "label_seotitle_topic"
-msgstr "Collezione"
-
-#. Default: "WM Tools"
-#: ./browser/seo_config.py:659
-msgid "label_seowmtools"
-msgstr "Strumenti WM"
-
-#. Default: "Single Pages"
-#: ./browser/seo_config.py:395
-msgid "label_single_pages"
-msgstr "Pagine singole"
-
-#. Default: "Single Page Description"
-#: ./browser/seo_config.py:85
-msgid "label_singlepage_description"
-msgstr "Descrizione pagine singole"
-
-#. Default: "Single Page Keywords"
-#: ./browser/seo_config.py:90
-msgid "label_singlepage_keywords"
-msgstr "Keywords pagine singole"
-
-#. Default: "Single Page Title"
-#: ./browser/seo_config.py:80
-msgid "label_singlepage_title"
-msgstr "Titolo pagine singole"
+#. Default: "Sitemap.xml.gz priority"
+#: ./interfaces/settings.py:127
+msgid "label_sitemap_priority"
+msgstr "Priorità per il sitemap.xml.gz"
 
 #. Default: "Site map Description"
-#: ./browser/seo_config.py:165
+#: ./interfaces/metaconfig.py:103
 msgid "label_sitemappage_description"
 msgstr "Descrizione Mappa del sito"
 
 #. Default: "Site map Keywords"
-#: ./browser/seo_config.py:170
+#: ./interfaces/metaconfig.py:108
 msgid "label_sitemappage_keywords"
 msgstr "Keywords Mappa del sito"
 
 #. Default: "Site map Title"
-#: ./browser/seo_config.py:160
+#: ./interfaces/metaconfig.py:98
 msgid "label_sitemappage_title"
 msgstr "Titolo Mappa del sito"
 
 #. Default: "Title Tag"
-#: ./browser/templates/perseo_tab_context.pt:41
-msgid "label_title_tag"
-msgstr "Tag Title"
+#: ./interfaces/settings.py:9
+msgid "label_title"
+msgstr "Tag title"
+
+#. Default: "Override the default"
+#: ./interfaces/settings.py:18
+msgid "label_title_override"
+msgstr "Sovrascrivere l'impostazione di default"
 
 #. Default: "Topic Description"
-#: ./browser/seo_config.py:345
+#: ./interfaces/metaconfig.py:323
 msgid "label_topic_description"
 msgstr "Descrizione Collezione"
 
 #. Default: "Topic Keywords"
-#: ./browser/seo_config.py:350
+#: ./interfaces/metaconfig.py:328
 msgid "label_topic_keywords"
 msgstr "Keywords Collezione"
 
 #. Default: "Topic Title"
-#: ./browser/seo_config.py:340
+#: ./interfaces/metaconfig.py:318
 msgid "label_topic_title"
 msgstr "Titolo Collezione"
 
-#. Default: "Tracking Code Footer"
-#: ./browser/seo_config.py:52
+#. Default: "Tracking Code Footer; it will be renderd in the page's footer"
+#: ./interfaces/controlpanel.py:35
 msgid "label_tracking_code_footer"
-msgstr "Tracking Code Footer"
+msgstr "Tracking Code nel footer"
 
-#. Default: "Tracking Code Header"
-#: ./browser/seo_config.py:47
+#. Default: "Tracking Code Header; it will be rendered in the page's top"
+#: ./interfaces/controlpanel.py:30
 msgid "label_tracking_code_header"
-msgstr "Tracking Code Header"
+msgstr "Tracking Code nella testata"
 
-#. Default: "Yahoo Site Explorer"
-#: ./browser/seo_config.py:33
-msgid "label_yahooSiteExplorer"
-msgstr "Yahoo Site Explorer"
+#. Default: "Twitter author"
+#: ./userdataschema.py:24
+msgid "label_twitter_author"
+msgstr "Account Twitter dell'autore"
 
-#. Default: "Advanced"
-#: ./browser/templates/perseo_tab_context.pt:124
-msgid "legend_advanced"
-msgstr "Avanzato"
+#. Default: "Twitter card"
+#: ./interfaces/settings.py:163
+msgid "label_twitter_card"
+msgstr "Twitter card"
 
-#. Default: "General settings"
-#: ./browser/templates/perseo_tab_context.pt:37
-msgid "legend_general_settings"
-msgstr "Impostazioni generali"
+#. Default: "Twitter creator"
+#: ./interfaces/settings.py:184
+msgid "label_twitter_creator"
+msgstr "Account Twitter del creatore"
 
-#. Default: "The SEO settings have been saved."
-#: ./browser/views.py:815
-msgid "perseo_settings_saved"
-msgstr "Le impostazioni SEO sono state salvate."
+#. Default: "Twitter description"
+#: ./interfaces/settings.py:150
+msgid "label_twitter_description"
+msgstr "Descrizione per Twitter"
 
-#. Default: "The Canonical URL \"${url}\" is incorrect"
-#: ./browser/views.py:771
-msgid "wrong_canonical_url"
-msgstr "L'URL Canonico \"${url}\" non è corretto"
+#. Default: "Twitter image"
+#: ./interfaces/settings.py:197
+msgid "label_twitter_image"
+msgstr "Immagine per Twitter"
 
-#. Default: "The Priority sitemap.xml.gz must be a number"
-#: ./browser/views.py:786
-msgid "wrong_priority_sitemapxml"
-msgstr "La priorità sitemap.xml.gz deve essere un numero"
+#. Default: "Twitter site account"
+#: ./interfaces/controlpanel.py:65
+#: ./interfaces/settings.py:177
+msgid "label_twitter_site"
+msgstr "Twitter site account"
 
-#. Default: "The Priority sitemap.xml.gz need to be greater than 0.0"
-#: ./browser/views.py:780
-msgid "wrong_priority_sitemapxml_greater"
-msgstr "La priorità sitemap.xml.gz deve essere maggiore di 0.0"
-
-#. Default: "The Priority sitemap.xml.gz need to be less than or equal to 1.0"
-#: ./browser/views.py:783
-msgid "wrong_priority_sitemapxml_less"
-msgstr "La priorità sitemap.xml.gz deve essere minore o uguale a 1.0"
+#. Default: "Twitter title"
+#: ./interfaces/settings.py:137
+msgid "label_twitter_title"
+msgstr "Titolo per Twitter"
 

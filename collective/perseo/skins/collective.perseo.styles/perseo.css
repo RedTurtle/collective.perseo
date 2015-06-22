@@ -1,0 +1,5 @@
+#fieldset-indexingform > div[id*=_advanced_],
+#fieldset-titleform > div[id$=keywords]{
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 20px;
+}

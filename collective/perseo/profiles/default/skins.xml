@@ -4,10 +4,18 @@
  <object name="collective.perseo.templates"
     meta_type="Filesystem Directory View"
     directory="collective.perseo:skins/collective.perseo.templates"/>
-    
+  <object name="collective.perseo.styles"
+    meta_type="Filesystem Directory View"
+    directory="collective.perseo:skins/collective.perseo.styles"/>
+  <object name="collective.perseo.javascript"
+    meta_type="Filesystem Directory View"
+    directory="collective.perseo:skins/collective.perseo.javascript"/>
+
  <skin-path name="*">
   <layer name="collective.perseo.templates" insert-after="custom"/>
- 
+  <layer name="collective.perseo.styles" insert-after="collective.perseo.templates"/>
+  <layer name="collective.perseo.javascript" insert-after="collective.perseo.styles"/>
+
  </skin-path>
- 
+
 </object>

@@ -28,17 +28,17 @@ class ISEOConfigTitleSchema_homepage(Interface):
 class ISEOConfigTitleSchema_searchpage(Interface):
     """Schema for Title searchpage"""
 
-    searchpage_title = schema.TextLine(
+    search_page_title = schema.TextLine(
         title=_("label_searchpage_title",
                 default=u"Search Page Title"),
         required=False)
 
-    searchpage_description = schema.Text(
+    search_page_description = schema.Text(
         title=_("label_searchpage_description",
                 default=u"Search Page Description"),
         required=False)
 
-    searchpage_keywords = schema.List(
+    search_page_keywords = schema.List(
         title=_("label_searchpage_keywords",
                 default=u"Search Page Keywords"),
         description=_("help_keywords",
@@ -292,17 +292,17 @@ class ISEOConfigTitleSchema_link(Interface):
 class ISEOConfigTitleSchema_newsItem(Interface):
     """Schema for Title newsItem"""
 
-    newsItem_title = schema.TextLine(
+    newsitem_title = schema.TextLine(
         title=_("label_newsItem_title",
                 default=u"NewsItem Title"),
         required=False)
 
-    newsItem_description = schema.Text(
+    newsitem_description = schema.Text(
         title=_("label_newsItem_description",
                 default=u"NewsItem Description"),
         required=False)
 
-    newsItem_keywords = schema.List(
+    newsitem_keywords = schema.List(
         title=_("label_newsItem_keywords",
                 default=u"NewsItem Keywords"),
         description=_("help_keywords",

@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
 <registry>
    <records interface="collective.perseo.interfaces.controlpanel.ISEOControlpanel" />
+    <record name="perseo_type_mapper">
+        <field type="plone.registry.field.Text">
+            <title>Maps custom type over base plone type; usefull for type like MyEvent that should have similar properties with Event</title>
+            <description>Write one map per line like MyType#OriginalType; you can use also Default#DefaultOriginalType</description>
+        </field>
+    </record>
 </registry>

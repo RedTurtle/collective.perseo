@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.perseo">
 
     <include package="Products.CMFCore" file="permissions.zcml"
@@ -55,6 +56,23 @@
         permission="zope2.Public"
         />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.syndication.ISyndicatable"
+        class="Products.CMFPlone.browser.syndication.views.FeedView"
+        name="RSS"
+        permission="zope2.View"
+        layer=".interfaces.IPerSEOLayer"
+        template="templates/RSS.pt"
+        />
+
+    <browser:page zcml:condition="not-have Plone-43"
+        for="plone.app.collection.interfaces.ICollection"
+        name="RSS"
+        permission="zope2.View"
+        layer=".interfaces.IPerSEOLayer"
+        template="templates/collectionRSS.pt"
+        />
+
     <browser:viewlet
         name="collective.perseo.metatags"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
@@ -62,6 +80,15 @@
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         />
+
+    <browser:viewlet
+        name="collective.perseo.hreflang"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.HrefLangViewlet"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
 
     <!-- Render the browser title -->
     <browser:viewlet
@@ -95,5 +122,25 @@
         layer=".interfaces.IPerSEOLayer"
         permission="zope2.View"
         />
+    <browser:viewlet zcml:condition="installed Products.LinguaPlone"
+      for="Products.LinguaPlone.interfaces.ITranslatable"
+      name="Products.LinguaPlone.multilingualcontentviewlet"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+      class=".viewlets.MultilingualContentViewlet"
+      layer=".interfaces.IPerSEOLayer"
+      permission="zope2.View"
+      />
+
+   <include package="plone.app.contentmenu" />
+   <browser:view zcml:condition="installed Products.LinguaPlone"
+     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+     class=".switcher.LanguageSwitcher"
+     name="language-switcher"
+     permission="zope.Public"
+     menu="plone_displayviews"
+     layer=".interfaces.IPerSEOLayer"
+     title="Root language switcher"
+     />
+
 
 </configure>

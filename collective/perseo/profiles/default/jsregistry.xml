@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts">
+<javascript
+    id="perseo.js"
+    cacheable="True" compression="safe" cookable="False"
+    enabled="True" expression=""  inline="False"/>
+</object>

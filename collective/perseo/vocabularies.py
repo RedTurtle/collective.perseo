@@ -18,7 +18,16 @@ BAD_TYPES = ("ATBooleanCriterion", "ATDateCriteria", "ATDateRangeCriterion",
              "ATSelectionCriterion", "ATSimpleIntCriterion", "Plone Site",
              "ATSimpleStringCriterion", "ATSortCriterion",
              "Discussion Item", "TempFolder", "ATCurrentAuthorCriterion",
-             "ATPathCriterion", "ATRelativePathCriterion", )
+             "ATPathCriterion", "ATRelativePathCriterion",
+             'FieldsetEnd', 'FieldsetFolder', 'FieldsetStart', 'FormBooleanField',
+             'FormCaptchaField', 'FormCustomScriptAdapter', 'FormDateField',
+             'FormFileField', 'FormFixedPointField', 'FormIntegerField',
+             'FormLabelField', 'FormLikertField', 'FormLinesField',
+             'FormMailerAdapter', 'FormMapField', 'FormMultiSelectionField',
+             'FormPasswordField', 'FormRichLabelField', 'FormRichTextField',
+             'FormSaveData2ContentAdapter', 'FormSaveData2ContentEntry',
+             'FormSaveDataAdapter', 'FormSelectionField', 'FormStringField',
+             'FormTextField', 'FormThanksPage')
 
 
 class ReallyUserFriendlyTypesVocabulary(object):

@@ -35,7 +35,6 @@ def PingingObjRemovedFromSiteMapXML(object):
     ping_google = settings.ping_google
     ping_bing = settings.ping_bing
     ping_ask = settings.ping_ask
-
     if (ping_google or ping_bing or ping_ask):
         portal_url = getToolByName(object, 'portal_url')()
         if ping_google:
