@@ -4,7 +4,8 @@ Changelog
 0.6.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Enable sitemap.xml.gz for INavigationRoot and
+  limit sitemap results to current context. [fRiSi]
 
 
 0.6.6 (2014-06-09)
