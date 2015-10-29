@@ -20,10 +20,10 @@ class PerSEOSiteMapView (SiteMapView):
     def template(self):
         " manual unicode encode "
         xml = self.index()
-        xml = xml.encode('utf8','ignore')
+        xml = xml.encode('utf8', 'ignore')
         return xml
 
-    def get_gseo_field( self, field, default=None):
+    def get_gseo_field(self, field, default=None):
         """ Returned field from Plone SEO Configuration Control Panel Tool
         """
         if self.gseo:
@@ -31,7 +31,7 @@ class PerSEOSiteMapView (SiteMapView):
         return default
 
     def perseo_included_types(self):
-        return self.get_gseo_field('not_included_types',default=())
+        return self.get_gseo_field('not_included_types', default=())
 
     def add_image(self, url, caption=None, title=None):
         image = {'loc': url}
@@ -48,7 +48,8 @@ class PerSEOSiteMapView (SiteMapView):
         included_types = self.perseo_included_types()
         image_types = ('Image',)
 
-        for item in catalog.searchResults({'Language': 'all'}):
+        path = '/'.join(self.context.getPhysicalPath())
+        for item in catalog.searchResults({'path':path, 'Language': 'all'}):
 
             if item.getIncludedInSitemapxml != None:
                 include = item.getIncludedInSitemapxml
@@ -60,15 +61,15 @@ class PerSEOSiteMapView (SiteMapView):
                     row = {
                         'loc': item.getURL(),
                         'lastmod': item.modified.ISO8601(),
-                        #'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
+                        # 'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
                         'priority': item.getPrioritySitemapxml,
                     }
                 else:
                     row = {
                         'loc': item.getURL(),
                         'lastmod': item.modified.ISO8601(),
-                        #'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
-                        #'priority': 0.5, # 0.0 to 1.0
+                        # 'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
+                        # 'priority': 0.5, # 0.0 to 1.0
                     }
                 row['images'] = []
                 if hasattr(item, 'hasContentLeadImage') and item.hasContentLeadImage:
