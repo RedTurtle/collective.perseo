@@ -6,13 +6,13 @@
     i18n_domain="collective.perseo">
 
   <five:registerPackage package="." initialize=".initialize" />
-  
+
   <i18n:registerTranslations directory="locales" />
-  
+
   <permission
     id="collective.perseo.ManageSEO"
     title="collective.perseo: Manage SEO" />
-  
+
   <include package=".browser" />
   <include file="events.zcml" />
   <include file="patches.zcml" />
@@ -25,6 +25,46 @@
         name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
       />
 
+    <adapter
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariables"
+        name="perseo_compile_variable_adapter_base" />
+
+
+    <adapter
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariables"
+        name="perseo_compile_variable_adapter_base" />
+
+    <adapter
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariablesAuthor"
+        name="perseo_compile_variable_adapter_authorpage" />
+
+
+    <adapter
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariablesAuthor"
+        name="perseo_compile_variable_adapter_author_page" />
+
+    <adapter
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariablesSearch"
+        name="perseo_compile_variable_adapter_search_page" />
+
+
+    <adapter
+        for="Products.Archetypes.interfaces.base.IBaseObject"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariablesSearch"
+        name="perseo_compile_variable_adapter_search_page" />
+
+
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
@@ -33,7 +73,7 @@
       description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-      
+
   <genericsetup:upgradeStep
     title="Upgrade Collective perSEO"
     description="Upgrade Collective perSEO 0.1 to 0.2"
@@ -49,5 +89,5 @@
     destination="0.7"
     handler=".upgrades.upgrade_to_0_7"
     profile="collective.perseo:default" />
-  
+
 </configure>

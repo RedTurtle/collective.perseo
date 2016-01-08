@@ -14,6 +14,7 @@ except ImportError:
 
 from collective.perseo.interfaces import ISEOControlpanel
 from collective.perseo import PERSEO
+from collective.perseo.utils import compile_variables
 
 
 class PloneSiteSeoContextAdapter(object):
@@ -22,6 +23,7 @@ class PloneSiteSeoContextAdapter(object):
         registry = getUtility(IRegistry)
         self.context = context
         self.settings = registry.forInterface(ISEOControlpanel)
+        self.robot_context = None  # used to avoid call multiple time find_robots_context
         self.pm = getToolByName(self.context, 'portal_membership')
         self.pcs = queryMultiAdapter((self.context, context.REQUEST), name="plone_context_state")
         self.pps = queryMultiAdapter((self.context, context.REQUEST), name="plone_portal_state")
@@ -36,7 +38,8 @@ class PloneSiteSeoContextAdapter(object):
         if not IAnnotatable.providedBy(self.context):
             return None
         annotations = IAnnotations(context)
-        if annotations.has_key(PERSEO):
+        if PERSEO in annotations:
+            # print "return %s --> %s" % (name, annotations[PERSEO].get(name, None))
             return annotations[PERSEO].get(name, None)
         return None
 
@@ -46,20 +49,20 @@ class PloneSiteSeoContextAdapter(object):
             if getattr(self.context.REQUEST['PUBLISHED'], 'getId', None):
                 # template inside skins
                 template_id = self.context.REQUEST['PUBLISHED'].getId()
-            if getattr(self.context.REQUEST['PUBLISHED'], __name__, None):
+            if getattr(self.context.REQUEST['PUBLISHED'], '__name__', None):
                 # template inside browser view
                 template_id = self.context.REQUEST['PUBLISHED'].__name__
 
         if template_id:
-            if template_id == 'search' or template_id == 'search_form':
-                return 'searchpage'
+            if template_id in ('search', 'search_form'):
+                return 'search_page'
             elif 'login' in template_id \
-                or 'logout' in template_id \
-                or 'logged' in template_id \
-                or 'registered' in template_id:
-                return 'loginregistrationpage'
-            elif template_id == 'plone_control_panel':
-                return 'administrationpage'
+                    or 'logout' in template_id \
+                    or 'logged' in template_id \
+                    or 'registered' in template_id:
+                return 'login_registration_page'
+            elif template_id in ('plone_control_panel', 'overview-controlpanel'):
+                return 'administration_page'
             else:
                 return None
         else:
@@ -73,13 +76,13 @@ class PloneSiteSeoContextAdapter(object):
             if getattr(self.context.REQUEST['PUBLISHED'], 'getId', None):
                 # template inside skins
                 template_id = self.context.REQUEST['PUBLISHED'].getId()
-            if getattr(self.context.REQUEST['PUBLISHED'], __name__, None):
+            if getattr(self.context.REQUEST['PUBLISHED'], '__name__', None):
                 # template inside browser view
                 template_id = self.context.REQUEST['PUBLISHED'].__name__
 
         if template_id:
             if template_id == 'search' or template_id == 'search_form':
-                return 'searchpage'
+                return 'search_page'
             elif template_id == 'author':
                 return 'authorpage'
             elif template_id == 'sitemap':
@@ -88,64 +91,81 @@ class PloneSiteSeoContextAdapter(object):
                 return 'accessibilitypage'
             elif template_id == 'contact-info':
                 return 'contactpage'
+            elif template_id in ('plone_control_panel', 'overview-controlpanel'):
+                return 'administration_page'
+            elif 'login' in template_id \
+                or 'logout' in template_id \
+                or 'logged' in template_id \
+                or 'registered' in template_id \
+                 or 'register' in template_id:
+                    return 'login_registration_page'
             else:
                 return 'homepage'
         else:
             try:
-                self.context.restrictedTraverse(self.context.REQUEST.PATH_INFO)
+                path = None
+                if 'VIRTUAL_URL_PARTS' in self.context.REQUEST:
+                    path = self.context.REQUEST.VIRTUAL_URL_PARTS[-1]
+                else:
+                    path = self.context.REQUEST.PATH_INFO
+                self.context.restrictedTraverse(path)
             except:
                 return 'notfoundpage'
             return 'homepage'
 
     @property
     def title(self):
+        context = aq_inner(self.context)
         page = self.find_context()
         result = self.get('title') or \
-                 getattr(self.settings, '%s_title' % page, None) or \
-                 self.pcs.object_title()
-        return safe_unicode(result)
+            getattr(self.settings, '%s_title' % page, None) or \
+            self.pcs.object_title()
+        return safe_unicode(compile_variables(context, result, page))
 
     @property
     def description(self):
         context = aq_inner(self.context)
         page = self.find_context()
         result = self.get('description') or \
-                 getattr(self.settings, '%s_description' % page, None) or \
-                 context.Description()
-        return safe_unicode(result)
+            getattr(self.settings, '%s_description' % page, None) or \
+            context.Description()
+        return safe_unicode(compile_variables(context, result, page))
 
     @property
     def keywords(self):
         context = aq_inner(self.context)
         page = self.find_context()
         result = self.get('keywords') or \
-               getattr(self.settings, '%s_keywords' % page, None) or \
-               context.Subject()
-        return safe_unicode(result)
+            getattr(self.settings, '%s_keywords' % page, None) or \
+            context.Subject()
+        return [safe_unicode(compile_variables(context, x, page)) for x in result]
 
     @property
     def meta_robots_follow(self):
-        page = self.find_robots_context()
-        result = getattr(self.settings, 'indexing_%s' % page, None) \
-                                                    and 'nofollow' or 'follow'
+        result = getattr(self.settings, 'meta_robots_follow_%s' % self.robot_context, None) \
+                 or 'follow'
         return safe_unicode(result)
 
     @property
     def meta_robots_index(self):
-        page = self.find_robots_context()
-        result = getattr(self.settings, 'indexing_%s' % page, None) \
-                                                    and 'noindex' or 'index'
+        result = getattr(self.settings, 'meta_robots_index_%s' % self.robot_context, None) \
+                 or 'index'
         return safe_unicode(result)
+
     @property
     def meta_robots_advanced(self):
-        site_globals = self.settings.meta_robots_advanced
+        site_globals = getattr(self.settings, "meta_robots_advanced_%s" % self.robot_context)
         result = self.get('meta_robots_advanced') or site_globals or ()
         return result
 
     @property
     def robots(self):
+        self.robot_context = self.find_robots_context()
+        override = getattr(self.settings, 'meta_robots_index_override_%s' % self.robot_context, False)
+        if not override:
+            return u''
         result = (self.meta_robots_follow, self.meta_robots_index,
-                ', '.join(self.meta_robots_advanced))
+            ', '.join(self.meta_robots_advanced))
         return safe_unicode(result)
 
     @property

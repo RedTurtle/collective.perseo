@@ -38,7 +38,7 @@ class ISEODefaultSettings(Interface):
     keywords = schema.List(
         title=_("label_keywords",
                 default=u"Meta Keywords Tag"),
-        description=_("help_keywords",
+        description=_("help_context_keywords",
                       default=(u"Keywords, the page will be indexed with. "
                           "Enter each keyword in separate line, please. "
                           "Though the relevance of listing meta keywords is "
@@ -84,8 +84,8 @@ class ISEOAdvancedSettings(Interface):
         title=_("label_meta_robots_advanced",
                 default=u"Meta Robots Advanced Tag"),
         value_type=schema.Choice(
-                values=['noodp', 'noydir', 'noarchive', 'nosnippet']
-                ),
+               values=['noodp', 'noydir', 'noarchive', 'nosnippet']
+               ),
         required=False)
 
     meta_robots_advanced_override = schema.Bool(
@@ -175,9 +175,9 @@ class ISEOTwitterSettings(Interface):
 
     twitter_site = schema.TextLine(
         title=_("label_twitter_site",
-                default="Twitter site"),
+                default=u"Twitter site account"),
         description=_("help_twitter_site",
-                      default=u"Site twitter account"),
+                default=u"Enter twitter site account name, ie. @redturtle; it will be renderd in your page as: <meta name='twitter:site' content='@YourAccount'/>"),
         required=False)
 
     twitter_creator = schema.TextLine(
@@ -211,9 +211,9 @@ class ISEOFacebookSettings(Interface):
 
     facebook_admins = schema.TextLine(
         title=_("label_facebook_admins",
-                default="Facebook admins"),
+                default=u"Facebook admins IDs"),
         description=_("help_facebook_admins",
-                      default=u"i.e. 1235455444"),
+                   default=u"Enter a Facebook admins Ids; it will be renderd in your page as: <meta property='fb:admins' content='xxxxxxxxx'/>"),
         required=False)
 
     og_image = schema.TextLine(

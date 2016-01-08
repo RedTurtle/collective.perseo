@@ -1,6 +1,43 @@
 Changelog
 =========
 
+0.7.3 (2015-07-22)
+------------------
+- Add trivial mapper to map custom type over standard plone type in
+  perseo configuration [lucabel]
+
+0.7.2 (2015-07-22)
+------------------
+- Override LinguaPlone switcher to change the 301 redirect status
+  with 302 [lucabel]
+
+0.7.1 (2015-07-21)
+------------------
+- prepare 0.7.1 for release version [lucabel]
+
+0.7.1.dev7 (unreleased)
+-----------------------
+
+- fix problems with meta tags (robots, title, description, keyowrd)
+  [lucabel]
+- test and fix problem with different kind of meta on different page
+  (home, notfound, login/logout, author, search) [lucabel]
+- handle in a more specific way hreflang [lucabel]
+- reintroduce variables for controlpanel title, description and keywords
+  [lucabel]
+- fix some functionalities in order to solve problems between perseo and
+- add js snippet to substitute in perseo controlpanel sitemap.xml.gz with
+  a link downloading the sitemap [lucabel]
+  LinguaPlone [lucabel]
+- change way to handle path search when try to resolve perseo context:
+  when the site it's beyond a VHM PATH_INFO it's not correctly traversable
+  [lucabel]
+- Fix the vocabulary removing all PloneFormGen fields [lucabel]
+- Override LinguaPlone hreflang: we had introduced a more precise way to do that
+  [lucabel]
+- Fix hreflang href attribute [lucabel]
+- Fix translation [lucabel]
+
 0.7a2 (unreleased)
 ------------------
 

@@ -1,4 +1,8 @@
 from AccessControl import ClassSecurityInfo
+from zope.component import getAdapter, getMultiAdapter
+from collective.perseo.interfaces.variables import IPerseoCompileStringVariables
+from zope.interface import implements
+from Products.CMFPlone.utils import safe_unicode, safe_hasattr
 
 try:
     from App.class_init import InitializeClass
@@ -12,30 +16,30 @@ class SortedDict(dict):
     security = ClassSecurityInfo()
 
     security.declarePublic('items')
+
     def items(self):
         primary_metatags = self.pmt
-        lst = [(name,self[name]) for name in primary_metatags                    \
-                                                 if name in self.keys()] +       \
-              [(name, self[name]) for name in self.keys()                        \
-                                                 if name not in primary_metatags]
+        lst = [(name, self[name]) for name in primary_metatags if name in self.keys()] +\
+              [(name, self[name]) for name in self.keys() if name not in primary_metatags]
         return lst
 
-
     security.declarePublic('__init__')
+
     def __init__(self, *args, **kwargs):
-        super(SortedDict,self).__init__(*args, **kwargs)
+        super(SortedDict, self).__init__(*args, **kwargs)
         self.pmt = []
 
-
     security.declarePublic('__setitem__')
+
     def __setitem__(self, i, y):
-        super(SortedDict,self).__setitem__(i, y)
+        super(SortedDict, self).__setitem__(i, y)
         if i not in self.pmt:
             self.pmt.append(i)
 
     security.declarePublic('pop')
+
     def pop(self, k, *args, **kwargs):
-        super(SortedDict,self).pop(k, *args, **kwargs)
+        super(SortedDict, self).pop(k, *args, **kwargs)
         if k in self.pmt:
             self.pmt.remove(k)
 
@@ -43,3 +47,85 @@ try:
     InitializeClass(SortedDict)
 except:
     pass
+
+
+MARKERS = ['%%title%%', '%%tag%%', '%%description%%', '%%startdate%%', '%%enddate%%', '%%sitename%%', '%%fullname%%', '%%searchedtext%%']
+
+
+class PerseoCompileStringVariables(object):
+    implements(IPerseoCompileStringVariables)
+
+    def __init__(self, context):
+        self.context = context
+        self.portal_state = getMultiAdapter((self.context, self.context.REQUEST),
+                                            name=u'plone_portal_state')
+        self.context_state = getMultiAdapter((self.context, self.context.REQUEST),
+                                             name=u'plone_context_state')
+
+    def get_member_fullname(self, userid):
+        member = self.context.portal_membership.getMemberInfo(userid)
+        if member:
+            return member['fullname'] or userid
+        else:
+            return userid
+
+    @property
+    def data(self):
+        result = {}
+        result['%%title%%'] = safe_unicode(self.context_state.object_title())
+        result['%%sitename%%'] = safe_unicode(self.portal_state.portal_title())
+        result['%%description%%'] = self.context.Description()
+        result['%%tag%%'] = ', '.join(self.context.Subject())
+        if safe_hasattr(self.context, 'Creators'):
+            result['%%fullname%%'] = ', '.join([self.get_member_fullname(x) for x in self.context.Creators()])
+        else:
+            result['%%fullname%%'] = ''
+        # we could have event based type with this kind of information
+        try:
+            result['%%startdate%%'] = self.context.start().strftime('%d-%m-%Y %H:%M')
+            result['%%enddate%%'] = self.context.end().strftime('%d-%m-%Y %H:%M')
+        except:
+            result['%%startdate%%'] = ''
+            result['%%enddate%%'] = ''
+        return result
+
+
+class PerseoCompileStringVariablesAuthor(PerseoCompileStringVariables):
+
+    @property
+    def data(self):
+        result = {}
+        result['%%sitename%%'] = safe_unicode(self.portal_state.portal_title())
+        path = self.context.REQUEST.get('PATH_INFO', None)
+        result['%%fullname%%'] = ''
+        if path:
+            author = path.split('/')[-1]
+            result['%%fullname%%'] = self.get_member_fullname(author)
+        return result
+
+
+class PerseoCompileStringVariablesSearch(PerseoCompileStringVariables):
+
+    @property
+    def data(self):
+        result = {}
+        result['%%sitename%%'] = safe_unicode(self.portal_state.portal_title())
+        result['%%searchedtext%%'] = self.context.REQUEST.get('SearchableText', '')
+        return result
+
+
+def compile_variables(context, value, pagetype):
+    ad = None
+    try:
+        ad = getAdapter(context, IPerseoCompileStringVariables, name="perseo_compile_variable_adapter_%s" % pagetype)
+    except:
+        ad = getAdapter(context, IPerseoCompileStringVariables, name="perseo_compile_variable_adapter_base")
+
+    if not ad:
+        return value
+
+    data = ad.data
+    for marker in MARKERS:
+        if marker in value and marker in data:
+            value = value.replace(marker, data[marker])
+    return value

@@ -1,1 +1,1 @@
-from controlpanel import ISEOControlpanel; ISEOControlpanel
+from controlpanel import ISEOControlpanel, ISEOControlpanel, ITypeOverrideRegistry
