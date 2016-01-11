@@ -6,5 +6,6 @@
             <title>Maps custom type over base plone type; usefull for type like MyEvent that should have similar properties with Event</title>
             <description>Write one map per line like MyType#OriginalType; you can use also Default#DefaultOriginalType</description>
         </field>
+        <value>Default#Document</value>
     </record>
 </registry>

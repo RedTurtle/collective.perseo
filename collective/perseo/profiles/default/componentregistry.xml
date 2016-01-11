@@ -4,6 +4,7 @@
     <utility
       interface="plone.app.users.userdataschema.IUserDataSchemaProvider"
       factory="collective.perseo.userdataschema.UserDataSchemaProvider"
+      remove="True"
     />
   </utilities>
 </componentregistry>

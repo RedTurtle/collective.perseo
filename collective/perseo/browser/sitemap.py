@@ -3,7 +3,7 @@ from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+import Missing
 from collective.perseo.interfaces import ISEOControlpanel
 
 
@@ -22,7 +22,7 @@ class PerSEOSiteMapView (SiteMapView):
     def template(self):
         " manual unicode encode "
         xml = self.index()
-        xml = xml.encode('utf8','ignore')
+        xml = xml.encode('utf8', 'ignore')
         return xml
 
     def add_image(self, url, caption=None, title=None):
@@ -42,7 +42,7 @@ class PerSEOSiteMapView (SiteMapView):
 
         for item in catalog.searchResults({'Language': 'all'}):
 
-            if item.getIncludedInSitemapxml != None:
+            if item.getIncludedInSitemapxml not in (None, Missing.Value):
                 include = item.getIncludedInSitemapxml
             else:
                 include = item.portal_type in included_types
@@ -72,4 +72,3 @@ class PerSEOSiteMapView (SiteMapView):
                     row['images'].append(self.add_image(url, item.Description, item.Title))
 
                 yield row
-

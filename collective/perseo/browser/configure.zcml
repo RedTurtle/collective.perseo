@@ -49,6 +49,22 @@
         />
 
     <browser:page
+        name="perseo-context-settings"
+        for="plone.dexterity.interfaces.IDexterityItem"
+        class=".settings.manageSEOContext"
+        layer=".interfaces.IPerSEOLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        name="perseo-context-settings"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        class=".settings.manageSEOContext"
+        layer=".interfaces.IPerSEOLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
         name="sitemap.xml.gz"
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         class=".sitemap.PerSEOSiteMapView"

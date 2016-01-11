@@ -39,6 +39,18 @@
         name="perseo_compile_variable_adapter_base" />
 
     <adapter
+        for="plone.dexterity.interfaces.IDexterityItem"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariables"
+        name="perseo_compile_variable_adapter_base" />
+
+    <adapter
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        provides=".interfaces.variables.IPerseoCompileStringVariables"
+        factory=".utils.PerseoCompileStringVariables"
+        name="perseo_compile_variable_adapter_base" />
+
+    <adapter
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         provides=".interfaces.variables.IPerseoCompileStringVariables"
         factory=".utils.PerseoCompileStringVariablesAuthor"

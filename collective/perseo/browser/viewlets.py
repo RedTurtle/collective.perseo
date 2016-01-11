@@ -16,7 +16,7 @@ from collective.perseo.interfaces.settings import ISEOSettings
 try:
     from Products.LinguaPlone.browser.contentlinkviewlet import MultilingualContentViewlet as BaseMultilingualContentViewlet
 except:
-    BaseMultilingualContentViewlet = None
+    BaseMultilingualContentViewlet = object
 
 
 #        <meta name/property=""                    content=""/>
@@ -111,6 +111,8 @@ class PerSEOMetaTagsViewlet(ViewletBase):
         meta_tags = []
 
         for seodict, name in METATAGS:
+            #if name == 'robots':
+            #    import pdb; pdb.set_trace()
             content = getattr(seo, name, None)
             if not content:
                 continue

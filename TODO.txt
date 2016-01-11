@@ -1,0 +1,6 @@
+TODO
+====
+
+ * add google and twitter user attributes as shown in plone/app/users/upgrades.py
+  * remove componentregistry.xml utility
+  * manually register utility during product installation on plone < 5

@@ -75,7 +75,6 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
             # BBB To fix in a better way. We should have something like a mapper to map custom type
             # over standard type
             type_mapper = self.get_type_mapper()
-            # import pdb; pdb.set_trace()
             if not self.portal_type in BASE_TYPE and ('default' in type_mapper or self.portal_type in type_mapper):
                 result = self.portal_type in type_mapper and type_mapper[self.portal_type] or type_mapper['default']
                 return result.replace(' ', '')
