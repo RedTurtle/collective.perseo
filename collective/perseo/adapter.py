@@ -3,10 +3,10 @@ from Products.Archetypes.interfaces.base import IBaseContent
 from plone.indexer.decorator import indexer
 from pkg_resources import get_distribution
 
-if float(get_distribution('Products.CMFPlone').version) < 5:
-    from plone.app.users.browser.personalpreferences import UserDataPanelAdapter
-else:
-    from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
+#if float(get_distribution('Products.CMFPlone').version) < 5:
+#    from plone.app.users.browser.personalpreferences import UserDataPanelAdapter
+#else:
+from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
 
 
 class EnhancedUserDataPanelAdapter(UserDataPanelAdapter):

@@ -4,14 +4,17 @@ from collective.perseo import perseoMessageFactory as _
 
 from pkg_resources import get_distribution
 
-if float(get_distribution('Products.CMFPlone').version) < 5:
-    from plone.app.users.userdataschema import IUserDataSchema
-    from plone.app.users.userdataschema import IUserDataSchemaProvider
-else:
-    from plone.app.users.schema import IUserDataSchema
-    # XXX fix in a better way. need an iterable
-    IUserDataSchemaProvider = tuple()
+#if float(get_distribution('Products.CMFPlone').version) < 5:
+#    from plone.app.users.userdataschema import IUserDataSchema
+#    from plone.app.users.userdataschema import IUserDataSchemaProvider
+#else:
+#    from plone.app.users.schema import IUserDataSchema
+# XXX fix in a better way. need an iterable
+#    IUserDataSchemaProvider = tuple()
 
+from plone.app.users.schema import IUserDataSchema
+#XXX fix in a better way. need an iterable
+IUserDataSchemaProvider = tuple()
 
 class UserDataSchemaProvider(object):
     implements(IUserDataSchemaProvider)
