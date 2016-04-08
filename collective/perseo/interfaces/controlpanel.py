@@ -2,6 +2,7 @@ from zope.interface import Interface
 from zope import schema
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.interfaces.metaconfig import ISEOConfigTitleSchema
+from collective.perseo.interfaces.structureddata import ISEOConfigStructuredDataSchema
 
 
 TYPE_CONFIGURATION = ('search_page', 'login_registration_page', 'administration_page',
@@ -196,6 +197,7 @@ class IHrefLangSchema(Interface):
 
 class ISEOControlpanel(ISEOConfigWMToolsSchema,
                        ISEOConfigTitleSchema,
+                       ISEOConfigStructuredDataSchema,
                        ISEOConfigIndexingSchema,
                        ISEOConfigSiteMapXMLSchema,
                        ISEOConfigSchemaOrgSchema,

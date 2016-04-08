@@ -12,6 +12,7 @@ from Products.CMFPlone.utils import (safe_unicode,
 
 from collective.perseo.interfaces import ISEOControlpanel
 from collective.perseo.interfaces.settings import ISEOSettings
+from collective.perseo.utils import compile_structured_data_variables
 
 try:
     from Products.LinguaPlone.browser.contentlinkviewlet import MultilingualContentViewlet as BaseMultilingualContentViewlet
@@ -125,6 +126,80 @@ class PerSEOMetaTagsViewlet(ViewletBase):
                         'content': escape(safe_unicode(content, enc))}
                 meta_tags.append(TEMPLATE % opts)
         return u'\n'.join(meta_tags)
+
+
+class PerSEOStructuredData(ViewletBase):
+
+    """
+    """
+    def render(self):
+        seo = ISEOSettings(self.context, None)
+        page = seo.find_context()
+        if not getattr(seo.settings, 'activate_struct_data', None):
+            return ''
+        seo_info = getattr(seo.settings, '%s_structureddata' % page, None)
+        if seo and seo_info:
+            return compile_structured_data_variables(self.context, seo_info, page)
+        return ''
+
+
+class PerSEOBreadcrumbsStructuredData(ViewletBase):
+
+    """
+    """
+    # a list of breadcrumbs
+    BREADCRUMBS = """
+        <script type="application/ld+json">
+            {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                %s
+            ]
+            }
+        </script>
+        """
+    # a single breadcrumb:
+    # position: number form 1 to ...
+    # @id: the link
+    # name: the title
+    BREADCRUMB = """
+            {
+                "@type": "ListItem",
+                "position": %s,
+                "item": {
+                    "@id": "%s",
+                    "name": "%s"
+                }
+            }
+    """
+
+    def update(self):
+
+        self.breadcrumbs_view = getMultiAdapter((self.context, self.request),
+                                           name='breadcrumbs_view')
+
+    def render(self):
+        seo = ISEOSettings(self.context, None)
+        if not getattr(seo.settings, 'activate_struct_data', None):
+            return ''
+        if not getattr(seo.settings, 'activate_bc_struct_data', None):
+            return ''
+        breadcrumbs = self.breadcrumbs_view.breadcrumbs()
+        results = []
+        count = 1
+        results.append(self.BREADCRUMB % (count,
+                     self.context.portal_url.getPortalObject().absolute_url(),
+                     'Home'))
+        if breadcrumbs:
+            for breadcrumb in breadcrumbs:
+                count += 1
+                results.append(self.BREADCRUMB % (count,
+                     breadcrumb['absolute_url'],
+                     breadcrumb['Title']
+                    ))
+
+        return self.BREADCRUMBS % (', '.join(results))
 
 
 class PerSEOTitleTagViewlet(ViewletBase):

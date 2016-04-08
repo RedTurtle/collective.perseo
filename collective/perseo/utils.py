@@ -1,6 +1,7 @@
 from AccessControl import ClassSecurityInfo
 from zope.component import getAdapter, getMultiAdapter
-from collective.perseo.interfaces.variables import IPerseoCompileStringVariables
+from collective.perseo.interfaces.variables import (IPerseoCompileStringVariables,
+                                                    IPerseoCompileStructuredDataStringVariables)
 from zope.interface import implements
 from Products.CMFPlone.utils import safe_unicode, safe_hasattr
 
@@ -126,6 +127,72 @@ def compile_variables(context, value, pagetype):
 
     data = ad.data
     for marker in MARKERS:
+        if marker in value and marker in data:
+            value = value.replace(marker, data[marker])
+    return value
+
+
+class PerseoCompileStructuredDataStringVariables(object):
+    implements(IPerseoCompileStructuredDataStringVariables)
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def data(self):
+        result = {
+            '%%title%%': self.context.title,
+            '%%description%%': self.context.description,
+            '%%pubblicationdate%%': self.context.effective_date and self.context.effective_date.strftime('%Y/%m/%d') or '',
+            '%%modificationdate%%': self.context.modification_date.strftime('%Y/%m/%d'),
+            '%%author%%': self.context.Creator()
+            }
+        return result
+
+
+class PerseoCompileStructuredDataStringVariablesNews(PerseoCompileStructuredDataStringVariables):
+    implements(IPerseoCompileStructuredDataStringVariables)
+
+    @property
+    def data(self):
+        superdata = super(PerseoCompileStructuredDataStringVariablesNews, self).data
+        superdata['%%imageurl%%'] = self.context.restrictedTraverse('@@images').scale('image', scale='preview').url
+        return superdata
+
+
+class PerseoCompileStructuredDataStringVariablesEvent(PerseoCompileStructuredDataStringVariables):
+    implements(IPerseoCompileStructuredDataStringVariables)
+
+    @property
+    def data(self):
+        superdata = super(PerseoCompileStructuredDataStringVariablesEvent, self).data
+        superdata['%%startdate%%'] = self.context.start.strftime('%Y/%m/%d')
+        superdata['%%eventurl%%'] = self.context.event_url or self.context.absolute_url()
+        superdata['%%address%%'] = self.context.location
+        superdata['%%addressname%%'] = self.context.location
+        return superdata
+
+
+STRUCTUREDDATA_MARKERS = ['%%title%%', '%%imageurl%%', '%%pubblicationdate%%', '%%modificationdate%%',
+                          '%%author%%', '%%description%%', '%%address%%', '%%eventurl%%', '%%startdate%%',
+                          '%%addressname%%']
+
+
+def compile_structured_data_variables(context, value, pagetype):
+    ad = None
+    try:
+        ad = getAdapter(context,
+                        IPerseoCompileStructuredDataStringVariables,
+                        name="perseo_compile_structured_data_variables_%s" % pagetype)
+    except:
+        ad = getAdapter(context,
+                        IPerseoCompileStructuredDataStringVariables,
+                        name="perseo_compile_structured_data_variables_base")
+    if not ad:
+        return value
+
+    data = ad.data
+    for marker in STRUCTUREDDATA_MARKERS:
         if marker in value and marker in data:
             value = value.replace(marker, data[marker])
     return value

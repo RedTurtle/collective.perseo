@@ -115,6 +115,23 @@
         permission="zope2.View"
         />
 
+    <!--   -->
+    <browser:viewlet
+        name="plone.htmlhead.structureddata"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.PerSEOStructuredData"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="plone.htmlhead.breadcrumbsstructureddata"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.PerSEOBreadcrumbsStructuredData"
+        layer=".interfaces.IPerSEOLayer"
+        permission="zope2.View"
+        />
+
     <browser:viewlet
         name="collective.perseo.canonicalurl"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"

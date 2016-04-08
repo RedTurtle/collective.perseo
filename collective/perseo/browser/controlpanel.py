@@ -9,6 +9,7 @@ from Products.CMFCore.utils import getToolByName
 from collective.perseo import perseoMessageFactory as _
 from collective.perseo.interfaces import ISEOControlpanel
 from collective.perseo.interfaces.metaconfig import ISEOConfigTitleSchema
+from collective.perseo.interfaces.structureddata import ISEOConfigStructuredDataSchema
 from collective.perseo.interfaces.controlpanel import (ISEOConfigSiteMapXMLSchema,
                                                        ISEOConfigIndexingSchema,
                                                        IHrefLangSchema,
@@ -30,6 +31,12 @@ class TitleForm(group.Group):
                     " you can use 'fullname' to use the author fullname or, if you are on a content, you can get the authors list. If"
                     " you are customizing search page, you can use 'searchedtext' to take the search query string")
     fields = field.Fields(ISEOConfigTitleSchema)
+
+
+class StructuredDataForm(group.Group):
+    label = _(u"Structured Data")
+    description = _(u"")
+    fields = field.Fields(ISEOConfigStructuredDataSchema)
 
 
 class SitemapForm(group.Group):
@@ -55,7 +62,7 @@ class PerSEOSettingsEditForm(controlpanel.RegistryEditForm):
     label = _(u"PerSEO settings")
     description = _(u"")
     schema = ISEOControlpanel
-    groups = (SitemapForm, IndexingForm, SocialForm, TitleForm, HrefLangForm)
+    groups = (SitemapForm, IndexingForm, SocialForm, TitleForm, HrefLangForm, StructuredDataForm)
 
     def updateFields(self):
         super(PerSEOSettingsEditForm, self).updateFields()
