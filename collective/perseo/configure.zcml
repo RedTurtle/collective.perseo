@@ -50,11 +50,22 @@
         name="perseo_compile_structured_data_variables_event" />
 
     <adapter
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        provides=".interfaces.variables.IPerseoCompileStructuredDataStringVariables"
+        factory=".utils.PerseoCompileStructuredDataStringVariables"
+        name="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot" />
+
+    <adapter
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides=".interfaces.variables.IPerseoCompileStructuredDataStringVariables"
+        factory=".utils.PerseoCompileStringVariables"
+        name="perseo_compile_structured_data_variables_base" />
+
+    <adapter
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         provides=".interfaces.variables.IPerseoCompileStringVariables"
         factory=".utils.PerseoCompileStringVariables"
         name="perseo_compile_variable_adapter_base" />
-
 
     <adapter
         for="Products.Archetypes.interfaces.base.IBaseObject"
