@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.7.34 (2016-05-18)
+------------------
+- Microformats introduction [lucabel]
+
 0.7.3 (2015-07-22)
 ------------------
 - Add trivial mapper to map custom type over standard plone type in
