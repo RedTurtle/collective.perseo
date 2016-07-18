@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.5 (2016-05-18)
+0.7.5 (2016-07-18)
 ------------------
 -fix problem wih missing adapters [lucabel]
 
