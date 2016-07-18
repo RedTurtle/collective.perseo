@@ -163,7 +163,7 @@ class PerSEOBreadcrumbsStructuredData(ViewletBase):
     # position: number form 1 to ...
     # @id: the link
     # name: the title
-    BREADCRUMB = """
+    BREADCRUMB = u"""
             {
                 "@type": "ListItem",
                 "position": %s,
@@ -177,7 +177,7 @@ class PerSEOBreadcrumbsStructuredData(ViewletBase):
     def update(self):
 
         self.breadcrumbs_view = getMultiAdapter((self.context, self.request),
-                                           name='breadcrumbs_view')
+                                                name='breadcrumbs_view')
 
     def render(self):
         seo = ISEOSettings(self.context, None)
@@ -189,15 +189,16 @@ class PerSEOBreadcrumbsStructuredData(ViewletBase):
         results = []
         count = 1
         results.append(self.BREADCRUMB % (count,
-                     self.context.portal_url.getPortalObject().absolute_url(),
-                     'Home'))
+                       self.context.portal_url.getPortalObject().absolute_url(),
+                       'Home'))
         if breadcrumbs:
             for breadcrumb in breadcrumbs:
                 count += 1
-                results.append(self.BREADCRUMB % (count,
-                     breadcrumb['absolute_url'],
-                     breadcrumb['Title']
-                    ))
+                results.append(
+                    self.BREADCRUMB % (count,
+                                       breadcrumb['absolute_url'],
+                                       breadcrumb['Title'].decode('utf-8'))
+                )
 
         return self.BREADCRUMBS % (', '.join(results))
 

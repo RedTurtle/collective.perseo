@@ -156,7 +156,10 @@ class PerseoCompileStructuredDataStringVariablesNews(PerseoCompileStructuredData
     @property
     def data(self):
         superdata = super(PerseoCompileStructuredDataStringVariablesNews, self).data
-        superdata['%%imageurl%%'] = self.context.restrictedTraverse('@@images').scale('image', scale='preview').url
+        if self.context.image:
+            superdata['%%imageurl%%'] = self.context.restrictedTraverse('@@images').scale('image', scale='preview').url
+        else:
+            superdata['%%imageurl%%'] = ''
         return superdata
 
 
