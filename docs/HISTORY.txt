@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.6 (unreleased)
+0.7.6 (2016-07-19)
 ------------------
 
 - Fix problem with encoding [lucabel]
