@@ -4,7 +4,7 @@ Changelog
 0.7.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix problem with encoding [lucabel]
 
 
 0.7.5 (2016-07-18)
