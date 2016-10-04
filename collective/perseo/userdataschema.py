@@ -2,8 +2,6 @@ from zope import schema
 from zope.interface import implements
 from collective.perseo import perseoMessageFactory as _
 
-from pkg_resources import get_distribution
-
 #if float(get_distribution('Products.CMFPlone').version) < 5:
 #    from plone.app.users.userdataschema import IUserDataSchema
 #    from plone.app.users.userdataschema import IUserDataSchemaProvider
@@ -11,8 +9,11 @@ from pkg_resources import get_distribution
 #    from plone.app.users.schema import IUserDataSchema
 # XXX fix in a better way. need an iterable
 #    IUserDataSchemaProvider = tuple()
+try:
+    from plone.app.users.schema import IUserDataSchema
+except:
+    from plone.app.users.userdataschema import IUserDataSchema
 
-from plone.app.users.schema import IUserDataSchema
 #XXX fix in a better way. need an iterable
 IUserDataSchemaProvider = tuple()
 

@@ -2,11 +2,10 @@ from zope.annotation.interfaces import IAnnotations
 from Products.Archetypes.interfaces.base import IBaseContent
 from plone.indexer.decorator import indexer
 from pkg_resources import get_distribution
-
-#if float(get_distribution('Products.CMFPlone').version) < 5:
-#    from plone.app.users.browser.personalpreferences import UserDataPanelAdapter
-#else:
-from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
+try:
+    from plone.app.users.browser.personalpreferences import UserDataPanelAdapter
+except:
+    from plone.app.users.browser.userdatapanel import UserDataPanelAdapter
 
 
 class EnhancedUserDataPanelAdapter(UserDataPanelAdapter):
