@@ -4,7 +4,7 @@ Changelog
 0.7.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix problem with some import in Plone4 trying to have single version for both P4 and P5 [lucabel]
 
 
 0.7.6 (2016-07-19)
