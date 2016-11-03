@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.7.8 (unreleased)
+------------------
+
+- Fix problem with viewlts when in portlet edit view [lucabel]
+
 0.7.7 (unreleased)
 ------------------
 
