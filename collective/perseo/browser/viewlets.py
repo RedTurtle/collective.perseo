@@ -134,6 +134,8 @@ class PerSEOStructuredData(ViewletBase):
     """
     def render(self):
         seo = ISEOSettings(self.context, None)
+        if not seo:
+            return ''
         page = seo.find_context()
         if not getattr(seo.settings, 'activate_struct_data', None):
             return ''
@@ -181,6 +183,8 @@ class PerSEOBreadcrumbsStructuredData(ViewletBase):
 
     def render(self):
         seo = ISEOSettings(self.context, None)
+        if not seo:
+            return ''
         if not getattr(seo.settings, 'activate_struct_data', None):
             return ''
         if not getattr(seo.settings, 'activate_bc_struct_data', None):
@@ -225,6 +229,8 @@ class PerSEOTitleTagViewlet(ViewletBase):
 
     def render(self):
         seo = ISEOSettings(self.context, None)
+        if not seo:
+            return ''
         page = seo.find_context()
         if seo and (seo.title_override or
                     getattr(seo.settings, '%s_title' % page, None)) \
