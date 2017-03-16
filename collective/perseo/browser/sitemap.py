@@ -40,7 +40,7 @@ class PerSEOSiteMapView (SiteMapView):
         included_types = self.settings.not_included_types
         image_types = ('Image',)
 
-        for item in catalog.searchResults({'Language': 'all'}):
+        for item in catalog.searchResults():
 
             if item.getIncludedInSitemapxml not in (None, Missing.Value):
                 include = item.getIncludedInSitemapxml
