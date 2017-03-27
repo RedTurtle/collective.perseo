@@ -4,7 +4,9 @@ Changelog
 0.7.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix error in compile_structured_data_variables when a marker value is empty
+  (for example an event location).
+  [cekk]
 
 
 0.7.9 (2017-03-16)

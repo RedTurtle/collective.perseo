@@ -196,6 +196,7 @@ def compile_structured_data_variables(context, value, pagetype):
 
     data = ad.data
     for marker in STRUCTUREDDATA_MARKERS:
-        if marker in value and marker in data:
-            value = value.replace(marker, data[marker])
+        marker_value = data.get(marker) or ''
+        if marker in value and marker_value:
+            value = value.replace(marker, marker_value)
     return value
