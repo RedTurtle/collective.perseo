@@ -46,23 +46,24 @@ class ATSeoContextAdapter(PloneSiteSeoContextAdapter):
                 # template inside browser view
                 template_id = self.context.REQUEST['PUBLISHED'].__name__
 
+
         if template_id in ('search', 'search_form', ):
             return 'search_page'
         elif template_id in ('author', ):
             return 'authorpage'
         elif template_id in ('sitemap', ):
             return 'sitemap'
-        elif template_id in ('accessibility-info'):
+        elif template_id in ('accessibility-info',):
             return 'accessibilitypage'
-        elif template_id in ('contact-info'):
+        elif template_id in ('contact-info', ):
             return 'contactpage'
         elif template_id in ('plone_control_panel', 'overview-controlpanel'):
                 return 'administration_page'
-        elif 'login' in template_id \
+        elif template_id and ('login' in template_id \
                 or 'logout' in template_id \
                 or 'logged' in template_id \
                 or 'registered' in template_id \
-                or 'register' in template_id:
+                or 'register' in template_id):
             return 'login_registration_page'
 
         # we could have also LinguaPlone and different level of navigation root: site root
