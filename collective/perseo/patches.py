@@ -15,7 +15,7 @@ def perSEOListMetaTags(self, context):
 
     for seodict, value in METATAGS:
         for key in seodict.values():
-            if list_meta_tags.has_key(key):
+            if key in list_meta_tags:
                 list_meta_tags.pop(key)
 
     return list_meta_tags

@@ -1,6 +1,5 @@
 from ZODB.PersistentMapping import PersistentMapping
 from zope.annotation.interfaces import IAnnotations, IAnnotatable
-from zope.interface import implements
 from z3c.form import form, field, button
 from z3c.form.browser.radio import RadioFieldWidget
 from Products.CMFCore.utils import getToolByName
@@ -9,6 +8,7 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from plone.z3cform.layout import wrap_form
 from plone.z3cform.fieldsets import extensible
 from plone.z3cform.fieldsets import group
+from zope.interface import implementer
 
 from collective.perseo.interfaces.settings import ISEOSettings, \
         ISEOAdvancedSettings, ISEOTwitterSettings, ISEOFacebookSettings
@@ -29,7 +29,7 @@ class SEOContextTwitterForm(group.Group):
     fields = field.Fields(ISEOTwitterSettings).select('twitter_card',
             'twitter_card_override', 'twitter_creator',
             'twitter_creator_override', 'twitter_title',
-            'twitter_title_override', 'twitter_description', 
+            'twitter_title_override', 'twitter_description',
             'twitter_description_override',
             'twitter_image', 'twitter_image_override')
     label = _(u"Twitter settings")
@@ -41,9 +41,9 @@ class SEOContextTwitterForm(group.Group):
 
 
 class SEOContextFacebookForm(group.Group):
-    fields = field.Fields(ISEOFacebookSettings).select('og_title', 
+    fields = field.Fields(ISEOFacebookSettings).select('og_title',
             'og_title_override', 'og_description', 'og_description_override',
-            'og_url', 'og_url_override', 'og_locale', 
+            'og_url', 'og_url_override', 'og_locale',
             'og_locale_override', 'og_image', 'og_image_override', 'og_type',
             'og_type_override')
     label = _(u"Facebook settings")
@@ -54,8 +54,8 @@ class SEOContextFacebookForm(group.Group):
         self.widgets['og_description'].rows = 5
 
 
+@implementer(ISEOSettings)
 class SEOContextForm(extensible.ExtensibleForm, form.Form):
-    implements(ISEOSettings)
 
     form_name = "perseo_context_settings"
     id = 'perseo-context-settings-form'
@@ -64,7 +64,7 @@ class SEOContextForm(extensible.ExtensibleForm, form.Form):
     ignoreContext = False
     message_ok = _(u'Changes saved.')
     message_cancel = _(u'No changes made.')
-    fields = field.Fields(ISEOSettings).select('title', 'title_override', 
+    fields = field.Fields(ISEOSettings).select('title', 'title_override',
        'description', 'description_override', 'keywords', 'keywords_override')
 
     @property

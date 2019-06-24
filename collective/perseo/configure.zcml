@@ -14,22 +14,27 @@
     title="collective.perseo: Manage SEO" />
 
   <include package=".browser" />
-  <include file="events.zcml" />
+  
+  <!-- we register events only for archetypes-->
+  <!-- include file="events.zcml" /-->
+   
+
   <include file="patches.zcml" />
   <include file="skins.zcml"/>
 
-  <adapter name="getIncludedInSitemapxml" factory=".adapter.get_included_in_sitemapxml" />
-  <adapter name="getPrioritySitemapxml" factory=".adapter.get_priority_sitemapxml" />
+  <!-- We are removing all things related to AT -->
+  <!--adapter name="getIncludedInSitemapxml" factory=".adapter.get_included_in_sitemapxml" />
+  <adapter name="getPrioritySitemapxml" factory=".adapter.get_priority_sitemapxml" /-->
   <utility
         component=".vocabularies.ReallyUserFriendlyTypesVocabularyFactory"
         name="collective.perseo.vocabularies.ReallyUserFriendlyTypes"
       />
 
-    <adapter
+    <!--adapter
         for="Products.Archetypes.interfaces.base.IBaseObject"
         provides=".interfaces.variables.IPerseoCompileStructuredDataStringVariables"
         factory=".utils.PerseoCompileStructuredDataStringVariables"
-        name="perseo_compile_structured_data_variables_base" />
+        name="perseo_compile_structured_data_variables_base" /-->
 
     <adapter
         for="plone.dexterity.interfaces.IDexterityItem"
@@ -67,11 +72,11 @@
         factory=".utils.PerseoCompileStringVariables"
         name="perseo_compile_variable_adapter_base" />
 
-    <adapter
+    <!--adapter
         for="Products.Archetypes.interfaces.base.IBaseObject"
         provides=".interfaces.variables.IPerseoCompileStringVariables"
         factory=".utils.PerseoCompileStringVariables"
-        name="perseo_compile_variable_adapter_base" />
+        name="perseo_compile_variable_adapter_base" /-->
 
     <adapter
         for="plone.dexterity.interfaces.IDexterityItem"
@@ -92,11 +97,11 @@
         name="perseo_compile_variable_adapter_authorpage" />
 
 
-    <adapter
+    <!--adapter
         for="Products.Archetypes.interfaces.base.IBaseObject"
         provides=".interfaces.variables.IPerseoCompileStringVariables"
         factory=".utils.PerseoCompileStringVariablesAuthor"
-        name="perseo_compile_variable_adapter_author_page" />
+        name="perseo_compile_variable_adapter_author_page" /-->
 
     <adapter
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
@@ -105,11 +110,11 @@
         name="perseo_compile_variable_adapter_search_page" />
 
 
-    <adapter
+    <!--adapter
         for="Products.Archetypes.interfaces.base.IBaseObject"
         provides=".interfaces.variables.IPerseoCompileStringVariables"
         factory=".utils.PerseoCompileStringVariablesSearch"
-        name="perseo_compile_variable_adapter_search_page" />
+        name="perseo_compile_variable_adapter_search_page" /-->
 
 
   <!-- Register the installation GenericSetup extension profile -->

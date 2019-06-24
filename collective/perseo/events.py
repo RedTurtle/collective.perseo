@@ -1,4 +1,4 @@
-import urllib2
+from urllib.request import urlopen
 
 from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
@@ -24,7 +24,7 @@ def url_open(url):
     """ Perform the url open
     """
     try:
-        urllib2.urlopen(url)
+        urlopen(url)
     except Exception:
         pass
 

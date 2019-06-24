@@ -4,18 +4,6 @@
     i18n_domain="collective.perseo">
 
     <adapter
-        zcml:condition="not-installed collective.contentleadimage"
-        for="Products.Archetypes.interfaces.base.IBaseObject"
-        provides="..interfaces.settings.ISEOSettings"
-        factory=".settings_at.ATSeoContextAdapter" />
-
-    <adapter
-        zcml:condition="installed collective.contentleadimage"
-        for="Products.Archetypes.interfaces.base.IBaseObject"
-        provides="..interfaces.settings.ISEOSettings"
-        factory=".settings_leadimage.LeadImageSeoContextAdapter" />
-
-    <adapter
         for="plone.dexterity.interfaces.IDexterityItem"
         provides="..interfaces.settings.ISEOSettings"
         factory=".settings_at.ATSeoContextAdapter" />
@@ -29,10 +17,5 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         provides="..interfaces.settings.ISEOSettings"
         factory=".settings_plone.PloneSiteSeoContextAdapter" />
-
-    <adapter
-        for="Products.ATContentTypes.interfaces.image.IATImage"
-        provides="..interfaces.settings.ISEOSettings"
-        factory=".settings_image.ImageSeoContextAdapter" />
 
 </configure>

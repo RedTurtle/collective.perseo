@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from zope.interface import implements
+from zope.interface import implementer
+
 
 try:
     from zope.app.schema.vocabulary import IVocabularyFactory
@@ -29,11 +30,10 @@ BAD_TYPES = ("ATBooleanCriterion", "ATDateCriteria", "ATDateRangeCriterion",
              'FormSaveDataAdapter', 'FormSelectionField', 'FormStringField',
              'FormTextField', 'FormThanksPage')
 
-
+@implementer(IVocabularyFactory)
 class ReallyUserFriendlyTypesVocabulary(object):
     """Vocabulary factory for really user friendly portal types.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         site = getSite()

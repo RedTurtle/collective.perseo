@@ -4,6 +4,7 @@ from collective.perseo.interfaces.variables import (IPerseoCompileStringVariable
                                                     IPerseoCompileStructuredDataStringVariables)
 from zope.interface import implements
 from Products.CMFPlone.utils import safe_unicode, safe_hasattr
+from zope.interface import implementer
 
 try:
     from App.class_init import InitializeClass
@@ -53,8 +54,8 @@ except:
 MARKERS = ['%%title%%', '%%tag%%', '%%description%%', '%%startdate%%', '%%enddate%%', '%%sitename%%', '%%fullname%%', '%%searchedtext%%']
 
 
+@implementer(IPerseoCompileStringVariables)
 class PerseoCompileStringVariables(object):
-    implements(IPerseoCompileStringVariables)
 
     def __init__(self, context):
         self.context = context
@@ -131,9 +132,8 @@ def compile_variables(context, value, pagetype):
             value = value.replace(marker, data[marker])
     return value
 
-
+@implementer(IPerseoCompileStructuredDataStringVariables)
 class PerseoCompileStructuredDataStringVariables(object):
-    implements(IPerseoCompileStructuredDataStringVariables)
 
     def __init__(self, context):
         self.context = context
@@ -149,9 +149,8 @@ class PerseoCompileStructuredDataStringVariables(object):
             }
         return result
 
-
+@implementer(IPerseoCompileStructuredDataStringVariables)
 class PerseoCompileStructuredDataStringVariablesNews(PerseoCompileStructuredDataStringVariables):
-    implements(IPerseoCompileStructuredDataStringVariables)
 
     @property
     def data(self):
@@ -163,8 +162,8 @@ class PerseoCompileStructuredDataStringVariablesNews(PerseoCompileStructuredData
         return superdata
 
 
+@implementer(IPerseoCompileStructuredDataStringVariables)
 class PerseoCompileStructuredDataStringVariablesEvent(PerseoCompileStructuredDataStringVariables):
-    implements(IPerseoCompileStructuredDataStringVariables)
 
     @property
     def data(self):

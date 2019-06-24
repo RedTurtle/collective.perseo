@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <object name="portal_skins" allow_any="False" cookie_persistence="False">
 
- <object name="collective.perseo.templates"
+ <object name="collective_perseo_templates"
     meta_type="Filesystem Directory View"
-    directory="collective.perseo:skins/collective.perseo.templates"/>
-  <object name="collective.perseo.styles"
+    directory="collective.perseo:skins/collective_perseo_templates"/>
+  <object name="collective_perseo_styles"
     meta_type="Filesystem Directory View"
-    directory="collective.perseo:skins/collective.perseo.styles"/>
-  <object name="collective.perseo.javascript"
+    directory="collective.perseo:skins/collective_perseo_styles"/>
+  <object name="collective_perseo_javascript"
     meta_type="Filesystem Directory View"
-    directory="collective.perseo:skins/collective.perseo.javascript"/>
+    directory="collective.perseo:skins/collective_perseo_javascript"/>
 
  <skin-path name="*">
-  <layer name="collective.perseo.templates" insert-after="custom"/>
-  <layer name="collective.perseo.styles" insert-after="collective.perseo.templates"/>
-  <layer name="collective.perseo.javascript" insert-after="collective.perseo.styles"/>
+  <layer name="collective_perseo_templates" insert-after="custom"/>
+  <layer name="collective_perseo_styles" insert-after="collective_perseo_templates"/>
+  <layer name="collective_perseo_javascript" insert-after="collective_perseo_styles"/>
 
  </skin-path>
 

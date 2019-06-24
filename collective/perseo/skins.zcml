@@ -4,10 +4,12 @@
     i18n_domain="collective.perseo">
 
     <cmf:registerDirectory
-        name="collective.perseo.templates"/>
+        name="collective_perseo_templates"/>
+
     <cmf:registerDirectory
-        name="collective.perseo.styles"/>
+        name="collective_perseo_styles"/>
+
     <cmf:registerDirectory
-        name="collective.perseo.javascript"/>
+        name="collective_perseo_javascript"/>
 
 </configure>

@@ -42,14 +42,6 @@
 
     <browser:page
         name="perseo-context-settings"
-        for="Products.Archetypes.interfaces.base.IBaseObject"
-        class=".settings.manageSEOContext"
-        layer=".interfaces.IPerSEOLayer"
-        permission="cmf.ModifyPortalContent"
-        />
-
-    <browser:page
-        name="perseo-context-settings"
         for="plone.dexterity.interfaces.IDexterityItem"
         class=".settings.manageSEOContext"
         layer=".interfaces.IPerSEOLayer"
@@ -81,13 +73,13 @@
         template="templates/RSS.pt"
         />
 
-    <browser:page zcml:condition="not-have Plone-43"
+    <!--browser:page zcml:condition="not-have Plone-43"
         for="plone.app.collection.interfaces.ICollection"
         name="RSS"
         permission="zope2.View"
         layer=".interfaces.IPerSEOLayer"
         template="templates/collectionRSS.pt"
-        />
+        /-->
 
     <browser:viewlet
         name="collective.perseo.metatags"

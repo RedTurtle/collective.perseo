@@ -1,5 +1,5 @@
 from zope import schema
-from zope.interface import implements
+from zope.interface import implementer
 from collective.perseo import perseoMessageFactory as _
 
 #if float(get_distribution('Products.CMFPlone').version) < 5:
@@ -17,8 +17,8 @@ except:
 #XXX fix in a better way. need an iterable
 IUserDataSchemaProvider = tuple()
 
+@implementer(IUserDataSchemaProvider)
 class UserDataSchemaProvider(object):
-    implements(IUserDataSchemaProvider)
 
     def getSchema(self):
         return IEnhancedUserDataSchema
