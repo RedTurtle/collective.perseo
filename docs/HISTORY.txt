@@ -4,6 +4,8 @@ Changelog
 0.8 (2019-06-24)
 ----------------
 - Migrate code to work with Plone5.2 and python3.6 
+  this is quite a breaking change due to renate of skins folder
+  [lucabel]
 
 0.7.11 (2017-10-18)
 -------------------
